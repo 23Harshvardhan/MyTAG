@@ -28,4 +28,8 @@ export class HeaderComponent implements OnInit {
     document.getElementById("pricing-section")?.scrollIntoView({behavior: 'smooth'});
   }
 
+  onContactUs(){
+    document.getElementById("contact-section")?.scrollIntoView({behavior:'smooth'});
+  }
+
 }
