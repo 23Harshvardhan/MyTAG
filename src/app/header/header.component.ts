@@ -31,5 +31,4 @@ export class HeaderComponent implements OnInit {
   onContactUs(){
     document.getElementById("contact-section")?.scrollIntoView({behavior:'smooth'});
   }
-
 }

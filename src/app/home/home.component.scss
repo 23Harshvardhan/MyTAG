@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+.spacing {
+    padding: 50px;
+}
+
+.hero-caption {
+    font-family: 'Lato', sans-serif;
+    font-size: 50px;
+}
+
+.hero-desc {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: justify;
+    text-justify: auto;
+}
+
+.app-down-section {
+    margin-top: 20px;
+    display: flex;
+}
+
+.downimg {
+    width: 150px;
+    margin-left: 10px;
+}
+
+.main-content-section {
+    margin-left: 300px;
+    margin-right: 300px;
+    display: flex;
+}
+
+.holder1 {
+    background-color: #f6ecff;
+    color: black;
+}
+
+.topic-area {
+    padding: 20px;
+    text-align: center;
+    background-color: #7F00FF;
+    color: white;
+}
+
+.topic-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 70px;
+}
+
+.topic-caption {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.videoPlayer {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.vidHolder {
+    display: flex;
+    justify-content: center;
+    background-color: #f6ecff;
+}
+
+.pricingOptions{
+    display: flex;
+    justify-content: center;
+}
+
+.pricePanel {
+    padding: 100px 100px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    box-shadow: rgba(0, 0, 0, 0.30) 1.95px 1.95px 2.6px;
+}
+
+.secondPanel {
+    margin-left: 50px;
+}
+
+.pricingTitle {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 40px;
+}
+
+.pricingDesc {
+    font-family: 'Lato', sans-serif;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.pricingBtn {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #7F00FF;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #e9f4fb;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+    font-family: 400;
+    padding: 10px 10px;
+}
+
+.pricingBtn:hover {
+    background-color: #6400c9;
+    transition: .5s;
+}
+
+.contact-info {
+    margin-left: 300px;
+    margin-top: 50px;
+    margin-right: 300px;
+}
+
+.info-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color: #7F00FF;
+}
+
+.info-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.form-panel {
+    margin-top: 50px;
+    width: 500px;
+    font-family: 'Lato', sans-serif;
+    padding: 0 40px;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translate(70%, 0%);
+    width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+    margin-bottom: 100px;
+    z-index: -100;
+}
+
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+  }
+  .txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  .txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+  .txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #7F00FF;
+    transition: .5s;
+  }
+  .txt_field input:focus ~ label,
+  .txt_field input:valid ~ label{
+    top: -5px;
+    color: #7F00FF;
+  }
+  .txt_field input:focus ~ span::before,
+  .txt_field input:valid ~ span::before{
+    width: 100%;
+  }
+  .pass{
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+  }
+  .pass:hover{
+    text-decoration: underline;
+  }
+  input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #7F00FF;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+  }
+  input[type="submit"]:hover{
+    background-color: #6400c9;
+    transition: .5s;
+  }
