@@ -5,12 +5,20 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { ChooseCardComponent } from './choose-card/choose-card.component';
+import { DemoComponent } from './demo/demo.component';
+import { FeaturesComponent } from './features/features.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: '', component:HomeComponent},
   {path: 'signup', component:SignupComponent},
-  {path: 'chooseCard', component:ChooseCardComponent}
+  {path: 'chooseCard', component:ChooseCardComponent},
+  {path: 'demo', component:DemoComponent},
+  {path: 'features', component:FeaturesComponent},
+  {path: 'contactus', component:ContactusComponent},
+  {path: 'pricing', component:PricingComponent}
 ];
 
 @NgModule({
@@ -18,4 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent]
+export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent]

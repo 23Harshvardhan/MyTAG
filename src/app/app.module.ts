@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { ChooseCardComponent } from './choose-card/choose-card.component';
+import { DemoComponent } from './demo/demo.component';
+import { FeaturesComponent } from './features/features.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { ChooseCardComponent } from './choose-card/choose-card.component';
     HomeComponent,
     FooterComponent,
     SignupComponent,
-    ChooseCardComponent
+    ChooseCardComponent,
+    DemoComponent,
+    FeaturesComponent,
+    ContactusComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,
