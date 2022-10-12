@@ -1,0 +1,13 @@
+<section class="navpanel">
+  <div class="navbar">
+    <a class="logo" href="#">MyTAG</a>
+    <div class="buttons">
+      <button [routerLink]="['home']" (click)="onHome()" class="btn">Home</button>
+      <button (click)="onDemo()" class="btn">Demo</button>
+      <button (click)="onFeatures()" class="btn">Features</button>
+      <button (click)="onPricing()" class="btn">Pricing</button>
+      <button class="btn">Contact Us</button>
+      <button [routerLink]="['login']" class="loginbtn">Log In</button>
+    </div>
+  </div>
+</section>
