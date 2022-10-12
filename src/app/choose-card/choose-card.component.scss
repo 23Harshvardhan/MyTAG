@@ -9,7 +9,7 @@ $point: #7F00FF;
 $point-light: lighten($point, 5%);
 
 $ratio: 1.5;
-$card_width: 350px;
+$card_width: 360px;
 $card_height: $card_width * $ratio;
 $card_padding: 20px;
 $card-bgcolor: white;
@@ -112,7 +112,7 @@ body{
   p{
     margin: $card-padding-basis 0px 0px 0px;
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: -0.25px;
     line-height: 1.25;
     font-size: 16px;
