@@ -9,6 +9,10 @@ import { DemoComponent } from './demo/demo.component';
 import { FeaturesComponent } from './features/features.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PricingComponent } from './pricing/pricing.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
+import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
+import { CreateCardComponent } from './create-card/create-card.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -18,7 +22,11 @@ const routes: Routes = [
   {path: 'demo', component:DemoComponent},
   {path: 'features', component:FeaturesComponent},
   {path: 'contactus', component:ContactusComponent},
-  {path: 'pricing', component:PricingComponent}
+  {path: 'pricing', component:PricingComponent},
+  {path: 'userDashboard', component:UserDashboardComponent},
+  {path: 'superuserDashboard', component:SuperuserDashboardComponent},
+  {path: 'teamsDashboard', component:TeamsDashboardComponent},
+  {path: 'createCard', component:CreateCardComponent}
 ];
 
 @NgModule({
@@ -26,4 +34,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent]
+export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
+UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent]

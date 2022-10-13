@@ -13,6 +13,10 @@ import { DemoComponent } from './demo/demo.component';
 import { FeaturesComponent } from './features/features.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PricingComponent } from './pricing/pricing.component';
+import { CreateCardComponent } from './create-card/create-card.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
+import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { PricingComponent } from './pricing/pricing.component';
     DemoComponent,
     FeaturesComponent,
     ContactusComponent,
-    PricingComponent
+    PricingComponent,
+    CreateCardComponent,
+    UserDashboardComponent,
+    SuperuserDashboardComponent,
+    TeamsDashboardComponent
   ],
   imports: [
     BrowserModule,
