@@ -222,3 +222,40 @@ form .txt_field{
     background-color: #6400c9;
     transition: .5s;
   }
+
+  ul {
+    margin-top: 50px;
+    font-family: 'Lato', sans-serif;
+    list-style-type: none;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #555;
+    color: white;
+  }
+
+  li a.active {
+    background-color: #7F00FF;
+    color: white;
+    font-weight: 700;
+  }
+
+  li a.active:hover {
+    background-color: #6400c9;
+  }
+
+  .verticalNav {
+    background-color: #f1f1f1;
+    position: absolute;
+    padding-bottom: 50%;
+  }
