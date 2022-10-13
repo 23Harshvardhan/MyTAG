@@ -17,6 +17,7 @@ import { CreateCardComponent } from './create-card/create-card.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
 import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
+import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-nav.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.compo
     CreateCardComponent,
     UserDashboardComponent,
     SuperuserDashboardComponent,
-    TeamsDashboardComponent
+    TeamsDashboardComponent,
+    UserDashboardNavComponent
   ],
   imports: [
     BrowserModule,

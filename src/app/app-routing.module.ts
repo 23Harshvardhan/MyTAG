@@ -13,6 +13,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
 import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
 import { CreateCardComponent } from './create-card/create-card.component';
+import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-nav.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'userDashboard', component:UserDashboardComponent},
   {path: 'superuserDashboard', component:SuperuserDashboardComponent},
   {path: 'teamsDashboard', component:TeamsDashboardComponent},
-  {path: 'createCard', component:CreateCardComponent}
+  {path: 'createCard', component:CreateCardComponent},
+  {path: 'userDashboardNav', component:UserDashboardNavComponent}
 ];
 
 @NgModule({
@@ -35,4 +37,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent]
+UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent]

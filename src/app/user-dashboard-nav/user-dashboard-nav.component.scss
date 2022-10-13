@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+.navbar {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    color: #7F00FF;
+    font-size: 30px;
+    margin-left: 200px;
+}
+
+.navbar button {
+    padding: 10px 20px;
+    float: right;
+}
+
+.buttons {
+    display: flex;
+    float: right;
+    margin-right: 200px;
+}
+
+.btn {
+    margin-left: 20px;
+    background-color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    border-radius: 50px;
+}
+
+.btn:hover {
+    background-color: rgb(245, 245, 255);
+    cursor: pointer;
+}
+
+.loginbtn {
+    margin-left: 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    background-color: #7F00FF;
+}
+
+.loginbtn:hover {
+    cursor: pointer;
+}
