@@ -317,3 +317,25 @@ body{
     border-bottom: 2px solid #7F00FF;
     margin: 30px 0;
   }
+
+  .buttons {
+    display: flex;
+    margin: 20px 0px;
+    gap: 20px;
+  }
+
+  .buttons button {
+    width: 100px;
+    height: 50px;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7F00FF;
+    color: white;
+  }
+
+  .buttons button:hover {
+    background-color: #6400c9;
+    cursor: pointer;
+  }
