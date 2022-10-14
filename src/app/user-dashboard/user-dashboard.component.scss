@@ -91,111 +91,106 @@ form .txt_field{
     transition: .5s;
   }
 
-  // ul {
-  //   margin-top: 50px;
-  //   font-family: 'Lato', sans-serif;
-  //   list-style-type: none;
-  //   padding: 0;
-  //   width: 200px;
-  //   background-color: #f1f1f1;
-  // }
+  ul {
+    margin-top: 50px;
+    font-family: 'Lato', sans-serif;
+    list-style-type: none;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
   
-  // li a {
-  //   display: block;
-  //   color: #000;
-  //   padding: 8px 16px;
-  //   text-decoration: none;
-  // }
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
   
-  // li a:hover {
-  //   background-color: #555;
-  //   color: white;
-  // }
+  li a:hover {
+    background-color: #555;
+    color: white;
+  }
 
-  // li a.active {
-  //   background-color: #7F00FF;
-  //   color: white;
-  //   font-weight: 700;
-  // }
+  li a.active {
+    background-color: #7F00FF;
+    color: white;
+    font-weight: 700;
+  }
 
-  // li a.active:hover {
-  //   background-color: #6400c9;
-  // }
+  li a.active:hover {
+    background-color: #6400c9;
+  }
 
-  // .main {
-  //   display: flex;
-  // }
+  .main {
+    display: flex;
+  }
 
-  // .verticalNav {
-  //   background-color: #f1f1f1;
-  //   position: absolute;
-  //   padding-bottom: 50%;
-  // }
+  .verticalNav {
+    background-color: #f1f1f1;
+    position: absolute;
+    height: 100vh;
+  }
 
-  // .search-panel {
-  //   background-color: lightgrey;
-  //   display: flex;
-  //   font-family: 'Lato', sans-serif;
-  //   width: 100vh;
-  // }
+  .search-panel {
+    background-color: lightgrey;
+    display: flex;
+    font-family: 'Lato', sans-serif;
+    width: 100vh;
+  }
 
-  // .cards-panel {
-  //   background-color: blue;
-  //   padding: 100px 100px;
-  // }
+  .txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  .txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: gray;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+  .txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #7F00FF;
+    transition: .5s;
+  }
+  .txt_field input:focus ~ label,
+  .txt_field input:valid ~ label{
+    top: -5px;
+    color: #7F00FF;
+  }
+  .txt_field input:focus ~ span::before,
+  .txt_field input:valid ~ span::before{
+    width: 100%;
+  }
 
-  // .txt_field input{
-  //   width: 100%;
-  //   padding: 0 5px;
-  //   height: 40px;
-  //   font-size: 16px;
-  //   border: none;
-  //   background: none;
-  //   outline: none;
-  // }
-  // .txt_field label{
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 5px;
-  //   color: gray;
-  //   transform: translateY(-50%);
-  //   font-size: 16px;
-  //   pointer-events: none;
-  //   transition: .5s;
-  // }
-  // .txt_field span::before{
-  //   content: '';
-  //   position: absolute;
-  //   top: 40px;
-  //   left: 0;
-  //   width: 0%;
-  //   height: 2px;
-  //   background: #7F00FF;
-  //   transition: .5s;
-  // }
-  // .txt_field input:focus ~ label,
-  // .txt_field input:valid ~ label{
-  //   top: -5px;
-  //   color: #7F00FF;
-  // }
-  // .txt_field input:focus ~ span::before,
-  // .txt_field input:valid ~ span::before{
-  //   width: 100%;
-  // }
+  .search-fields {
+    display: flex;
+    gap: 100px;
+  }
 
-  // .search-fields {
-  //   display: flex;
-  //   gap: 100px;
-  // }
+  form {
+    margin-left: 400px;}
 
-  // form {
-  //   margin-left: 400px;}
-
-  // form .txt_field{
-  //   position: relative;
-  //   border-bottom: 2px solid #7F00FF;
-  //   margin: 30px 0;
-  // }
+  form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #7F00FF;
+    margin: 30px 0;
+  }
 
   @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
@@ -267,11 +262,7 @@ body{
     background-color: lightgrey;
     display: flex;
     font-family: 'Lato', sans-serif;
-  }
-
-  .cards-panel {
-    background-color: blue;
-    padding: 100px 100px;
+    width: 100vw;
   }
 
   .txt_field input{
