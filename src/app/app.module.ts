@@ -18,6 +18,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
 import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
 import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-nav.component';
+import { CardPreviewComponent } from './card-preview/card-preview.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-n
     UserDashboardComponent,
     SuperuserDashboardComponent,
     TeamsDashboardComponent,
-    UserDashboardNavComponent
+    UserDashboardNavComponent,
+    CardPreviewComponent
   ],
   imports: [
     BrowserModule,
