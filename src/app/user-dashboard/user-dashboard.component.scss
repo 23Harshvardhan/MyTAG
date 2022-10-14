@@ -382,7 +382,13 @@ body{
   .actions {
     display: flex;
     gap: 10px;
-    float: right;
+    margin-left: 20px;
+    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .cardHolder {
+    display: flex;
   }
 
   .actions i:hover {

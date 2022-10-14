@@ -4,7 +4,7 @@
 <div class="main">
     <div class="verticalNav">
         <ul>
-            <li><a >Cards</a></li>
+            <li><a routerLink="/userDashboard">Cards</a></li>
             <li><a >Email Signature</a></li>
             <li><a >Analytics</a></li>
             <li><a >Settings</a></li>
@@ -30,21 +30,23 @@
             </div>
         </div>
         <div class="cards-panel">
-            <article class="card">
-                <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
-                <div class="card__content">
-                    <br>
-                    <h1 class="card__title">Harshvardhan</h1>
-                    <br>
-                    <p class="card__desc">Card ID 294</p>
-                    <br>
-                    <div class="actions">
-                        <i class="fa fa-pencil-square-o"></i>
-                        <i class="fa fa-files-o"></i>
-                        <i class="fa fa-trash"></i>
+            <div class="cardHolder">
+                <article class="card" routerLink="/cardPreview">
+                    <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
+                    <div class="card__content">
+                        <br>
+                        <h1 class="card__title">Harshvardhan</h1>
+                        <br>
+                        <p class="card__desc">Card ID 294</p>
+                        <br>
                     </div>
+                </article>
+                <div class="actions">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-trash"></i>
                 </div>
-              </article>
+              </div>
         </div>
     </div>
 </div>
