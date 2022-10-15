@@ -1,15 +1,13 @@
 <section class="navpanel">
   <div class="navbar">
-    <a class="logo" routerLink="/" href="#home">MyTAG</a>
+    <a class="logo" routerLink="/">MyTAG</a>
     <div class="buttons">
-
-      <a routerLink="/home" class="btn">Home</a>
-      <a routerLink="/home/demo" class="btn">Demo</a>
-      <a routerLink="/home/features" class="btn">Features</a>
-      <a routerLink="/home/pricing" class="btn">Pricing</a>
-      <a routerLink="/home/contact" class="btn">Contact Us</a>
-      <a routerLink="/login" class="loginbtn">Log In</a>
-      
+      <button routerLink="/" (click)="onHome()" class="btn">Home</button>
+      <button (click)="onDemo()" class="btn">Demo</button>
+      <button (click)="onFeatures()" class="btn">Features</button>
+      <button (click)="onPricing()" class="btn">Pricing</button>
+      <button (click)="onContactUs()" class="btn">Contact Us</button>
+      <button routerLink="/login" class="loginbtn">Log In</button>
     </div>
   </div>
 </section>
