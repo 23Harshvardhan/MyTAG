@@ -15,6 +15,7 @@ import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.compo
 import { CreateCardComponent } from './create-card/create-card.component';
 import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-nav.component';
 import { CardPreviewComponent } from './card-preview/card-preview.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'teamsDashboard', component:TeamsDashboardComponent},
   {path: 'createCard', component:CreateCardComponent},
   {path: 'userDashboardNav', component:UserDashboardNavComponent},
-  {path: 'cardPreview', component:CardPreviewComponent}
+  {path: 'cardPreview', component:CardPreviewComponent},
+  {path: 'inventory', component:InventoryComponent}
 ];
 
 @NgModule({
@@ -40,4 +42,4 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent]
+UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent]
