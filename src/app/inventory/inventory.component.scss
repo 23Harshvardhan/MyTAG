@@ -1,0 +1,355 @@
+:root {
+    --nav-width: 13vw;
+    --nav-height: 98vh;
+
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.vertical_navBar {
+    box-shadow: 0px 0px 10px #00000080;
+    width: var(--nav-width);
+    height: var(--nav-height);
+    margin-left: .3rem;
+    overflow: hidden;
+}
+
+.imageContainer {
+    width: var(--nav-width);
+    height: var(--nav-width);
+    background-color: black;
+}
+
+.vertical_navBar ul {
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+
+}
+
+.vertical_navBar ul li {
+    padding: 1rem;
+    list-style: none;
+    transition: .3s;
+    padding-left: 25%;
+
+}
+
+.vertical_navBar ul li:hover {
+    perspective: 200px;
+    transform: translateX(10px);
+    background-color: #6d6d6d80;
+
+}
+
+.vertical_navBar ul li a {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+
+    color: black;
+
+}
+
+.All_page_Content {
+    width: 85vw;
+    height: var(--nav-height);
+    overflow: hidden;
+    border: 1px solid #00000080;
+    box-shadow: 0px 0px 10px #00000080;
+    margin-left: .5rem;
+}
+
+.TopContent {
+    width: 100%;
+    height: 10%;
+    background-color: #00000071;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(78, 75, 75, 0.502);
+
+}
+
+.title {
+
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: .2rem;
+
+}
+
+.totle_cards {
+    width: 10%;
+    height: 70%;
+    border: 1px solid #0000008a;
+    background-color: #ffffff9f;
+    margin-left: 79%;
+    padding: .3rem;
+    color: #000000a4;
+
+}
+
+.title h1 {
+    margin-left: 5%;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.totle_cards h1 {
+    font-size: medium;
+    display: block;
+    color: black;
+
+}
+
+.bottom-content {
+
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.3rem;
+
+
+}
+
+.bottom-content .input-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.bottom-content .input-container h5 {
+    margin-top: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+.date {
+    margin-left: -3%;
+    width: 30%;
+    margin-right: 5%;
+}
+
+.bottom-content .check-list {
+    width: 10%;
+    height: 100%;
+
+
+}
+
+.bottom-content .container-btn {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subbox1 {
+    text-align: center;
+    width: 30%;
+    height: 80%;
+}
+
+.subbox2,
+.subbox2-2 {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+
+}
+
+#month {
+    width: 98%;
+    height: 35%;
+}
+
+.onelinecontant {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.onelinecontant input {
+    width: 45%;
+    height: 100%;
+}
+
+.check-list input {
+    width: 15px;
+    height: 15px;
+    margin-top: 5%;
+}
+
+.container-btn .container1,
+.container-btn .container2 {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-btn .container1 button,
+.container-btn .container2 button {
+    width: 80%;
+    height: 40%;
+    border-radius: 0%;
+    background-color: rgba(0, 0, 0, 0.616);
+    color: white;
+    border: none;
+    transition: .3s;
+}
+
+.container-btn .container1 button:checked,
+.container-btn .container2 button:checked {
+    border: 1px solid black;
+    background-color: #b8b8b8a5;
+    color: black;
+}
+
+.container-btn .container1 button:hover,
+.container-btn .container2 button:hover {
+    border: 1px solid black;
+    background-color: #b8b8b8a5;
+    color: black;
+}
+
+.maincontant-data {
+    background-color: #00000071;
+    width: 100%;
+    height: 62%;
+    overflow: hidden;
+    overflow-y: auto;
+
+
+}
+
+
+.contentHead {
+    width: 100%;
+    height: 10%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    overflow: hidden;
+
+    background-color: rgb(255, 255, 255);
+    margin-bottom: .5rem;
+}
+
+.contentHead h4 {
+    margin-top: .7rem;
+}
+
+
+.personal-details {
+    width: 100%;
+    height: 10%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    overflow: hidden;
+
+    background-color: rgb(255, 255, 255);
+    margin-bottom: .5rem;
+}
+
+
+.Card-Id,
+.Created-Date,
+.Created-By,
+.Account-Id,
+.Account-Name {
+    padding: .5rem;
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.status {
+    margin-top: .3rem;
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Batch-Id {
+    padding: .5rem;
+    width: 6%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.Preview-url {
+    padding: .5rem;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.Preview-url a {
+    color: black;
+    text-decoration: none;
+}
+
+.Preview-url a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.status-active {
+    width: 80%;
+    height: 80%;
+    background-color: rgb(81, 255, 139);
+    border: 1px solid #00000071;
+    transition: .3s;
+}
+
+.status-panding {
+
+    width: 80%;
+    height: 80%;
+    border: 1px solid #00000071;
+    transition: .3s;
+    background-color: yellow;
+}
+
+.status-Cancelled {
+    width: 80%;
+    height: 80%;
+    border: 1px solid #00000071;
+    transition: .3s;
+    background-color: red;
+}

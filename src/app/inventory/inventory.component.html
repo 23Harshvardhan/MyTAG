@@ -1,0 +1,381 @@
+    <nav class="vertical_navBar">
+
+        <div class="imageContainer">
+            <img src="">
+        </div>
+        <ul>
+
+            <li><b><a href="#">DashBord</a></b></li>
+            <li><b><a href="#">Inventory</a></b></li>
+            <li><b><a href="#">Account</a></b></li>
+            <li><b><a href="#">Active Cards</a></b></li>
+            <li><b><a href="#">Order</a></b></li>
+            <li><b><a href="#">Setting</a></b></li>
+            <li><b><a href="#">Log out</a></b></li>
+        </ul>
+    </nav>
+    <div class="All_page_Content">
+        <section class="TopContent">
+            <div class="title">
+                <h1>Inventory</h1>
+            </div>
+            <div class="totle_cards">
+                <!-- card count -->
+                <h1><b> MYTAG</b></h1>total cards: <span id="card_count">100</span>
+
+        <!-- </section> -->
+        <section class="bottom-content">
+            <div class="input-container">
+                <div class="subbox1">
+                    <h5>Set</h5>
+                    <h5>Date</h5>
+                </div>
+                <div class="subbox2">
+                    <input type="month" id="month">
+                    <div class="onelinecontant">
+
+                        <input type="date" id="date">
+                        <input type="date" id="current-date">
+                    </div>
+                </div>
+
+            </div>
+            <div class="input-container">
+                <div class="subbox1">
+                    <h5>Card No.</h5>
+                    <h5>Account ID</h5>
+                </div>
+                <div class="subbox2-2">
+
+                    <input type="number">
+                    <input type="text">
+
+                </div>
+
+            </div>
+            <div class="input-container">
+                <div class="subbox1">
+                    <h5>Batch ID</h5>
+                    <h5>Name</h5>
+                </div>
+                <div class="subbox2-2">
+
+                    <input type="number">
+                    <input type="text">
+
+                </div>
+
+            </div>
+            <div class="check-list">
+                <input type="checkbox"><span>Pandding</span><br>
+                <input type="checkbox"><span>Active</span><br>
+                <input type="checkbox"><span>Cancelled</span>
+            </div>
+            <div class="container-btn">
+                <div class="container1">
+                    <button>View</button>
+                </div>
+                <div class="container2">
+                    <button>Add Card</button>
+                    <button>Quantity</button>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="contentHead">
+            <!-- IMPORTENT -->
+            <!-- you can use the id for backend i don't have done stylieng with ID so u can also modify them -->
+            <div class="Card-Id">
+                <h4>Card ID</h4>
+            </div>
+            <div class="Batch-Id">
+                <h4>Batch ID</h4>
+            </div>
+            <div class="Created-Date">
+                <h4>Created Date</h4>
+            </div>
+            <div class="Created-By">
+                <h4>Created By</h4>
+            </div>
+            <div class="Preview-url">
+                <h4>Preview URL</h4>
+            </div>
+            <div class="Account-Id">
+                <h4>Account Id</h4>
+            </div>
+            <div class="Account-Name">
+                <h4>Account Name</h4>
+            </div>
+            <div class="status">
+                <h4>status</h4>
+            </div>
+        </div>
+        <div class="maincontant-data">
+            <!-- this is the heading for main details -->
+
+            <!-- Data fetch from back-end will be added from hear -->
+            <!-- use class
+ status-active -> green background of button
+ status-panding -> yellow background of button
+ status-Cancelled -> red background of button -->
+
+
+
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-active">Active</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-Cancelled">Cancelled</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-active">Active</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-panding">pending</button>
+                </div>
+            </div>
+
+
+
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-active">Active</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-active">Active</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-Cancelled">Cancelled</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-active">Active</button>
+                </div>
+            </div>
+            <div class="personal-details">
+
+                <div class="Card-Id">
+                    <span>10001</span>
+                </div>
+                <div class="Batch-Id">
+                    <span>01</span>
+                </div>
+                <div class="Created-Date">
+                    <span>22-Oct-2022</span>
+                </div>
+                <div class="Created-By">
+                    <span>Gopal</span>
+                </div>
+                <div class="Preview-url">
+                    <a href="#">https://DummyUrl/10002/gopal/first/url</a>
+                </div>
+                <div class="Account-Id">
+                    <span>12209603</span>
+                </div>
+                <div class="Account-Name">
+                    <span>Account 1</span>
+                </div>
+                <div class="status">
+
+                    <button class="status-panding">pending</button>
+                </div>
+            </div>
+        </div>
+<!-- </body> -->

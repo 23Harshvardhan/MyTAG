@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
-.spacing {
-    padding: 50px;
+.home-section {
+    background-color: #232323;
 }
 
 .hero-caption {
     font-family: 'Lato', sans-serif;
     font-size: 50px;
+    text-align: center;
+    color: white;
+    margin-top: 200px;
 }
 
 .hero-desc {
@@ -15,6 +18,9 @@
     font-size: 18px;
     text-align: justify;
     text-justify: auto;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 
 .app-down-section {
@@ -33,8 +39,8 @@
     display: flex;
 }
 
-.holder1 {
-    background-color: #f6ecff;
+.holder {
+    background-color: #232323;
     color: black;
 }
 
@@ -221,3 +227,48 @@ form .txt_field{
     background-color: #6400c9;
     transition: .5s;
   }
+
+  .button.light.white {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    color: #fff;
+}
+
+.button.light {
+    padding-right: 24px;
+    padding-left: 24px;
+    border: 2px solid #f35a57;
+    background-color: transparent;
+    color: #f35a57;
+    font-size: 15px;
+    line-height: 1.33;
+}
+
+.button {
+    padding: 13px 32px;
+    border: 1px solid #f35a57;
+    border-radius: 80px;
+    background-color: #f35a57;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    line-height: 1.375;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    text-transform: capitalize;
+}
+
+.center {
+    margin-top: 60px;
+    text-align: center;   
+    margin-bottom: 300px; 
+}
+
+.button:hover {
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-out;
+    background-color: #f35a57;
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-<section class="navpanel">
+<!-- <section class="navpanel">
   <div class="navbar">
     <a class="logo" routerLink="/">MyTAG</a>
     <div class="buttons">
@@ -8,6 +8,28 @@
       <button (click)="onPricing()" class="btn">Pricing</button>
       <button (click)="onContactUs()" class="btn">Contact Us</button>
       <button routerLink="/login" class="loginbtn">Log In</button>
+    </div>
+  </div>
+</section> -->
+
+<section class="navpanel">
+  <div class="navbar">
+    <div class="logoSection">
+      <a routerLink="/" class="brand w-nav-brand">
+        <img src="/assets/img/logo.jpg" class="logoImg">
+      </a>
+    </div>
+
+    <div class="nav-menu w-nav-menu">
+      <a routerLink="/" (click)="onHome()" class="nav-link white w-nav-link">Home</a>
+      <a (click)="onFeatures()" class="nav-link white w-nav-link">Features</a>
+      <a (click)="onDemo()" class="nav-link white w-nav-link">Demo</a>
+      <a (click)="onPricing()" class="nav-link white w-nav-link">Pricing</a>
+      <a (click)="onContactUs()" class="nav-link white w-nav-link">Contact Us</a>
+    </div>
+
+    <div class="navbar-cta-wrapper">
+      <a routerLink="/login" class="button light white w-button">Log In</a>
     </div>
   </div>
 </section>
