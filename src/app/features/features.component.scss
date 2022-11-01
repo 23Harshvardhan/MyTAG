@@ -33,6 +33,7 @@
     margin-left: 300px;
     margin-right: 300px;
     display: flex;
+    align-items: center;
 }
 
 .holder1 {
@@ -43,7 +44,7 @@
 .topic-area {
     padding: 20px;
     text-align: center;
-    background-color: #232323;
+    background-color: #232323; 
     color: white;
 }
 
@@ -222,4 +223,13 @@ form .txt_field{
   input[type="submit"]:hover{
     background-color: #6400c9;
     transition: .5s;
+  }
+
+.hero-img-pnl {
+    padding: 50px;
+}
+
+  .demoimg {
+    height: 600px;
+    width: auto;
   }
