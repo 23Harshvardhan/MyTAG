@@ -41,7 +41,7 @@
 .topic-area {
     padding: 20px;
     text-align: center;
-    background-color: #7F00FF;
+    background-color: #232323;
     color: white;
 }
 
@@ -75,7 +75,7 @@
 
 .pricePanel {
     padding: 100px 100px;
-    background-color: #f8f8f8;
+    background-color: #646464;
     border-radius: 10px;
     margin-top: 50px;
     margin-bottom: 100px;
@@ -89,6 +89,7 @@
 .pricingTitle {
     font-family: 'Lato', sans-serif;
     text-align: center;
+    color: white;
     font-size: 40px;
 }
 
@@ -96,14 +97,15 @@
     font-family: 'Lato', sans-serif;
     text-align: justify;
     font-size: 20px;
+    color: white;
 }
 
 .pricingBtn {
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background: #7F00FF;
-    border-radius: 10px;
+    background: #f35a57;
+    border-radius: 50px;
     font-size: 18px;
     color: #e9f4fb;
     cursor: pointer;
@@ -111,10 +113,12 @@
     font-family: 'Lato', sans-serif;
     font-family: 400;
     padding: 10px 10px;
+    transition: 0.5s;
+    border: none;
 }
 
 .pricingBtn:hover {
-    background-color: #6400c9;
+    background-color: #cc4f4d;
     transition: .5s;
 }
 
@@ -208,7 +212,7 @@ form .txt_field{
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background: #7F00FF;
+    background: #232323;
     border-radius: 10px;
     font-size: 18px;
     color: #e9f4fb;
@@ -218,6 +222,15 @@ form .txt_field{
     margin-bottom: 20px;
   }
   input[type="submit"]:hover{
-    background-color: #6400c9;
+    background-color: #252525;
     transition: .5s;
+  }
+
+  .leaf-img {
+    position: absolute;
+    float: right;
+    opacity: 20%;
+    margin: 0;
+    width: 700px;
+    height: auto;
   }
