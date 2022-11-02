@@ -4,21 +4,24 @@
 .body {
     display: flex;
     font-family: 'Lato', sans-serif;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .cardArea {
     background-color: rgb(216, 216, 216);
     height: 100vh;
+    width: 26vw;
     display: flex;
     align-items: center;
     padding: 0px 200px 0px 200px;
+    overflow: auto;
 }
 
 .card {
-    background-color: lavender;
+    background-color: white;
     border-radius: 20px;
     display: block;
+    box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
 }
 
 .cardImage {
@@ -47,9 +50,42 @@
     color: crimson;
 }
 
+.userTitleArea {
+    display: flex;
+    gap: 10px;
+    margin-top: -20px;
+}
+
+.userTitle p{
+    background-color: rgb(255, 185, 199);
+    color: rgb(61, 61, 61);
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.additionalBlock {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.blockIcon i{
+    padding: 10px;
+    background-color: rgb(255, 138, 161);
+    border-radius: 10px;
+}
+
+.blockLable {
+    font-weight: 700;
+}
+
 .editorArea {
     background-color: white;
     height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
 }
 
 .title {
@@ -70,7 +106,7 @@
     margin: 100px 100px;
 }
 
-.buttonRow1 {
+.buttonRow {
     display: flex;
     gap: 20px;
 }
