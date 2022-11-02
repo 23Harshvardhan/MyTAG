@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+.body {
+    display: flex;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+}
+
+.cardArea {
+    background-color: rgb(163, 163, 163);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0px 200px 0px 200px;
+}
+
+.card {
+    background-color: lavender;
+    border-radius: 20px;
+    display: block;
+}
+
+.cardImage {
+    width: 300px;
+    height: 300px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.infoArea {
+    margin-left: 20px;
+}
+
+.fullNameField {
+
+}
+
+.designationField {
+    margin-top: -20px;
+    color: crimson;
+    font-weight: bold;
+}
+
+.companyField {
+    margin-top: -20px;
+    color: crimson;
+}
+
+.editorArea {
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+}
+
+.buttonRows {
+    display: block;
+    margin: 100px;
+}
+
+.buttonRow1 {
+    display: flex;
+    gap: 20px;
+}
+
+.inputBtn {
+    border: none;
+    border-radius: 10px;
+    font-size: 50px;
+    padding: 40px 40px;
+    background-color: rgb(212, 175, 247);
+    transition: 0.3s;
+}
+
+.inputBtn:hover {
+    background-color: rebeccapurple;
+    transition: 0.3s;
+}
