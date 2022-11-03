@@ -12,8 +12,18 @@ export class CreateCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showAlert()
-  {
-    alert("working");
-  } 
+  showName(idName:string) {
+    var input = document.getElementById(idName);
+    
+    if(input != null) {
+      var visibilityState = document.getElementById(idName)?.style.display;
+
+      if(visibilityState == "none") {
+        input.style.display = "block";
+      }
+      else {
+        input.style.display = "none";
+      }
+    }
+  }
 }

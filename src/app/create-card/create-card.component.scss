@@ -1,26 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); // Lato font
 @import "~bootstrap-icons/font/bootstrap-icons.css"; // Bootstrap icons
 
+.gap {
+    margin-top: 20px;
+}
+
 .body {
     display: flex;
     font-family: 'Lato', sans-serif;
-    // overflow: hidden;
+    height: 100vh;
+    width: 100%;
 }
 
 .cardArea {
     background-color: rgb(216, 216, 216);
-    height: 100vh;
-    width: 26vw;
     display: flex;
     align-items: center;
-    padding: 0px 200px 0px 200px;
-    overflow: auto;
+    justify-content: center;
+    padding: 0px 300px 0px 300px;
+    overflow: hidden;
 }
 
 .card {
     background-color: white;
     border-radius: 20px;
-    display: block;
     padding-bottom: 10px;
     box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
     max-width: 300px;
@@ -31,11 +34,14 @@
     height: 300px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    background-image: url("/assets/img/demoprofile.jpg");
+    background-size: cover;
+    z-index: 100;
 }
 
 .wave{
     position: absolute;
-    margin-left: -300px;
+    width: fit-content;
 }
 
 .down {
@@ -99,8 +105,7 @@
 
 .editorArea {
     background-color: white;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
     overflow-y: scroll;
 }
 
@@ -149,64 +154,11 @@
     font-size: 15px;
 }
 
-//Styling for input alert
-.inputAlert {
+.inputField {
     display: none;
-    position: fixed;
-    max-width: 25%;
-    min-width: 250px !important;
-    min-height: 20%;
-    height: 200px;
-    left: 50%;
-    top: 50%;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-left: -12.5%;
-    margin-top: -5.2%;
-    background: #088A68;
-}
-
-.message {
-    padding: 5px;
-    color: white;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: justify;
-}
-
-.inputAlertBtn {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 50%;
-    height: 36px;
-    margin-top: -45px;
-    margin-left: -25%;
-    outline: 0;
-    border: 0;
-    background: #04B486;
-    color: white;
-    &:hover{
-      transition: 0.3s;
-      cursor: pointer;
-    	background: lighten(#04B486, 5%);  
-    }
-}
-
-@keyframes fadeOut{
-	from{
-  	opacity: 1;
-  } 
-  to{
-    opacity: 0;
-  }
-}
-    
-@keyframes fadeIn{
-	from{
-  	opacity: 0;
-  } 
-  to{
-    opacity: 1;
-  }
+    border-color: rebeccapurple;
+    border-radius: 10px;
+    width: 200px;
+    font-size: 20px;
+    color: rebeccapurple;
 }
