@@ -17,6 +17,7 @@ import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-n
 import { CardPreviewComponent } from './card-preview/card-preview.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { HowitworksComponent } from './howitworks/howitworks.component';
+import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: 'userDashboardNav', component:UserDashboardNavComponent},
   {path: 'cardPreview', component:CardPreviewComponent},
   {path: 'inventory', component:InventoryComponent},
-  {path: 'howitworks', component:HowitworksComponent}
+  {path: 'howitworks', component:HowitworksComponent},
+  {path: 'createCardTeam', component:CreateCardTeamComponent}
 ];
 
 @NgModule({
@@ -44,4 +46,5 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, HowitworksComponent]
+UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, 
+HowitworksComponent, CreateCardTeamComponent]

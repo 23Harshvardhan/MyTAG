@@ -21,6 +21,7 @@ import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-n
 import { CardPreviewComponent } from './card-preview/card-preview.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { HowitworksComponent } from './howitworks/howitworks.component';
+import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
     UserDashboardNavComponent,
     CardPreviewComponent,
     InventoryComponent,
-    HowitworksComponent
+    HowitworksComponent,
+    CreateCardTeamComponent
   ],
   imports: [
     BrowserModule,
