@@ -23,6 +23,7 @@
     display: block;
     padding-bottom: 10px;
     box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
+    max-width: 300px;
 }
 
 .cardImage {
@@ -30,6 +31,20 @@
     height: 300px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+
+.wave{
+    position: absolute;
+    margin-left: -300px;
+}
+
+.down {
+    fill: crimson;
+}
+
+.up {
+    margin-top: 10px;
+    fill: white;
 }
 
 .infoArea {
@@ -132,4 +147,66 @@
     margin-top: 5px;
     font-weight: 300px;
     font-size: 15px;
+}
+
+//Styling for input alert
+.inputAlert {
+    display: none;
+    position: fixed;
+    max-width: 25%;
+    min-width: 250px !important;
+    min-height: 20%;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-left: -12.5%;
+    margin-top: -5.2%;
+    background: #088A68;
+}
+
+.message {
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+}
+
+.inputAlertBtn {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 50%;
+    height: 36px;
+    margin-top: -45px;
+    margin-left: -25%;
+    outline: 0;
+    border: 0;
+    background: #04B486;
+    color: white;
+    &:hover{
+      transition: 0.3s;
+      cursor: pointer;
+    	background: lighten(#04B486, 5%);  
+    }
+}
+
+@keyframes fadeOut{
+	from{
+  	opacity: 1;
+  } 
+  to{
+    opacity: 0;
+  }
+}
+    
+@keyframes fadeIn{
+	from{
+  	opacity: 0;
+  } 
+  to{
+    opacity: 1;
+  }
 }

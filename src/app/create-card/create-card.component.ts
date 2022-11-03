@@ -12,4 +12,8 @@ export class CreateCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showAlert()
+  {
+    alert("working");
+  } 
 }

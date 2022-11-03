@@ -1,11 +1,22 @@
 <section class="body">
+    <!-- This section contains the dialog box for various inputs -->
+    <div class="inputAlert">
+        <p class="message">lmfao</p>
+        <div class="alertButtons">
+            <input type="button" class="inputAlertBtn primaryBtn" value="Save">
+            <input type="button" class="inputAlertBtn secondaryBtn" value="Cancel">
+        </div>
+    </div>
 
     <!-- This section consists of the card itself that updates dynamically while making changes. -->
     <div class="cardArea">
         <div class="card">
             <div>
                 <img class="cardImage" src="..//src/assets/img/demoprofile.jpg">
-            </div>
+                <svg class="wave down" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+                <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+                <!-- <svg class="wave" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path class="waveColor" d="M0 201L6.3 204.8C12.7 208.7 25.3 216.3 37.8 222.5C50.3 228.7 62.7 233.3 75.2 234.5C87.7 235.7 100.3 233.3 112.8 231.8C125.3 230.3 137.7 229.7 150.2 229.7C162.7 229.7 175.3 230.3 187.8 230C200.3 229.7 212.7 228.3 225.2 227.5C237.7 226.7 250.3 226.3 262.8 223.7C275.3 221 287.7 216 293.8 213.5L300 211L300 301L293.8 301C287.7 301 275.3 301 262.8 301C250.3 301 237.7 301 225.2 301C212.7 301 200.3 301 187.8 301C175.3 301 162.7 301 150.2 301C137.7 301 125.3 301 112.8 301C100.3 301 87.7 301 75.2 301C62.7 301 50.3 301 37.8 301C25.3 301 12.7 301 6.3 301L0 301Z"></path><path d="M0 263L6.3 262.7C12.7 262.3 25.3 261.7 37.8 260.2C50.3 258.7 62.7 256.3 75.2 255.7C87.7 255 100.3 256 112.8 254C125.3 252 137.7 247 150.2 244.5C162.7 242 175.3 242 187.8 244.5C200.3 247 212.7 252 225.2 254C237.7 256 250.3 255 262.8 252C275.3 249 287.7 244 293.8 241.5L300 239L300 301L293.8 301C287.7 301 275.3 301 262.8 301C250.3 301 237.7 301 225.2 301C212.7 301 200.3 301 187.8 301C175.3 301 162.7 301 150.2 301C137.7 301 125.3 301 112.8 301C100.3 301 87.7 301 75.2 301C62.7 301 50.3 301 37.8 301C25.3 301 12.7 301 6.3 301L0 301Z" fill="#ffffff"></path></svg>
+             --></div>
             <div class="infoArea">
                 <h1 class="fullNameField">Yusef Malik</h1>
                 <p class="designationField">CEO</p>
@@ -45,7 +56,7 @@
             <!-- This row contains personal details of the user -->
             <p>Personal Details</p>
             <div class="buttonRow">
-                <button class="inputBtn"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
+                <button (click)="showAlert()" class="inputBtn"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
                 <button class="inputBtn"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
                 <button class="inputBtn"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
                 <button class="inputBtn"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
