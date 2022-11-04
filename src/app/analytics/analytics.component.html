@@ -6,7 +6,8 @@
         <ul>
             <li><a routerLink="/userDashboard">Cards</a></li>
             <li><a routerLink="/emailSignature">Email Signature</a></li>
-            <li><a >Analytics</a></li>
+            <li><a routerLink="/analytics">Analytics</a></li>
+            <li><a routerLink="/inventory">Inventory</a></li>
             <li><a >Settings</a></li>
             <li routerLink="/"><a class="active">Log Out</a></li>
         </ul>
@@ -16,15 +17,22 @@
         <div class="cards-panel">
             <div class="pnl">
                 <article class="card">
-                    <!-- <h1>Views</h1>
-                    <br>
-                    <h1>Shares</h1> -->
-
                     <canvas baseChart
                         [datasets]="barChartData"
                         [labels]="barChartLables"
                         [options]="barChartOptions"
                         [legend]="barChartLegend"
+                    ></canvas>
+                </article>
+            </div>
+            <div class="pnl">
+                <article class="card">
+                    <canvas baseChart
+                        [datasets]="pieChartData"
+                        [labels]="pieChartLables"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [type]="pieChartType"
                     ></canvas>
                 </article>
             </div>
