@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
       data: signUpCreds
     })
     .then( (response) => {
-      alert("OTP sent");
+      alert("If the entered email is correct you will receive OTP");
     })
     .catch( (error) => {
       console.log(error);
