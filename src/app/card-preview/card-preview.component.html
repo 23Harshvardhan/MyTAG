@@ -48,7 +48,10 @@
                     <h4>QR Code</h4>
                 </div>
                 <article class="card" routerLink="/cardPreview">
-                    <canvas class="card__img" id="QRCanvas"></canvas>
+                    <!-- <canvas class="card__img" id="QRCanvas"></canvas> -->
+
+                    <qrcode [qrdata]="generatedCardId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+
                     <div class="card__content">
                         <br>
                         <h1 class="card-btn">Copy Link</h1>

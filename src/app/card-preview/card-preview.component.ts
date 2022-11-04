@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardPreviewComponent implements OnInit {
 
-  constructor() { }
+  generatedCardId:any;
+
+  constructor() { 
+    this.generatedCardId = "123812763";
+  }
 
   ngOnInit(): void {
   }
