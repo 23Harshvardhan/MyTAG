@@ -1,0 +1,15 @@
+<body>
+    <div class="spacing"></div>
+
+    <div class="center">
+        <h1 class="title">Verify Your Email</h1>
+        <form #otpForm="ngForm" (ngSubmit)="checkOtp(otpForm.value)">
+            <div class="txt_field">
+                <input type="number" required name="opt" ngModel>
+                <label>OTP</label>
+            </div>
+            <input type="submit" value="Verify">
+            <div class="signup_link" (click)="resendOtp()">Resent OTP</div>
+        </form>
+    </div>
+</body>

@@ -3,24 +3,24 @@
 
     <div class="center">
         <h1 class="title">Sign Up</h1>
-        <form>
+        <form #signupForm="ngForm" (ngSubmit)="onSignUp(signupForm.value)">
             <div class="txt_field">
-                <input type="text" required>
-                <label>Username</label>
+                <input type="text" required name="FirstName" ngModel>
+                <label>First Name</label>
             </div>
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" required name="LastName" ngModel>
+                <label>Last Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" required name="Email" ngModel>
                 <label>Email</label>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input type="password" required name="Password" ngModel>
                 <label>Password</label>
             </div>
-            <div class="txt_field">
-                <input type="password" required>
-                <label>Comfirm Password</label>
-            </div>
-            <input type="submit" value="Create Account" routerLink="/userDashboard">
+            <input type="submit" value="Create Account">
             <div class="signup_link" routerLink="/login">Already have account? Login</div>
         </form>
     </div>

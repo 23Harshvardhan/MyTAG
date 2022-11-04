@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,7 @@ import { SuperuserAnalyticsComponent } from './superuser-analytics/superuser-ana
 import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
 import { SuperuserSettingsComponent } from './superuser-settings/superuser-settings.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 
 @NgModule({
   declarations: [
@@ -60,13 +63,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     SuperuserAnalyticsComponent,
     ManagePaymentComponent,
     SuperuserSettingsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    VerifyMailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     QRCodeModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
