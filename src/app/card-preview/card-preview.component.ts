@@ -11,5 +11,4 @@ export class CardPreviewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
