@@ -25,7 +25,7 @@
 
         <form #otpForm="ngForm" (ngSubmit)="checkOtp(otpForm.value)">
             <div class="txt_field">
-                <input type="number" required name="opt" ngModel>
+                <input type="number" required name="otp" ngModel>
                 <label>OTP</label>
             </div>
             <div class="signup_link" (click)="resendOtp()">Resent OTP</div>
