@@ -15,10 +15,55 @@
 .cardArea {
     background-color: rgb(216, 216, 216);
     display: flex;
+    flex-direction: column;
+    gap: 50px;
     align-items: center;
     justify-content: center;
     padding: 0px 300px 0px 300px;
     overflow: hidden;
+}
+
+.mainControlButtons {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.primary {
+    background-color: rebeccapurple;
+    color: white;
+    transition: 0.3s;
+}
+
+.primary:hover {
+    background-color: rgb(139, 104, 175);
+    transition: 0.3s;
+}
+
+.secondary {
+    background-color: transparent;
+    border: rebeccapurple solid 2px;
+    color: rebeccapurple;
+    transition: 0.3s;
+}
+
+.secondary:hover {
+    background-color: rebeccapurple;
+    color: white;
+    transition: 0.3s;
 }
 
 .card {

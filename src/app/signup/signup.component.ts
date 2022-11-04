@@ -32,22 +32,18 @@ export class SignupComponent implements OnInit {
   }
 
   checkOtp(otp: {otp:number}){
-
-    if(otp != null) {
       axios.post('http://104.197.104.222/v1/api/auth/verifyEmail', {
         data: otp
         })
         .then( (response) => {
-          this.router.navigate(['/userDashboard'])
+          alert("working");
+          console.log(response);
+          // this.router.navigate(['/userDashboard'])
         })
         .catch((error) => {
           console.log(error);
           alert("Something went wrong, please try again later.")
         });
-      } 
-      else {
-        alert("Invalid OTP");
-      }
     } 
 
   resendOtp() {
