@@ -20,7 +20,16 @@
                 <input type="password" required name="Password" ngModel>
                 <label>Password</label>
             </div>
-            <input type="submit" value="Create Account">
+            <input type="submit" value="Send OTP">
+        </form>
+
+        <form #otpForm="ngForm" (ngSubmit)="checkOtp(otpForm.value)">
+            <div class="txt_field">
+                <input type="number" required name="opt" ngModel>
+                <label>OTP</label>
+            </div>
+            <div class="signup_link" (click)="resendOtp()">Resent OTP</div>
+            <input type="submit" value="Verify And Create Account">
             <div class="signup_link" routerLink="/login">Already have account? Login</div>
         </form>
     </div>

@@ -24,10 +24,32 @@ export class SignupComponent implements OnInit {
       data: signUpCreds
     })
     .then( (response) => {
-      this.router.navigate(['/verifyMail'])
+      alert("OTP sent");
     })
     .catch( (error) => {
       console.log(error);
     });
+  }
+
+  checkOtp(otp: {otp:number}){
+    
+    if(otp != null) {
+      axios.post('http://104.197.104.222/v1/api/auth/verifyEmail', {
+        data: otp
+        })
+        .then( (response) => {
+          this.router.navigate(['/userDashboard'])
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      } 
+      else {
+        alert("Invalid OTP");
+      }
+    } 
+
+  resendOtp() {
+    axios.post('104.197.104.222/v1/api/auth/resendOtp');
   }
 }
