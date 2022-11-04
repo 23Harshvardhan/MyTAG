@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { QRCodeModule } from 'angularx-qrcode';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { CardPreviewComponent } from './card-preview/card-preview.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { HowitworksComponent } from './howitworks/howitworks.component';
 import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
+import { EmailSignatureComponent } from './email-signature/email-signature.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +48,15 @@ import { CreateCardTeamComponent } from './create-card-team/create-card-team.com
     CardPreviewComponent,
     InventoryComponent,
     HowitworksComponent,
-    CreateCardTeamComponent
+    CreateCardTeamComponent,
+    EmailSignatureComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QRCodeModule
+    QRCodeModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
