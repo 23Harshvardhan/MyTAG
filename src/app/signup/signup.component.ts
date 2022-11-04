@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
     
     axios.post('http://104.197.104.222/v1/api/auth/signup', {
       data: signUpCreds
-    })
+    }, {withCredentials: true})
     .then( (response) => {
       alert("If the entered email is correct you will receive OTP");
       this.setCookie(response.data.data.token);
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     if(otp != null) {
       axios.post('http://104.197.104.222/v1/api/auth/verifyEmail', {
         data: otp
-        })
+        }, {withCredentials: true})
         .then( (response) => {
           this.router.navigate(['/userDashboard'])
         })
