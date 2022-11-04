@@ -20,6 +20,11 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
 import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
 import { EmailSignatureComponent } from './email-signature/email-signature.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { SuperuserAnalyticsComponent } from './superuser-analytics/superuser-analytics.component';
+import { SuperuserEmailSignatureComponent } from './superuser-email-signature/superuser-email-signature.component';
+import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
+import { SuperuserSettingsComponent } from './superuser-settings/superuser-settings.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -40,7 +45,12 @@ const routes: Routes = [
   {path: 'howitworks', component:HowitworksComponent},
   {path: 'createCardTeam', component:CreateCardTeamComponent},
   {path: 'emailSignature', component:EmailSignatureComponent},
-  {path: 'analytics', component:AnalyticsComponent}
+  {path: 'analytics', component:AnalyticsComponent},
+  {path: 'superuserAnalytics', component:SuperuserAnalyticsComponent},
+  {path: 'superuserEmailSignature', component:SuperuserEmailSignatureComponent},
+  {path: 'managePaymentGateway', component:ManagePaymentComponent},
+  {path: 'superuserSettings', component:SuperuserSettingsComponent},
+  {path: 'resetPassword', component:ResetPasswordComponent}
 ];
 
 @NgModule({
@@ -51,4 +61,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
 UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, 
-HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent]
+HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, SuperuserAnalyticsComponent, SuperuserEmailSignatureComponent, ManagePaymentComponent,
+SuperuserSettingsComponent, ResetPasswordComponent]

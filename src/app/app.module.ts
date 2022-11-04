@@ -26,6 +26,11 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
 import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
 import { EmailSignatureComponent } from './email-signature/email-signature.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { SuperuserEmailSignatureComponent } from './superuser-email-signature/superuser-email-signature.component';
+import { SuperuserAnalyticsComponent } from './superuser-analytics/superuser-analytics.component';
+import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
+import { SuperuserSettingsComponent } from './superuser-settings/superuser-settings.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +55,12 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     HowitworksComponent,
     CreateCardTeamComponent,
     EmailSignatureComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    SuperuserEmailSignatureComponent,
+    SuperuserAnalyticsComponent,
+    ManagePaymentComponent,
+    SuperuserSettingsComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

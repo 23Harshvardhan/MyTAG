@@ -1,1 +1,55 @@
-<p>superuser-dashboard works!</p>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<app-user-dashboard-nav></app-user-dashboard-nav>
+<div class="main">
+    <div class="verticalNav">
+        <ul>
+            <li><a >Cards</a></li>
+            <li><a routerLink="/superuserEmailSignature">Email Signature</a></li>
+            <li><a routerLink="/superuserAnalytics">Analytics</a></li>
+            <li><a routerLink="/inventory">Inventory</a></li>
+            <li><a routerLink="/superuserSettings">Settings</a></li>
+            <li><a routerLink="/managePaymentGateway">Payment Gateway</a></li>
+            <li routerLink="/"><a class="active">Log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="main-body">
+        <div class="search-panel">
+            <form class="search-fields">
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Search by Name</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Search by Card No.</label>
+                </div>
+            </form>
+            <div class="buttons">
+                <button>View</button>
+                <button routerLink="/createCard">Add Card</button>                   
+            </div>
+        </div>
+        <div class="cards-panel">
+            <div class="cardHolder">
+                <article class="card" routerLink="/cardPreview">
+                    <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
+                    <div class="card__content">
+                        <br>
+                        <h1 class="card__title">Harshvardhan</h1>
+                        <br>
+                        <p class="card__desc">Card ID 294</p>
+                        <br>
+                    </div>
+                </article>
+                <div class="actions">
+                    <i routerLink="/createCard" class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-trash"></i>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
