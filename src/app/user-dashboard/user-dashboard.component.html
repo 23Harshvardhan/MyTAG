@@ -1,19 +1,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="everything">
+    <app-user-dashboard-nav></app-user-dashboard-nav>
 
-<app-user-dashboard-nav></app-user-dashboard-nav>
-<div class="main">
-    <div class="verticalNav">
-        <ul>
-            <li><a routerLink="/userDashboard">Cards</a></li>
-            <li><a routerLink="/emailSignature">Email Signature</a></li>
-            <li><a routerLink="/analytics">Analytics</a></li>
-            <li><a routerLink="/inventory">Inventory</a></li>
-            <li><a >Settings</a></li>
-            <li routerLink="/"><a class="active">Log Out</a></li>
-        </ul>
-    </div>
-
-    <div class="main-body">
+    <div class="main">
         <div class="search-panel">
             <form class="search-fields">
                 <div class="txt_field">
@@ -30,24 +19,37 @@
                 <button routerLink="/createCard">Add Card</button>                   
             </div>
         </div>
-        <div class="cards-panel">
-            <div class="cardHolder">
-                <article class="card" routerLink="/cardPreview">
-                    <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
-                    <div class="card__content">
-                        <br>
-                        <h1 class="card__title">Harshvardhan</h1>
-                        <br>
-                        <p class="card__desc">Card ID 294</p>
-                        <br>
+
+        <div class="main-body">
+            <div class="verticalNav">
+                <ul>
+                    <li><a routerLink="/userDashboard">Cards</a></li>
+                    <li><a routerLink="/emailSignature">Email Signature</a></li>
+                    <li><a routerLink="/analytics">Analytics</a></li>
+                    <li><a routerLink="/inventory">Inventory</a></li>
+                    <li><a >Settings</a></li>
+                    <li routerLink="/"><a class="active">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="cards-panel">
+                <div class="cardHolder">
+                    <article class="card" routerLink="/cardPreview">
+                        <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
+                        <div class="card__content">
+                            <br>
+                            <h1 class="card__title">Harshvardhan</h1>
+                            <br>
+                            <p class="card__desc">Card ID 294</p>
+                            <br>
+                        </div>
+                    </article>
+                    <div class="actions">
+                        <i routerLink="/createCard" class="fa fa-pencil-square-o"></i>
+                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-trash"></i>
                     </div>
-                </article>
-                <div class="actions">
-                    <i routerLink="/createCard" class="fa fa-pencil-square-o"></i>
-                    <i class="fa fa-files-o"></i>
-                    <i class="fa fa-trash"></i>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>

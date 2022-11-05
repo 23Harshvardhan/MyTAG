@@ -124,7 +124,6 @@ form .txt_field{
 
   .main {
     display: flex;
-    
   }
 
   .verticalNav {
@@ -182,10 +181,8 @@ form .txt_field{
   .search-fields {
     display: flex;
     gap: 100px;
+    margin-left: 100px;
   }
-
-  form {
-    margin-left: 400px;}
 
   form .txt_field{
     position: relative;
@@ -252,7 +249,12 @@ body{
 
   .main {
     display: flex;
+    flex-direction: column;
   }
+
+.main-body {
+  display: flex;
+}
 
   .verticalNav {
     background-color: #f1f1f1;
@@ -264,7 +266,8 @@ body{
     background-color: lightgrey;
     display: flex;
     font-family: 'Lato', sans-serif;
-    width: 100vw;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .txt_field input{
@@ -308,11 +311,8 @@ body{
 
   .search-fields {
     display: flex;
-    gap: 100px;
-  }
-
-  form {
-    margin-left: 400px;
+    gap: 50px;
+    justify-self: flex-start;
   }
 
   form .txt_field{
@@ -323,7 +323,8 @@ body{
 
   .buttons {
     display: flex;
-    margin: 20px 0px;
+    align-items: center;
+    margin-right: 100px;
     gap: 20px;
   }
 
@@ -396,4 +397,8 @@ body{
   .actions i:hover {
     color: #424242;
     cursor: pointer;
+  }
+
+  .everything {
+    
   }
