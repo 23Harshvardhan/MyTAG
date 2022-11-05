@@ -36,9 +36,9 @@ export class SignupComponent implements OnInit {
 
   onSignUp (signUpCreds: {FirstName:string, LastName: string, Email:string, Password: string}){
     
-    axios.post('http://104.197.104.222/v1/api/auth/signup', {
+    axios.post('http://185.208.207.55/v1/api/auth/signup', {
       data: signUpCreds
-    }, {withCredentials: true})
+    })
     .then( (response) => {
       alert("If the entered email is correct you will receive OTP");
       this.setCookie(response.data.data.token);
@@ -49,13 +49,13 @@ export class SignupComponent implements OnInit {
   }
 
   checkOtp(otp: {otp:number}){
-    this.all_cookies=this.cookieService.getAll();
     if(otp != null) {
-      axios.post('http://104.197.104.222/v1/api/auth/verifyEmail', {
+      axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {
         data: otp
-        }, {withCredentials: true})
+        })
         .then( (response) => {
-          this.router.navigate(['/userDashboard'])
+          console.log(response);
+          // this.router.navigate(['/userDashboard'])
         })
         .catch((error) => {
           console.log(error);
@@ -68,6 +68,6 @@ export class SignupComponent implements OnInit {
     } 
 
   resendOtp() {
-    axios.post('104.197.104.222/v1/api/auth/resendOtp');
+    axios.post('185.208.207.55/v1/api/auth/resendOtp');
   }
 }
