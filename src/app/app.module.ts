@@ -34,6 +34,7 @@ import { ManagePaymentComponent } from './manage-payment/manage-payment.componen
 import { SuperuserSettingsComponent } from './superuser-settings/superuser-settings.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
+import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
     ManagePaymentComponent,
     SuperuserSettingsComponent,
     ResetPasswordComponent,
-    VerifyMailComponent
+    VerifyMailComponent,
+    VerticalNavComponent
   ],
   imports: [
     BrowserModule,
