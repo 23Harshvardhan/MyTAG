@@ -128,8 +128,8 @@ form .txt_field{
 
   .verticalNav {
     background-color: #f1f1f1;
-    position: absolute;
-    height: 100vh;
+    height: 100%;
+    margin-bottom: 0;
   }
 
   .search-panel {
@@ -181,7 +181,7 @@ form .txt_field{
   .search-fields {
     display: flex;
     gap: 100px;
-    margin-left: 100px;
+    margin-left: 200px;
   }
 
   form .txt_field{
@@ -256,12 +256,6 @@ body{
   display: flex;
 }
 
-  .verticalNav {
-    background-color: #f1f1f1;
-    position: absolute;
-    padding-bottom: 50%;
-  }
-
   .search-panel {
     background-color: lightgrey;
     display: flex;
@@ -324,7 +318,7 @@ body{
   .buttons {
     display: flex;
     align-items: center;
-    margin-right: 100px;
+    margin-right: 200px;
     gap: 20px;
   }
 
@@ -345,8 +339,7 @@ body{
   }
 
   .cards-panel {
-    margin-left: 300px;
-    margin-top: 50px;
+    margin: 50px;
   }
 
   .card {
@@ -390,6 +383,10 @@ body{
     flex-direction: column;
   }
 
+  .body {
+    height: 100vh;
+  }
+
   .cardHolder {
     display: flex;
   }
@@ -397,8 +394,4 @@ body{
   .actions i:hover {
     color: #424242;
     cursor: pointer;
-  }
-
-  .everything {
-    
   }
