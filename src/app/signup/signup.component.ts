@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
+import { catchError, retry } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +17,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private cookieService:CookieService
+    private cookieService:CookieService,
+    private http:HttpClient
     ) {  }
 
     setCookie(token:string){
@@ -35,7 +38,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp (signUpCreds: {FirstName:string, LastName: string, Email:string, Password: string}){
-    
     axios.post('http://185.208.207.55/v1/api/auth/signup', {
       data: signUpCreds
     })
@@ -49,13 +51,18 @@ export class SignupComponent implements OnInit {
   }
 
   checkOtp(otp: {otp:number}){
+    const cookie = {
+      headers:{
+        cki: this.cookieService.get("jwt")
+      } 
+    }
+
     if(otp != null) {
       axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {
         data: otp
-        })
+        }, cookie)
         .then( (response) => {
-          console.log(response);
-          // this.router.navigate(['/userDashboard'])
+          this.router.navigate(['/userDashboard'])
         })
         .catch((error) => {
           console.log(error);
