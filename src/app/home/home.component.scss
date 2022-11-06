@@ -272,3 +272,14 @@ form .txt_field{
     background-color: #f35a57;
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    .hero-caption {
+        font-size: 30px;
+    }
+
+    .hero-desc {
+        font-size: 15px;
+        margin: 0px 10px 0px 10px;
+    }
+}
