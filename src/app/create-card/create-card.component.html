@@ -3,18 +3,68 @@
     <div class="mobileEditorArea">
         <div class="topNavBar">
             <div class="topNavBarButtons">
-                <button class="tnbBtn"><i class="bi bi-person"></i></button>
-                <button class="tnbBtn"><i class="bi bi-person-lines-fill"></i></button>
-                <button class="tnbBtn"><i class="bi bi-chat-square-quote"></i></button>
-                <button class="tnbBtn"><i class="bi bi-person-rolodex"></i></button>
-                <button class="tnbBtn"><i class="bi bi-briefcase"></i></button>
-                <button class="tnbBtn"><i class="bi bi-cash-coin"></i></button>
+                <button class="tnbBtn" (click)="showPersonalInfoTab()"><i class="bi bi-person"></i></button>
+                <button class="tnbBtn" (click)="showBasicInfoTab()"><i class="bi bi-person-lines-fill"></i></button>
+                <button class="tnbBtn" (click)="showSocialInfoTab()"><i class="bi bi-chat-square-quote"></i></button>
+                <button class="tnbBtn" (click)="showCommunicationInfoTab()"><i class="bi bi-person-rolodex"></i></button>
+                <button class="tnbBtn" (click)="showBusinessInfoTab()"><i class="bi bi-briefcase"></i></button>
+                <button class="tnbBtn" (click)="showPaymentInfoTab()"><i class="bi bi-cash-coin"></i></button>
+            </div>
+        </div>
+
+        <div class="bottomNavBar" id="personalInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Name</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Designation</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Company Name</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Accreditations</p></button>
+            </div>
+        </div>
+        <div class="bottomNavBar hidden" id="basicInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Email</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Phone</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Company URL</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Link</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Address</p></button>
+            </div>
+        </div>
+        <div class="bottomNavBar hidden" id="socialInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Twitter</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Instagram</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">LinkedIn</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Facebook</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Snapchat</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">TikTok</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Twitch</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Yelp</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">YouTube</p></button>
+            </div>
+        </div>
+        <div class="bottomNavBar hidden" id="communicationInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">WhatsApp</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Signal</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Discord</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Skype</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Telegram</p></button>
+            </div>
+        </div>
+        <div class="bottomNavBar hidden" id="businessInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">GitHub</p></button>
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Calendy</p></button>
+            </div>
+        </div>
+        <div class="bottomNavBar hidden" id="paymentInfoTab">
+            <div class="bottomNavBarButtons">
+                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">PayPal</p></button>
             </div>
         </div>
     </div>
 
     <div class="body">
-        
         <!-- This section consists of the card itself that updates dynamically while making changes. -->
         <div class="cardArea">
             <div class="card">

@@ -12,18 +12,27 @@ export class CreateCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // showName(idName:string) {
-  //   var input = document.getElementById(idName);
+  showPersonalInfoTab() {
+    document.getElementById("personalInfoTab")?.classList.toggle("hidden");
+  }
+  
+  showBasicInfoTab() {
+    document.getElementById("basicInfoTab")?.classList.toggle("hidden");
+  }
 
-  //   if(input != null) {
-  //     var visibilityState = document.getElementById(idName)?.style.display;
+  showSocialInfoTab() {
+    document.getElementById("socialInfoTab")?.classList.toggle("hidden");
+  }
 
-  //     if(visibilityState == "none") {
-  //       input.style.display = "block";
-  //     }
-  //     else {
-  //       input.style.display = "none";
-  //     }
-  //   }
-  // }
+  showCommunicationInfoTab() {
+    document.getElementById("communicationInfoTab")?.classList.toggle("hidden");
+  }
+
+  showBusinessInfoTab() {
+    document.getElementById("businessInfoTab")?.classList.toggle("hidden");
+  }
+
+  showPaymentInfoTab() {
+    document.getElementById("paymentInfoTab")?.classList.toggle("hidden");
+  }
 }
