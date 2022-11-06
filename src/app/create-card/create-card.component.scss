@@ -19,8 +19,8 @@
     gap: 50px;
     align-items: center;
     justify-content: center;
-    padding: 0px 300px 0px 300px;
     overflow: hidden;
+    width: 50%;
 }
 
 .mainControlButtons {
@@ -35,7 +35,6 @@
     border-radius: 10px;
     font-size: 20px;
     padding: 10px 20px;
-    width: 100%;
 }
 
 .btn:hover {
@@ -102,10 +101,6 @@
     margin-left: 20px;
 }
 
-.fullNameField {
-
-}
-
 .designationField {
     margin-top: -20px;
     color: crimson;
@@ -150,7 +145,7 @@
 
 .editorArea {
     background-color: white;
-    width: 100%;
+    width: 50%;
     overflow-y: scroll;
 }
 
@@ -185,6 +180,7 @@
     padding: 10px 10px 00px 10px;
     background-color: rebeccapurple;
     transition: 0.3s;
+    min-width: 129px;
 }
 
 .inputBtn:hover {
@@ -206,4 +202,8 @@
     width: 200px;
     font-size: 20px;
     color: rebeccapurple;
+}
+
+@media screen and (max-width: 800px) {
+
 }
