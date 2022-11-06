@@ -21,6 +21,7 @@
     justify-content: center;
     overflow: hidden;
     width: 50%;
+    min-width: 405px;
 }
 
 .mainControlButtons {
@@ -204,6 +205,53 @@
     color: rebeccapurple;
 }
 
-@media screen and (max-width: 800px) {
+.mainBody {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
 
+@media screen and (max-width: 800px) {
+    .editorArea {
+        display: none;
+    }
+
+    .mainControlButtons {
+        display: none;
+    }
+
+    .topNavBar {
+        background-color: white;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0px 10px 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 1px 1px 10px 1px gray;
+    }
+
+    .topNavBarButtons {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        overflow: scroll;
+    }
+
+    .tnbBtn {
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rebeccapurple;
+        color: white;
+    }
+
+    .mobileEditorArea {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 }
