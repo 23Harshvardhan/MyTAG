@@ -27,6 +27,7 @@ import { SuperuserSettingsComponent } from './superuser-settings/superuser-setti
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -54,7 +55,8 @@ const routes: Routes = [
   {path: 'superuserSettings', component:SuperuserSettingsComponent},
   {path: 'resetPassword', component:ResetPasswordComponent},
   {path: 'verifyMail', component:VerifyMailComponent},
-  {path: 'verticalNav', component:VerticalNavComponent}
+  {path: 'verticalNav', component:VerticalNavComponent},
+  {path: 'userSettings', component:UserSettingsComponent}
 ];
 
 @NgModule({
@@ -66,4 +68,4 @@ export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
 UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, 
 HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, SuperuserAnalyticsComponent, SuperuserEmailSignatureComponent, ManagePaymentComponent,
-SuperuserSettingsComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent]
+SuperuserSettingsComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, UserSettingsComponent]

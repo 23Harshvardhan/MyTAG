@@ -12,27 +12,7 @@ export class CreateCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showPersonalInfoTab() {
-    document.getElementById("personalInfoTab")?.classList.toggle("hidden");
-  }
-  
-  showBasicInfoTab() {
-    document.getElementById("basicInfoTab")?.classList.toggle("hidden");
-  }
-
-  showSocialInfoTab() {
-    document.getElementById("socialInfoTab")?.classList.toggle("hidden");
-  }
-
-  showCommunicationInfoTab() {
-    document.getElementById("communicationInfoTab")?.classList.toggle("hidden");
-  }
-
-  showBusinessInfoTab() {
-    document.getElementById("businessInfoTab")?.classList.toggle("hidden");
-  }
-
-  showPaymentInfoTab() {
-    document.getElementById("paymentInfoTab")?.classList.toggle("hidden");
+  openTab() {
+    
   }
 }
