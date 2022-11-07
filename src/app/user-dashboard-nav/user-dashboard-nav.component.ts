@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard-nav',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashboardNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private cookieService: CookieService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
+    this.onLoad();
   }
 
+  onLoad (){
+    const cookie = {
+      headers:{
+        cki: this.cookieService.get("jwt")
+      } 
+    }
+
+    axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
+    .then( (response) => {
+      console.log(response.data.userInfo)
+      var name = response.data.userInfo.Name;
+      var splitted = name.split(" ", 1)
+      var usrName = document.getElementById("userName");
+      usrName!.innerText=splitted;
+    })
+    .catch( (error) => {
+      console.log(error);
+      this.router.navigate(['/login']);
+    });
+  }
 }
