@@ -12,6 +12,47 @@ export class CreateCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  currentBlockName = "";
+  accreds:string[] = [];
+
+  data = {
+    name: "",
+    designation: "",
+    companyName: "",
+    accreditations: ""
+  }
+
+  showInputWind(blockName:string) {
+    this.currentBlockName = blockName;
+    var inputWind = document.getElementById("inputWind");
+    const warning = document.getElementById("warning");
+    const inputArea = document.getElementById("textArea") as HTMLInputElement;
+    inputWind!.style.display = "block";
+    var temp = this.data[blockName as keyof typeof this.data];
+    inputArea.value = temp;
+
+    if(this.currentBlockName == "accreditations") {
+      warning!.style.display = "block";
+    }
+    else{
+      warning!.style.display = "none";
+    }
+  }
+
+  closeWind() {
+    var inputWind = document.getElementById("inputWind");
+    const inputArea = document.getElementById("textArea") as HTMLInputElement;
+    var temp = inputArea.value;
+    this.data[this.currentBlockName as keyof typeof this.data] = temp;
+    inputWind!.style.display = "none";
+
+    if(this.currentBlockName == "accreditations") {
+      if(temp != ""){
+        this.accreds = inputArea.value.split(',');
+      }
+    }
+  }
+
   // openTab() {
     
   // }
