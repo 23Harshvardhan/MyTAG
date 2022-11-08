@@ -15,4 +15,35 @@ export class CreateCardComponent implements OnInit {
   openTab() {
     
   }
+
+  name:string = "";
+  designation:string = "";
+
+  getNameValue(val:string) {
+    this.name = val;
+  }
+
+  getDesignationValue(val:string) {
+    this.designation = val;
+  }
+
+  showNameInput() {
+    var inputWind = document.getElementById("nameInput");
+    inputWind!.style.display = "block";
+  }
+
+  showDesignationInput() {
+    var inputWind = document.getElementById("designationInput");
+    inputWind!.style.display = "block";
+  }
+
+  saveNameInput() {
+    var inputWind = document.getElementById("nameInput");
+    inputWind!.style.display = "none";
+  }
+
+  saveDesignationInput() {
+    var inputWind = document.getElementById("designationInput");
+    inputWind!.style.display = "none";
+  }
 }

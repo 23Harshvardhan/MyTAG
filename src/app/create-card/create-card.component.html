@@ -1,4 +1,19 @@
 <div class="mainBody">
+    <div class="inputArea">
+        <div class="Input" id="nameInput">
+            <input type="text" #nameinput (keyup)="getNameValue(nameinput.value)" class="InputField" placeholder="Enter here">
+            <div class="inputButtons gap">
+                <input type="button" value="Save" class="inputSubmitBtn" (click)="saveNameInput()">
+            </div>
+        </div>
+        <!-- <div class="Input" id="designationInput">
+            <input type="text" #designationinput (keyup)="getDesignationValue(designationinput.value)" class="InputField" placeholder="Enter here">
+            <div class="inputButtons gap">
+                <input type="button" value="Save" class="inputSubmitBtn" (click)="saveDesignationInput()">
+            </div>
+        </div> -->
+    </div>
+
     <!-- This section is mobile friendly and other is desktop friendly -->
     <div class="mobileEditorArea">
         <div class="topNavBar">
@@ -14,7 +29,7 @@
 
         <div class="bottomNavBar" id="personalInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Name</p></button>
+                <button class="bnbBtn" (click)="showNameInput()"><i class="bi bi-cursor-text"></i><p class="navBtnLable">Name</p></button>
                 <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Designation</p></button>
                 <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Company Name</p></button>
                 <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Accreditations</p></button>
@@ -73,9 +88,9 @@
                     <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
                 </div>
                 <div class="infoArea">
-                    <h1 class="fullNameField">Yusef Malik</h1>
-                    <p class="designationField">CEO</p>
-                    <p class="companyField">MyTag</p>
+                    <h1 class="fullNameField" id="fullName">{{name}}</h1>
+                    <p class="designationField" id="designation">{{designation}}</p>
+                    <p class="companyField" id="companyName"></p>
 
                     <div class="userTitleArea">
                         <div class="userTitle">
@@ -117,8 +132,8 @@
                 <!-- This row contains personal details of the user -->
                 <p>Personal Details</p>
                 <div class="buttonRow">
-                    <button class="inputBtn"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
-                    <button class="inputBtn"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
+                    <button class="inputBtn" (click)="showNameInput()"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
+                    <button class="inputBtn" (click)="showDesignationInput()"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
                     <button class="inputBtn"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
                     <button class="inputBtn"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
                 </div>
