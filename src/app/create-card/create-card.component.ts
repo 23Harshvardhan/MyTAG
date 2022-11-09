@@ -53,7 +53,15 @@ export class CreateCardComponent implements OnInit {
     tiktok: "",
     twitch: "",
     yelp: "",
-    youtube: ""
+    youtube: "",
+    whatsapp: "",
+    signal: "",
+    discord: "",
+    skype: "",
+    telegram: "",
+    github: "",
+    calendy: "",
+    paypal: ""
   }
 
   postData = {

@@ -137,11 +137,43 @@
                         <div class="blockIcon"><i class="bi bi-youtube"></i></div>
                         <a href=`${data.youtube}`><p class="blockLable">YouTube</p></a>
                     </div>
+                    <div class="additionalBlock" *ngIf="data.whatsapp!= ''">
+                        <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
+                        <a href=`${data.whatsapp}`><p class="blockLable">WhatsApp</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.signal!= ''">
+                        <div class="blockIcon"><i class="bi bi-signal"></i></div>
+                        <a href=`${data.signal}`><p class="blockLable">Signal</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.discord!= ''">
+                        <div class="blockIcon"><i class="bi bi-discord"></i></div>
+                        <a href=`${data.discord}`><p class="blockLable">Discord</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.skype!= ''">
+                        <div class="blockIcon"><i class="bi bi-skype"></i></div>
+                        <a href=`${data.skype}`><p class="blockLable">Skype</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.telegram!= ''">
+                        <div class="blockIcon"><i class="bi bi-telegram"></i></div>
+                        <a href=`${data.telegram}`><p class="blockLable">Telegram</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.github!= ''">
+                        <div class="blockIcon"><i class="bi bi-github"></i></div>
+                        <a href=`${data.github}`><p class="blockLable">GitHub</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.calendy!= ''">
+                        <div class="blockIcon"><i class="bi bi-calendy"></i></div>
+                        <a href=`${data.calendy}`><p class="blockLable">Calendy</p></a>
+                    </div>
+                    <div class="additionalBlock" *ngIf="data.paypal!= ''">
+                        <div class="blockIcon"><i class="bi bi-paypal"></i></div>
+                        <a href=`${data.paypal}`><p class="blockLable">PayPal</p></a>
+                    </div>
                 </div>
             </div>
             <div class="mainControlButtons">
-                <button routerLink="/cardPreview" class="btn secondary">Back</button>
-                <button routerLink="/cardPreview" class="btn primary" (click)="createCard()">Finish</button>
+                <button class="btn secondary">Cancel</button>
+                <button class="btn primary" (click)="createCard()">Finish</button>
             </div>
         </div>
 
@@ -175,7 +207,7 @@
                 </div>
 
                 <!-- This row contains social details of the user -->
-                <p>Social</p>
+                <p>Social<br>Please use links in the below sections</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
                     <button class="inputBtn" (click)="showInputWind('instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
@@ -195,26 +227,26 @@
                 <!-- This row contains communication details of the user -->
                 <p>Communication</p>
                 <div class="buttonRow">
-                    <button class="inputBtn"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
-                    <button class="inputBtn"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
-                    <button class="inputBtn"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
-                    <button class="inputBtn"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
+                    <button class="inputBtn" (click)="showInputWind('whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
+                    <button class="inputBtn" (click)="showInputWind('signal')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
+                    <button class="inputBtn" (click)="showInputWind('discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
+                    <button class="inputBtn" (click)="showInputWind('skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
                 </div>
                 <div class="buttonRow gap">
-                    <button class="inputBtn"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
+                    <button class="inputBtn" (click)="showInputWind('telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
                 </div>
 
                 <!-- This row contains business details of the user -->
                 <p>Business</p>
                 <div class="buttonRow">
-                    <button class="inputBtn"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
-                    <button class="inputBtn"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
+                    <button class="inputBtn" (click)="showInputWind('github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
+                    <button class="inputBtn" (click)="showInputWind('calendy')"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
                 </div>
 
                 <!-- This row contains payment details of the user -->
                 <p>Payment</p>
                 <div class="buttonRow">
-                    <button class="inputBtn"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
+                    <button class="inputBtn" (click)="showInputWind('paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
                 </div>
             </div>
         </div>
