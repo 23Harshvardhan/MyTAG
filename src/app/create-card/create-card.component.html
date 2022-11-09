@@ -2,7 +2,7 @@
     <div class="inputArea">
         <div class="Input" id="inputWind">
             <p id="warning1">Use comma to seperate multiple values</p>
-            <input type="text" #input class="InputField" placeholder="Enter here" id="textArea">
+            <input type="text" #input class="InputField" placeholder="Enter here" id="textArea" (keyup.enter)="closeWind()">
             <div class="inputButtons gap">
                 <input type="button" value="Save" class="inputSubmitBtn" (click)="closeWind()">
             </div>
