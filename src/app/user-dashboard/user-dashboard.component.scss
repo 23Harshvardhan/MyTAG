@@ -126,12 +126,6 @@ form .txt_field{
     display: flex;
   }
 
-  .verticalNav {
-    background-color: #f1f1f1;
-    height: 100%;
-    margin-bottom: 0;
-  }
-
   .search-panel {
     background-color: lightgrey;
     display: flex;
@@ -395,3 +389,18 @@ body{
     color: #424242;
     cursor: pointer;
   }
+
+@media screen and (max-width: 800px) {
+  .buttons {
+    display: none;
+  }
+
+  .search-panel {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-fields {
+    margin: 0 10px 0 10px;
+  }
+}

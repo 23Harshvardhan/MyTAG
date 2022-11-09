@@ -84,3 +84,10 @@
     font-weight: 300;
     margin-top: -10px;
 }
+
+@media screen and (max-width: 800px) {
+    .navbar {
+        display: flex;
+        gap: 50px;
+    }
+}
