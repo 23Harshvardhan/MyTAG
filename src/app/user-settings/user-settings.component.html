@@ -10,7 +10,7 @@
                 <h2>Personal Information</h2>
                 <input type="text" class="txtArea" placeholder="Name">
                 <input type="text" class="txtArea" placeholder="Email">
-                <input type="text" class="txtArea" placeholder="Name">
+                <input type="number" class="txtArea" placeholder="Number">
             </div>
             <div class="pnl">
                 <h2>Change Credentails</h2>
@@ -23,6 +23,12 @@
                 <h2>Card Status</h2>
                 <h3 class="lable">Card is currenly active</h3>
                 <button class="btn">Toggle</button>
+            </div>
+            <div class="pnl">
+                <h2>Verify Mail Manually</h2>
+                <button class="btn" (click)="sendOtp()">Send OTP</button>
+                <input type="number" class="txtArea" id="otpArea">
+                <button class="btn" (click)="verifyOtp()">Verify</button>
             </div>
         </div>
     </div>
