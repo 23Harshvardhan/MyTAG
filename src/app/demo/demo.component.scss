@@ -19,11 +19,6 @@
     display: flex;
 }
 
-.holder1 {
-    background-color: #f6ecff;
-    color: black;
-}
-
 .topic-area {
     padding: 20px;
     text-align: center;
@@ -57,16 +52,20 @@
   .videos {
     display: flex;
     justify-content: center;
-    gap: 90px;
+    align-items: center;
+    margin: 100px;
   }
 
-  .vidCol2 {
+  .vidCol {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .holder {
     background-color: #292929;
+    width: 100%;
   }
 
   .leaf-img {
@@ -79,13 +78,13 @@
   }
 
   .player1 {
-    width: 800px;
-    height: 550px; 
+    width: 100%;
+    height: 100%; 
   }
 
   .player2 {
-    width: 500px;
-    height: 250px;
+    width: 50%;
+    height: 50%;
   }
 
   @media screen and (max-width: 800px) {

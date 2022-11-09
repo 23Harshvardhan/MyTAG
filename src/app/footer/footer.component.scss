@@ -9,15 +9,16 @@ a{
     color: white;
 }
 
-footer{
+.footer{
     background-color: #5c5c5c;
     text-align: center;
     text-transform: uppercase;
     padding-top: 30px;
-    margin-top: auto;
+    margin-bottom: 0;
+    position: absolute;
 }
 
-footer li{
+.footer li{
     list-style: none;
     margin: 10px;
     display: inline-block;
