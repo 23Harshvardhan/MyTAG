@@ -390,6 +390,10 @@ body{
     cursor: pointer;
   }
 
+  .mobile {
+    display: none;
+  }
+
 @media screen and (max-width: 800px) {
   .buttons {
     display: none;
@@ -402,5 +406,12 @@ body{
 
   .search-fields {
     margin: 0 10px 0 10px;
+  }
+
+  .mobile {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
   }
 }

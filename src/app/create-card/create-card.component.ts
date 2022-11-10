@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-create-card',
@@ -10,9 +11,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class CreateCardComponent implements OnInit {
 
+  selectedFile:File = null;
+
   constructor(
     private cookieService:CookieService,
-    private router:Router
+    private router:Router,
+    private fileUploadService:FileUploadService
   ) { }
 
   setCookie(token:string){
@@ -28,6 +32,16 @@ export class CreateCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload() {
+    var cardImage = document.getElementById("cardImage");
+    // cardImage!.style.backgroundImage 
+    this.data.banner = this.selectedFile.name;
   }
 
   currentBlockName = "";
@@ -61,7 +75,8 @@ export class CreateCardComponent implements OnInit {
     telegram: "",
     github: "",
     calendy: "",
-    paypal: ""
+    paypal: "",
+    banner: ""
   }
 
   postData = {
@@ -117,9 +132,13 @@ export class CreateCardComponent implements OnInit {
     }
   }
 
+  showImageInputWind() {
+    var inputWind = document.getElementById("imageInputWind");
+    inputWind!.style.display = "block";
+  }
+
   closeWind() {
     var inputWind = document.getElementById("inputWind");
-    var contactSection = document.getElementById("contactSection")
     const inputArea = document.getElementById("textArea") as HTMLInputElement;
     var temp = inputArea.value;
     this.data[this.currentBlockName as keyof typeof this.data] = temp;
@@ -130,6 +149,12 @@ export class CreateCardComponent implements OnInit {
         this.accreds = inputArea.value.split(',');
       }
     }
+  }
+
+  closeUploadWind() {
+    var uploadWind = document.getElementById("imageInputWind");
+    this.onUpload();
+    uploadWind!.style.display = "none";
   }
 
   createCard() {
