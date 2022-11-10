@@ -37,6 +37,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     ResetPasswordComponent,
     VerifyMailComponent,
     VerticalNavComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

@@ -115,11 +115,11 @@ export class CreateCardComponent implements OnInit {
     this.currentBlockName = blockName;
 
     const warning1 = document.getElementById("warning1");
-    const warning2 = document.getElementById("warning2");
     
     var inputWind = document.getElementById("inputWind");
     const inputArea = document.getElementById("textArea") as HTMLInputElement;
     inputWind!.style.display = "block";
+    inputArea.focus();
     var temp = this.data[blockName as keyof typeof this.data];
     inputArea.value = temp;
 
@@ -128,7 +128,6 @@ export class CreateCardComponent implements OnInit {
     }
     else{
       warning1!.style.display = "none";
-      warning2!.style.display = "none";
     }
   }
 
