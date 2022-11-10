@@ -136,6 +136,12 @@ export class CreateCardComponent implements OnInit {
     inputWind!.style.display = "block";
   }
 
+  updatePreview() {
+    const inputArea = document.getElementById("textArea") as HTMLInputElement;
+    var temp = inputArea.value;
+    this.data[this.currentBlockName as keyof typeof this.data] = temp;
+  }
+
   closeWind() {
     var inputWind = document.getElementById("inputWind");
     const inputArea = document.getElementById("textArea") as HTMLInputElement;
