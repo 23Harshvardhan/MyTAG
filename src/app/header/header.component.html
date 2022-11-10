@@ -1,4 +1,4 @@
-<div class="navpanel">
+<!-- <div class="navpanel">
   <div class="navbar">
     <div class="logoSection">
       <a routerLink="/" class="brand w-nav-brand">
@@ -18,4 +18,25 @@
       <a routerLink="/login" class="button light white w-button">Log In</a>
     </div>
   </div>
-</div>
+</div> -->
+
+<body>
+  <nav>
+      <div class="logo">
+          <img src="/assets/img/logo.jpg" alt="Logo Image">
+      </div>
+      <div class="hamburger" (click)="expandNav()">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+      </div>
+      <ul class="nav-links">
+          <li><a (click)="onHome()">Home</a></li>
+          <li><a (click)="onFeatures()">Features</a></li>
+          <li><a (click)="onDemo()">Demo</a></li>
+          <li><a (click)="onPricing()">Pricing</a></li>
+          <li><a (click)="onContactUs()">Contact Us</a></li>
+          <li><button class="login-button" routerLink="/login">Login</button></li>
+      </ul>
+  </nav>
+</body>
