@@ -71,7 +71,7 @@ export class CreateCardComponent implements OnInit {
     "Tiktok": "",
     "Twitch": "",
     "Yelp": "",
-    "WhatsApp": "",
+    "Whatsapp": "",
     "Signal": "",
     "Discord": "",
     "Skype": "",

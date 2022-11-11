@@ -80,14 +80,18 @@
             </div>
         </div>
     </div>
-
+    <div class="mainControlButtons">
+        <button class="btn secondary">Cancel</button>
+        <button class="btn primary" (click)="createCard()">Finish</button>
+    </div>
     <div class="body">
+        
         <!-- This section consists of the card itself that updates dynamically while making changes. -->
         <div class="cardArea">
             <div class="card">
                 <div class="cardImage" id="cardImage">
                     <svg class="wave down" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
-                    <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+                    <!-- <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg> -->
                 </div>
                 <div class="infoArea">
                     <h1 class="fullNameField" id="fullName">{{data.Name}}</h1>
@@ -144,9 +148,9 @@
                         <div class="blockIcon"><i class="bi bi-youtube"></i></div>
                         <a href={{data.Youtube}}><p class="blockLable">YouTube</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.WhatsApp!= ''">
+                    <div class="additionalBlock" *ngIf="data.Whatsapp!= ''">
                         <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
-                        <a href={{data.WhatsApp}}><p class="blockLable">WhatsApp</p></a>
+                        <a href={{data.Whatsapp}}><p class="blockLable">WhatsApp</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.Signal!= ''">
                         <div class="blockIcon"><i class="bi bi-signal"></i></div>
@@ -177,10 +181,6 @@
                         <a href={{data.PayPal}}><p class="blockLable">PayPal</p></a>
                     </div>
                 </div>
-            </div>
-            <div class="mainControlButtons">
-                <button class="btn secondary">Cancel</button>
-                <button class="btn primary" (click)="createCard()">Finish</button>
             </div>
         </div>
 

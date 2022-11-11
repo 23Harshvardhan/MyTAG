@@ -57,9 +57,6 @@ export class UserDashboardComponent implements OnInit {
           cardName: response.data.userInfo.cards[i].Name,
           cardId: response.data.userInfo.cards[i].CardID
         })
-
-        // this.cardNames.push(response.data.userInfo.cards[i].Name);
-        // this.cardIds.push(response.data.userInfo.cards[i].CardID);
       }
       
       console.log(this.cards);
