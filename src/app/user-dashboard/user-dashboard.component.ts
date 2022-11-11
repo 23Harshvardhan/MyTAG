@@ -40,7 +40,7 @@ export class UserDashboardComponent implements OnInit {
 
     axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
     .then( (response) => {
-      
+      // Enter Code Here
     })
     .catch( (error) => {
       console.log(error);

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { FileUploadService } from '../file-upload.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-create-card',
@@ -16,7 +17,8 @@ export class CreateCardComponent implements OnInit {
   constructor(
     private cookieService:CookieService,
     private router:Router,
-    private fileUploadService:FileUploadService
+    private fileUploadService:FileUploadService,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   setCookie(token:string){
@@ -92,23 +94,22 @@ export class CreateCardComponent implements OnInit {
     "Link": this.data.link,
     "Address": this.data.address,
     "Twitter": this.data.twitter,
-    "Twitter_label": "",
     "Instagram": this.data.instagram,
-    "Instagram_label": "",
     "Linkedin": this.data.linkedin,
-    "Linkedin_label": "",
     "Facebook": this.data.facebook,
-    "Facebook_label": "",
     "Youtube": this.data.youtube,
-    "Youtube_label": "",
     "Snapchat": this.data.snapchat,
-    "Snapchat_label": "",
     "Tiktok": this.data.tiktok,
-    "Tiktok_label": "",
     "Twitch": this.data.twitch,
-    "Twitch_label": "",
     "Yelp": this.data.yelp,
-    "Yelp_label": ""
+    "WhatsApp": this.data.whatsapp,
+    "Signal": this.data.signal,
+    "Discord": this.data.discord,
+    "Skype": this.data.skype,
+    "Telegram": this.data.telegram,
+    "GitHub": this.data.github,
+    "Calendy": this.data.calendy,
+    "PayPal": this.data.paypal
   }
 
   showInputWind(blockName:string) {
@@ -162,6 +163,10 @@ export class CreateCardComponent implements OnInit {
     uploadWind!.style.display = "none";
   }
 
+  openUrl(service:string) {
+    window.open(this.data[service as keyof typeof this.data], "_blank");
+  }
+
   createCard() {
     const cookie = {
       headers:{
@@ -171,15 +176,15 @@ export class CreateCardComponent implements OnInit {
 
     console.log({data: this.postData});
 
-    // axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
-    //   data: this.postData
-    // }, cookie)
-    // .then ((response) => {
-    //   console.log(response);
-    // })
-    // .catch ((error) => {
-    //   console.log(error);
-    //   alert("There was a problem. Please try again later.")
-    // })
+    axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
+      data: this.postData
+    }, cookie)
+    .then ((response) => {
+      this.router.navigate(['/userDashboard']);
+    })
+    .catch ((error) => {
+      console.log(error);
+      alert("There was a problem. Please try again later.")
+    })
   }
 }

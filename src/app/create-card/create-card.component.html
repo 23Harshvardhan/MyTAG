@@ -110,71 +110,71 @@
 
                     <div class="additionalBlock" *ngIf="data.twitter != ''">
                         <div class="blockIcon"><i class="bi bi-twitter"></i></div>
-                        <a href=`${data.twitter}` target="_blank"><p class="blockLable">Twitter</p></a>
+                        <a (click)="openUrl('twitter')" target="_blank"><p class="blockLable">Twitter</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.instagram != ''">
                         <div class="blockIcon"><i class="bi bi-instagram"></i></div>
-                        <a href=`${data.instagram`><p class="blockLable">Instagram</p></a>
+                        <a href={{data.instagram}}><p class="blockLable">Instagram</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.linkedin!= ''">
                         <div class="blockIcon"><i class="bi bi-linkedin"></i></div>
-                        <a href=`${data.linkedin}`><p class="blockLable">LinkedIn</p></a>
+                        <a href={{data.linkedin}}><p class="blockLable">LinkedIn</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.facebook!= ''">
                         <div class="blockIcon"><i class="bi bi-facebook"></i></div>
-                        <a href=`${data.facebook}`><p class="blockLable">Facebook</p></a>
+                        <a href={{data.facebook}}><p class="blockLable">Facebook</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.snapchat!= ''">
                         <div class="blockIcon"><i class="bi bi-snapchat"></i></div>
-                        <a href=`${data.snapchat}`><p class="blockLable">Snapchat</p></a>
+                        <a href={{data.snapchat}}><p class="blockLable">Snapchat</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.tiktok != ''">
                         <div class="blockIcon"><i class="bi bi-tiktok"></i></div>
-                        <a href=`${data.tiktok}`><p class="blockLable">TikTok</p></a>
+                        <a href={{data.tiktok}}><p class="blockLable">TikTok</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.twitch!= ''">
                         <div class="blockIcon"><i class="bi bi-twitch"></i></div>
-                        <a href=`${data.twitch}`><p class="blockLable">Twitch</p></a>
+                        <a href={{data.twitch}}><p class="blockLable">Twitch</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.yelp != ''">
                         <div class="blockIcon"><i class="bi bi-yelp"></i></div>
-                        <a href=`${data.yelp}`><p class="blockLable">Yelp</p></a>
+                        <a href={{data.yelp}}><p class="blockLable">Yelp</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.youtube!= ''">
                         <div class="blockIcon"><i class="bi bi-youtube"></i></div>
-                        <a href=`${data.youtube}`><p class="blockLable">YouTube</p></a>
+                        <a href={{data.youtube}}><p class="blockLable">YouTube</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.whatsapp!= ''">
                         <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
-                        <a href=`${data.whatsapp}`><p class="blockLable">WhatsApp</p></a>
+                        <a href={{data.whatsapp}}><p class="blockLable">WhatsApp</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.signal!= ''">
                         <div class="blockIcon"><i class="bi bi-signal"></i></div>
-                        <a href=`${data.signal}`><p class="blockLable">Signal</p></a>
+                        <a href={{data.signal}}><p class="blockLable">Signal</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.discord!= ''">
                         <div class="blockIcon"><i class="bi bi-discord"></i></div>
-                        <a href=`${data.discord}`><p class="blockLable">Discord</p></a>
+                        <a href={{data.discord}}><p class="blockLable">Discord</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.skype!= ''">
                         <div class="blockIcon"><i class="bi bi-skype"></i></div>
-                        <a href=`${data.skype}`><p class="blockLable">Skype</p></a>
+                        <a href={{data.skype}}><p class="blockLable">Skype</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.telegram!= ''">
                         <div class="blockIcon"><i class="bi bi-telegram"></i></div>
-                        <a href=`${data.telegram}`><p class="blockLable">Telegram</p></a>
+                        <a href={{data.telegram}}><p class="blockLable">Telegram</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.github!= ''">
                         <div class="blockIcon"><i class="bi bi-github"></i></div>
-                        <a href=`${data.github}`><p class="blockLable">GitHub</p></a>
+                        <a href={{data.github}}><p class="blockLable">GitHub</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.calendy!= ''">
                         <div class="blockIcon"><i class="bi bi-calendy"></i></div>
-                        <a href=`${data.calendy}`><p class="blockLable">Calendy</p></a>
+                        <a href={{data.calendy}}><p class="blockLable">Calendy</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.paypal!= ''">
                         <div class="blockIcon"><i class="bi bi-paypal"></i></div>
-                        <a href=`${data.paypal}`><p class="blockLable">PayPal</p></a>
+                        <a href={{data.paypal}}><p class="blockLable">PayPal</p></a>
                     </div>
                 </div>
             </div>
