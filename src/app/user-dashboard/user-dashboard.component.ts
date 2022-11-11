@@ -15,6 +15,8 @@ export class UserDashboardComponent implements OnInit {
     private router:Router
   ) { }
 
+    
+
   setCookie(token:string){
     this.cookieService.set('jwt', token);
   }
@@ -31,6 +33,11 @@ export class UserDashboardComponent implements OnInit {
     this.onLoad();
   }
 
+  cardNames:string[] = [];
+  cardIds:string[] = [];
+
+  cards = []
+
   onLoad (){
     const cookie = {
       headers:{
@@ -38,9 +45,24 @@ export class UserDashboardComponent implements OnInit {
       } 
     }
 
+    length = null;
+
     axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
     .then( (response) => {
-      // Enter Code Here
+      length = response.data.userInfo.cards.length;
+
+      //Storing card id and card name in a external variable to be accessed from front
+      for(var i = 0; i < length; i++) {
+        this.cards.push({
+          cardName: response.data.userInfo.cards[i].Name,
+          cardId: response.data.userInfo.cards[i].CardID
+        })
+
+        // this.cardNames.push(response.data.userInfo.cards[i].Name);
+        // this.cardIds.push(response.data.userInfo.cards[i].CardID);
+      }
+      
+      console.log(this.cards);
     })
     .catch( (error) => {
       console.log(error);

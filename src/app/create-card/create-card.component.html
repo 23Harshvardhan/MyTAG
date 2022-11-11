@@ -90,9 +90,9 @@
                     <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
                 </div>
                 <div class="infoArea">
-                    <h1 class="fullNameField" id="fullName">{{data.name}}</h1>
-                    <p class="designationField" id="designation">{{data.designation}}</p>
-                    <p class="companyField" id="companyName">{{data.companyName}}</p>
+                    <h1 class="fullNameField" id="fullName">{{data.Name}}</h1>
+                    <p class="designationField" id="designation">{{data.Job_title}}</p>
+                    <p class="companyField" id="companyName">{{data.Company_name}}</p>
 
                     <div class="userTitleArea" id="accredsArea">
                         <div class="userTitle" *ngFor="let accred of accreds">
@@ -101,80 +101,80 @@
                     </div>
 
                     <div class="basicContactSection" id="contactSection">
-                        <div *ngIf="data.email != ''"><i class="bi bi-envelope"> {{data.email}}</i></div>
-                        <div *ngIf="data.phone != ''"><i class="bi bi-telephone"> {{data.phone}}</i></div>
-                        <div *ngIf="data.companyUrl != ''"><i class="bi bi-box-arrow-up-left"> {{data.companyUrl}}</i></div>
-                        <div *ngIf="data.link != ''"><i class="bi bi-link"> {{data.link}}</i></div>
-                        <div *ngIf="data.address != ''"><i class="bi bi-map"> {{data.address}}</i></div>
+                        <div *ngIf="data.Email != ''"><i class="bi bi-envelope"> {{data.Email}}</i></div>
+                        <div *ngIf="data.Phone != ''"><i class="bi bi-telephone"> {{data.Phone}}</i></div>
+                        <div *ngIf="data.Company_URL != ''"><i class="bi bi-box-arrow-up-left"> {{data.Company_URL}}</i></div>
+                        <div *ngIf="data.Link != ''"><i class="bi bi-link"> {{data.Link}}</i></div>
+                        <div *ngIf="data.Address != ''"><i class="bi bi-map"> {{data.Address}}</i></div>
                     </div>
 
-                    <div class="additionalBlock" *ngIf="data.twitter != ''">
+                    <div class="additionalBlock" *ngIf="data.Twitter != ''">
                         <div class="blockIcon"><i class="bi bi-twitter"></i></div>
                         <a (click)="openUrl('twitter')" target="_blank"><p class="blockLable">Twitter</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.instagram != ''">
+                    <div class="additionalBlock" *ngIf="data.Instagram != ''">
                         <div class="blockIcon"><i class="bi bi-instagram"></i></div>
-                        <a href={{data.instagram}}><p class="blockLable">Instagram</p></a>
+                        <a href={{data.Instagram}}><p class="blockLable">Instagram</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.linkedin!= ''">
+                    <div class="additionalBlock" *ngIf="data.Linkedin!= ''">
                         <div class="blockIcon"><i class="bi bi-linkedin"></i></div>
-                        <a href={{data.linkedin}}><p class="blockLable">LinkedIn</p></a>
+                        <a href={{data.Linkedin}}><p class="blockLable">LinkedIn</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.facebook!= ''">
+                    <div class="additionalBlock" *ngIf="data.Facebook!= ''">
                         <div class="blockIcon"><i class="bi bi-facebook"></i></div>
-                        <a href={{data.facebook}}><p class="blockLable">Facebook</p></a>
+                        <a href={{data.Facebook}}><p class="blockLable">Facebook</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.snapchat!= ''">
+                    <div class="additionalBlock" *ngIf="data.Snapchat!= ''">
                         <div class="blockIcon"><i class="bi bi-snapchat"></i></div>
-                        <a href={{data.snapchat}}><p class="blockLable">Snapchat</p></a>
+                        <a href={{data.Snapchat}}><p class="blockLable">Snapchat</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.tiktok != ''">
+                    <div class="additionalBlock" *ngIf="data.Tiktok != ''">
                         <div class="blockIcon"><i class="bi bi-tiktok"></i></div>
-                        <a href={{data.tiktok}}><p class="blockLable">TikTok</p></a>
+                        <a href={{data.Tiktok}}><p class="blockLable">TikTok</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.twitch!= ''">
+                    <div class="additionalBlock" *ngIf="data.Twitch!= ''">
                         <div class="blockIcon"><i class="bi bi-twitch"></i></div>
-                        <a href={{data.twitch}}><p class="blockLable">Twitch</p></a>
+                        <a href={{data.Twitch}}><p class="blockLable">Twitch</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.yelp != ''">
+                    <div class="additionalBlock" *ngIf="data.Yelp != ''">
                         <div class="blockIcon"><i class="bi bi-yelp"></i></div>
-                        <a href={{data.yelp}}><p class="blockLable">Yelp</p></a>
+                        <a href={{data.Yelp}}><p class="blockLable">Yelp</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.youtube!= ''">
+                    <div class="additionalBlock" *ngIf="data.Youtube!= ''">
                         <div class="blockIcon"><i class="bi bi-youtube"></i></div>
-                        <a href={{data.youtube}}><p class="blockLable">YouTube</p></a>
+                        <a href={{data.Youtube}}><p class="blockLable">YouTube</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.whatsapp!= ''">
+                    <div class="additionalBlock" *ngIf="data.WhatsApp!= ''">
                         <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
-                        <a href={{data.whatsapp}}><p class="blockLable">WhatsApp</p></a>
+                        <a href={{data.WhatsApp}}><p class="blockLable">WhatsApp</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.signal!= ''">
+                    <div class="additionalBlock" *ngIf="data.Signal!= ''">
                         <div class="blockIcon"><i class="bi bi-signal"></i></div>
-                        <a href={{data.signal}}><p class="blockLable">Signal</p></a>
+                        <a href={{data.Signal}}><p class="blockLable">Signal</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.discord!= ''">
+                    <div class="additionalBlock" *ngIf="data.Discord!= ''">
                         <div class="blockIcon"><i class="bi bi-discord"></i></div>
-                        <a href={{data.discord}}><p class="blockLable">Discord</p></a>
+                        <a href={{data.Discord}}><p class="blockLable">Discord</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.skype!= ''">
+                    <div class="additionalBlock" *ngIf="data.Skype!= ''">
                         <div class="blockIcon"><i class="bi bi-skype"></i></div>
-                        <a href={{data.skype}}><p class="blockLable">Skype</p></a>
+                        <a href={{data.Skype}}><p class="blockLable">Skype</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.telegram!= ''">
+                    <div class="additionalBlock" *ngIf="data.Telegram!= ''">
                         <div class="blockIcon"><i class="bi bi-telegram"></i></div>
-                        <a href={{data.telegram}}><p class="blockLable">Telegram</p></a>
+                        <a href={{data.Telegram}}><p class="blockLable">Telegram</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.github!= ''">
+                    <div class="additionalBlock" *ngIf="data.GitHub!= ''">
                         <div class="blockIcon"><i class="bi bi-github"></i></div>
-                        <a href={{data.github}}><p class="blockLable">GitHub</p></a>
+                        <a href={{data.GitHub}}><p class="blockLable">GitHub</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.calendy!= ''">
+                    <div class="additionalBlock" *ngIf="data.Calendy!= ''">
                         <div class="blockIcon"><i class="bi bi-calendy"></i></div>
-                        <a href={{data.calendy}}><p class="blockLable">Calendy</p></a>
+                        <a href={{data.Calendy}}><p class="blockLable">Calendy</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.paypal!= ''">
+                    <div class="additionalBlock" *ngIf="data.PayPal!= ''">
                         <div class="blockIcon"><i class="bi bi-paypal"></i></div>
-                        <a href={{data.paypal}}><p class="blockLable">PayPal</p></a>
+                        <a href={{data.PayPal}}><p class="blockLable">PayPal</p></a>
                     </div>
                 </div>
             </div>
@@ -195,10 +195,10 @@
                 <!-- This row contains personal details of the user -->
                 <p>Personal Details</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
-                    <button class="inputBtn" (click)="showInputWind('designation')"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
-                    <button class="inputBtn" (click)="showInputWind('companyName')"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
-                    <button class="inputBtn" (click)="showInputWind('accreditations')"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Job_title')"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Company_name')"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Accreditations')"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
                 </div>
                 <div class="buttonRow gap">
                     <button class="inputBtn" (click)="showImageInputWind()"><i class="bi bi-image"></i><p class="btnLable">Banner</p></button>
@@ -207,56 +207,56 @@
                 <!-- This row contains basic contact details of the user -->
                 <p>Basic Contact</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
-                    <button class="inputBtn" (click)="showInputWind('phone')"><i class="bi bi-telephone"></i><p class="btnLable">Phone</p></button>
-                    <button class="inputBtn" (click)="showInputWind('companyUrl')"><i class="bi bi-box-arrow-up-left"></i><p class="btnLable">Company URL</p></button>
-                    <button class="inputBtn" (click)="showInputWind('link')"><i class="bi bi-link"></i><p class="btnLable">Link</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Phone')"><i class="bi bi-telephone"></i><p class="btnLable">Phone</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Company_URL')"><i class="bi bi-box-arrow-up-left"></i><p class="btnLable">Company URL</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Link')"><i class="bi bi-link"></i><p class="btnLable">Link</p></button>
                 </div>
                 <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
                 </div>
 
                 <!-- This row contains social details of the user -->
                 <p>Social<br>Please use links in the below sections</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
-                    <button class="inputBtn" (click)="showInputWind('instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
-                    <button class="inputBtn" (click)="showInputWind('linkedin')"><i class="bi bi-linkedin"></i><p class="btnLable">LinkedIn</p></button>
-                    <button class="inputBtn" (click)="showInputWind('facebook')"><i class="bi bi-facebook"></i><p class="btnLable">Facebook</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Linkedin')"><i class="bi bi-linkedin"></i><p class="btnLable">LinkedIn</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Facebook')"><i class="bi bi-facebook"></i><p class="btnLable">Facebook</p></button>
                     
                 </div>
                 <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('snapchat')"><i class="bi bi-snapchat"></i><p class="btnLable">Snapchat</p></button>
-                    <button class="inputBtn" (click)="showInputWind('tiktok')"><i class="bi bi-tiktok"></i><p class="btnLable">TikTok</p></button>
-                    <button class="inputBtn" (click)="showInputWind('twitch')"><i class="bi bi-twitch"></i><p class="btnLable">Twitch</p></button>
-                    <button class="inputBtn" (click)="showInputWind('yelp')"><i class="bi bi-yelp"></i><p class="btnLable">Yelp</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Snapchat')"><i class="bi bi-snapchat"></i><p class="btnLable">Snapchat</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Tiktok')"><i class="bi bi-tiktok"></i><p class="btnLable">TikTok</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Twitch')"><i class="bi bi-twitch"></i><p class="btnLable">Twitch</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Yelp')"><i class="bi bi-yelp"></i><p class="btnLable">Yelp</p></button>
                 </div>
                 <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
                 </div>
                 <!-- This row contains communication details of the user -->
                 <p>Communication</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
-                    <button class="inputBtn" (click)="showInputWind('signal')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
-                    <button class="inputBtn" (click)="showInputWind('discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
-                    <button class="inputBtn" (click)="showInputWind('skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Signal')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
                 </div>
                 <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
                 </div>
 
                 <!-- This row contains business details of the user -->
                 <p>Business</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
-                    <button class="inputBtn" (click)="showInputWind('calendy')"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Calendy')"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
                 </div>
 
                 <!-- This row contains payment details of the user -->
                 <p>Payment</p>
                 <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
                 </div>
             </div>
         </div>

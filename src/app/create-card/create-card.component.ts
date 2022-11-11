@@ -43,7 +43,6 @@ export class CreateCardComponent implements OnInit {
   onUpload() {
     var cardImage = document.getElementById("cardImage");
     // cardImage!.style.backgroundImage 
-    this.data.banner = this.selectedFile.name;
   }
 
   currentBlockName = "";
@@ -52,64 +51,34 @@ export class CreateCardComponent implements OnInit {
   socials:string[] = ["twitter","instagram","linkedin","facebook","snapchat","tiktok","twitch","yelp","youtube"];
 
   data = {
-    name: "",
-    designation: "",
-    companyName: "",
-    accreditations: "",
-    email: "",
-    phone: "",
-    companyUrl: "",
-    link: "",
-    address: "",
-    twitter: "",
-    instagram: "",
-    linkedin: "",
-    facebook: "",
-    snapchat: "",
-    tiktok: "",
-    twitch: "",
-    yelp: "",
-    youtube: "",
-    whatsapp: "",
-    signal: "",
-    discord: "",
-    skype: "",
-    telegram: "",
-    github: "",
-    calendy: "",
-    paypal: "",
-    banner: ""
-  }
-
-  postData = {
-    "Name": this.data.name,
-    "Job_title": this.data.designation,
-    "Department": this.data.designation,
-    "Company_name": this.data.companyName,
-    "Accreditations": this.data.accreditations,
+    "Name": "",
+    "Job_title": "",
+    "Department": "",
+    "Company_name": "",
+    "Accreditations": "",
     "Headline": "",
-    "Email": this.data.email,
-    "Phone": this.data.phone,
-    "Company_URL": this.data.companyUrl,
-    "Link": this.data.link,
-    "Address": this.data.address,
-    "Twitter": this.data.twitter,
-    "Instagram": this.data.instagram,
-    "Linkedin": this.data.linkedin,
-    "Facebook": this.data.facebook,
-    "Youtube": this.data.youtube,
-    "Snapchat": this.data.snapchat,
-    "Tiktok": this.data.tiktok,
-    "Twitch": this.data.twitch,
-    "Yelp": this.data.yelp,
-    "WhatsApp": this.data.whatsapp,
-    "Signal": this.data.signal,
-    "Discord": this.data.discord,
-    "Skype": this.data.skype,
-    "Telegram": this.data.telegram,
-    "GitHub": this.data.github,
-    "Calendy": this.data.calendy,
-    "PayPal": this.data.paypal
+    "Email": "",
+    "Phone": "",
+    "Company_URL": "",
+    "Link": "",
+    "Address": "",
+    "Twitter": "",
+    "Instagram": "",
+    "Linkedin": "",
+    "Facebook": "",
+    "Youtube": "",
+    "Snapchat": "",
+    "Tiktok": "",
+    "Twitch": "",
+    "Yelp": "",
+    "WhatsApp": "",
+    "Signal": "",
+    "Discord": "",
+    "Skype": "",
+    "Telegram": "",
+    "GitHub": "",
+    "Calendy": "",
+    "PayPal": ""
   }
 
   showInputWind(blockName:string) {
@@ -124,7 +93,7 @@ export class CreateCardComponent implements OnInit {
     var temp = this.data[blockName as keyof typeof this.data];
     inputArea.value = temp;
 
-    if(this.currentBlockName == "accreditations") {
+    if(this.currentBlockName == "Accreditations") {
       warning1!.style.display = "block";
     }
     else{
@@ -150,7 +119,7 @@ export class CreateCardComponent implements OnInit {
     this.data[this.currentBlockName as keyof typeof this.data] = temp;
     inputWind!.style.display = "none";
 
-    if(this.currentBlockName == "accreditations") {
+    if(this.currentBlockName == "Accreditations") {
       if(temp != ""){
         this.accreds = inputArea.value.split(',');
       }
@@ -174,10 +143,8 @@ export class CreateCardComponent implements OnInit {
       } 
     }
 
-    console.log({data: this.postData});
-
     axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
-      data: this.postData
+      data: this.data
     }, cookie)
     .then ((response) => {
       this.router.navigate(['/userDashboard']);

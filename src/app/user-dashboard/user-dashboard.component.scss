@@ -334,6 +334,8 @@ body{
 
   .cards-panel {
     margin: 50px;
+    display: flex;
+    gap: 50px;
   }
 
   .card {

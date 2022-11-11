@@ -27,23 +27,23 @@
         <div class="main-body">
             <app-vertical-nav></app-vertical-nav>
             <div class="cards-panel">
-                <!-- <div class="cardHolder">
-                    <article class="card" routerLink="/cardPreview">
+                <div class="cardHolder" *ngFor="let card of this.cards">
+                    <article class="card">
                         <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
                         <div class="card__content">
                             <br>
-                            <h1 class="card__title">Harshvardhan</h1>
+                            <h1 class="card__title">{{card.cardName}}</h1>
                             <br>
-                            <p class="card__desc">Card ID 294</p>
+                            <p class="card__desc">Card ID: {{card.cardId}}</p>
                             <br>
                         </div>
                     </article>
-                    <div class="actions">
-                        <i routerLink="/createCard" class="fa fa-pencil-square-o"></i>
+                    <!-- <div class="actions">
+                        <i class="fa fa-pencil-square-o"></i>
                         <i class="fa fa-files-o"></i>
                         <i class="fa fa-trash"></i>
-                    </div>
-                </div> -->
+                    </div> -->
+                </div>
             </div>
         </div>
     </div>
