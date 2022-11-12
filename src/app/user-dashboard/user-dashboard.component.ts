@@ -33,21 +33,18 @@ export class UserDashboardComponent implements OnInit {
     this.onLoad();
   }
 
-  cardNames:string[] = [];
-  cardIds:string[] = [];
-
   cards = []
 
-  onLoad (){
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
+  cookie = {
+    headers:{
+      cki: this.cookieService.get("jwt")
+    } 
+  }
 
+  onLoad (){
     length = null;
 
-    axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
+    axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
     .then( (response) => {
       length = response.data.userInfo.cards.length;
 
@@ -65,5 +62,31 @@ export class UserDashboardComponent implements OnInit {
       console.log(error);
       this.router.navigate(['/login']);
     });
+  }
+
+  deleteCard(cardId:string) {
+    axios.delete('http://185.208.207.55/v1/api/activities/card_data/deletecard?id=' + cardId, this.cookie)
+    .then((response) => {
+      console.log("Card has been successfully deleted!");
+
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem deleting card. Please try again later.");
+    })
+  }
+
+  editCard(cardId:string) {
+    this.router.navigate(['/editCard/' + cardId]);
+
+    // axios.get('http://185.208.207.55/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    // .then((response) => {
+    //   this.router.navigate(['/editCard']);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   alert("There was a problem editing card. Please try again later.");
+    // })
   }
 }

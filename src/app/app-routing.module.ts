@@ -29,6 +29,7 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { EditCardComponent } from './edit-card/edit-card.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -58,7 +59,8 @@ const routes: Routes = [
   {path: 'verifyMail', component:VerifyMailComponent},
   {path: 'verticalNav', component:VerticalNavComponent},
   {path: 'userSettings', component:UserSettingsComponent},
-  {path: 'adminLogin', component:AdminLoginComponent}
+  {path: 'adminLogin', component:AdminLoginComponent},
+  {path: 'editCard/:id', component:EditCardComponent}
 ];
 
 @NgModule({
@@ -70,4 +72,4 @@ export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
 UserDashboardComponent, SuperuserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, 
 HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, SuperuserAnalyticsComponent, SuperuserEmailSignatureComponent, ManagePaymentComponent,
-SuperuserSettingsComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, UserSettingsComponent, AdminLoginComponent]
+SuperuserSettingsComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, UserSettingsComponent, AdminLoginComponent, EditCardComponent]

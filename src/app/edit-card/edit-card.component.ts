@@ -1,20 +1,20 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'app-create-card',
-  templateUrl: './create-card.component.html',
-  styleUrls: ['./create-card.component.scss']
+  selector: 'app-edit-card',
+  templateUrl: './edit-card.component.html',
+  styleUrls: ['./edit-card.component.scss']
 })
-export class CreateCardComponent implements OnInit {
-
+export class EditCardComponent implements OnInit {
   selectedFile:File = null;
 
   constructor(
     private cookieService:CookieService,
-    private router:Router
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   setCookie(token:string){
@@ -29,7 +29,12 @@ export class CreateCardComponent implements OnInit {
     this.cookieService.deleteAll();
   }
 
+  cardId;
+
   ngOnInit(): void {
+    this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
+    
+    this.getData(this.cardId);
   }
 
   onFileSelected(event) {
@@ -37,6 +42,7 @@ export class CreateCardComponent implements OnInit {
   }
 
   onUpload() {
+
   }
 
   currentBlockName = "";
@@ -73,6 +79,12 @@ export class CreateCardComponent implements OnInit {
     "GitHub": "",
     "Calendy": "",
     "PayPal": ""
+  }
+
+  cookie = {
+    headers:{
+      cki: this.cookieService.get("jwt")
+    } 
   }
 
   showInputWind(blockName:string) {
@@ -130,16 +142,33 @@ export class CreateCardComponent implements OnInit {
     window.open(this.data[service as keyof typeof this.data], "_blank");
   }
 
-  createCard() {
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
+  getData(cardId:string) {
+    axios.get('http://185.208.207.55/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    .then ((response) => {
+      this.data = response.data[0];
+      if(this.data.Signal_link == "null" || this.data.Signal_link == null) {
+        this.data.Signal_link = "";
+      }
+      if(this.data.GitHub == "null" || this.data.GitHub == null) {
+        this.data.GitHub = "";
+      }
+      if(this.data.Calendy == "null" || this.data.Calendy == null) {
+        this.data.Calendy = "";
+      }
+      if(this.data.PayPal == "null" || this.data.PayPal == null) {
+        this.data.PayPal = "";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was an error! Please send console log to developer.");
+    })
+  }
 
+  updateCard() {
     axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
       data: this.data
-    }, cookie)
+    }, this.cookie)
     .then ((response) => {
       this.router.navigate(['/userDashboard']);
     })
@@ -148,7 +177,7 @@ export class CreateCardComponent implements OnInit {
       alert("There was a problem. Please try again later.")
     })
   }
-  
+
   backToDash() {
     this.router.navigate(['/userDashboard']);
   }

@@ -38,6 +38,7 @@ import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { EditCardComponent } from './edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     VerifyMailComponent,
     VerticalNavComponent,
     UserSettingsComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,
