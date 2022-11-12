@@ -45,7 +45,7 @@ const routes: Routes = [
   {path: 'teamsDashboard', component:TeamsDashboardComponent},
   {path: 'createCard', component:CreateCardComponent},
   {path: 'userDashboardNav', component:UserDashboardNavComponent},
-  {path: 'cardPreview', component:CardPreviewComponent},
+  {path: 'cardPreview/:id', component:CardPreviewComponent},
   {path: 'inventory', component:InventoryComponent},
   {path: 'howitworks', component:HowitworksComponent},
   {path: 'createCardTeam', component:CreateCardTeamComponent},

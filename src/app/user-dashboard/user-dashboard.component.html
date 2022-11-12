@@ -28,7 +28,7 @@
             <app-vertical-nav></app-vertical-nav>
             <div class="cards-panel">
                 <div class="cardHolder" *ngFor="let card of this.cards">
-                    <article class="card">
+                    <article class="card" (click)="openCard(card.cardId)">
                         <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
                         <div class="card__content">
                             <br>
@@ -40,7 +40,6 @@
                     </article>
                     <div class="actions">
                         <div (click)="editCard(card.cardId)"><i class="fa fa-pencil-square-o"></i></div>
-                        <!-- <i class="fa fa-files-o"></i> -->
                         <div (click)="deleteCard(card.cardId)"><i class="fa fa-trash"></i></div>
                     </div>
                 </div>

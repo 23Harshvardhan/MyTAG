@@ -8,13 +8,13 @@
         <div class="cards-panel">
             <div class="pnl1">
                 <div class="actions">
-                    <i routerLink="/createCard" class="fa fa-pencil-square-o"> Edit</i>
+                    <div (click)="editCard(cardId)"><i class="fa fa-pencil-square-o"> Edit</i></div>
                 </div>
-                <article class="card" routerLink="/cardPreview">
+                <article class="card">
                     <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
                     <div class="card__content">
                         <br>
-                        <h1 class="user_name">User's Full Name</h1>
+                        <h1 class="user_name">test</h1>
                         <br>
                         <p class="card_title">Title</p>
                         <br>
@@ -42,7 +42,7 @@
                 <article class="card secondary" routerLink="/cardPreview">
                     <!-- <canvas class="card__img" id="QRCanvas"></canvas> -->
 
-                    <qrcode [qrdata]="generatedCardId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [qrdata]="cardId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
 
                     <div class="card__content">
                         <br>
@@ -56,7 +56,7 @@
             
             <div class="pnl3">
                 <div class="actions">
-                    <i class="fa fa-pencil-square-o"> Edit Email Signature</i>
+                    <i class="fa fa-pencil-square-o"></i>
                 </div>
                 <article class="card secondary" routerLink="/cardPreview">
                     <img class="card__img" src="..//src/assets/img/emailSignature.png" alt="frontend-mentor-website-qrcode" alt="banner">

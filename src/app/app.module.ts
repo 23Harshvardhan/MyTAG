@@ -4,7 +4,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
-import { FileUploadService } from './file-upload.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
