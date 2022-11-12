@@ -64,9 +64,9 @@ export class EditCardComponent implements OnInit {
     "Discord": "",
     "Skype": "",
     "Telegram": "",
-    "GitHub": "",
-    "Calendy": "",
-    "PayPal": ""
+    "Github": "",
+    "Calendly": "",
+    "Paypal": ""
   }
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
@@ -152,14 +152,14 @@ export class EditCardComponent implements OnInit {
       if(this.data.Signal_link == "null" || this.data.Signal_link == null) {
         this.data.Signal_link = "";
       }
-      if(this.data.GitHub == "null" || this.data.GitHub == null) {
-        this.data.GitHub = "";
+      if(this.data.Github == "null" || this.data.Github == null) {
+        this.data.Github = "";
       }
-      if(this.data.Calendy == "null" || this.data.Calendy == null) {
-        this.data.Calendy = "";
+      if(this.data.Calendly == "null" || this.data.Calendly == null) {
+        this.data.Calendly = "";
       }
-      if(this.data.PayPal == "null" || this.data.PayPal == null) {
-        this.data.PayPal = "";
+      if(this.data.Paypal == "null" || this.data.Paypal == null) {
+        this.data.Paypal = "";
       }
     })
     .catch((error) => {
@@ -168,19 +168,26 @@ export class EditCardComponent implements OnInit {
     })
   }
 
-  updateCard() {
-    alert("This function is not implemented yet.");
+  //Function to removed unnecessary items from the data set to be uploaded.
+  filterData() {
+    delete this.data["CardID"];
+    delete this.data["Department"];
+    delete this.data["Headline"];
+    delete this.data["Image"];
+    delete this.data["UserID"];
+  }
 
-    // axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
-    //   data: this.data
-    // }, this.cookie)
-    // .then ((response) => {
-    //   this.router.navigate(['/userDashboard']);
-    // })
-    // .catch ((error) => {
-    //   console.log(error);
-    //   alert("There was a problem. Please try again later.")
-    // })
+  updateCard(cardId:String) {
+    this.filterData();
+
+    axios.put('http://185.208.207.55/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
+    .then ((response) => {
+      this.router.navigate(['/userDashboard']);
+    })
+    .catch ((error) => {
+      console.log(error);
+      alert("There was a problem. Please try again later.");
+    })
   }
 
   //Function called by back button to go back to dashboard.
