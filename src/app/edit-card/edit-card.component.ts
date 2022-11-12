@@ -166,16 +166,18 @@ export class EditCardComponent implements OnInit {
   }
 
   updateCard() {
-    axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
-      data: this.data
-    }, this.cookie)
-    .then ((response) => {
-      this.router.navigate(['/userDashboard']);
-    })
-    .catch ((error) => {
-      console.log(error);
-      alert("There was a problem. Please try again later.")
-    })
+    alert("This function is not implemented yet.");
+
+    // axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
+    //   data: this.data
+    // }, this.cookie)
+    // .then ((response) => {
+    //   this.router.navigate(['/userDashboard']);
+    // })
+    // .catch ((error) => {
+    //   console.log(error);
+    //   alert("There was a problem. Please try again later.")
+    // })
   }
 
   backToDash() {
