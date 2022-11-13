@@ -20,12 +20,96 @@ export class EditCardComponent implements OnInit {
   //Empty variable to store card ID from URL query.
   cardId;
 
+  file;
+  imageUrl = "";
+
+  // Event function to be called when a new image is selected for banner using dialog.
+  // This function reads the selected file and converts it into base64 and stores it in image URL variable.
+  onFileSelected(event) {
+    if(event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
+        this.imageUrl = event.target.result;
+        this.setImage();
+      }
+    }
+  }
+
+  showTabs(tabName:string) {
+    var personalInfo = document.getElementById("personalInfoTab");
+    var basicInfo = document.getElementById("basicInfoTab");
+    var socialInfo = document.getElementById("socialInfoTab");
+    var communicationInfo = document.getElementById("communiationInfoTab");
+    var businessInfo = document.getElementById("businessInfoTab");
+    var paymentInfo = document.getElementById("paymentInfoTab");
+    
+    if(tabName == "personalInfoTab") {
+      personalInfo.style.display = "block";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "basicInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "block";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "socialInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "block";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "communiationInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "block";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "businessInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "block";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "paymentInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "block";
+    }
+  }
+
+  // Function to set the image URL stored in variable to the card image in preview panel.
+  setImage() {
+    var cardImage = document.getElementById("cardImage");
+    cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
+  }
+
   ngOnInit(): void {
     // Gets the card ID from URL query.
     this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
     
     //Calls the function with card ID as parameter to get data from the relevant card.
     this.getData(this.cardId);
+  }
+
+  // Function to load the card image into preview card.
+  loadCardImage() {
+    if(this.data.Image != "" || this.data.Image != null) {
+      var cardImg = document.getElementById("cardImage");
+      cardImg.style.backgroundImage = "url('http://185.208.207.55/v1/" + this.data.Image + "')";
+    }
   }
 
   //Stores the current input block name to correctly keep track of opened window.
@@ -66,7 +150,8 @@ export class EditCardComponent implements OnInit {
     "Telegram": "",
     "Github": "",
     "Calendly": "",
-    "Paypal": ""
+    "Paypal": "",
+    "Image": ""
   }
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
@@ -147,6 +232,8 @@ export class EditCardComponent implements OnInit {
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
+
+      this.loadCardImage();
 
       //SCRAP CODE SCRAP CODE SCRAP CODE ----- NEEDS TO BE REMOVED
       if(this.data.Signal_link == "null" || this.data.Signal_link == null) {

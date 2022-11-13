@@ -9,7 +9,7 @@
         </div>
 
         <div class="Input" id="imageInputWind">
-            <input type="file" #imgInput class="imgInput" placeholder="Upload Banner Here" id="imgInputArea">
+            <input type="file" #imgInput class="imgInput" placeholder="Upload Banner Here" id="imgInputArea" (change)="onFileSelected($event)">
             <div class="inputButtons gap">
                 <input type="button" value="Save" class="inputSubmitBtn" (click)="closeUploadWind()">
             </div>
@@ -20,70 +20,68 @@
     <div class="mobileEditorArea">
         <div class="topNavBar">
             <div class="topNavBarButtons">
-                <button class="tnbBtn"><i class="bi bi-person"></i></button>
-                <button class="tnbBtn"><i class="bi bi-person-lines-fill"></i></button>
-                <button class="tnbBtn"><i class="bi bi-chat-square-quote"></i></button>
-                <button class="tnbBtn"><i class="bi bi-person-rolodex"></i></button>
-                <button class="tnbBtn"><i class="bi bi-briefcase"></i></button>
-                <button class="tnbBtn"><i class="bi bi-cash-coin"></i></button>
+                <button class="tnbBtn" (click)="showTabs('personalInfoTab')"><i class="bi bi-person"></i></button>
+                <button class="tnbBtn" (click)="showTabs('basicInfoTab')"><i class="bi bi-person-lines-fill"></i></button>
+                <button class="tnbBtn" (click)="showTabs('socialInfoTab')"><i class="bi bi-chat-square-quote"></i></button>
+                <button class="tnbBtn" (click)="showTabs('communicationInfoTab')"><i class="bi bi-person-rolodex"></i></button>
+                <button class="tnbBtn" (click)="showTabs('businessInfoTab')"><i class="bi bi-briefcase"></i></button>
+                <button class="tnbBtn" (click)="showTabs('paymentInfoTab')"><i class="bi bi-cash-coin"></i></button>
             </div>
         </div>
 
         <div class="bottomNavBar" id="personalInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-cursor-text"></i><p class="navBtnLable">Name</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Designation</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Company Name</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Accreditations</p></button>
+                <button class="inputBtn" (click)="showInputWind('Name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
+                <button class="inputBtn" (click)="showInputWind('Job_title')"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
+                <button class="inputBtn" (click)="showInputWind('Company_name')"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
+                <button class="inputBtn" (click)="showInputWind('Accreditations')"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
+                <button class="inputBtn" (click)="showImageInputWind()"><i class="bi bi-image"></i><p class="btnLable">Banner</p></button>
             </div>
         </div>
         <div class="bottomNavBar hidden" id="basicInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Email</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Phone</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Company URL</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Link</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Address</p></button>
+                <button class="inputBtn" (click)="showInputWind('Email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
+                <button class="inputBtn" (click)="showInputWind('Phone')"><i class="bi bi-telephone"></i><p class="btnLable">Phone</p></button>
+                <button class="inputBtn" (click)="showInputWind('Company_URL')"><i class="bi bi-box-arrow-up-left"></i><p class="btnLable">Company URL</p></button>
+                <button class="inputBtn" (click)="showInputWind('Link')"><i class="bi bi-link"></i><p class="btnLable">Link</p></button>
+                <button class="inputBtn" (click)="showInputWind('Address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
             </div>
         </div>
         <div class="bottomNavBar hidden" id="socialInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Twitter</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Instagram</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">LinkedIn</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Facebook</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Snapchat</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">TikTok</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Twitch</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Yelp</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">YouTube</p></button>
+                <button class="inputBtn" (click)="showInputWind('Twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
+                <button class="inputBtn" (click)="showInputWind('Instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
+                <button class="inputBtn" (click)="showInputWind('Linkedin')"><i class="bi bi-linkedin"></i><p class="btnLable">LinkedIn</p></button>
+                <button class="inputBtn" (click)="showInputWind('Facebook')"><i class="bi bi-facebook"></i><p class="btnLable">Facebook</p></button>
+                <button class="inputBtn" (click)="showInputWind('Snapchat')"><i class="bi bi-snapchat"></i><p class="btnLable">Snapchat</p></button>
+                <button class="inputBtn" (click)="showInputWind('Tiktok')"><i class="bi bi-tiktok"></i><p class="btnLable">TikTok</p></button>
+                <button class="inputBtn" (click)="showInputWind('Twitch')"><i class="bi bi-twitch"></i><p class="btnLable">Twitch</p></button>
+                <button class="inputBtn" (click)="showInputWind('Yelp')"><i class="bi bi-yelp"></i><p class="btnLable">Yelp</p></button>
+                <button class="inputBtn" (click)="showInputWind('Youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
             </div>
         </div>
         <div class="bottomNavBar hidden" id="communicationInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">WhatsApp</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Signal</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Discord</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Skype</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Telegram</p></button>
+                <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
+                <button class="inputBtn" (click)="showInputWind('Signal_link')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
+                <button class="inputBtn" (click)="showInputWind('Discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
+                <button class="inputBtn" (click)="showInputWind('Skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
+                <button class="inputBtn" (click)="showInputWind('Telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
             </div>
         </div>
         <div class="bottomNavBar hidden" id="businessInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">GitHub</p></button>
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">Calendy</p></button>
+                <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
+                <button class="inputBtn" (click)="showInputWind('Calendy')"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
             </div>
         </div>
         <div class="bottomNavBar hidden" id="paymentInfoTab">
             <div class="bottomNavBarButtons">
-                <button class="bnbBtn"><i class="bi bi-person"></i><p class="navBtnLable">PayPal</p></button>
+                <button class="inputBtn" (click)="showInputWind('Paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
             </div>
         </div>
     </div>
-    <div class="mainControlButtons">
-        <button class="btn secondary" (click)="backToDash()">Cancel</button>
-        <button class="btn primary" (click)="updateCard(cardId)">Finish</button>
-    </div>
+    
     <div class="body">
         
         <!-- This section consists of the card itself that updates dynamically while making changes. -->
@@ -187,7 +185,11 @@
         <!-- This sections consists of the editor and the buttons -->
         
         <div class="editorArea">
-
+            <div class="mainControlButtons">
+                <button class="btn secondary" (click)="backToDash()">Cancel</button>
+                <button class="btn primary" (click)="updateCard(cardId)">Finish</button>
+            </div>
+            
             <h1 class="title">Customize Your Card</h1>
             <p class="caption">Add all the relevant information to make your card more personalized!</p>
             <div class="buttonRows">

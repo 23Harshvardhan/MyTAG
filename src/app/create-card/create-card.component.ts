@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
@@ -17,23 +17,83 @@ export class CreateCardComponent implements OnInit {
     private router:Router
   ) { }
 
-  setCookie(token:string){
-    this.cookieService.set('jwt', token);
-  }
-   
-  deleteCookie(cookieName:string){
-    this.cookieService.delete(cookieName);
-  }
-   
-  deleteAll(){
-    this.cookieService.deleteAll();
-  }
-
   ngOnInit(): void {
   }
 
+  file;
+  imageUrl = "";
+
+  // Event function to be called when a new image is selected for banner using dialog.
+  // This function reads the selected file and converts it into base64 and stores it in image URL variable.
   onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
+    if(event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
+        this.imageUrl = event.target.result;
+        this.setImage();
+      }
+    }
+  }
+
+  // Function to set the image URL stored in variable to the card image in preview panel.
+  setImage() {
+    var cardImage = document.getElementById("cardImage");
+    cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
+  }
+
+  showTabs(tabName:string) {
+    var personalInfo = document.getElementById("personalInfoTab");
+    var basicInfo = document.getElementById("basicInfoTab");
+    var socialInfo = document.getElementById("socialInfoTab");
+    var communicationInfo = document.getElementById("communiationInfoTab");
+    var businessInfo = document.getElementById("businessInfoTab");
+    var paymentInfo = document.getElementById("paymentInfoTab");
+    
+    if(tabName == "personalInfoTab") {
+      personalInfo.style.display = "block";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "basicInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "block";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "socialInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "block";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "communiationInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "block";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "businessInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "block";
+      paymentInfo.style.display = "none";
+    } else if(tabName == "paymentInfoTab"){
+      personalInfo.style.display = "none";
+      basicInfo.style.display = "none";
+      socialInfo.style.display = "none";
+      communicationInfo.style.display = "none";
+      businessInfo.style.display = "none";
+      paymentInfo.style.display = "block";
+    }
   }
 
   onUpload() {
@@ -141,7 +201,14 @@ export class CreateCardComponent implements OnInit {
       data: this.data
     }, cookie)
     .then ((response) => {
-      this.router.navigate(['/userDashboard']);
+      axios.put('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + response.data.data.CardID, this.file, cookie)
+      .then ((response) => {
+        this.router.navigate(['/userDashboard']);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("There was a problem. Please send console log to developer.");
+      })
     })
     .catch ((error) => {
       console.log(error);
