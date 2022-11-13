@@ -19,7 +19,6 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { SuperuserDashboardComponent } from './superuser-dashboard/superuser-dashboard.component';
 import { TeamsDashboardComponent } from './teams-dashboard/teams-dashboard.component';
 import { UserDashboardNavComponent } from './user-dashboard-nav/user-dashboard-nav.component';
 import { CardPreviewComponent } from './card-preview/card-preview.component';
@@ -28,16 +27,17 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
 import { CreateCardTeamComponent } from './create-card-team/create-card-team.component';
 import { EmailSignatureComponent } from './email-signature/email-signature.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
-import { SuperuserEmailSignatureComponent } from './superuser-email-signature/superuser-email-signature.component';
-import { SuperuserAnalyticsComponent } from './superuser-analytics/superuser-analytics.component';
 import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
-import { SuperuserSettingsComponent } from './superuser-settings/superuser-settings.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyMailComponent } from './verify-mail/verify-mail.component';
 import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import { EditCardComponent } from './edit-card/edit-card.component';
     PricingComponent,
     CreateCardComponent,
     UserDashboardComponent,
-    SuperuserDashboardComponent,
     TeamsDashboardComponent,
     UserDashboardNavComponent,
     CardPreviewComponent,
@@ -63,16 +62,17 @@ import { EditCardComponent } from './edit-card/edit-card.component';
     CreateCardTeamComponent,
     EmailSignatureComponent,
     AnalyticsComponent,
-    SuperuserEmailSignatureComponent,
-    SuperuserAnalyticsComponent,
     ManagePaymentComponent,
-    SuperuserSettingsComponent,
     ResetPasswordComponent,
     VerifyMailComponent,
     VerticalNavComponent,
     UserSettingsComponent,
     AdminLoginComponent,
-    EditCardComponent
+    EditCardComponent,
+    AdminDashboardComponent,
+    AdminSettingsComponent,
+    AdminNavbarComponent,
+    AdminVertNavbarComponent
   ],
   imports: [
     BrowserModule,
