@@ -3,7 +3,11 @@
         <h1 class="title">Admin Control Panel</h1>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <div class="txt_field">
-                <input type="text" required name="Email" ngModel>
+                <input type="email" required name="Email" ngModel>
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" required name="Username" ngModel>
                 <label>Username</label>
             </div>
             <div class="txt_field">

@@ -30,13 +30,13 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(loginCreds : {Email:string, Password:string}){
-    axios.post('http://185.208.207.55/v1/api/auth/signin', {
+  login(loginCreds : {Email:string, Username:string, Password:string}){
+    axios.post('http://185.208.207.55/v1/api/admin/login', {
       data: loginCreds
     })
     .then ((response) => {
       this.setCookie(response.data.data.token);
-      this.router.navigate(['/userDashboard']);
+      this.router.navigate(['/adminDashboard']);
     })
     .catch ((error) => {
       console.log(error);
