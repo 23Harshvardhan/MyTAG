@@ -38,6 +38,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.
     AdminDashboardComponent,
     AdminSettingsComponent,
     AdminNavbarComponent,
-    AdminVertNavbarComponent
+    AdminVertNavbarComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,

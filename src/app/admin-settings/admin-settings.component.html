@@ -1,29 +1,21 @@
 <div class="body">
     <app-admin-navbar></app-admin-navbar>
     <div class="main">
-        <div class="search-panel">
-            <form class="search-fields">
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Search by Name</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Search by Card ID</label>
-                </div>
-            </form>
-            <div class="buttons">
-                <button>View</button>              
-            </div>
-        </div>
-        <div class="buttons mobile">
-            <button>View</button>                
-        </div>
         <div class="main-body">
             <app-admin-vert-navbar></app-admin-vert-navbar>
-            <div class="cards-panel">
-                <div class="cardHolder">
 
+            <div class="main-body">
+                <div class="cards-panel">
+                    <div class="pnl">
+                        <h2>Update Password</h2>
+                        <form #changeRootPassForm="ngForm" (ngSubmit)="changeRootPass(changeRootPassForm.value)">
+                            <input type="email" class="txtArea" placeholder="Email" name="Email" ngModel>
+                            <input type="text" class="txtArea" placeholder="Username" name="Username" ngModel>
+                            <input type="password" class="txtArea" placeholder="Old Password" name="Password" ngModel>
+                            <input type="password" class="txtArea" placeholder="New Password" name="NewPassword" ngModel>
+                            <input type="submit" class="btn" value="Change">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,36 +11,37 @@ import { CookieService } from 'ngx-cookie-service';
 export class UserSettingsComponent implements OnInit {
 
   constructor(
-    private cookieService:CookieService
+    private cookieService:CookieService,
+    private router:Router
   ) { }
 
-  setCookie(token:string){
-    this.cookieService.set('jwt', token);
-  }
-   
-  deleteCookie(cookieName:string){
-    this.cookieService.delete(cookieName);
-  }
-   
-  deleteAll(){
-    this.cookieService.deleteAll();
+  ngOnInit(): void {
+    this.verifyToken();
   }
 
-  ngOnInit(): void {
+  cookie = {
+    headers:{
+      cki: this.cookieService.get("jwt")
+    } 
   }
 
   otp = ""
 
-  sendOtp() {
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
+  verifyToken() {
+    axios.get('', this.cookie)
+    .then((response) => {
+      //Do nothing
+    })
+    .catch((error) => {
+      console.log(error);
+      this.router.navigate(['/login']);
+    })
+  }
 
-    axios.post('http://185.208.207.55/v1/api/auth/resendOtp', cookie)
+  sendOtp() {
+    axios.post('http://185.208.207.55/v1/api/auth/resendOtp', this.cookie)
     .then ((response) => {
-      console.log(response);
+      alert("OTP has be sent successfully!");
     })
     .catch ((error) => {
       console.log(error);
@@ -51,15 +53,9 @@ export class UserSettingsComponent implements OnInit {
     var otparea = document.getElementById("otpArea") as HTMLInputElement;
     this.otp = otparea!.value;
 
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
-
-    axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {data: this.otp}, cookie)
+    axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {data: this.otp}, this.cookie)
     .then ((response) => {
-      console.log(response);
+      alert("Email has been verified!");
     })
     .catch ((error) => {
       console.log(error);

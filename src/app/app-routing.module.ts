@@ -28,6 +28,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -56,7 +57,8 @@ const routes: Routes = [
   {path: 'adminLogin', component:AdminLoginComponent},
   {path: 'editCard/:id', component:EditCardComponent},
   {path: 'adminDashboard', component:AdminDashboardComponent},
-  {path: 'adminSettings', component:AdminSettingsComponent}
+  {path: 'adminSettings', component:AdminSettingsComponent},
+  {path: 'allUsers', component:AllUsersComponent}
 ];
 
 @NgModule({
@@ -66,7 +68,6 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-UserDashboardComponent,  TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, 
-HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent,   ManagePaymentComponent,
- ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, UserSettingsComponent, AdminLoginComponent, EditCardComponent,
-AdminDashboardComponent,AdminSettingsComponent]
+UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, AllUsersComponent,
+HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent,
+UserSettingsComponent, AdminLoginComponent, EditCardComponent, AdminDashboardComponent,AdminSettingsComponent]
