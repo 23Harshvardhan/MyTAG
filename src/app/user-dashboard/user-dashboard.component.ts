@@ -47,9 +47,8 @@ export class UserDashboardComponent implements OnInit {
       for(var i = 0; i < length; i++) {
         this.cards.push({
           cardName: response.data.userInfo.cards[i].Name,
-          cardId: response.data.userInfo.cards[i].CardID,
-          cardImage: "http://185.208.207.55/v1/images/" + response.data.userInfo.cards[i].CardID + ".png"
-        })
+          cardId: response.data.userInfo.cards[i].CardID
+        });
       }
     })
     .catch( (error) => {
