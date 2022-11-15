@@ -23,6 +23,8 @@ export class UserDashboardComponent implements OnInit {
   //Array storing card ID and card names from response.
   cards = []
 
+  length;
+
   //Stores the cookie responsible for logging in and verifying current user.
   cookie = {
     headers:{
@@ -39,13 +41,14 @@ export class UserDashboardComponent implements OnInit {
     axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
     .then( (response) => {
       //Storing number of cards from response.
-      length = response.data.userInfo.cards.length;
+      this.length = response.data.userInfo.cards.length;
 
       //Storing card id and card name in a external variable to be accessed from frontend
       for(var i = 0; i < length; i++) {
         this.cards.push({
           cardName: response.data.userInfo.cards[i].Name,
-          cardId: response.data.userInfo.cards[i].CardID
+          cardId: response.data.userInfo.cards[i].CardID,
+          cardImage: "http://185.208.207.55/v1/images/" + response.data.userInfo.cards[i].CardID + ".png"
         })
       }
     })

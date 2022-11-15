@@ -29,7 +29,8 @@
             <div class="cards-panel">
                 <div class="cardHolder" *ngFor="let card of this.cards">
                     <article class="card" (click)="openCard(card.cardId)">
-                        <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg">
+                        <img class="card__img" [src]="card.cardImage" alt="banner" id="cardImg">
+                        <!-- <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg"> -->
                         <div class="card__content">
                             <br>
                             <h1 class="card__title">{{card.cardName}}</h1>
