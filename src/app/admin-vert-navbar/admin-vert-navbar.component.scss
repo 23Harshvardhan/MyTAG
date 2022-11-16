@@ -1,5 +1,9 @@
+// Imports Section
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
+
+
+// Vertical Navigation Bar Section
 .verticalNav {
     background-color: #ff0000;
     min-width: 200px;
@@ -29,3 +33,12 @@
     background-color: #474747;
     transition: 0.3s;
 }
+
+
+
+// Mobile View Section
+@media screen and (max-width: 800px) {
+    .verticalNav {
+      display: none;
+    }
+  }

@@ -6,21 +6,19 @@
         <div class="search-panel">
             <form class="search-fields">
                 <div class="txt_field">
-                    <input type="text" required>
+                    <input type="text" required (keyup)="searchByName()" id="nameSearchField">
                     <label>Search by Name</label>
                 </div>
-                <div class="txt_field">
-                    <input type="text" required>
+                <!-- <div class="txt_field">
+                    <input type="text" required (keyup)="searchById()" id="idSearchField">
                     <label>Search by Card ID</label>
-                </div>
+                </div> -->
             </form>
             <div class="buttons">
-                <button>View</button>
                 <button routerLink="/createCard">Add Card</button>                   
             </div>
         </div>
         <div class="buttons mobile">
-            <button>View</button>
             <button routerLink="/createCard">Add Card</button>                   
         </div>
  
@@ -28,20 +26,22 @@
             <app-vertical-nav></app-vertical-nav>
             <div class="cards-panel">
                 <div class="cardHolder" *ngFor="let card of this.cards">
-                    <article class="card" (click)="openCard(card.cardId)">
-                        <!-- <img class="card__img" [src]="card.cardImage" alt="banner" id="cardImg"> -->
-                        <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg">
-                        <div class="card__content">
-                            <br>
-                            <h1 class="card__title">{{card.cardName}}</h1>
-                            <br>
-                            <p class="card__desc">Card ID: {{card.cardId}}</p>
-                            <br>
+                    <div class="container" *ngIf="nameQuery == card.cardName || nameQuery == null || nameQuery == ''">
+                        <article class="card" (click)="openCard(card.cardId)">
+                            <!-- <img class="card__img" [src]="card.cardImage" alt="banner" id="cardImg"> -->
+                            <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg">
+                            <div class="card__content">
+                                <br>
+                                <h1 class="card__title">{{card.cardName}}</h1>
+                                <br>
+                                <p class="card__desc">Card ID: {{card.cardId}}</p>
+                                <br>
+                            </div>
+                        </article>
+                        <div class="actions">
+                            <div (click)="editCard(card.cardId)"><i class="fa fa-pencil-square-o"></i></div>
+                            <div (click)="deleteCard(card.cardId)"><i class="fa fa-trash"></i></div>
                         </div>
-                    </article>
-                    <div class="actions">
-                        <div (click)="editCard(card.cardId)"><i class="fa fa-pencil-square-o"></i></div>
-                        <div (click)="deleteCard(card.cardId)"><i class="fa fa-trash"></i></div>
                     </div>
                 </div>
             </div>

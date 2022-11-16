@@ -39,8 +39,12 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/userDashboard']);
     })
     .catch ((error) => {
-      console.log(error);
-      alert("There was a problem. Please try again later.")
+      if(error.code == "ERR_NETWORK") {
+        alert("It seems that you are offile. Please check your network status.");
+      }
+      else{
+        console.log(error);
+      }
     })
   }
 }

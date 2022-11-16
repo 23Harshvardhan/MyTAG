@@ -40,18 +40,20 @@ export class UserDashboardComponent implements OnInit {
 
     axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
     .then( (response) => {
-      //Storing number of cards from response.
-      this.length = response.data.userInfo.cards.length;
+      this.length = response.data.userInfo.cards.length; //Storing number of cards from response.
+      var i = 0; //Empty variable to be used in while loop.
 
       //Storing card id and card name in a external variable to be accessed from frontend
-      for(var i = 0; i < length; i++) {
+      while(i < this.length) {
         this.cards.push({
           cardName: response.data.userInfo.cards[i].Name,
-          cardId: response.data.userInfo.cards[i].CardID
-        });
+          cardId: response.data.userInfo.cards[i].CardID,
+          cardImage: "http://185.208.207.55/v1/images/" + response.data.userInfo.cards[i].cardID + ".jpg"
+        })
+        i++;
       }
     })
-    .catch( (error) => {
+    .catch( (error) => { //Catch error and log it in console. Afterwards redirect the user to login page.
       console.log(error);
       this.router.navigate(['/login']);
     });
@@ -78,5 +80,20 @@ export class UserDashboardComponent implements OnInit {
   //Function to edit card. Takes card ID as parameter and redirects to edit card page.
   editCard(cardId:string) {
     this.router.navigate(['/editCard/' + cardId]);
+  }
+
+  nameQuery;
+  idQuery;
+
+  //Function to search for existing card by name.
+  searchByName() {
+    var nameQuery = document.getElementById("nameSearchField") as HTMLInputElement;
+    this.nameQuery = nameQuery.value;
+  }
+
+  //Function to search for existing card by card ID.
+  searchById() {
+    var idQuery = document.getElementById("idSearchField") as HTMLInputElement;
+    this.idQuery = idQuery.value;
   }
 }

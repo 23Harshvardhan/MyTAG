@@ -29,6 +29,7 @@ import { EditCardComponent } from './edit-card/edit-card.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -58,7 +59,8 @@ const routes: Routes = [
   {path: 'editCard/:id', component:EditCardComponent},
   {path: 'adminDashboard', component:AdminDashboardComponent},
   {path: 'adminSettings', component:AdminSettingsComponent},
-  {path: 'allUsers', component:AllUsersComponent}
+  {path: 'allUsers', component:AllUsersComponent},
+  {path: 'adminCardPreview/:id', component:AdminCardPreviewComponent}
 ];
 
 @NgModule({
@@ -68,6 +70,7 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, AllUsersComponent,
-HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent,
-UserSettingsComponent, AdminLoginComponent, EditCardComponent, AdminDashboardComponent,AdminSettingsComponent]
+  UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, AllUsersComponent,
+  HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, 
+  VerticalNavComponent, UserSettingsComponent, AdminLoginComponent, EditCardComponent, AdminDashboardComponent,AdminSettingsComponent, AdminCardPreviewComponent
+]

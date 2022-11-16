@@ -19,16 +19,19 @@ export class AdminDashboardComponent implements OnInit {
     this.onLoad();
   }
 
-  cards = [];
-  length = null;
-  apiRoot = "http://185.208.207.55/v1/";
+  cards = []; //Variable storing all the cards and their data in dictionary form.
+  length = null; //Variable storing the lenght on the total cards. Used in FOR loop to iterate through all the cards.
+  apiRoot = "http://185.208.207.55/v1/"; //Variable storing base URL for all API calls.
+  nameQuery; //Variable to store the entered name in search query.
 
+  //Variable storing cookies. This is sent with every API request.
   cookie = {
     headers:{
       cki: this.cookieService.get("jwt")
     } 
   }
 
+  //Function to be triggered when the page loads. This function calls the API to load all existing cards and draw them on canvas.
   onLoad (){
     //Stores the total number of cards in a user's account
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards', this.cookie)
@@ -41,7 +44,8 @@ export class AdminDashboardComponent implements OnInit {
         this.cards.push({
           cardName: response.data.data[i].Name,
           cardId: response.data.data[i].CardID,
-          cardImage: response.data.data[i].Image
+          cardImage: response.data.data[i].Image,
+          userId: response.data.data[i].UserID
         })
       }
     })
@@ -51,22 +55,31 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
+  //Function to open a card as admin.
   openCard(cardId:string) {
-    this.router.navigate(['/cardPreview/' + cardId])
+    this.router.navigate(['/adminCardPreview/' + cardId])
   }
 
+  //Function to edit a card as admin.
   editCard(cardId:string) {
     this.router.navigate(['/editCard/' + cardId]);
   }
 
-  deleteCard(cardId:string) {
-    axios.delete('http://185.208.207.55/v1/api/activities/card_data/deletecard?id=' + cardId, this.cookie)
-    .then((response) => {
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("There was a problem deleting card. Please try again later.");
-    })
+  //Function to delete a card as admin.
+  deleteCard(data: {CardID:string, UserID:string}) {
+    // axios.delete('http://185.208.207.55/v1/api/admin/updatecard/delete', data)
+    // .then((response) => {
+    //   window.location.reload();
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   alert("There was a problem deleting card. Please try again later.");
+    // })
+  }
+
+  //Function to be called on every key stroke in the search field. This function gets the entered text and stores it in a variable to be used by front-end.
+  searchByName() {
+    var nameQuery = document.getElementById("nameSearchField") as HTMLInputElement;
+    this.nameQuery = nameQuery.value;
   }
 }

@@ -47,4 +47,16 @@ export class AdminSettingsComponent implements OnInit {
       alert("There was a problem. Please send console log to developer.")
     })
   }
+
+  verifyUser(details: {UserID:string, Email:string, verification:string}) {
+    axios.put('http://185.208.207.55/v1/api/admin/updateuser/verify', details, this.cookie)
+    .then((response) => {
+      console.log(response);
+      alert("The verification status of the user was changed successfully.")
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem. Please send console log to developer.");
+    })
+  }
 }

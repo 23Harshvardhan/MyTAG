@@ -201,14 +201,7 @@ export class CreateCardComponent implements OnInit {
       data: this.data
     }, cookie)
     .then ((response) => {
-      axios.put('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + response.data.data.CardID, this.file, cookie)
-      .then ((response) => {
-        this.router.navigate(['/userDashboard']);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("There was a problem. Please send console log to developer.");
-      })
+      this.router.navigate(['/userDashboard']);
     })
     .catch ((error) => {
       console.log(error);

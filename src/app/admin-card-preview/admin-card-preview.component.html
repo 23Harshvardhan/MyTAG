@@ -1,0 +1,131 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="main">
+    <app-admin-vert-navbar></app-admin-vert-navbar>
+
+    <div class="main-body">
+        <div class="cards-panel">
+            <div class="pnl1">
+                <div class="actions">
+                    <!-- <div (click)="editCard(cardId)"><i class="bi bi-pencil-square"> Edit</i></div> -->
+                </div>
+                <article class="card">
+                    <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
+                    <div class="card__content">
+                        <br>
+                        <h1 class="user_name">{{data.Name}}</h1>
+                        <br>
+                        <p class="card_title">{{data.Job_title}}</p>
+                        <br>
+                        <p class="card_compName">{{data.Company_name}}</p>
+                        <br>
+                        <div class="ico-info" *ngIf="data.Email != ''">
+                            <i class="bi bi-envelope"></i><p class="card_element"> {{data.Email}}</p>
+                        </div>
+                        <br>
+                        <div class="ico-info" *ngIf="data.Phone != ''">
+                            <i class="bi bi-phone"></i><p class="card_element"> {{data.Phone}}</p>
+                        </div>
+                        <br>
+                        <div class="ico-info" *ngIf="data.Company_URL != ''">
+                            <i class="bi bi-box-arrow-up-left"></i><p class="card_element"> {{data.Company_URL}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Link != ''">
+                            <i class="bi bi-link"></i><p class="card_element"> {{data.Link}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Address != ''">
+                            <i class="bi bi-map"></i><p class="card_element"> {{data.Address}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Twitter != ''">
+                            <i class="bi bi-twitter"></i><p class="card_element"> {{data.Twitter}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Instagram != ''">
+                            <i class="bi bi-instagram"></i><p class="card_element"> {{data.Instagram}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Linkedin != ''">
+                            <i class="bi bi-linkedin"></i><p class="card_element"> {{data.Linkedin}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Facebook != ''">
+                            <i class="bi bi-facebook"></i><p class="card_element"> {{data.Facebook}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Youtube != ''">
+                            <i class="bi bi-youtube"></i><p class="card_element"> {{data.Youtube}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Snapchat != ''">
+                            <i class="bi bi-snapchat"></i><p class="card_element"> {{data.Snapchat}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Tiktok != ''">
+                            <i class="bi bi-tiktop"></i><p class="card_element"> {{data.Tiktok}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Twitch != ''">
+                            <i class="bi bi-twitch"></i><p class="card_element"> {{data.Twitch}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Yelp != ''">
+                            <i class="bi bi-yelp"></i><p class="card_element"> {{data.Yelp}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Whatsapp != ''">
+                            <i class="bi bi-whatsapp"></i><p class="card_element"> {{data.Whatsapp}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Signal_link != ''">
+                            <i class="bi bi-signal"></i><p class="card_element"> {{data.Signal_link}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Discord != ''">
+                            <i class="bi bi-discord"></i><p class="card_element"> {{data.Discord}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Skype != ''">
+                            <i class="bi bi-skype"></i><p class="card_element"> {{data.Skype}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Telegram != ''">
+                            <i class="bi bi-telegram"></i><p class="card_element"> {{data.Telegram}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.GitHub != ''">
+                            <i class="bi bi-github"></i><p class="card_element"> {{data.GitHub}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.Calendy != ''">
+                            <i class="bi bi-calendly"></i><p class="card_element"> {{data.Calendy}}</p>
+                        </div>
+                        <div class="ico-info" *ngIf="data.PayPal != ''">
+                            <i class="bi bi-paypal"></i><p class="card_element"> {{data.PayPal}}</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="pnl2">
+                <div class="actions">
+                    <h4>QR Code</h4>
+                </div>
+                <article class="card secondary" routerLink="/cardPreview">
+                    <!-- <canvas class="card__img" id="QRCanvas"></canvas> -->
+
+                    <qrcode [qrdata]="cardId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+
+                    <div class="card__content">
+                        <br>
+                        <h1 class="card-btn">Copy Link</h1>
+                        <br>
+                        <h1 class="card-btn">Download</h1>
+                        <br>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="pnl3">
+                <div class="actions">
+                    <i class="fa fa-pencil-square-o"></i>
+                </div>
+                <article class="card secondary" routerLink="/cardPreview">
+                    <img class="card__img" src="..//src/assets/img/emailSignature.png" alt="frontend-mentor-website-qrcode" alt="banner">
+                    <div class="card__content">
+                        <br>
+                        <h1 class="card-btn">Copy Signature</h1>
+                        <br>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="pnl4">
+                
+            </div>
+        </div>
+    </div>
+</div>

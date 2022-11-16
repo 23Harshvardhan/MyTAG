@@ -1,43 +1,35 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="body">
     <app-admin-navbar></app-admin-navbar>
     <div class="main">
         <div class="search-panel">
             <form class="search-fields">
                 <div class="txt_field">
-                    <input type="text" required>
+                    <input type="text" required (keyup)="searchByName()" id="nameSearchField">
                     <label>Search by Name</label>
                 </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Search by Card ID</label>
-                </div>
             </form>
-            <div class="buttons">
-                <button>View</button>              
-            </div>
-        </div>
-        <div class="buttons mobile">
-            <button>View</button>                
         </div>
         <div class="main-body">
             <app-admin-vert-navbar></app-admin-vert-navbar>
             <div class="cards-panel">
                 <div class="cardHolder" *ngFor="let card of this.cards">
-                    <article class="card" (click)="openCard(card.cardId)">
-                        <img class="card__img" [src]="apiRoot + card.cardImage" alt="banner" id="cardImg" *ngIf="card.cardImage != null">
-                        <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg" *ngIf="card.cardImage == null">
-                        <div class="card__content">
-                            <br>
-                            <h1 class="card__title">{{card.cardName}}</h1>
-                            <br>
-                            <p class="card__desc">Card ID: {{card.cardId}}</p>
-                            <br>
+                    <div class="container" *ngIf="nameQuery == card.cardName || nameQuery == null || nameQuery == ''">
+                        <article class="card" (click)="openCard(card.cardId)">
+                            <img class="card__img" [src]="apiRoot + card.cardImage" alt="banner" id="cardImg" *ngIf="card.cardImage != null">
+                            <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg" *ngIf="card.cardImage == null">
+                            <div class="card__content">
+                                <br>
+                                <h1 class="card__title">{{card.cardName}}</h1>
+                                <br>
+                                <p class="card__desc">Card ID: {{card.cardId}}</p>
+                                <br>
+                            </div>
+                        </article>
+                        <div class="actions">
+                            <!-- <div (click)="editCard(card.cardId)"><i class="fa fa-pencil-square-o"></i></div> -->
+                            <!-- <div (click)="deleteCard(card.cardId, card.userId)"><i class="fa fa-trash"></i></div> -->
                         </div>
-                    </article>
-                    <div class="actions">
-                        <div (click)="editCard(card.cardId)"><i class="fa fa-pencil-square-o"></i></div>
-                        <div (click)="deleteCard(card.cardId)"><i class="fa fa-trash"></i></div>
                     </div>
                 </div>
             </div>

@@ -16,6 +16,16 @@
                             <input type="submit" class="btn" value="Change">
                         </form>
                     </div>
+
+                    <div class="pnl">
+                        <h2>Verify User</h2>
+                        <form #verifyUserForm="ngForm" (ngSubmit)="verifyUser(verifyUserForm.value)">
+                            <input type="text" class="txtArea" placeholder="User ID" name="UserID" ngModel>
+                            <input type="email" class="txtArea" placeholder="User Email" name="Email" ngModel>
+                            <input type="text" class="txtArea" placeholder="true or false" name="verification" ngModel>
+                            <input type="submit" class="btn" value="Change">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

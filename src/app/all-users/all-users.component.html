@@ -1,20 +1,25 @@
 <div class="body">
     <app-admin-navbar></app-admin-navbar>
     <div class="main">
+        <div class="search-panel">
+            <form class="search-fields">
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Search by Email</label>
+                </div>
+            </form>
+        </div>
         <div class="main-body">
             <app-admin-vert-navbar></app-admin-vert-navbar>
-
-            <div class="main-body">
-                <div class="cards-panel">
-                    <div class="pnl" *ngFor="let user of this.users">
-                        <p class="lable"><b>Account Type:</b> {{user.AccountType}}<br>
-                        <b>Card Limit:</b> {{user.CardLimit}}<br>
-                        <b>Email:</b> {{user.Email}}<br>
-                        <b>First Name:</b> {{user.FirstName}}<br>
-                        <b>Last Name:</b> {{user.LastName}}<br>
-                        <b>User ID:</b> {{user.UserID}}<br>
-                        <b>Verified:</b> {{user.Verified}}</p>
-                    </div>
+            <div class="cards-panel">
+                <div class="pnl" *ngFor="let user of this.users">
+                    <p class="lable"><b>Account Type:</b> {{user.AccountType}}<br>
+                    <b>Card Limit:</b> {{user.CardLimit}}<br>
+                    <b>Email:</b> {{user.Email}}<br>
+                    <b>First Name:</b> {{user.FirstName}}<br>
+                    <b>Last Name:</b> {{user.LastName}}<br>
+                    <b>User ID:</b> {{user.UserID}}<br>
+                    <b>Verified:</b> {{user.Verified}}</p>
                 </div>
             </div>
         </div>
