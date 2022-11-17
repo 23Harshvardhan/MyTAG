@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
 
   //Array storing card ID and card names from response.
   cards = []
-
+  apiRoot = "http://185.208.207.55/v1/";
   length;
 
   //Stores the cookie responsible for logging in and verifying current user.
@@ -48,7 +48,7 @@ export class UserDashboardComponent implements OnInit {
         this.cards.push({
           cardName: response.data.userInfo.cards[i].Name,
           cardId: response.data.userInfo.cards[i].CardID,
-          cardImage: "http://185.208.207.55/v1/images/" + response.data.userInfo.cards[i].cardID ? response.data.userInfo.cards[i].cardID : "default" + ".jpg"
+          cardImage: response.data.userInfo.cards[i].Image
         })
         i++;
       }

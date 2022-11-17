@@ -218,7 +218,7 @@ export class CreateCardComponent implements OnInit {
   uploadImage() {
     var formdata = new FormData();
     if(this.file != null) {
-      formdata.append("media", this.file);
+      formdata.append("", this.file);
 
       axios.post('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
       .then((response) => {

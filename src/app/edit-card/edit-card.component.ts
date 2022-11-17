@@ -269,12 +269,31 @@ export class EditCardComponent implements OnInit {
 
     axios.put('http://185.208.207.55/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
     .then ((response) => {
-      this.router.navigate(['/userDashboard']);
+      this.uploadImage();
     })
     .catch ((error) => {
       console.log(error);
       alert("There was a problem. Please try again later.");
     })
+  }
+
+  uploadImage() {
+    var formdata = new FormData();
+    if(this.file != null) {
+      formdata.append("", this.file);
+
+      axios.post('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
+      .then((response) => {
+        this.router.navigate(['/userDashboard']);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("There was an error updating card image. Please send console log to developer.");
+      })
+    }
+    else {
+      this.router.navigate(['/userDashboard']);
+    }
   }
 
   //Function called by back button to go back to dashboard.
