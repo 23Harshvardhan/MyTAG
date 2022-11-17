@@ -9,7 +9,8 @@
                     <div (click)="editCard(cardId)"><i class="bi bi-pencil-square"> Edit</i></div>
                 </div>
                 <article class="card">
-                    <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner">
+                    <img class="card__img" [src]="apiRoot + data.Image" alt="banner" id="cardImg" *ngIf="data.Image != null">
+                            <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg" *ngIf="data.Image == null">
                     <div class="card__content">
                         <br>
                         <h1 class="user_name">{{data.Name}}</h1>

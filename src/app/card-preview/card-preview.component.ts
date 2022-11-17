@@ -41,7 +41,8 @@ export class CardPreviewComponent implements OnInit {
     "Telegram": "",
     "GitHub": "",
     "Calendy": "",
-    "PayPal": ""
+    "PayPal": "",
+    "Image": ""
   }
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
@@ -50,7 +51,7 @@ export class CardPreviewComponent implements OnInit {
       cki: this.cookieService.get("jwt")
     } 
   }
-  
+  apiRoot = "http://34.70.242.122/v1/";
   constructor(
     private activatedRoute:ActivatedRoute,
     private router:Router,
