@@ -68,15 +68,14 @@ export class AdminDashboardComponent implements OnInit {
 
   //Function to delete a card as admin.
   deleteCard(CardID:string, UserID:string) {
-    const data = {CardID: CardID, UserID:UserID}
-    // axios.delete('http://185.208.207.55/v1/api/admin/updatecard/delete', data)
-    // .then((response) => {
-    //   window.location.reload();
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   alert("There was a problem deleting card. Please try again later.");
-    // })
+    axios.delete('http:185.208.207.55/vi/api/admin/updatecard/delete?CardID=' + CardID + '&UserID=' + UserID, this.cookie)
+    .then((response) => {
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem deleting card. Please try again later.");
+    })
   }
 
   //Function to be called on every key stroke in the search field. This function gets the entered text and stores it in a variable to be used by front-end.

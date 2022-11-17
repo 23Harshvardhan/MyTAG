@@ -22,6 +22,7 @@ export class CreateCardComponent implements OnInit {
 
   file;
   imageUrl = "";
+  createdCardId;
 
   // Event function to be called when a new image is selected for banner using dialog.
   // This function reads the selected file and converts it into base64 and stores it in image URL variable.
@@ -189,19 +190,20 @@ export class CreateCardComponent implements OnInit {
   openUrl(service:string) {
     window.open(this.data[service as keyof typeof this.data], "_blank");
   }
+  
+  cookie = {
+    headers:{
+      cki: this.cookieService.get("jwt")
+    } 
+  }
 
   createCard() {
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
-
     axios.post('http://185.208.207.55/v1/api/activities/card_data/createcard', {
       data: this.data
-    }, cookie)
+    }, this.cookie)
     .then ((response) => {
-      this.router.navigate(['/userDashboard']);
+      this.createdCardId = response.data.data.CardID;
+      this.uploadImage();
     })
     .catch ((error) => {
       console.log(error);
@@ -211,5 +213,24 @@ export class CreateCardComponent implements OnInit {
   
   backToDash() {
     this.router.navigate(['/userDashboard']);
+  }
+
+  uploadImage() {
+    var formdata = new FormData();
+    if(this.file != null) {
+      formdata.append("media", this.file);
+
+      axios.post('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
+      .then((response) => {
+        this.router.navigate(['/userDashboard']);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("There was an error updating card image. Please send console log to developer.");
+      })
+    }
+    else {
+      this.router.navigate(['/userDashboard']);
+    }
   }
 }
