@@ -131,9 +131,9 @@ export class CreateCardComponent implements OnInit {
     "Discord": "",
     "Skype": "",
     "Telegram": "",
-    "GitHub": "",
+    "Github": "",
     "Calendy": "",
-    "PayPal": ""
+    "Paypal": ""
   }
 
   showInputWind(blockName:string) {
