@@ -66,8 +66,6 @@ export class AllUsersComponent implements OnInit {
           Verified: this.filterVerificationStatus(response.data.data[i].verified)
         })
       }
-
-      console.log(this.users);
     })
     .catch((error) => {
       console.log(error);

@@ -66,7 +66,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   //Function to delete a card as admin.
-  deleteCard(data: {CardID:string, UserID:string}) {
+  deleteCard(CardID:string, UserID:string) {
+    const data = {CardID: CardID, UserID:UserID}
     // axios.delete('http://185.208.207.55/v1/api/admin/updatecard/delete', data)
     // .then((response) => {
     //   window.location.reload();

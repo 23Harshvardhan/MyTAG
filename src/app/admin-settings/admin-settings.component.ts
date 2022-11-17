@@ -49,6 +49,7 @@ export class AdminSettingsComponent implements OnInit {
   }
 
   verifyUser(details: {UserID:string, Email:string, verification:string}) {
+    console.log(details);
     axios.put('http://185.208.207.55/v1/api/admin/updateuser/verify', details, this.cookie)
     .then((response) => {
       console.log(response);
