@@ -26,7 +26,7 @@ export class UserDashboardNavComponent implements OnInit {
       } 
     }
 
-    axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
+    axios.get('http://34.70.242.122/v1/api/activities/dashboard', cookie)
     .then( (response) => {
       var name = response.data.userInfo.Name;
       var splitted = name.split(" ", 1)

@@ -70,7 +70,7 @@ export class CardPreviewComponent implements OnInit {
   //Function to get card data using API call with card ID as query.
   //On success will return entered details of the card which was requested and on fail will log error in console and slow alert.
   getData(cardId:string) {
-    axios.get('http://185.208.207.55/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    axios.get('http://34.70.242.122/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];

@@ -108,7 +108,7 @@ export class EditCardComponent implements OnInit {
   loadCardImage() {
     if(this.data.Image != "" || this.data.Image != null) {
       var cardImg = document.getElementById("cardImage");
-      cardImg.style.backgroundImage = "url('http://185.208.207.55/v1/" + this.data.Image + "')";
+      cardImg.style.backgroundImage = "url('http://34.70.242.122/v1/" + this.data.Image + "')";
     }
   }
 
@@ -228,7 +228,7 @@ export class EditCardComponent implements OnInit {
   //Function to get card data using API call with card ID as query.
   //On success will return entered details of the card which was requested and on fail will log error in console and slow alert.
   getData(cardId:string) {
-    axios.get('http://185.208.207.55/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    axios.get('http://34.70.242.122/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
@@ -267,7 +267,7 @@ export class EditCardComponent implements OnInit {
   updateCard(cardId:String) {
     this.filterData();
 
-    axios.put('http://185.208.207.55/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
+    axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
     .then ((response) => {
       this.uploadImage();
     })
@@ -282,7 +282,7 @@ export class EditCardComponent implements OnInit {
     if(this.file != null) {
       formdata.append('', this.file);
 
-      axios.put('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
+      axios.put('http://34.70.242.122/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/userDashboard']);
       })

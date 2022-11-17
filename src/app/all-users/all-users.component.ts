@@ -51,7 +51,7 @@ export class AllUsersComponent implements OnInit {
 
   //Function be to triggered on page load. Calls API to load all the existing users and their details. In case of error, admin is redirected to home page.
   onLoad() {
-    axios.get('http://185.208.207.55/v1/api/admin/analytics/getusers', this.cookie)
+    axios.get('http://34.70.242.122/v1/api/admin/analytics/getusers', this.cookie)
     .then((response) => {
       this.length = response.data.data.length;
       

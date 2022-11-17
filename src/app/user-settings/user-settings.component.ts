@@ -39,7 +39,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   sendOtp() {
-    axios.post('http://185.208.207.55/v1/api/auth/resendOtp', this.cookie)
+    axios.post('http://34.70.242.122/v1/api/auth/resendOtp', this.cookie)
     .then ((response) => {
       alert("OTP has be sent successfully!");
     })
@@ -53,7 +53,7 @@ export class UserSettingsComponent implements OnInit {
     var otparea = document.getElementById("otpArea") as HTMLInputElement;
     this.otp = otparea!.value;
 
-    axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {data: this.otp}, this.cookie)
+    axios.post('http://34.70.242.122/v1/api/auth/verifyEmail', {data: this.otp}, this.cookie)
     .then ((response) => {
       alert("Email has been verified!");
     })

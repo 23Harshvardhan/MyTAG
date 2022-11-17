@@ -21,7 +21,7 @@ export class AdminDashboardComponent implements OnInit {
 
   cards = []; //Variable storing all the cards and their data in dictionary form.
   length = null; //Variable storing the lenght on the total cards. Used in FOR loop to iterate through all the cards.
-  apiRoot = "http://185.208.207.55/v1/"; //Variable storing base URL for all API calls.
+  apiRoot = "http://34.70.242.122/v1/"; //Variable storing base URL for all API calls.
   nameQuery; //Variable to store the entered name in search query.
 
   //Variable storing cookies. This is sent with every API request.
@@ -34,7 +34,7 @@ export class AdminDashboardComponent implements OnInit {
   //Function to be triggered when the page loads. This function calls the API to load all existing cards and draw them on canvas.
   onLoad (){
     //Stores the total number of cards in a user's account
-    axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards', this.cookie)
+    axios.get('http://34.70.242.122/v1/api/admin/analytics/getcards', this.cookie)
     .then( (response) => {
       //Storing number of cards from response.
       this.length = response.data.data.length;
@@ -67,7 +67,7 @@ export class AdminDashboardComponent implements OnInit {
 
   //Function to delete a card as admin.
   deleteCard(CardID:string, UserID:string) {
-    axios.delete('http://185.208.207.55/v1/api/admin/updatecard/delete?CardID=' + CardID + '&UserID=' + UserID, this.cookie)
+    axios.delete('http://34.70.242.122/v1/api/admin/updatecard/delete?CardID=' + CardID + '&UserID=' + UserID, this.cookie)
     .then((response) => {
       window.location.reload();
     })
