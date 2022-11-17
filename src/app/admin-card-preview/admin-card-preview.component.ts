@@ -43,6 +43,9 @@ export class AdminCardPreviewComponent implements OnInit {
     "Calendy": "",
     "PayPal": ""
   }
+  
+  //String array stored all split accreditions so they can be access from the front end easily.
+  accreds:string[] = [];
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
   cookie = {

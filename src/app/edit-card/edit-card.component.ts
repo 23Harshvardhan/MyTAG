@@ -280,9 +280,9 @@ export class EditCardComponent implements OnInit {
   uploadImage() {
     var formdata = new FormData();
     if(this.file != null) {
-      formdata.append("", this.file);
+      formdata.append('', this.file);
 
-      axios.post('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/userDashboard']);
       })

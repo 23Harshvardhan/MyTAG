@@ -220,7 +220,7 @@ export class CreateCardComponent implements OnInit {
     if(this.file != null) {
       formdata.append("", this.file);
 
-      axios.post('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/userDashboard']);
       })

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     })
     .catch ((error) => {
       if(error.code == "ERR_NETWORK") {
-        alert("It seems that you are offile. Please check your network status.");
+        alert("It seems that you are offline. Please check your network status.");
       }
       else{
         console.log(error);
