@@ -1,3 +1,19 @@
+<div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span>
+</div>
+<div class="overlay" id="overlay">
+  <nav class="overlay-menu">
+    <ul>
+      <li><a (click)="onHome()">Home</a></li>
+      <li><a (click)="onFeatures()">Features</a></li>
+      <li><a (click)="onDemo()">Demo</a></li>
+      <li><a (click)="onPricing()">Pricing</a></li>
+      <li><a (click)="onContactUs()">Contact Us</a></li>
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/adminLogin">Admin Login</a></li>
+    </ul>
+  </nav>
+</div>
+
 <div class="home-section" id="home-section">
   <app-header></app-header>
 
