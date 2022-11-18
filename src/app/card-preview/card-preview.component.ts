@@ -95,4 +95,26 @@ export class CardPreviewComponent implements OnInit {
       alert("There was an error! Please send console log to developer.");
     })
   }
+
+  publishCard(){
+    axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 1}}, this.cookie)
+    .then((response) => {
+      alert("Card has been published successfully.");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem performing this action. Please send log to developer.")
+    })
+  }
+
+  unpublishCard() {
+    axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 0}}, this.cookie)
+    .then((response) => {
+      alert("Card has been unpublished successfully.");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem performing this action. Please send log to developer.")
+    })
+  }
 }

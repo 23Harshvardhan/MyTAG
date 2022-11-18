@@ -112,7 +112,7 @@
             
             <div class="pnl3">
                 <div class="actions">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <h4>Email Signature</h4>
                 </div>
                 <article class="card secondary" routerLink="/cardPreview">
                     <img class="card__img" src="..//src/assets/img/emailSignature.png" alt="frontend-mentor-website-qrcode" alt="banner">
@@ -124,8 +124,15 @@
                 </article>
             </div>
             
-            <div class="pnl4">
-                
+            <div class="pnl3">
+                <div class="actions">
+                    <h4>Card Status</h4>
+                </div>
+                <article class="card secondary">
+                    <h1 class="card-btn" (click)="publishCard()">Publish Card</h1>
+                    <br>
+                    <h1 class="card-btn" (click)="unpublishCard()">Unpublish Card</h1>
+                </article>
             </div>
         </div>
     </div>

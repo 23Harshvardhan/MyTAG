@@ -40,6 +40,7 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
+import { ViewCardComponent } from './view-card/view-card.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-previ
     AdminNavbarComponent,
     AdminVertNavbarComponent,
     AllUsersComponent,
-    AdminCardPreviewComponent
+    AdminCardPreviewComponent,
+    ViewCardComponent
   ],
   imports: [
     BrowserModule,

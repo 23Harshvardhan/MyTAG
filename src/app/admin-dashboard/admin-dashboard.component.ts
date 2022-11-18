@@ -57,7 +57,7 @@ export class AdminDashboardComponent implements OnInit {
 
   //Function to open a card as admin.
   openCard(cardId:string) {
-    this.router.navigate(['/adminCardPreview/' + cardId])
+    this.router.navigate(['/viewCard/' + cardId])
   }
 
   //Function to edit a card as admin.

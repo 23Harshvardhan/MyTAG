@@ -15,7 +15,7 @@
             <div class="cards-panel">
                 <div class="cardHolder" *ngFor="let card of this.cards">
                     <div class="container" *ngIf="nameQuery == card.cardName || nameQuery == null || nameQuery == ''">
-                        <article class="card">
+                        <article class="card" (click)="openCard(card.cardId)">
                             <img class="card__img" [src]="apiRoot + card.cardImage" alt="banner" id="cardImg" *ngIf="card.cardImage != null">
                             <img class="card__img" src="../../assets/img/demoprofile.jpg" alt="banner" id="cardImg" *ngIf="card.cardImage == null">
                             <div class="card__content">

@@ -1,14 +1,27 @@
+// Decleration Section
+$primaryColor: #5137F1;
+$primaryAccentColor: #2E10E5;
+$backgroundColor: #f4f4f4;
+$backgroundAccentColor: #e9e9e9;
+$foregroundColor: #38466B;
+
+
+
+// Imports Section
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
+
+
+// Body Section
 .body {
-    background-color: #292929;
+    background-color: $backgroundAccentColor;
     padding: 100px;
 }
 
 .title {
     font-family: 'Lato', sans-serif;
     font-size: 50px;
-    color: white;
+    color: $primaryColor;
     text-align: center;
 }
 
@@ -19,7 +32,7 @@
 }
 
 .step {
-    color: white;
+    color: $foregroundColor;
     font-family: 'Lato', sans-serif;
     text-align: center;
 }

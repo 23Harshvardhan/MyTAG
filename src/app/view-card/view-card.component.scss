@@ -1,0 +1,102 @@
+.body {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); // Lato font
+@import "~bootstrap-icons/font/bootstrap-icons.css"; // Bootstrap icons
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.cardImage {
+    width: 300px;
+    height: 300px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-image: url("/assets/img/demoprofile.jpg");
+    background-size: cover;
+    z-index: 100;
+}
+
+.wave{
+    position: relative;
+    width: fit-content;
+}
+
+.down {
+    fill: crimson;
+}
+
+.up {
+    margin-top: 10px;
+    fill: white;
+}
+
+.infoArea {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    text-overflow: ellipsis;
+}
+
+.designationField {
+    margin-top: -20px;
+    color: crimson;
+    font-weight: bold;
+}
+
+.companyField {
+    margin-top: -20px;
+    color: crimson;
+}
+
+.userTitleArea {
+    display: flex;
+    gap: 10px;
+    margin-top: -20px;
+}
+
+.userTitle p{
+    background-color: rgb(255, 185, 199);
+    color: rgb(61, 61, 61);
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.additionalBlock {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.blockIcon i{
+    padding: 10px;
+    background-color: rgb(255, 138, 161);
+    border-radius: 10px;
+    color: white;
+}
+
+.blockLable {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+}
