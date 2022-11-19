@@ -41,6 +41,7 @@ import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.
 import { AllUsersComponent } from './all-users/all-users.component';
 import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 import { ViewCardComponent } from './view-card/view-card.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ViewCardComponent } from './view-card/view-card.component';
     AdminVertNavbarComponent,
     AllUsersComponent,
     AdminCardPreviewComponent,
-    ViewCardComponent
+    ViewCardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
