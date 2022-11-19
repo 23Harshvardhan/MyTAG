@@ -1,9 +1,9 @@
 // Decleration Section
-$primaryColor: #5137F1;
-$primaryAccentColor: #2E10E5;
-$backgroundColor: #f4f4f4;
-$backgroundAccentColor: #e9e9e9;
-$foregroundColor: #38466B;
+$primaryColor: #f35a57;
+$primaryAccentColor: #d14b49;
+$backgroundColor: #494949;
+$backgroundAccentColor: #646464;
+$foregroundColor: white;
 
 
 
@@ -16,6 +16,7 @@ $foregroundColor: #38466B;
 .body {
     display: flex;
     flex-direction: column;
+    background-color: #494949;
 }
 
 .main-content-section {
@@ -58,6 +59,7 @@ $foregroundColor: #38466B;
     flex-wrap: wrap;
     margin-left: 10%;
     margin-right: 10%;
+    background-color: #494949;
 }
 
 .pricePanel {
