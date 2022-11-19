@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         console.log(error);
+        alert("There was a problem. Please try again later.");
       }
     })
   }
