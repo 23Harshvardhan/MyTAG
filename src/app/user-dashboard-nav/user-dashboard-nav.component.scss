@@ -20,6 +20,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
+}
+
+.logoContainer img {
+    height: 5rem;
+    width: 5rem;
+    margin-left: 200px;
 }
 
 .logo {
@@ -28,7 +35,6 @@
     text-decoration: none;
     color: #424242;
     font-size: 30px;
-    margin-left: 200px;
 }
 
 .navbar button {
