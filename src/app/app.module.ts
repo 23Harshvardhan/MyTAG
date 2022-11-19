@@ -4,6 +4,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { NgxCopyPasteModule } from 'ngx-copypaste';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -86,7 +87,8 @@ import { ViewCardComponent } from './view-card/view-card.component';
     QRCodeModule,
     NgChartsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxCopyPasteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

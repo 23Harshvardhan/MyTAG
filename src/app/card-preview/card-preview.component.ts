@@ -107,7 +107,7 @@ export class CardPreviewComponent implements OnInit {
     })
   }
 
-  cardViewLink = "http://185.208.207.55/viewCard/" + this.activatedRoute.snapshot.paramMap.get('id');
+  cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.activatedRoute.snapshot.paramMap.get('id');
 
   unpublishCard() {
     axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 0}}, this.cookie)
@@ -118,5 +118,19 @@ export class CardPreviewComponent implements OnInit {
       console.log(error);
       alert("There was a problem performing this action. Please send log to developer.")
     })
+  }
+
+  copyLink(link:string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = link;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 }
