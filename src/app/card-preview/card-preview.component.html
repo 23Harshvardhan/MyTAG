@@ -81,8 +81,8 @@
                         <div class="ico-info" *ngIf="data.GitHub != ''">
                             <i class="bi bi-github"></i><p class="card_element"> {{data.GitHub}}</p>
                         </div>
-                        <div class="ico-info" *ngIf="data.Calendy != ''">
-                            <i class="bi bi-calendly"></i><p class="card_element"> {{data.Calendy}}</p>
+                        <div class="ico-info" *ngIf="data.Calendly != ''">
+                            <i class="bi bi-calendar"></i><p class="card_element"> {{data.Calendly}}</p>
                         </div>
                         <div class="ico-info" *ngIf="data.PayPal != ''">
                             <i class="bi bi-paypal"></i><p class="card_element"> {{data.PayPal}}</p>
@@ -98,7 +98,7 @@
                 <article class="card secondary" routerLink="/cardPreview">
                     <!-- <canvas class="card__img" id="QRCanvas"></canvas> -->
 
-                    <qrcode [qrdata]="cardId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                    <qrcode [qrdata]="cardViewLink" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
 
                     <div class="card__content">
                         <br>

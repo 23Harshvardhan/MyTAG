@@ -40,7 +40,7 @@ export class CardPreviewComponent implements OnInit {
     "Skype": "",
     "Telegram": "",
     "GitHub": "",
-    "Calendy": "",
+    "Calendly": "",
     "PayPal": "",
     "Image": ""
   }
@@ -83,8 +83,8 @@ export class CardPreviewComponent implements OnInit {
       if(this.data.GitHub == "null" || this.data.GitHub == null) {
         this.data.GitHub = "";
       }
-      if(this.data.Calendy == "null" || this.data.Calendy == null) {
-        this.data.Calendy = "";
+      if(this.data.Calendly == "null" || this.data.Calendly == null) {
+        this.data.Calendly = "";
       }
       if(this.data.PayPal == "null" || this.data.PayPal == null) {
         this.data.PayPal = "";
@@ -106,6 +106,8 @@ export class CardPreviewComponent implements OnInit {
       alert("There was a problem performing this action. Please send log to developer.")
     })
   }
+
+  cardViewLink = "http://185.208.207.55/viewCard/" + this.activatedRoute.snapshot.paramMap.get('id');
 
   unpublishCard() {
     axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 0}}, this.cookie)

@@ -248,6 +248,8 @@ export class EditCardComponent implements OnInit {
       if(this.data.Paypal == "null" || this.data.Paypal == null) {
         this.data.Paypal = "";
       }
+
+      console.log(this.data);
     })
     .catch((error) => {
       console.log(error);

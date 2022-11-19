@@ -150,9 +150,9 @@
                         <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
                         <a href={{data.Whatsapp}}><p class="blockLable">WhatsApp</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.Signal_link!= ''">
+                    <div class="additionalBlock" *ngIf="data.Signal!= ''">
                         <div class="blockIcon"><i class="bi bi-signal"></i></div>
-                        <a href={{data.Signal_link}}><p class="blockLable">Signal</p></a>
+                        <a href={{data.Signal}}><p class="blockLable">Signal</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.Discord!= ''">
                         <div class="blockIcon"><i class="bi bi-discord"></i></div>
@@ -170,9 +170,9 @@
                         <div class="blockIcon"><i class="bi bi-github"></i></div>
                         <a href={{data.Github}}><p class="blockLable">GitHub</p></a>
                     </div>
-                    <div class="additionalBlock" *ngIf="data.Calendy!= ''">
-                        <div class="blockIcon"><i class="bi bi-calendy"></i></div>
-                        <a href={{data.Calendy}}><p class="blockLable">Calendy</p></a>
+                    <div class="additionalBlock" *ngIf="data.Calendly!= ''">
+                        <div class="blockIcon"><i class="bi bi-calendar"></i></div>
+                        <a href={{data.Calendly}}><p class="blockLable">Calendly</p></a>
                     </div>
                     <div class="additionalBlock" *ngIf="data.Paypal!= ''">
                         <div class="blockIcon"><i class="bi bi-paypal"></i></div>
@@ -240,7 +240,7 @@
                 <p>Communication</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Signal_link')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Signal')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
                     <button class="inputBtn" (click)="showInputWind('Discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
                     <button class="inputBtn" (click)="showInputWind('Skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
                 </div>
@@ -252,7 +252,7 @@
                 <p>Business</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Calendy')"><i class="bi bi-calendar"></i><p class="btnLable">Calendy</p></button>
+                    <button class="inputBtn" (click)="showInputWind('Calendly')"><i class="bi bi-calendar"></i><p class="btnLable">Calendly</p></button>
                 </div>
 
                 <!-- This row contains payment details of the user -->

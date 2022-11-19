@@ -127,12 +127,12 @@ export class CreateCardComponent implements OnInit {
     "Twitch": "",
     "Yelp": "",
     "Whatsapp": "",
-    "Signal_link": "",
+    "Signal": "",
     "Discord": "",
     "Skype": "",
     "Telegram": "",
     "Github": "",
-    "Calendy": "",
+    "Calendly": "",
     "Paypal": ""
   }
 

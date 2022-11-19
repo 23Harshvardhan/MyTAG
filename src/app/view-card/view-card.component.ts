@@ -43,7 +43,7 @@ export class ViewCardComponent {
     "Skype": "",
     "Telegram": "",
     "Github": "",
-    "Calendy": "",
+    "Calendly": "",
     "Paypal": "",
     "Image": ""
   }
@@ -89,8 +89,8 @@ export class ViewCardComponent {
       if(this.data.Github == "null" || this.data.Github == null) {
         this.data.Github = "";
       }
-      if(this.data.Calendy == "null" || this.data.Calendy == null) {
-        this.data.Calendy = "";
+      if(this.data.Calendly == "null" || this.data.Calendly == null) {
+        this.data.Calendly = "";
       }
       if(this.data.Paypal == "null" || this.data.Paypal == null) {
         this.data.Paypal = "";
