@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="body">
     <app-admin-navbar></app-admin-navbar>
     <div class="main">
@@ -12,14 +13,19 @@
         <div class="main-body">
             <app-admin-vert-navbar></app-admin-vert-navbar>
             <div class="cards-panel">
-                <div class="pnl" *ngFor="let user of this.users">
-                    <p class="lable"><b>Account Type:</b> {{user.AccountType}}<br>
-                    <b>Card Limit:</b> {{user.CardLimit}}<br>
-                    <b>Email:</b> {{user.Email}}<br>
-                    <b>First Name:</b> {{user.FirstName}}<br>
-                    <b>Last Name:</b> {{user.LastName}}<br>
-                    <b>User ID:</b> {{user.UserID}}<br>
-                    <b>Verified:</b> {{user.Verified}}</p>
+                <div class="container" *ngFor="let user of this.users">
+                    <div class="pnl">
+                        <p class="lable"><b>Account Type:</b> {{user.AccountType}}<br>
+                        <b>Card Limit:</b> {{user.CardLimit}}<br>
+                        <b>Email:</b> {{user.Email}}<br>
+                        <b>First Name:</b> {{user.FirstName}}<br>
+                        <b>Last Name:</b> {{user.LastName}}<br>
+                        <b>User ID:</b> {{user.UserID}}<br>
+                        <b>Verified:</b> {{user.Verified}}</p>
+                    </div>
+                    <div class="actions">
+                        <div (click)="deleteUser(user.UserID, user.Email)"><i class="fa fa-trash"></i></div>
+                    </div>
                 </div>
             </div>
         </div>

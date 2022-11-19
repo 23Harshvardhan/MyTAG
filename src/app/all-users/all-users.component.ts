@@ -49,6 +49,17 @@ export class AllUsersComponent implements OnInit {
     }
   }
 
+  deleteUser(userID:string, Email:string) {
+    axios.delete('http://34.70.242.122/v1/api/admin/updateuser/delete?UserID=' + userID + '&Email=' + Email, this.cookie)
+    .then((response) => {
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem deleting the user. Please try again later.")
+    })
+  }
+
   //Function be to triggered on page load. Calls API to load all the existing users and their details. In case of error, admin is redirected to home page.
   onLoad() {
     axios.get('http://34.70.242.122/v1/api/admin/analytics/getusers', this.cookie)

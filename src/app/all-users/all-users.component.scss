@@ -117,7 +117,14 @@ form .txt_field{
   padding-bottom: -20px;
 }
 
+.container {
+  display: flex;
+  gap: 10px;
+}
 
+.actions i{
+  cursor: pointer;
+}
 
 // Mobile View Section
 @media screen and (max-width: 800px) {
