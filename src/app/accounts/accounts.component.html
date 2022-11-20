@@ -16,7 +16,7 @@
     </div>
     <div class="contentArea">
         <div class="horizontalNavArea">
-            <h1 class="pageTitle">Inventory</h1> 
+            <h1 class="pageTitle">Accounts</h1> 
             
             <div class="totalCards">
                 <h3>MYTAG</h3>
@@ -37,34 +37,26 @@
             
             <div class="searchContainer">
                 <div class="lableContainer">
-                    <p class="lable">Card ID: </p>
-                    <input type="text" id="cardID" class="inputField">
-                </div>
-                <div class="lableContainer">
                     <p class="lable">Account ID: </p>
                     <input type="text" id="accountID" class="inputField">
                 </div>
-            </div>
-
-            <div class="searchContainer">
                 <div class="lableContainer">
-                    <p class="lable">Batch ID: </p>
-                    <input type="number" id="batchID" class="inputField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">Name: </p>
-                    <input type="text" id="name" class="inputField">
+                    <p class="lable">User ID: </p>
+                    <input type="text" id="userID" class="inputField">
                 </div>
             </div>
 
             <div class="searchContainer">
                 <div class="lableContainer">
-                    <input type="checkbox" id="pending" class="checkField">
-                    <p class="lable">Pending</p>
+                    <p class="lable">Mobile No: </p>
+                    <input type="number" id="mobileNo" class="inputField">
                 </div>
                 <div class="lableContainer">
-                    <input type="checkbox" id="reserved" class="checkField">
-                    <p class="lable">Reserved</p>
+                    <p class="lable">Type: </p>
+                    <select name="type" id="type" class="numField">
+                        <option value="individual">Individual</option>
+                        <option value="teams">Teams</option>
+                    </select>
                 </div>
             </div>
 
@@ -79,77 +71,57 @@
                 </div>
             </div>
 
-            <div class="searchContainer">
-                <input type="button" value="View" class="btnField">
-            </div>
-
             <div class="searchContainer gap">
-                <input type="button" value="Add Card" class="btnField">
-                <input type="number" placeholder="Quantity" class="numField">
+                <input type="button" value="View" class="btnField">
+                <input type="button" value="Create Account" class="btnField">
             </div>
         </div>
 
         <div class="tableArea">
             <table>
                 <tr>
-                    <th>Card ID</th>
-                    <th>Batch ID</th>
-                    <th>Created Date</th>
-                    <th>Created BY</th>
-                    <th>Preview URL</th>
                     <th>Account ID</th>
+                    <th>Reg. Date</th>
                     <th>Account Name</th>
+                    <th>Type</th>
                     <th>User ID</th>
-                    <th>Edit/View</th>
+                    <th>Card Limit</th>
+                    <th>Mobile No</th>
                     <th>Status</th>
+                    <th>Edit/View</th>
                 </tr>
                 <tr>
                     <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td>date</td>
+                    <td>harsh</td>
+                    <td>Individual</td>
+                    <td>harsh@mail.com</td>
+                    <td>1</td>
+                    <td>34643456</td>
                     <td class="active">Active</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
                 </tr>
                 <tr>
                     <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td>Test</td>
+                    <td>date</td>
+                    <td>souvik</td>
+                    <td>Individual</td>
+                    <td>souvik@mail.com</td>
+                    <td>1</td>
+                    <td>34563456</td>
+                    <td class="active">Active</td>
                     <td><i class="fa fa-pencil-square-o"></i></td>
-                    <td class="cancelled">Cancelled</td>
                 </tr>
                 <tr>
                     <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
+                    <td>date</td>
+                    <td>mandal</td>
+                    <td>Team</td>
                     <td>mytag.com/viewCard/14512</td>
                     <td>24</td>
-                    <td>Test</td>
-                    <td>Test</td>
+                    <td>34564536</td>
+                    <td class="active">Active</td>
                     <td><i class="fa fa-pencil-square-o"></i></td>
-                    <td class="pending">Pending</td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
-                    <td class="reserved">Reserved</td>
                 </tr>
             </table>
         </div>

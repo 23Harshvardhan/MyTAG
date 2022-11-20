@@ -114,6 +114,7 @@
 .lableContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .lable {
@@ -141,12 +142,12 @@
     border-radius: 5px;
     border: none;
     height: 50px;
-    width: 100px;
+    width: 200px;
     font-size: 20px;
 }
 
 .numField {
-    width: 90px;
+    width: 250px;
     height: 40px;
     font-size: 20px;
     border-radius: 5px;
@@ -180,18 +181,6 @@ tr:nth-child(even) {
 
 .cancelled {
     background-color: tomato;
-    color: white;
-    border-radius: 10px;
-}
-
-.pending {
-    background-color: orange;
-    color: white;
-    border-radius: 10px;
-}
-
-.reserved {
-    background-color: dodgerblue;
     color: white;
     border-radius: 10px;
 }

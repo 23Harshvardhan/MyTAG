@@ -42,6 +42,9 @@ import { AllUsersComponent } from './all-users/all-users.component';
 import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 import { ViewCardComponent } from './view-card/view-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { ActiveCardsComponent } from './active-cards/active-cards.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AllUsersComponent,
     AdminCardPreviewComponent,
     ViewCardComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountsComponent,
+    ActiveCardsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

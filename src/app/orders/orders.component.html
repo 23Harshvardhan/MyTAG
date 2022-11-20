@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="body">
+    <div class="verticalNavArea">
+        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
+
+        <div class="navigationMenu">
+            <div class="navBtn">Dashboard</div>
+            <div class="navBtn">Inventory</div>
+            <div class="navBtn">Accounts</div>
+            <div class="navBtn">Active Cards</div>
+            <div class="navBtn">Orders</div>
+            <div class="navBtn">Settings</div>
+            <div class="navBtn">Log Out</div>
+        </div>
+    </div>
+    <div class="contentArea">
+        <div class="horizontalNavArea">
+            <h1 class="pageTitle">Orders</h1> 
+            
+            <div class="totalCards">
+                <h3>MYTAG</h3>
+                <h5>Total Cards: 0</h5>
+            </div>
+        </div>
+        <div class="searchArea">
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Start Date: </p>
+                    <input type="date" id="startDate" name="Start Date" class="dateField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">End Date: </p>
+                    <input type="date" id="endDate" name="End Date" class="dateField">
+                </div>
+            </div>
+            
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Account ID: </p>
+                    <input type="text" id="accountID" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">User ID: </p>
+                    <input type="text" id="userID" class="inputField">
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Mobile No: </p>
+                    <input type="number" id="mobileNo" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">Type: </p>
+                    <select name="type" id="type" class="numField">
+                        <option value="all">All</option>
+                        <option value="complete">Complete</option>
+                        <option value="active">Active</option>
+                        <option value="pending">Pending</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <input type="checkbox" id="active" class="checkField">
+                    <p class="lable">Active</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="cancelled" class="checkField">
+                    <p class="lable">Cancelled</p>
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <input type="checkbox" id="pending" class="checkField">
+                    <p class="lable">Pending</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="complete" class="checkField">
+                    <p class="lable">Complete</p>
+                </div>
+            </div>
+
+            <div class="searchContainer gap">
+                <input type="button" value="View" class="btnField">
+            </div>
+        </div>
+
+        <div class="tableArea">
+            <table>
+                <tr>
+                    <th>Card ID</th>
+                    <th>Date</th>
+                    <th>Country</th>
+                    <th>Type</th>
+                    <th>Account ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Used ID</th>
+                    <th>Mobile No</th>
+                    <th>Product ID</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Amouont</th>
+                    <th>Status</th>
+                    <th>View</th>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>date</td>
+                    <td>UAE</td>
+                    <td>Individual</td>
+                    <td>213</td>
+                    <td>Harsh</td>
+                    <td>Vardhan</td>
+                    <td>harsh@mail.com</td>
+                    <td>34563456</td>
+                    <td>1</td>
+                    <td>NFC Plastic</td>
+                    <td>1</td>
+                    <td>AED 120</td>
+                    <td class="complete">Complete</td>
+                    <td><i class="fa fa-eye"></i></td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>date</td>
+                    <td>UAE</td>
+                    <td>Individual</td>
+                    <td>213</td>
+                    <td>Harsh</td>
+                    <td>Vardhan</td>
+                    <td>harsh@mail.com</td>
+                    <td>34563456</td>
+                    <td>1</td>
+                    <td>NFC Plastic</td>
+                    <td>1</td>
+                    <td>AED 120</td>
+                    <td class="active">Active</td>
+                    <td><i class="fa fa-eye"></i></td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>date</td>
+                    <td>UAE</td>
+                    <td>Individual</td>
+                    <td>213</td>
+                    <td>Harsh</td>
+                    <td>Vardhan</td>
+                    <td>harsh@mail.com</td>
+                    <td>34563456</td>
+                    <td>2</td>
+                    <td>NFC Wood</td>
+                    <td>1</td>
+                    <td>AED 120</td>
+                    <td class="cancelled">Cancelled</td>
+                    <td><i class="fa fa-eye"></i></td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>date</td>
+                    <td>UAE</td>
+                    <td>Individual</td>
+                    <td>213</td>
+                    <td>Harsh</td>
+                    <td>Vardhan</td>
+                    <td>harsh@mail.com</td>
+                    <td>34563456</td>
+                    <td>1</td>
+                    <td>NFC Plastic</td>
+                    <td>1</td>
+                    <td>AED 120</td>
+                    <td class="pending">Pending</td>
+                    <td><i class="fa fa-eye"></i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
