@@ -1,29 +1,157 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="body">
-    <app-user-dashboard-nav></app-user-dashboard-nav>
-    <div class="main">
-        <div class="search-panel">
-            <form class="search-fields">
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Search by Name</label>
+    <div class="verticalNavArea">
+        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
+
+        <div class="navigationMenu">
+            <div class="navBtn">Dashboard</div>
+            <div class="navBtn">Inventory</div>
+            <div class="navBtn">Accounts</div>
+            <div class="navBtn">Active Cards</div>
+            <div class="navBtn">Orders</div>
+            <div class="navBtn">Settings</div>
+            <div class="navBtn">Log Out</div>
+        </div>
+    </div>
+    <div class="contentArea">
+        <div class="horizontalNavArea">
+            <h1 class="pageTitle">Inventory</h1> 
+            
+            <div class="totalCards">
+                <h3>MYTAG</h3>
+                <h5>Total Cards: 0</h5>
+            </div>
+        </div>
+        <div class="searchArea">
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Start Date: </p>
+                    <input type="date" id="startDate" name="Start Date" class="dateField">
                 </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Search by Card No.</label>
+                <div class="lableContainer">
+                    <p class="lable">End Date: </p>
+                    <input type="date" id="endDate" name="End Date" class="dateField">
                 </div>
-            </form>
-            <div class="buttons">
-                <button>View</button>
-                <button routerLink="/createCard">Add Card</button>                   
+            </div>
+            
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Card ID: </p>
+                    <input type="text" id="cardID" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">Account ID: </p>
+                    <input type="text" id="accountID" class="inputField">
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Batch ID: </p>
+                    <input type="number" id="batchID" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">Name: </p>
+                    <input type="text" id="name" class="inputField">
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <input type="checkbox" id="pending" class="checkField">
+                    <p class="lable">Pending</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="reserved" class="checkField">
+                    <p class="lable">Reserved</p>
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <input type="checkbox" id="active" class="checkField">
+                    <p class="lable">Active</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="cancelled" class="checkField">
+                    <p class="lable">Cancelled</p>
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <input type="button" value="View" class="btnField">
+            </div>
+
+            <div class="searchContainer gap">
+                <input type="button" value="Add Card" class="btnField">
+                <input type="number" placeholder="Quantity" class="numField">
             </div>
         </div>
 
-        <div class="main-body">
-            <app-vertical-nav></app-vertical-nav>
-
-            <div class="data">
-                <!-- MAKE THE TABLES AND DATA HERE -->
-            </div>        
+        <div class="tableArea">
+            <table>
+                <tr>
+                    <th>Card ID</th>
+                    <th>Batch ID</th>
+                    <th>Created Date</th>
+                    <th>Created BY</th>
+                    <th>Preview URL</th>
+                    <th>Account ID</th>
+                    <th>Account Name</th>
+                    <th>User ID</th>
+                    <th>Edit/View</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>23</td>
+                    <td>Date</td>
+                    <td>Admin</td>
+                    <td>mytag.com/viewCard/14512</td>
+                    <td>24</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td class="active">Active</td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>23</td>
+                    <td>Date</td>
+                    <td>Admin</td>
+                    <td>mytag.com/viewCard/14512</td>
+                    <td>24</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td class="cancelled">Active</td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>23</td>
+                    <td>Date</td>
+                    <td>Admin</td>
+                    <td>mytag.com/viewCard/14512</td>
+                    <td>24</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td class="pending">Active</td>
+                </tr>
+                <tr>
+                    <td>14512</td>
+                    <td>23</td>
+                    <td>Date</td>
+                    <td>Admin</td>
+                    <td>mytag.com/viewCard/14512</td>
+                    <td>24</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td class="researved">Researved</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
