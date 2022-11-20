@@ -153,3 +153,40 @@
     border-radius: 5px;
     border: 2px solid rgb(85, 85, 85);
 }
+
+
+
+// Table Section
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.active {
+    background-color: mediumseagreen;
+    color: white;
+    border-radius: 10px;
+}
+
+.cancelled {
+    background-color: tomato;
+    color: white;
+    border-radius: 10px;
+}
+
+.pending {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+}
