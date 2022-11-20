@@ -22,10 +22,66 @@
             </div>
         </div>
         <div class="searchArea">
-            <div class="dateContainer">
-                <input type="date" id="startDate" name="Start Date" class="datePicker">
-                <input type="date" id="endDate" name="End Date" class="datePicker">
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Start Date: </p>
+                    <input type="date" id="startDate" name="Start Date" class="dateField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">End Date: </p>
+                    <input type="date" id="endDate" name="End Date" class="dateField">
+                </div>
             </div>
+            
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Card ID: </p>
+                    <input type="text" id="cardID" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">Account ID: </p>
+                    <input type="text" id="accountID" class="inputField">
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <p class="lable">Batch ID: </p>
+                    <input type="number" id="batchID" class="inputField">
+                </div>
+                <div class="lableContainer">
+                    <p class="lable">Name: </p>
+                    <input type="text" id="name" class="inputField">
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <div class="lableContainer">
+                    <input type="checkbox" id="pending" class="checkField">
+                    <p class="lable">Pending</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="active" class="checkField">
+                    <p class="lable">Active</p>
+                </div>
+                <div class="lableContainer">
+                    <input type="checkbox" id="cancelled" class="checkField">
+                    <p class="lable">Cancelled</p>
+                </div>
+            </div>
+
+            <div class="searchContainer">
+                <input type="button" value="View" class="btnField">
+            </div>
+
+            <div class="searchContainer gap">
+                <input type="button" value="Add Card" class="btnField">
+                <input type="number" placeholder="Quantity" class="numField">
+            </div>
+        </div>
+
+        <div class="tabelTitle">
+            
         </div>
     </div>
 </div>
