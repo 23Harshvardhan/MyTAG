@@ -217,6 +217,27 @@ tr:nth-child(even) {
 
 // Mobile View Section
 @media only screen and (max-width: 600px) {
+    .navLogo {
+        display: block;
+        width: 60px;
+    }
+
+    .totalCards {
+        width: 25%;
+    }
+
+    .gapRight {
+        margin-right: 10px;
+    }
+
+    .pageTitle {
+        font-size: 25px;
+    }
+
+    .overlay {
+        display: block;
+    }
+
     .verticalNavArea {
         display: none;
     }
@@ -234,7 +255,6 @@ tr:nth-child(even) {
     }
 
     .button_container {
-        position: fixed;
         top: 5%;
         right: 2%;
         height: 27px;
@@ -259,13 +279,13 @@ tr:nth-child(even) {
         background: #fff;
    }
     .button_container span {
-        background: #f35a57;
+        background: $backgroundAccentColor;
         border: none;
         height: 5px;
-        width: 100%;
+        width: 10%;
         position: absolute;
         top: 0;
-        left: 0;
+        margin: 40px 20px 0px 10px;
         transition: all 0.35s ease;
         cursor: pointer;
    }
@@ -277,7 +297,7 @@ tr:nth-child(even) {
    }
     .overlay {
         position: fixed;
-        background: $primaryColor;
+        background: $backgroundAccentColor;
         top: 0;
         left: 0;
         width: 100%;

@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span>
-</div>
 <div class="overlay" id="overlay">
   <nav class="overlay-menu">
     <ul>
@@ -33,6 +31,8 @@
     </div>
     <div class="contentArea">
         <div class="horizontalNavArea">
+            <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+            <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
             <h1 class="pageTitle">Inventory</h1> 
             
             <div class="totalCards">
@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="searchContainer">
+            <div class="searchContainer gapRight">
                 <input type="button" value="View" class="btnField">
             </div>
 
