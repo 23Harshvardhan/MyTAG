@@ -36,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
     })
     .then ((response) => {
       this.setCookie(response.data.data.token);
-      this.router.navigate(['/adminDashboard']);
+      this.router.navigate(['/dashboard']);
     })
     .catch ((error) => {
       console.log(error);

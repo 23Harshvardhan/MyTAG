@@ -1,15 +1,32 @@
+<div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span>
+</div>
+<div class="overlay" id="overlay">
+  <nav class="overlay-menu">
+    <ul>
+      <li><a routerLink="/inventory">Inventory</a></li>
+      <li><a routerLink="/accounts">Accounts</a></li>
+      <li><a routerLink="/activeCards">Active Cards</a></li>
+      <li><a routerLink="/orders">Orders</a></li>
+      <li><a>Products</a></li>
+      <li><a>Templates</a></li>
+      <li><a routerLink="/adminSettings">Settings</a></li>
+      <li><a routerLink="/">Log Out</a></li>
+    </ul>
+  </nav>
+</div>
+
 <div class="body">
     <div class="verticalNavArea">
         <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
 
         <div class="navigationMenu">
-            <div class="navBtn">Dashboard</div>
-            <div class="navBtn">Inventory</div>
-            <div class="navBtn">Accounts</div>
-            <div class="navBtn">Active Cards</div>
-            <div class="navBtn">Orders</div>
-            <div class="navBtn">Settings</div>
-            <div class="navBtn">Log Out</div>
+            <div class="navBtn" routerLink="/dashboard">Dashboard</div>
+            <div class="navBtn" routerLink="/inventory">Inventory</div>
+            <div class="navBtn" routerLink="/accounts">Accounts</div>
+            <div class="navBtn" routerLink="/activeCards">Active Cards</div>
+            <div class="navBtn" routerLink="/orders">Orders</div>
+            <div class="navBtn" routerLink="/adminSettings">Settings</div>
+            <div class="navBtn" routerLink="/">Log Out</div>
         </div>
     </div>
     <div class="contentArea">
@@ -18,7 +35,7 @@
             
             <div class="totalCards">
                 <h3>MYTAG</h3>
-                <h5>Total Cards: 0</h5>
+                <h5>Total Cards: {{responseData.length}}</h5>
             </div>
         </div>
         <div class="searchArea">
@@ -78,8 +95,8 @@
             </div>
 
             <div class="searchContainer gap">
-                <input type="button" value="Add Card" class="btnField">
-                <input type="number" placeholder="Quantity" class="numField">
+                <input type="button" value="Add Card" class="btnField" (click)="addCards()">
+                <input type="number" placeholder="Quantity" class="numField" id="qty">
             </div>
         </div>
 
@@ -95,35 +112,17 @@
                     <th>Account Name</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td class="active">Active</td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td class="cancelled">Cancelled</td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>23</td>
-                    <td>Date</td>
-                    <td>Admin</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>Test</td>
-                    <td class="pending">Pending</td>
+                <tr *ngFor="let card of this.responseData">
+                    <td>{{card.CardID}}</td>
+                    <td>{{card.Batch}}</td>
+                    <td>{{card.Created_date}}</td>
+                    <td>{{card.Created_by}}</td>
+                    <td>185.208.207.55:4200/viewCard/{{card.CardID}}</td>
+                    <td>{{card.UserID}}</td>
+                    <td>{{card.Name}}</td>
+                    <td class="activee" *ngIf="card.Status == 'active'">Active</td>
+                    <td class="pending" *ngIf="card.Status == 'pending'">Pending</td>
+                    <td class="cancelled" *ngIf="card.Status == 'cancelled'">Cancelled</td>
                 </tr>
             </table>
         </div>

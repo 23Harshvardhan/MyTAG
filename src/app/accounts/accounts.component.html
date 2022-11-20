@@ -1,17 +1,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span>
+</div>
+<div class="overlay" id="overlay">
+  <nav class="overlay-menu">
+    <ul>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/accounts">Accounts</a></li>
+      <li><a routerLink="/activeCards">Active Cards</a></li>
+      <li><a routerLink="/orders">Orders</a></li>
+      <li><a>Products</a></li>
+      <li><a>Templates</a></li>
+      <li><a routerLink="/adminSettings">Settings</a></li>
+      <li><a routerLink="/">Log Out</a></li>
+    </ul>
+  </nav>
+</div>
+
 <div class="body">
     <div class="verticalNavArea">
         <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
 
         <div class="navigationMenu">
-            <div class="navBtn">Dashboard</div>
-            <div class="navBtn">Inventory</div>
-            <div class="navBtn">Accounts</div>
-            <div class="navBtn">Active Cards</div>
-            <div class="navBtn">Orders</div>
-            <div class="navBtn">Settings</div>
-            <div class="navBtn">Log Out</div>
+            <div class="navBtn" routerLink="/dashboard">Dashboard</div>
+            <div class="navBtn" routerLink="/inventory">Inventory</div>
+            <div class="navBtn" routerLink="/accounts">Accounts</div>
+            <div class="navBtn" routerLink="/activeCards">Active Cards</div>
+            <div class="navBtn" routerLink="/orders">Orders</div>
+            <div class="navBtn" routerLink="/adminSettings">Settings</div>
+            <div class="navBtn" routerLink="/">Log Out</div>
         </div>
     </div>
     <div class="contentArea">
@@ -90,37 +107,16 @@
                     <th>Status</th>
                     <th>Edit/View</th>
                 </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>harsh</td>
-                    <td>Individual</td>
-                    <td>harsh@mail.com</td>
-                    <td>1</td>
-                    <td>34643456</td>
-                    <td class="active">Active</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>souvik</td>
-                    <td>Individual</td>
-                    <td>souvik@mail.com</td>
-                    <td>1</td>
-                    <td>34563456</td>
-                    <td class="active">Active</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>mandal</td>
-                    <td>Team</td>
-                    <td>mytag.com/viewCard/14512</td>
-                    <td>24</td>
-                    <td>34564536</td>
-                    <td class="active">Active</td>
+                <tr *ngFor="let card of this.responseData">
+                    <td>{{card.UserID}}</td>
+                    <td>00-Jan-0000</td>
+                    <td>{{card.FirstName}}</td>
+                    <td>{{card.Account_type}}</td>
+                    <td>{{card.Email}}</td>
+                    <td>{{card.Card_limit}}</td>
+                    <td>000000000</td>
+                    <td class="activee" *ngIf="card.verified == '1'">Active</td>
+                    <td class="cancelled" *ngIf="card.verified == '0'">Cancelled</td>
                     <td><i class="fa fa-pencil-square-o"></i></td>
                 </tr>
             </table>
