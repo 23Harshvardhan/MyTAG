@@ -25,11 +25,7 @@ $foregroundColor: white;
     margin-right: 10px;
 }
 
-.flexBox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+
 
 
 
@@ -42,38 +38,6 @@ $foregroundColor: white;
     width: 100%;
     height: 100vh;
     display: flex;
-}
-
-
-
-// Vertical Navigation Area
-.verticalNavArea {
-    border-right: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    min-width: 300px;
-    height: 100%;
-}
-
-.logoImg {
-    width: 100%;
-}
-
-.navigationMenu {
-    display: flex;
-    flex-direction: column;
-    padding-top: 30px;
-    padding-left: 30px;
-    gap: 15px;
-}
-
-.navBtn {
-    font-size: 130%;
-}
-
-.navBtn:hover {
-    cursor: pointer;
 }
 
 
@@ -244,15 +208,6 @@ tr:nth-child(even) {
 }
 
 @media only screen and (max-width: 600px) {
-    .logoContainer {
-        display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 20px;
-        margin-top: -80px;
-    }
-
     .mobileHide {
         display: none;
     }

@@ -2,9 +2,6 @@
 
 <div class="overlay" id="overlay">
   <nav class="overlay-menu">
-    <div class="logoContainer">
-        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
-    </div>
     <ul>
       <li class="gapTop"><div class="flexBox"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i><a routerLink="/inventory">Inventory</a></div></li>
       <li><div class="flexBox"><i class="fa-solid fa-users" style="color: white;"></i><a routerLink="/accounts">Accounts</a></div></li>
@@ -19,19 +16,7 @@
 </div>
 
 <div class="body">
-    <div class="verticalNavArea">
-        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
-
-        <div class="navigationMenu">
-            <div class="flexBox"><i class="fa-solid fa-table-columns"></i><div class="navBtn" routerLink="/dashboard">Dashboard</div></div>
-            <div class="flexBox"><i class="fa-solid fa-boxes-stacked"></i><div class="navBtn" routerLink="/inventory">Inventory</div></div>
-            <div class="flexBox"><i class="fa-solid fa-users"></i><div class="navBtn" routerLink="/accounts">Accounts</div></div>
-            <div class="flexBox"><i class="fa-solid fa-address-card"></i><div class="navBtn" routerLink="/activeCards">Active Cards</div></div>
-            <div class="flexBox"><i class="fa-solid fa-store"></i><div class="navBtn" routerLink="/orders">Orders</div></div>
-            <div class="flexBox"><i class="fa-solid fa-gear"></i><div class="navBtn" routerLink="/adminSettings">Settings</div></div>
-            <div class="flexBox"><i class="fa-solid fa-arrow-right-from-bracket"></i><div class="navBtn" routerLink="/">Log Out</div></div>
-        </div>
-    </div>
+    <app-admin-vert-navbar></app-admin-vert-navbar>
     <div class="contentArea">
         <div class="horizontalNavArea">
             <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>

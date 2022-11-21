@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     } 
   }
 
-  responseData = []
+  responseData = [].sort()
 
   ngOnInit(): void {
     this.checkAuth();

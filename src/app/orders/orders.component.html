@@ -1,33 +1,21 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
 <div class="overlay" id="overlay">
-    <nav class="overlay-menu">
-      <ul>
-        <li><a routerLink="/dashboard">Dashboard</a></li>
-        <li><a routerLink="/accounts">Accounts</a></li>
-        <li><a routerLink="/activeCards">Active Cards</a></li>
-        <li><a>Products</a></li>
-        <li><a>Templates</a></li>
-        <li><a routerLink="/adminSettings">Settings</a></li>
-        <li><a routerLink="/">Log Out</a></li>
-      </ul>
-    </nav>
-  </div>
+  <nav class="overlay-menu">
+    <ul>
+        <li class="gapTop"><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a routerLink="/dashboard">Dashboard</a></div></li>
+        <li class="gapTop"><div class="flexBox"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i><a routerLink="/inventory">Inventory</a></div></li>
+        <li><div class="flexBox"><i class="fa-solid fa-users" style="color: white;"></i><a routerLink="/accounts">Accounts</a></div></li>
+        <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Products</a></div></li>
+        <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Templates</a></div></li>
+        <li><div class="flexBox"><i class="fa-solid fa-gear" style="color: white;"></i><a routerLink="/adminSettings">Settings</a></div></li>
+        <li><div class="flexBox"><i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i><a routerLink="/">Log Out</a></div></li>
+    </ul>
+  </nav>
+</div>
   
 <div class="body">
-    <div class="verticalNavArea">
-        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
-
-        <div class="navigationMenu">
-            <div class="navBtn" routerLink="/dashboard">Dashboard</div>
-            <div class="navBtn" routerLink="/inventory">Inventory</div>
-            <div class="navBtn" routerLink="/accounts">Accounts</div>
-            <div class="navBtn" routerLink="/activeCards">Active Cards</div>
-            <div class="navBtn" routerLink="/orders">Orders</div>
-            <div class="navBtn" routerLink="/adminSettings">Settings</div>
-            <div class="navBtn" routerLink="/">Log Out</div>
-        </div>
-    </div>
+    <app-admin-vert-navbar></app-admin-vert-navbar>
     <div class="contentArea">
         <div class="horizontalNavArea">
             <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
@@ -72,7 +60,7 @@
                     <select name="type" id="type" class="numField">
                         <option value="all">All</option>
                         <option value="complete">Complete</option>
-                        <option value="active">Active</option>
+                        <option value="activee">Active</option>
                         <option value="pending">Pending</option>
                         <option value="cancelled">Cancelled</option>
                     </select>

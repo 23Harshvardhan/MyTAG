@@ -1,11 +1,17 @@
-<div class="verticalNav">
-    <div class="verticalNavButtons">
-        <button routerLink="/dashboard" class="verticalNavBtn">Dashboard</button>
-        <button routerLink="/inventory" class="verticalNavBtn">Inventory</button>
-        <button routerLink="/accounts" class="verticalNavBtn">Accounts</button>
-        <button routerLink="/activeCards" class="verticalNavBtn">Active Cards</button>
-        <button routerLink="/orders" class="verticalNavBtn">Orders</button>
-        <button routerLink="/adminSettings" class="verticalNavBtn">Settings</button>
-        <button routerLink="/" class="verticalNavBtn">Log Out</button>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<div class="verticalNavArea">
+    <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
+
+    <div class="navigationMenu">
+        <div class="flexBox"><i class="fa-solid fa-table-columns"></i><div class="navBtn" routerLink="/dashboard">Dashboard</div></div>
+        <div class="flexBox"><i class="fa-solid fa-boxes-stacked"></i><div class="navBtn" routerLink="/inventory">Inventory</div></div>
+        <div class="flexBox"><i class="fa-solid fa-users"></i><div class="navBtn" routerLink="/accounts">Accounts</div></div>
+        <div class="flexBox"><i class="fa-solid fa-address-card"></i><div class="navBtn" routerLink="/activeCards">Active Cards</div></div>
+        <div class="flexBox"><i class="fa-solid fa-store"></i><div class="navBtn" routerLink="/orders">Orders</div></div>
+        <div class="flexBox"><i class="fa-solid fa-gem"></i><div class="navBtn" routerLink="/products">Products</div></div>
+        <div class="flexBox"><i class="fa-solid fa-database"></i><div class="navBtn" routerLink="/templates">Templates</div></div>
+        <div class="flexBox"><i class="fa-solid fa-gear"></i><div class="navBtn" routerLink="/adminSettings">Settings</div></div>
+        <div class="flexBox"><i class="fa-solid fa-arrow-right-from-bracket"></i><div class="navBtn" routerLink="/">Log Out</div></div>
     </div>
 </div>
