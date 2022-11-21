@@ -204,13 +204,19 @@ tr:nth-child(even) {
 
 // Mobile View Section
 @media only screen and (max-width: 600px) {
+    .mobileHide {
+        display: none;
+    }
+
     .navLogo {
         display: block;
         width: 60px;
     }
 
     .totalCards {
-        width: 25%;
+        width: 20%;
+        height: 50%;
+        justify-content: flex-end;
     }
 
     .gapRight {
