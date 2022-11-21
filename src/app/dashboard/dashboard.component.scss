@@ -160,8 +160,8 @@ $foregroundColor: white;
     color: white;
     border-radius: 5px;
     border: none;
-    height: 50px;
-    width: 100px;
+    min-height: 50px;
+    min-width: 100px;
     font-size: 20px;
     transition: 0.3s;
 }
