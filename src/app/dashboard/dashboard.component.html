@@ -1,5 +1,10 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
 <div class="overlay" id="overlay">
   <nav class="overlay-menu">
+    <div class="logoContainer">
+        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
+    </div>
     <ul>
       <li><a routerLink="/inventory">Inventory</a></li>
       <li><a routerLink="/accounts">Accounts</a></li>
@@ -18,7 +23,7 @@
         <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="logoImg">
 
         <div class="navigationMenu">
-            <div class="navBtn" routerLink="/dashboard">Dashboard</div>
+            <div class="flexBox"><i class="fa-solid fa-table-columns"></i><div class="navBtn" routerLink="/dashboard">Dashboard</div></div>
             <div class="navBtn" routerLink="/inventory">Inventory</div>
             <div class="navBtn" routerLink="/accounts">Accounts</div>
             <div class="navBtn" routerLink="/activeCards">Active Cards</div>
@@ -30,7 +35,6 @@
     <div class="contentArea">
         <div class="horizontalNavArea">
             <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
-            <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
             <h1 class="pageTitle">Dashboard</h1> 
             
             <div class="totalCards">
