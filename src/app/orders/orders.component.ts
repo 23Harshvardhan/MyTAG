@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
-
+  toggleNav() {
+    var toggle = document.getElementById("toggle");
+    var overlay = document.getElementById("overlay");
+    toggle.classList.toggle('active');
+    overlay.classList.toggle('open');
+  }
 }
