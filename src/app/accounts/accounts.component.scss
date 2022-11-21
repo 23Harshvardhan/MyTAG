@@ -209,6 +209,12 @@ tr:nth-child(even) {
 
 // Mobile View Section
 @media only screen and (max-width: 600px) {
+    .logoContainer {
+        display: flex;
+        justify-content: flex-end;
+        margin: 25px;
+    }
+
     .mobileHide {
         display: none;
     }
@@ -246,6 +252,7 @@ tr:nth-child(even) {
 
     .overlay-menu {
         display: block;
+        margin-top: -100px;
     }
 
     .button_container {

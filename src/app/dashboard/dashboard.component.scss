@@ -196,18 +196,13 @@ tr:nth-child(even) {
     display: none;
 }
 
-
-
-// Mobile View Section
-@media only screen and (max-width: 1270px) {
-    .searchArea {
-        overflow-x: scroll;
-        overflow-y: hidden;
-        min-height: 120px;
-    }
-}
-
 @media only screen and (max-width: 600px) {
+    .logoContainer {
+        display: flex;
+        justify-content: flex-end;
+        margin: 25px;
+    }
+
     .mobileHide {
         display: none;
     }
@@ -247,6 +242,7 @@ tr:nth-child(even) {
 
     .overlay-menu {
         display: block;
+        margin-top: -100px;
     }
 
     .button_container {
