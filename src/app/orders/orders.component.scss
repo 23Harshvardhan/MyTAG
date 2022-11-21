@@ -116,9 +116,10 @@ $foregroundColor: white;
 }
 
 .searchContainer {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .lableContainer {

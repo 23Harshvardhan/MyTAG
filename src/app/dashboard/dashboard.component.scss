@@ -17,6 +17,10 @@ $foregroundColor: white;
     gap: 10px;
 }
 
+.gapRight {
+    margin-right: 10px;
+}
+
 
 
 // Body Section
@@ -120,9 +124,10 @@ $foregroundColor: white;
 }
 
 .searchContainer {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .lableContainer {
@@ -233,10 +238,6 @@ tr:nth-child(even) {
         width: 20%;
         height: 50%;
         justify-content: flex-end;
-    }
-
-    .gapRight {
-        margin-right: 10px;
     }
 
     .pageTitle {
