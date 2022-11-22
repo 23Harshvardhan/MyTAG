@@ -8,7 +8,7 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@100;300;400;500;700;900&display=swap');
 
 
 
@@ -21,45 +21,13 @@ $foregroundColor: white;
 
 // Body Section
 * {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .body {
     width: 100%;
     height: 100vh;
     display: flex;
-}
-
-
-
-// Vertical Navigation Area
-.verticalNavArea {
-    border-right: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 100%;
-}
-
-.logoImg {
-    width: 100%;
-}
-
-.navigationMenu {
-    display: flex;
-    flex-direction: column;
-    padding-top: 30px;
-    padding-left: 30px;
-    gap: 15px;
-}
-
-.navBtn {
-    font-weight: bold;
-    font-size: 130%;
-}
-
-.navBtn:hover {
-    cursor: pointer;
 }
 
 
@@ -77,7 +45,7 @@ $foregroundColor: white;
 .horizontalNavArea {
     background-color: rgb(230, 230, 230);
     border-bottom: 2px solid rgb(182, 182, 182);
-    height: 13%;
+    height: 100px;
     min-height: 100px;
     align-items: center;
     display: flex;
@@ -107,8 +75,8 @@ $foregroundColor: white;
 // Search Area
 .searchArea {
     border-bottom: 2px solid rgb(182, 182, 182);
-    height: 13%;
-    min-height: 100px;
+    height: 120px;
+    min-height: 120px;
     display: flex;
     justify-content: space-between;
     padding-left: 20px;
@@ -185,25 +153,25 @@ tr:nth-child(even) {
 }
 
 .complete {
-    background-color: mediumseagreen;
+    background-color: #13c67d;
     color: white;
     border-radius: 10px;
 }
 
 .activee {
-    background-color: dodgerblue;
+    background-color: #03a9f5;
     color: white;
     border-radius: 10px;
 }
 
 .cancelled {
-    background-color: tomato;
+    background-color: #f34134;
     color: white;
     border-radius: 10px;
 }
 
 .pending {
-    background-color: orange;
+    background-color: #e4c009;
     color: white;
     border-radius: 10px;
 }

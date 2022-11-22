@@ -55,7 +55,7 @@ $foregroundColor: white;
 .horizontalNavArea {
     background-color: rgb(230, 230, 230);
     border-bottom: 2px solid rgb(182, 182, 182);
-    height: 13%;
+    height: 100px;
     min-height: 100px;
     align-items: center;
     display: flex;
@@ -89,8 +89,8 @@ $foregroundColor: white;
 // Search Area
 .searchArea {
     border-bottom: 2px solid rgb(182, 182, 182);
-    height: 13%;
-    min-height: 110px;
+    height: 120px;
+    min-height: 120px;
     display: flex;
     justify-content: space-between;
     padding-left: 20px;
@@ -174,19 +174,19 @@ tr:nth-child(even) {
 }
 
 .activee {
-    background-color: mediumseagreen;
+    background-color: #13c67d;
     color: white;
     border-radius: 10px;
 }
 
 .cancelled {
-    background-color: tomato;
+    background-color: #f34134;
     color: white;
     border-radius: 10px;
 }
 
 .pending {
-    background-color: orange;
+    background-color: #e4c009;
     color: white;
     border-radius: 10px;
 }
