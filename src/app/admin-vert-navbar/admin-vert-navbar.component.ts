@@ -10,6 +10,12 @@ export class AdminVertNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.fetchDate();
   }
 
+  fetchDate() {
+    var dateField = document.getElementById("dateField");
+    var currentDate = new Date();
+    dateField.innerText = currentDate.toDateString();
+  }
 }
