@@ -32,64 +32,49 @@
         </div>
         <div class="searchArea">
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Start Date: </p>
-                    <input type="date" id="startDate" name="Start Date" class="dateField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">End Date: </p>
-                    <input type="date" id="endDate" name="End Date" class="dateField">
+                <p class="lable bold">Set</p>
+                <p class="lable bold">Date</p>
+            </div>
+            <div class="searchContainer gap">
+                <select name="type" id="type" class="dateSpecifier">
+                    <option value="day">This Day</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="year">This Year</option>
+                </select>
+                <div class="flexBox">
+                    <input type="date" id="startDate" class="dateField">
+                    <input type="date" id="endDate" class="dateField">
                 </div>
             </div>
-            
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Card ID: </p>
-                    <input type="text" id="cardID" class="inputField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">Account ID: </p>
-                    <input type="text" id="accountID" class="inputField">
-                </div>
+                <p class="lable">Card ID: </p>
+                <p class="lable">Account ID: </p>
+            </div> 
+            <div class="searchContainer gap">
+                <input type="text" id="cardID" class="inputField">
+                <input type="text" id="accountID" class="inputField">
             </div>
-
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Batch ID: </p>
-                    <input type="number" id="batchID" class="inputField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">Name: </p>
-                    <input type="text" id="name" class="inputField">
-                </div>
+                <p class="lable">Batch ID: </p>
+                <p class="lable">Name: </p>
             </div>
-
+            <div class="searchContainer gap">
+                <input type="number" id="batchID" class="inputField">
+                <input type="text" id="name" class="inputField">
+            </div>
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <input type="checkbox" id="pending" class="checkField">
-                    <p class="lable">Pending</p>
-                </div>
-                <div class="lableContainer">
-                    <input type="checkbox" id="reserved" class="checkField">
-                    <p class="lable">Reserved</p>
-                </div>
+                <p class="lable">Pending<br><br>Reserved<br><br>Active<br><br>Cancelled</p>
             </div>
-
+            <div class="searchContainer gap">
+                <input type="checkbox" id="pending" class="checkField">
+                <input type="checkbox" id="reserved" class="checkField">
+                <input type="checkbox" id="active" class="checkField">
+                <input type="checkbox" id="cancelled" class="checkField">
+            </div>
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <input type="checkbox" id="active" class="checkField">
-                    <p class="lable">Active</p>
-                </div>
-                <div class="lableContainer">
-                    <input type="checkbox" id="cancelled" class="checkField">
-                    <p class="lable">Cancelled</p>
-                </div>
-            </div>
-
-            <div class="searchContainer gapRight">
                 <input type="button" value="View" class="btnField">
             </div>
-
             <div class="searchContainer gap">
                 <input type="button" value="Add Card" class="btnField" (click)="addCards()">
                 <input type="number" placeholder="Quantity" class="numField" id="qty">
@@ -119,7 +104,7 @@
                     <td>{{card.UserID}}</td>
                     <td>{{card.Name}}</td>
                     <td>{{card.Email}}</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td><i class="fa-solid fa-pen-to-square" (click)="editCard(card.CardID)"></i></td>
                     <td class="activee" *ngIf="card.Status == 'active'">Active</td>
                     <td class="pending" *ngIf="card.Status == 'pending'">Pending</td>
                     <td class="cancelled" *ngIf="card.Status == 'cancelled'">Cancelled</td>

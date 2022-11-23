@@ -33,53 +33,48 @@
         </div>
         <div class="searchArea">
             <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Start Date: </p>
-                    <input type="date" id="startDate" name="Start Date" class="dateField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">End Date: </p>
-                    <input type="date" id="endDate" name="End Date" class="dateField">
-                </div>
+                <p class="lable bold">Set</p>
+                <p class="lable bold">Date</p>
             </div>
-            
-            <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Account ID: </p>
-                    <input type="text" id="accountID" class="inputField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">User ID: </p>
-                    <input type="text" id="userID" class="inputField">
-                </div>
-            </div>
-
-            <div class="searchContainer">
-                <div class="lableContainer">
-                    <p class="lable">Mobile No: </p>
-                    <input type="number" id="mobileNo" class="inputField">
-                </div>
-                <div class="lableContainer">
-                    <p class="lable">Type: </p>
-                    <select name="type" id="type" class="numField">
-                        <option value="individual">Individual</option>
-                        <option value="teams">Teams</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="searchContainer">
-                <div class="lableContainer">
-                    <input type="checkbox" id="active" class="checkField">
-                    <p class="lable">Active</p>
-                </div>
-                <div class="lableContainer">
-                    <input type="checkbox" id="cancelled" class="checkField">
-                    <p class="lable">Cancelled</p>
-                </div>
-            </div>
-
             <div class="searchContainer gap">
+                <select name="type" id="type" class="dateSpecifier">
+                    <option value="day">This Day</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="year">This Year</option>
+                </select>
+                <div class="flexBox">
+                    <input type="date" id="startDate" class="dateField">
+                    <input type="date" id="endDate" class="dateField">
+                </div>
+            </div>
+            <div class="searchContainer">
+                <p class="lable">Account ID: </p>
+                <p class="lable">User ID: </p>
+            </div> 
+            <div class="searchContainer gap">
+                <input type="text" id="accountID" class="inputField">
+                <input type="text" id="userID" class="inputField">
+            </div>
+            <div class="searchContainer">
+                <p class="lable">Mobile No: </p>
+                <p class="lable">Type: </p>
+            </div>
+            <div class="searchContainer gap">
+                <input type="number" id="mobileNo" class="inputField">
+                <select name="type" id="type" class="numField" style="width: 180px;">
+                    <option value="individual">Individual</option>
+                    <option value="teams">Teams</option>
+                </select>
+            </div>
+            <div class="searchContainer">
+                <p class="lable">Active<br><br>Cancelled</p>
+            </div>
+            <div class="searchContainer gap">
+                <input type="checkbox" id="active" class="checkField">
+                <input type="checkbox" id="cancelled" class="checkField">
+            </div>
+            <div class="searchContainer">
                 <input type="button" value="View" class="btnField">
             </div>
         </div>

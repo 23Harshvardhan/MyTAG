@@ -26,10 +26,7 @@ import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 import { ViewCardComponent } from './view-card/view-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsComponent } from './accounts/accounts.component';
@@ -62,10 +59,7 @@ const routes: Routes = [
   {path: 'userSettings', component:UserSettingsComponent},
   {path: 'adminLogin', component:AdminLoginComponent},
   {path: 'editCard/:id', component:EditCardComponent},
-  {path: 'adminDashboard', component:AdminDashboardComponent},
   {path: 'adminSettings', component:AdminSettingsComponent},
-  {path: 'allUsers', component:AllUsersComponent},
-  {path: 'adminCardPreview/:id', component:AdminCardPreviewComponent},
   {path: 'viewCard/:id', component:ViewCardComponent},
   {path: 'dashboard', component:DashboardComponent},
   {path: 'accounts', component:AccountsComponent},
@@ -80,8 +74,8 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
-  UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, AllUsersComponent,
-  HowitworksComponent, CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, 
-  VerticalNavComponent, UserSettingsComponent, AdminLoginComponent, EditCardComponent, AdminDashboardComponent,AdminSettingsComponent, AdminCardPreviewComponent, ViewCardComponent,
-  DashboardComponent, AccountsComponent, ActiveCardsComponent, OrdersComponent
+  UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, HowitworksComponent, 
+  CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, 
+  UserSettingsComponent, AdminLoginComponent, EditCardComponent ,AdminSettingsComponent, ViewCardComponent, DashboardComponent, AccountsComponent, 
+  ActiveCardsComponent, OrdersComponent
 ]

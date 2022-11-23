@@ -72,4 +72,8 @@ export class InventoryComponent implements OnInit {
       });
     }
   }
+
+  editCard(CardID:string) {
+    this.router.navigate(['/editCard/' + CardID]);
+  }
 }

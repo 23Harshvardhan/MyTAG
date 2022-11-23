@@ -34,12 +34,8 @@ import { VerticalNavComponent } from './vertical-nav/vertical-nav.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
-import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AdminVertNavbarComponent } from './admin-vert-navbar/admin-vert-navbar.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 import { ViewCardComponent } from './view-card/view-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsComponent } from './accounts/accounts.component';
@@ -76,12 +72,8 @@ import { OrdersComponent } from './orders/orders.component';
     UserSettingsComponent,
     AdminLoginComponent,
     EditCardComponent,
-    AdminDashboardComponent,
     AdminSettingsComponent,
-    AdminNavbarComponent,
     AdminVertNavbarComponent,
-    AllUsersComponent,
-    AdminCardPreviewComponent,
     ViewCardComponent,
     DashboardComponent,
     AccountsComponent,

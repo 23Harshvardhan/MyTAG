@@ -63,11 +63,15 @@ $foregroundColor: white;
     width: 150px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.totalCards h3 {
+    margin-left: 10px;
 }
 
 .totalCards h5 {
     margin-top: -10px;
+    margin-left: 10px;
 }
 
 
@@ -78,16 +82,19 @@ $foregroundColor: white;
     height: 120px;
     min-height: 120px;
     display: flex;
-    justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+    justify-content: space-between;
 }
 
 .searchContainer {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
 }
 
 .lableContainer {
@@ -99,38 +106,54 @@ $foregroundColor: white;
 .lable {
     min-width: 100px;
     width: 100%;
+    font-size: 11pt;
 }
 
 .dateField {
     min-width: 100px;
-    height: 50%;
+    height: 30px;
 }
 
 .inputField {
-    height: 50%;
-    min-width: 100px;
-    width: 100%;
+    height: 30px;
+    width: 180px;
     border-radius: 50px;
     font-size: 20px;
-    border: 2px solid #424242;
+    border: 2px solid #3d3d3d;
+}
+
+.dateSpecifier {
+    height: 30px;
+    width: 240px;
+    font-size: 11pt;
+    border: 2px solid #3d3d3d;
 }
 
 .btnField {
-    background-color: #424242;
+    background-color: #3d3d3d;
     color: white;
     border-radius: 5px;
     border: none;
-    height: 50px;
-    width: 200px;
+    height: 40px;
+    min-height: 40px;
+    width: 100px;
     font-size: 20px;
+    transition: 0.3s;
+}
+
+.btnField:hover {
+    cursor: pointer;
+    background-color: rgb(117, 117, 117);
+    transition: 0.3s;
 }
 
 .numField {
-    width: 250px;
+    width: 90px;
     height: 40px;
+    min-height: 30px;
     font-size: 20px;
     border-radius: 5px;
-    border: 2px solid #424242;
+    border: 2px solid #3d3d3d;
 }
 
 
