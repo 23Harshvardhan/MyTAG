@@ -16,6 +16,27 @@
             </ul>
         </nav>
 </div>
+
+<div class="formOverlay">
+    <div class="formContainer">
+        <form #addOrderForm="ngForm" (ngSubmit)="addOrder(addOrderForm.value)">
+            <input type="number" required name="CardID" ngModel placeholder="Card ID">
+            <input type="text" required name="Country" ngModel placeholder="Country">
+            <input type="text" required name="Type" ngModel placeholder="Type">
+            <input type="number" required name="AccountID" ngModel placeholder="Account ID">
+            <input type="text" required name="FullName" ngModel placeholder="Full Name">
+            <input type="text" required name="UserID" ngModel placeholder="User ID">
+            <input type="number" required name="MobileNo" ngModel placeholder="Mobile Number">
+            <input type="text" required name="Product" ngModel placeholder="Product">
+            <input type="number" required name="Qty" ngModel placeholder="Quantity">
+
+            <div class="btnContainer">
+                <input type="button" value="Cancel" (click)="closeForm()" class="formBtn secondary">
+                <input type="submit" class="formBtn primary">
+            </div>
+        </form>
+    </div>
+</div>
   
 <div class="body">
     <app-admin-vert-navbar></app-admin-vert-navbar>
@@ -79,7 +100,7 @@
             </div>
             <div class="searchContainer gap">
                 <input type="button" value="View" class="btnField">
-                <input type="button" value="Add" class="btnField">
+                <input type="button" value="Add" class="btnField" (click)="openForm()">
             </div>
         </div>
 
@@ -102,71 +123,20 @@
                     <th>Status</th>
                     <th>View</th>
                 </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>UAE</td>
-                    <td>Individual</td>
-                    <td>213</td>
-                    <td>Harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>34563456</td>
-                    <td>1</td>
-                    <td>NFC Plastic</td>
-                    <td>1</td>
-                    <td>AED 120</td>
-                    <td class="complete">Complete</td>
-                    <td><i class="fa fa-eye"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>UAE</td>
-                    <td>Individual</td>
-                    <td>213</td>
-                    <td>Harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>34563456</td>
-                    <td>1</td>
-                    <td>NFC Plastic</td>
-                    <td>1</td>
-                    <td>AED 120</td>
-                    <td class="activee">Active</td>
-                    <td><i class="fa fa-eye"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>UAE</td>
-                    <td>Individual</td>
-                    <td>213</td>
-                    <td>Harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>34563456</td>
-                    <td>2</td>
-                    <td>NFC Wood</td>
-                    <td>1</td>
-                    <td>AED 120</td>
-                    <td class="cancelled">Cancelled</td>
-                    <td><i class="fa fa-eye"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>UAE</td>
-                    <td>Individual</td>
-                    <td>213</td>
-                    <td>Harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>34563456</td>
-                    <td>1</td>
-                    <td>NFC Plastic</td>
-                    <td>1</td>
-                    <td>AED 120</td>
+                <tr *ngFor="let dataLine of dataSet">
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.Date}}</td>
+                    <td>{{dataLine.Country}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>{{dataLine.CardID}}</td>
+                    <td>AED {{dataLine.CardID}}</td>
                     <td class="pending">Pending</td>
                     <td><i class="fa fa-eye"></i></td>
                 </tr>
