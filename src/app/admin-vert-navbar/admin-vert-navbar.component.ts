@@ -19,7 +19,7 @@ export class AdminVertNavbarComponent implements OnInit {
     var year = currentDate.getFullYear();
     var monthNum = currentDate.getMonth() + 1;
     var month;
-    var day = currentDate.getDay();
+    var day = currentDate.getDate();
 
     switch(monthNum) {
       case 1:

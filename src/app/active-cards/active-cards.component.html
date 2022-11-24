@@ -95,47 +95,19 @@
                     <th>Status</th>
                     <th>Edit/View</th>
                 </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>Individual</td>
-                    <td>14512</td>
-                    <td>harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>14512</td>
-                    <td>34563456</td>
-                    <td><i class="fa fa-eye">23</i></td>
+                <tr *ngFor="let card of activeCards">
+                    <td>{{card.CardID}}</td>
+                    <td>{{card.Reg_date}}</td>
+                    <td>{{card.Type}}</td>
+                    <td>{{card.AccountID}}</td>
+                    <td>{{card.Name}}</td>
+                    <td>{{card.Name}}</td>
+                    <td>{{card.Name}}</td>
+                    <td>{{card.UserID}}</td>
+                    <td>{{card.Phone}}</td>
+                    <td><i class="fa fa-eye">0</i></td>
                     <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>Individual</td>
-                    <td>14512</td>
-                    <td>harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>14512</td>
-                    <td>34563456</td>
-                    <td><i class="fa fa-eye">23</i></td>
-                    <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
-                </tr>
-                <tr>
-                    <td>14512</td>
-                    <td>date</td>
-                    <td>Individual</td>
-                    <td>14512</td>
-                    <td>harsh</td>
-                    <td>Vardhan</td>
-                    <td>harsh@mail.com</td>
-                    <td>14512</td>
-                    <td>34563456</td>
-                    <td><i class="fa fa-eye">23</i></td>
-                    <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td><i class="fa-solid fa-pen-to-square"></i></td>
                 </tr>
             </table>
         </div>
