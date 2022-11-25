@@ -17,6 +17,10 @@ $foregroundColor: white;
     gap: 10px;
 }
 
+.hidden {
+    display: none;
+}
+
 
 
 // Body Section
@@ -50,6 +54,7 @@ $foregroundColor: white;
     align-items: center;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .pageTitle {
@@ -212,9 +217,6 @@ td, th {
     width: 100%;
     height: 100vh;
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .formContainer {

@@ -32,12 +32,9 @@ export class OrdersComponent {
 
   dataSet = []
 
-  openForm() {
-
-  }
-
-  closeForm() {
-
+  toggleForm() {
+    var formOverlay = document.getElementById("formOverlay");
+    formOverlay.classList.toggle("hidden");
   }
 
   getProductID (product:string) {
@@ -55,7 +52,7 @@ export class OrdersComponent {
   getAmount (qty:string) {
     var amount = 120;
     var finalAmount = amount * Number(qty);
-    return finalAmount.toString();
+    return "AED" + finalAmount.toString();
   }
 
   addOrder(creationData : {CardID:string, Country:string, Type:string, AccountID:string, FullName:string, UserID:string, MobileNo:string, Product:string, Qty:string}) {

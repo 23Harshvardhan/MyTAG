@@ -25,6 +25,20 @@ export class ActiveCardsComponent implements OnInit {
 
   cards = []
   activeCards = []
+  canvasCards = []
+  card = {
+    CardID: "",
+    Reg_date: "",
+    Type: "",
+    AccountID: "",
+    AccountName: "",
+    FirstName: "",
+    LastName: "",
+    UserID: "",
+    MobileNo: "",
+    Views: "",
+    Status: ""
+  }
 
   loadData() {
     axios.get('http://34.70.242.122/v1/api/admin/analytics/getcards', this.cookie)
@@ -35,6 +49,26 @@ export class ActiveCardsComponent implements OnInit {
           this.activeCards.push(element);
         }
       });
+
+      this.activeCards.forEach(element => {
+        var fullName = element.Name;
+        var firstName = fullName[0];
+        var lastName = fullName[1];
+
+        this.card.CardID = element.CardID;
+        this.card.Reg_date = element.Reg_date;
+        this.card.Type = element.Type;
+        this.card.AccountID = element.UserID;
+        this.card.FirstName = firstName;
+        this.card.LastName = lastName;
+        this.card.AccountName = fullName;
+        this.card.UserID = element.Email;
+        this.card.MobileNo = element.Phone;
+        this.card.Views = element.Views;
+        this.card.Status = element.Status;
+
+        this.canvasCards.push(this.card);
+      })
     })
     .catch((error) => {
       console.log(error);
