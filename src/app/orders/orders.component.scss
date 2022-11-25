@@ -21,6 +21,10 @@ $foregroundColor: white;
     display: none;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 
 
 // Body Section
@@ -122,7 +126,6 @@ $foregroundColor: white;
 .inputField {
     height: 30px;
     width: 180px;
-    border-radius: 50px;
     font-size: 20px;
     border: 2px solid #3d3d3d;
 }
