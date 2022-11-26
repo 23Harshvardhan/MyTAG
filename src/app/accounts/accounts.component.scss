@@ -111,6 +111,7 @@ $foregroundColor: white;
 
 .hamContainer {
     display: flex;
+    width: 100%;
 }
 
 
@@ -324,21 +325,26 @@ border-collapse: collapse;
         z-index: 100;
         transition: opacity 0.25s ease;
    }
+
     .button_container:hover {
         opacity: 0.7;
    }
+
     .button_container.active .top {
         transform: translateY(11px) translateX(0) rotate(45deg);
         background: #fff;
    }
+
     .button_container.active .middle {
         opacity: 0;
         background: #fff;
    }
+
     .button_container.active .bottom {
         transform: translateY(-11px) translateX(0) rotate(-45deg);
         background: #fff;
    }
+
     .button_container span {
         background: $backgroundAccentColor;
         border: none;
@@ -346,16 +352,19 @@ border-collapse: collapse;
         width: 10%;
         position: absolute;
         top: 0;
-        margin: 40px 20px 0px 10px;
+        margin: 28px 20px 0px 10px;
         transition: all 0.35s ease;
         cursor: pointer;
    }
+
     .button_container span:nth-of-type(2) {
         top: 11px;
    }
+
     .button_container span:nth-of-type(3) {
         top: 22px;
    }
+
     .overlay {
         position: fixed;
         background: $backgroundAccentColor;
@@ -368,24 +377,30 @@ border-collapse: collapse;
         transition: opacity 0.35s, visibility 0.35s, width 0.35s;
         overflow: hidden;
    }
+
     .overlay.open {
         opacity: 0.9;
         visibility: visible;
         width: 100%;
    }
+
     .overlay.open li {
         animation: fadeInRight 0.5s ease forwards;
         animation-delay: 0.35s;
    }
+
     .overlay.open li:nth-of-type(2) {
         animation-delay: 0.4s;
    }
+
     .overlay.open li:nth-of-type(3) {
         animation-delay: 0.45s;
    }
+
     .overlay.open li:nth-of-type(4) {
         animation-delay: 0.5s;
    }
+
     .overlay nav {
         position: relative;
         height: 40%;
@@ -396,6 +411,7 @@ border-collapse: collapse;
         text-align: center;
         font-family: 'Lato', sans-serif;
    }
+
     .overlay ul {
         list-style: none;
         padding: 0;
@@ -404,6 +420,7 @@ border-collapse: collapse;
         position: relative;
         height: 100%;
    }
+
     .overlay ul li {
         display: block;
         height: 25%;
@@ -412,6 +429,7 @@ border-collapse: collapse;
         position: relative;
         opacity: 0;
    }
+
     .overlay ul li a {
         display: block;
         position: relative;
@@ -419,9 +437,11 @@ border-collapse: collapse;
         text-decoration: none;
         overflow: hidden;
    }
+   
     .overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
         width: 100%;
    }
+
     .overlay ul li a:after {
         content: '';
         position: absolute;
@@ -433,6 +453,7 @@ border-collapse: collapse;
         background: #fff;
         transition: 0.35s;
    }
+
     @keyframes fadeInRight {
         0% {
             opacity: 0;
