@@ -117,10 +117,13 @@ $foregroundColor: white;
     border-bottom: 2px solid rgb(182, 182, 182);
     height: 120px;
     min-height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
     display: flex;
     padding-left: 20px;
     padding-right: 20px;
     justify-content: space-between;
+    scrollbar-width: 5px;
 }
 
 .searchContainer {
