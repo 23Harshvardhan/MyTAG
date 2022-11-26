@@ -55,9 +55,8 @@ $foregroundColor: white;
 
 .body {
     width: 100%;
-    height: calc(100vh - 2px);
+    height: 100vh;
     display: flex;
-    border-bottom: 2px solid black;
 }
 
 .gap {
@@ -71,7 +70,6 @@ $foregroundColor: white;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
 }
 
 
@@ -89,7 +87,7 @@ $foregroundColor: white;
 }
 
 .pageTitle {
-    margin-left: 2%;
+    margin-left: 5%;
 }
 
 .totalCards {
@@ -111,6 +109,10 @@ $foregroundColor: white;
     margin-left: 10px;
 }
 
+.hamContainer {
+    display: flex;
+}
+
 
 
 // Search Area
@@ -118,13 +120,10 @@ $foregroundColor: white;
     border-bottom: 2px solid rgb(182, 182, 182);
     height: 120px;
     min-height: 120px;
-    overflow-x: auto;
-    overflow-y: hidden;
     display: flex;
     padding-left: 20px;
     padding-right: 20px;
     justify-content: space-between;
-    scrollbar-width: 5px;
 }
 
 .searchContainer {
@@ -362,17 +361,17 @@ border-collapse: collapse;
         background: $backgroundAccentColor;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 0%;
+        width: 0%;
+        height: 100%;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+        transition: opacity 0.35s, visibility 0.35s, width 0.35s;
         overflow: hidden;
    }
     .overlay.open {
         opacity: 0.9;
         visibility: visible;
-        height: 100%;
+        width: 100%;
    }
     .overlay.open li {
         animation: fadeInRight 0.5s ease forwards;

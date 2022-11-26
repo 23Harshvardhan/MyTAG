@@ -22,9 +22,10 @@
     <app-admin-vert-navbar></app-admin-vert-navbar>
     <div class="contentArea">
         <div class="horizontalNavArea">
-            
-            <h1 class="pageTitle">Inventory</h1> 
-            
+            <div class="hamContainer">
+                <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+                <h1 class="pageTitle">Inventory</h1> 
+            </div>
             <div class="totalCards">
                 <h3 class="mobileHide">MYTAG</h3>
                 <h5>Cards: {{responseData.length}}</h5>
