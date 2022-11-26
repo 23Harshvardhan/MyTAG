@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
 
   //Array storing card ID and card names from response.
   cards = []
-  apiRoot = "http://34.70.242.122/v1/";
+  apiRoot = "http://34.131.186.218/v1/";
   length;
 
   //Stores the cookie responsible for logging in and verifying current user.
@@ -38,7 +38,7 @@ export class UserDashboardComponent implements OnInit {
     //Stores the total number of cards in a user's account
     length = null;
 
-    axios.get('http://34.70.242.122/v1/api/activities/dashboard', this.cookie)
+    axios.get('http://34.131.186.218/v1/api/activities/dashboard', this.cookie)
     .then( (response) => {
       this.length = response.data.userInfo.cards.length; //Storing number of cards from response.
       var i = 0; //Empty variable to be used in while loop.
@@ -62,7 +62,7 @@ export class UserDashboardComponent implements OnInit {
   //Function to delete card. Takes card ID as parameter and sends delete request with card ID as query.
   //On success will refresh page and on fail will log error and show alert.
   deleteCard(cardId:string) {
-    axios.delete('http://34.70.242.122/v1/api/activities/card_data/deletecard?id=' + cardId, this.cookie)
+    axios.delete('http://34.131.186.218/v1/api/activities/card_data/deletecard?id=' + cardId, this.cookie)
     .then((response) => {
       window.location.reload();
     })

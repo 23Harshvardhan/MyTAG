@@ -1,3 +1,8 @@
+@font-face {
+    font-family: SourceSansProRegular;
+    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+  }
+
 // Decleration Section
 $primaryColor: #f35a57;
 $primaryAccentColor: #d14b49;
@@ -8,13 +13,17 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+
 
 
 
 // Overriding Attributes
 .gap {
     gap: 10px;
+}
+
+.gapTop {
+    margin-top: 20px;
 }
 
 .gapRight {
@@ -25,11 +34,29 @@ $foregroundColor: white;
     font-weight: bold;
 }
 
+.invisible {
+    width: 90px;
+    height: 40px;
+    min-height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: transparent;
+}
+
+.flexBox1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 12px;
+}
+
 
 
 // Body Section
 * {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: SourceSansProRegular, sans-serif;
 }
 
 .body {
@@ -53,12 +80,16 @@ $foregroundColor: white;
 .horizontalNavArea {
     background-color: #f5f5f5;
     border-bottom: 2px solid rgb(182, 182, 182);
-    height: 100px;
-    min-height: 100px;
+    height: 80px;
+    min-height: 80px;
     align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.navLogo {
+    display: none;
 }
 
 .pageTitle {
@@ -68,18 +99,19 @@ $foregroundColor: white;
 .totalCards {
     margin-right: 2%;
     border: 2px solid rgb(182, 182, 182);
-    height: 80px;
-    width: 150px;
+    height: 60px;
+    width: 100px;
     display: flex;
     flex-direction: column;
 }
 
 .totalCards h3 {
+    margin-top: 10px;
     margin-left: 10px;
 }
 
 .totalCards h5 {
-    margin-top: -10px;
+    margin-top: -20px;
     margin-left: 10px;
 }
 
@@ -104,6 +136,23 @@ $foregroundColor: white;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.searchLableContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-width: 80px;
+    width: 20px;
+}
+
+.checkBoxContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 10px;
 }
 
 .lableContainer {
@@ -167,7 +216,15 @@ $foregroundColor: white;
 
 
 // Table Section
-table {
+.tableArea {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.tableArea {
+    height: 100%;
+    overflow-y: scroll;
+}table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -179,43 +236,44 @@ td, th {
     padding: 8px;padding-top:10px;padding-bottom:10px;
 }
   
-
-
+table, td, th
+{
+border-right: 1px solid #fff;
+border-collapse: collapse;
+}td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;padding-top:10px;padding-bottom:10px;
+}
+  
+table, td, th
+{
+border-right: 1px solid #fff;
+border-collapse: collapse;
+}
+  
 .activee {
     background-color: #13c67d;
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .cancelled {
     background-color: #f34134;
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .pending {
     background-color: #e4c009;
     color: white;
-    border-radius: 10px;
-}
-
-.reserved {
-    background-color: #03a9f5;
-    color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .overlay {
     display: none;
 }
 
-.navLogo {
-    display: none;
-}
-
-
-
-// Mobile View Section
 @media only screen and (max-width: 600px) {
     .logoContainer {
         display: flex;
@@ -230,6 +288,8 @@ td, th {
     .navLogo {
         display: block;
         width: 60px;
+        height: 60px;
+        margin-left: 50px;
     }
 
     .totalCards {

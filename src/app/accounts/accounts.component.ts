@@ -34,7 +34,7 @@ export class AccountsComponent {
   }
 
   checkAuth() {
-    axios.get('http://34.70.242.122/v1/api/admin', this.cookie).
+    axios.get('http://34.131.186.218/v1/api/admin', this.cookie).
     then((response) => {
       this.loadData();
     })
@@ -45,10 +45,10 @@ export class AccountsComponent {
   }
 
   loadData() {
-    axios.get('http://34.70.242.122/v1/api/admin/analytics/getusers', this.cookie)
+    axios.get('http://34.131.186.218/v1/api/admin/analytics/getusers', this.cookie)
     .then((response) => {
       this.responseData = response.data.data;
-      console.log(this.responseData);
+      // console.log(this.responseData);
     })
     .catch((error) => {
       console.log(error);

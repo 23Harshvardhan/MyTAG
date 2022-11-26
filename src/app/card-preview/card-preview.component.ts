@@ -51,7 +51,7 @@ export class CardPreviewComponent implements OnInit {
       cki: this.cookieService.get("jwt")
     } 
   }
-  apiRoot = "http://34.70.242.122/v1/";
+  apiRoot = "http://34.131.186.218/v1/";
   constructor(
     private activatedRoute:ActivatedRoute,
     private router:Router,
@@ -71,7 +71,7 @@ export class CardPreviewComponent implements OnInit {
   //Function to get card data using API call with card ID as query.
   //On success will return entered details of the card which was requested and on fail will log error in console and slow alert.
   getData(cardId:string) {
-    axios.get('http://34.70.242.122/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    axios.get('http://34.131.186.218/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
@@ -97,7 +97,7 @@ export class CardPreviewComponent implements OnInit {
   }
 
   publishCard(){
-    axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 1}}, this.cookie)
+    axios.put('http://34.131.186.218/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 1}}, this.cookie)
     .then((response) => {
       alert("Card has been published successfully.");
     })
@@ -110,7 +110,7 @@ export class CardPreviewComponent implements OnInit {
   cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.activatedRoute.snapshot.paramMap.get('id');
 
   unpublishCard() {
-    axios.put('http://34.70.242.122/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 0}}, this.cookie)
+    axios.put('http://34.131.186.218/v1/api/activities/card_data/updatecard?id=' + this.cardId, {data:{"Published": 0}}, this.cookie)
     .then((response) => {
       alert("Card has been unpublished successfully.");
     })

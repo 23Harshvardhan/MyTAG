@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="searchArea">
-            <div class="searchContainer">
+            <div class="searchLableContainer">
                 <p class="lable bold">Set</p>
                 <p class="lable bold">Date</p>
             </div>
@@ -62,12 +62,12 @@
                     <option value="month">This Month</option>
                     <option value="year">This Year</option>
                 </select>
-                <div class="flexBox">
+                <div class="flexBox1">
                     <input type="date" id="startDate" class="dateField">
                     <input type="date" id="endDate" class="dateField">
                 </div>
             </div>
-            <div class="searchContainer">
+            <div class="searchLableContainer">
                 <p class="lable">Account ID: </p>
                 <p class="lable">User ID: </p>
             </div> 
@@ -75,7 +75,7 @@
                 <input type="text" id="accountID" class="inputField">
                 <input type="text" id="userID" class="inputField">
             </div>
-            <div class="searchContainer">
+            <div class="searchLableContainer">
                 <p class="lable">Mobile No: </p>
                 <p class="lable">Type: </p>
             </div>
@@ -89,14 +89,17 @@
                     <option value="cancelled">Pending</option>
                 </select>
             </div>
-            <div class="searchContainer">
-                <p class="lable">Active<br><br>Cancelled<br><br>Pending<br><br>Complete</p>
+            <div class="checkBoxContainer">
+                <label>Active </label>
+                <label>Cancelled</label>
+                <label>Pending</label>
+                <label>Complete</label>
             </div>
-            <div class="searchContainer gap">
-                <input type="checkbox" id="active" class="checkField">
-                <input type="checkbox" id="cancelled" class="checkField">
-                <input type="checkbox" id="pending" class="checkField">
-                <input type="checkbox" id="complete" class="checkField">
+            <div class="checkBoxContainer">    
+                <input type="checkbox" />
+                <input type="checkbox" />
+                <input type="checkbox" />
+                <input type="checkbox" />
             </div>
             <div class="searchContainer gap">
                 <input type="button" value="View" class="btnField">

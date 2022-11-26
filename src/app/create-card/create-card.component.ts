@@ -198,7 +198,7 @@ export class CreateCardComponent implements OnInit {
   }
 
   createCard() {
-    axios.post('http://34.70.242.122/v1/api/activities/card_data/createcard', {
+    axios.post('http://34.131.186.218/v1/api/activities/card_data/createcard', {
       data: this.data
     }, this.cookie)
     .then ((response) => {
@@ -220,7 +220,7 @@ export class CreateCardComponent implements OnInit {
     if(this.file != null) {
       formdata.append("", this.file);
 
-      axios.put('http://34.70.242.122/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
+      axios.put('http://34.131.186.218/v1/api/activities/card_data/updateimage?id=' + this.createdCardId, formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/userDashboard']);
       })

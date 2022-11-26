@@ -9,8 +9,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Source Sans Pro:wght@100;300;400;500;700;900&display=swap');
 
 * {
-    font-family: 'Source Sans Pro', sans-serif;
-}
+    font-family: SourceSansProRegular, sans-serif;
+}@font-face {
+    font-family: SourceSansProRegular;
+    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+  }
 
 .body {
     width: 100%;

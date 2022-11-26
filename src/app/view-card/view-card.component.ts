@@ -70,12 +70,12 @@ export class ViewCardComponent {
   loadCardImage() {
     if(this.data.Image != "" || this.data.Image != null) {
       var cardImg = document.getElementById("cardImage");
-      cardImg.style.backgroundImage = "url('http://34.70.242.122/v1/" + this.data.Image + "')";
+      cardImg.style.backgroundImage = "url('http://34.131.186.218/v1/" + this.data.Image + "')";
     }
   }
 
   getData(cardId:string) {
-    axios.get('http://34.70.242.122/v1/api/card/?id=' + cardId)
+    axios.get('http://34.131.186.218/v1/api/card/?id=' + cardId)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];

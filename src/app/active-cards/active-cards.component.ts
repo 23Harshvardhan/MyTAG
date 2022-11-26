@@ -41,7 +41,7 @@ export class ActiveCardsComponent implements OnInit {
   }
 
   loadData() {
-    axios.get('http://34.70.242.122/v1/api/admin/analytics/getcards', this.cookie)
+    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards', this.cookie)
     .then((response) => {
       this.cards = response.data.data;
       this.cards.forEach(element => {
