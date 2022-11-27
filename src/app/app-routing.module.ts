@@ -32,6 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { ActiveCardsComponent } from './active-cards/active-cards.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
@@ -64,7 +65,8 @@ const routes: Routes = [
   {path: 'dashboard', component:DashboardComponent},
   {path: 'accounts', component:AccountsComponent},
   {path: 'activeCards', component:ActiveCardsComponent},
-  {path: 'orders', component:OrdersComponent}
+  {path: 'orders', component:OrdersComponent},
+  {path: 'adminCardPreview/:id', component:AdminCardPreviewComponent}
 ];
 
 @NgModule({
@@ -76,6 +78,6 @@ export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, HomeComponent, SignupComponent, ChooseCardComponent, DemoComponent, FeaturesComponent, PricingComponent, ContactusComponent,
   UserDashboardComponent, TeamsDashboardComponent, CreateCardComponent, UserDashboardNavComponent, CardPreviewComponent, InventoryComponent, HowitworksComponent, 
   CreateCardTeamComponent, EmailSignatureComponent, AnalyticsComponent, ManagePaymentComponent, ResetPasswordComponent, VerifyMailComponent, VerticalNavComponent, 
-  UserSettingsComponent, AdminLoginComponent, EditCardComponent ,AdminSettingsComponent, ViewCardComponent, DashboardComponent, AccountsComponent, 
+  UserSettingsComponent, AdminLoginComponent, EditCardComponent ,AdminSettingsComponent, ViewCardComponent, DashboardComponent, AccountsComponent, AdminCardPreviewComponent,
   ActiveCardsComponent, OrdersComponent
 ]

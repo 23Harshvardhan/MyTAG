@@ -41,17 +41,12 @@ export class ActiveCardsComponent implements OnInit {
   }
 
   loadData() {
-    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards', this.cookie)
+    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?Status=active', this.cookie)
     .then((response) => {
       this.cards = response.data.data;
-      this.cards.forEach(element => {
-        if(element.published == "1") {
-          this.activeCards.push(element);
-        }
-      });
 
-      this.activeCards.forEach(element => {
-        var fullName = element.Name;
+      this.cards.forEach(element => {
+        var fullName = element.Name.split(' ');
         var firstName = fullName[0];
         var lastName = fullName[1];
 
@@ -61,7 +56,7 @@ export class ActiveCardsComponent implements OnInit {
         this.card.AccountID = element.UserID;
         this.card.FirstName = firstName;
         this.card.LastName = lastName;
-        this.card.AccountName = fullName;
+        this.card.AccountName = element.Name;
         this.card.UserID = element.Email;
         this.card.MobileNo = element.Phone;
         this.card.Views = element.Views;

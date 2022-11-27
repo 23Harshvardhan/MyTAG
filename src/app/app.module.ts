@@ -41,6 +41,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { ActiveCardsComponent } from './active-cards/active-cards.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { OrdersComponent } from './orders/orders.component';
     DashboardComponent,
     AccountsComponent,
     ActiveCardsComponent,
-    OrdersComponent
+    OrdersComponent,
+    AdminCardPreviewComponent
   ],
   imports: [
     BrowserModule,

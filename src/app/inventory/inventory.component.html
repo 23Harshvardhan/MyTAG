@@ -109,7 +109,7 @@
                     <td>{{card.UserID}}</td>
                     <td>{{card.Name}}</td>
                     <td>{{card.Email}}</td>
-                    <td><i class="fa-solid fa-pen-to-square" (click)="editCard(card.CardID)"></i></td>
+                    <td><i class="fa-solid fa-pen-to-square" (click)="viewCard(card.CardID)"></i></td>
                     <td *ngIf="card.Status == 'active'"><button class="statusBtn activee">Active</button></td>
                     <td *ngIf="card.Status == 'pending'"><button class="statusBtn pending">Pending</button></td>
                     <td *ngIf="card.Status == 'cancelled'"><button class="statusBtn cancelled">Cancelled</button></td>
