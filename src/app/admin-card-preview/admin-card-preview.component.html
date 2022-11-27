@@ -32,10 +32,15 @@
         <div class="cardsPanel">
             <div class="pnl">
                 <img [src]="cardImg" class="cardImg">
+                <div class="cardInfo">
+                    <div class="userName">{{data.Name}}</div>
+                    <div class="userJobTitle">{{data.Job_title}}</div>
+                    <div class="userCompany">{{data.Company_name}}</div>
+                </div>
             </div>
             
             <div class="pnl">
-
+                <qrcode [qrdata]="cardViewLink" [width]="280" [errorCorrectionLevel]="'M'"></qrcode>
             </div>
         </div>
     </div>

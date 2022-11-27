@@ -31,6 +31,51 @@ export class AdminCardPreviewComponent implements OnInit{
   // Variable to store card image url.
   cardImg;
 
+  // Variable to store data for QR code.
+  cardViewLink = "https://185.208.207.55:4200/viewCard/" + this!.cardID;
+
+  // Variable to store card data recovered via API.
+  data = {
+    "Batch": "",
+    "CardID": "",
+    "UserID": "",
+    "Name": "",
+    "Job_title": "",
+    "Department": "",
+    "Company_name": "",
+    "Accreditations": "",
+    "Headline": "",
+    "Email": "",
+    "Phone": "",
+    "Company_URL": "",
+    "Link": "",
+    "Address": "",
+    "Twitter": "",
+    "Instagram": "",
+    "Linkedin": "",
+    "Facebook": "",
+    "Youtube": "",
+    "Snapchat": "",
+    "Tiktok": "",
+    "Twitch": "",
+    "Yelp": "",
+    "Whatsapp": "",
+    "Discord": "",
+    "Signal_link": "",
+    "Telegram": "",
+    "Calendly": "",
+    "Github": "",
+    "Paypal": "",
+    "Skype": "",
+    "Image": "",
+    "Published": "",
+    "Created_date": "",
+    "Reg_date": "",
+    "Status": "",
+    "Type": "",
+    "Created_by": ""
+  }
+
   ngOnInit(): void {
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
     this.getCardData();
@@ -46,8 +91,8 @@ export class AdminCardPreviewComponent implements OnInit{
   getCardData() {
     axios.get(this.APIurl + "api/admin/analytics/getcards?CardID=" + this.cardID, this.cookie)
     .then((response) => {
-      console.log(response.data.data[0]);
-      this.cardImg = this.APIurl + response.data.data[0].Image;
+      this.data = response.data.data[0];
+      this.cardImg = this.APIurl + this.data.Image;
     })
     .catch((error) => {
       console.log(error);
