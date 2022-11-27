@@ -59,6 +59,13 @@ $foregroundColor: white;
     box-shadow: 1px 1px 10px 1px rgb(163, 163, 163);
 }
 
+.cardImg {
+    margin: 10px;
+    border-radius: 5px;
+    width: 280px;
+    height: 280px;
+}
+
 .overlay {
     display: none;
 }

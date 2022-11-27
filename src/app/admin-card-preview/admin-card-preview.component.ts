@@ -23,10 +23,13 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   // Variable to store the API url. This will be called during every API request.
-  APIurl = "http://34.131.186.218/v1/api/";
+  APIurl = "http://34.131.186.218/v1/";
 
   // Variable to store current card ID.
   cardID;
+
+  // Variable to store card image url.
+  cardImg;
 
   ngOnInit(): void {
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
@@ -41,9 +44,10 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   getCardData() {
-    axios.get(this.APIurl + "admin/analytics/getcards?CardID=" + this.cardID, this.cookie)
+    axios.get(this.APIurl + "api/admin/analytics/getcards?CardID=" + this.cardID, this.cookie)
     .then((response) => {
       console.log(response.data.data[0]);
+      this.cardImg = this.APIurl + response.data.data[0].Image;
     })
     .catch((error) => {
       console.log(error);
