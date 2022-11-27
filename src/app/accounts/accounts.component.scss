@@ -87,7 +87,7 @@ $foregroundColor: white;
 }
 
 .pageTitle {
-    margin-left: 10%;
+    margin-left: 2%;
 }
 
 .totalCards {
@@ -246,8 +246,6 @@ border-right: 1px solid #fff;
 border-collapse: collapse;
 }
   
-
-
 .activee {
     background-color: #13c67d;
     color: white;
@@ -264,12 +262,25 @@ border-collapse: collapse;
     display: none;
 }
 
+.statusBtn {
+    min-width: 123px;
+    min-height: 40px;
+    font-size: 20px;
+    border: none;
+}
+
+
+
+// Mobile View Section
 .overlay {
     display: none;
 }
 
-// Mobile View Section
 @media only screen and (max-width: 600px) {
+    .pageTitle {
+        margin-left: 10%;
+    }
+
     .logoContainer {
         display: flex;
         justify-content: flex-end;

@@ -78,7 +78,7 @@
             </div>
             <div class="searchContainer gap">
                 <input type="button" value="View" class="btnField">
-                <input type="number" placeholder="" class="invisible" id="qty">
+                <input type="number" placeholder="" class="invisible" id="qty" disabled>
             </div>
         </div>
 
@@ -103,8 +103,8 @@
                     <td>{{card.Email}}</td>
                     <td>{{card.Card_limit}}</td>
                     <td>000000000</td>
-                    <td class="activee" *ngIf="card.verified == '1'">Active</td>
-                    <td class="cancelled" *ngIf="card.verified == '0'">Cancelled</td>
+                    <td *ngIf="card.verified == '1'"><button class="statusBtn activee">Active</button></td>
+                    <td *ngIf="card.verified == '0'"><button class="statusBtn cancelled">Cancelled</button></td>
                     <td><i class="fa-solid fa-pen-to-square"></i></td>
                 </tr>
             </table>
