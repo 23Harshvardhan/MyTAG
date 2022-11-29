@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
+import { BaseChartDirective } from 'ng2-charts';
+import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -75,6 +77,55 @@ export class AdminCardPreviewComponent implements OnInit{
     "Type": "",
     "Created_by": ""
   }
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
+        label: 'Views',
+        yAxisID: 'y-axis-1',
+        backgroundColor: 'rgba(255,0,0,0.3)',
+        borderColor: 'red',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      }
+    ],
+    labels: [ 'January', 'February', 'March', 'April' ]
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      x: {},
+      'y-axis-0':
+        {
+          position: 'left',
+        },
+      'y-axis-1': {
+        position: 'right',
+        grid: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          color: 'red'
+        }
+      }
+    },
+
+    plugins: {
+      legend: { display: true }
+    }
+  };
+
+  public lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
