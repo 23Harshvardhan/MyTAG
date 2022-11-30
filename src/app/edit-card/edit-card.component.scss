@@ -32,7 +32,7 @@
     background-color: lightgray;
     max-width: 300px;
     width: 100%;
-    max-height: 700px;
+    max-height: 800px;
     height: 100%;
     border-radius: 10px;
     box-shadow: 2px 2px 10px 1px gray;
@@ -175,7 +175,7 @@
 
 .primaryBtn {
     width: 140px;
-    height: 50px;
+    height: 40px;
     border-radius: 5px;
     border: none;
     background-color: black;
@@ -191,7 +191,7 @@
 
 .secondaryBtn {
     width: 140px;
-    height: 50px;
+    height: 40px;
     border-radius: 5px;
     border: 1px solid gray;
     background-color: rgb(204, 204, 204);
@@ -204,6 +204,40 @@
     background-color: rgb(180, 180, 180);
     cursor: pointer;
     transition: 0.3s;
+}
+
+.descArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.descField {
+    font-size: 13px;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    color: gray;
+}
+
+.lable {
+    font-weight: bold;
+}
+
+.intel {
+    font-size: 12px;
+    margin-top: -15px;
+}
+
+.basicContactArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.inputField {
+    border: none;
+    background-color: transparent;
 }
 
 // @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); // Lato font

@@ -48,7 +48,7 @@ export class EditCardComponent implements OnInit {
     this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
     
     //Calls the function with card ID as parameter to get data from the relevant card.
-    this.getData(this.cardId);
+    // this.getData(this.cardId);
   }
 
   // Function to load the card image into preview card.
