@@ -1,390 +1,598 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); // Lato font
-@import "~bootstrap-icons/font/bootstrap-icons.css"; // Bootstrap icons
+// Development Tools
+
+.hidden {
+    display: none;
+}
+
+// Development Tools
+
+@import url('https://fonts.googleapis.com/css2?family=Source Sans Pro:wght@100;300;400;500;700;900&display=swap');
 
 * {
-    font-family: 'Lato', sans-serif;
-}
-
-.gap {
-    margin-top: 20px;
-}
+    font-family: SourceSansProRegular, sans-serif;
+}@font-face {
+    font-family: SourceSansProRegular;
+    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+  }
 
 .body {
-    display: flex;
-    font-family: 'Lato', sans-serif;
-    height: 100vh;
     width: 100%;
+    height: 100vh;
 }
 
-.cardArea {
-    background-color: rgb(216, 216, 216);
+.cardContainer {
+    width: 100%;
+    height: 100%;
     display: flex;
-    gap: 50px;
-    align-items: center;
     justify-content: center;
-    overflow-y: scroll;
-    width: 50%;
-    min-width: 405px;
-}
-
-.mainControlButtons {
-    display: flex;
-    gap: 25px;
-    width: 15%;
-    margin: 50px 0px -50px 100px;
-}
-
-.btn {
-    border: none;
-    border-radius: 10px;
-    font-size: 20px;
-    padding: 10px 20px;
-}
-
-.btn:hover {
-    cursor: pointer;
-}
-
-.primary {
-    background-color: rebeccapurple;
-    color: white;
-    transition: 0.3s;
-}
-
-.primary:hover {
-    background-color: rgb(139, 104, 175);
-    transition: 0.3s;
-}
-
-.secondary {
-    background-color: transparent;
-    border: rebeccapurple solid 2px;
-    color: rebeccapurple;
-    transition: 0.3s;
-}
-
-.secondary:hover {
-    background-color: rebeccapurple;
-    color: white;
-    transition: 0.3s;
+    align-items: center;
 }
 
 .card {
-    background-color: white;
-    border-radius: 20px;
-    padding-bottom: 10px;
-    box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
+    background-color: lightgray;
     max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
-.cardImage {
-    width: 300px;
-    height: 300px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-image: url("/assets/img/demoprofile.jpg");
-    background-size: cover;
-    z-index: 100;
-}
-
-.wave{
-    position: relative;
-    width: fit-content;
-}
-
-.down {
-    fill: crimson;
-}
-
-.up {
-    margin-top: 10px;
-    fill: white;
-}
-
-.infoArea {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    text-overflow: ellipsis;
-}
-
-.designationField {
-    margin-top: -20px;
-    color: crimson;
-    font-weight: bold;
-}
-
-.companyField {
-    margin-top: -20px;
-    color: crimson;
-}
-
-.userTitleArea {
-    display: flex;
-    gap: 10px;
-    margin-top: -20px;
-}
-
-.userTitle p{
-    background-color: rgb(255, 185, 199);
-    color: rgb(61, 61, 61);
+    width: 100%;
+    max-height: 700px;
+    height: 100%;
     border-radius: 10px;
-    font-size: 15px;
-    padding: 5px;
-}
-
-.additionalBlock {
-    margin-top: 10px;
+    box-shadow: 2px 2px 10px 1px gray;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
     align-items: center;
 }
 
-.blockIcon i{
-    padding: 10px;
-    background-color: rgb(255, 138, 161);
-    border-radius: 10px;
-    color: white;
-}
-
-.blockLable {
-    font-weight: 700;
-}
-
-a {
-    text-decoration: none;
-}
-
-.editorArea {
-    background-color: white;
-    width: 50%;
-    overflow-y: scroll;
-}
-
-.title {
-    margin-top: 100px;
-    margin-left: 100px;
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.caption {
-    margin-left: 100px;
-    font-size: 20px;
-    font-weight: 300;
-}
-
-.buttonRows {
-    display: block;
-    margin: 100px 100px;
-}
-
-.buttonRow {
+.container {
     display: flex;
-    gap: 20px;
+    width: 95%;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.inputBtn {
-    border: none;
-    border-radius: 10px;
-    font-size: 30px;
-    color: white;
-    padding: 10px 10px 00px 10px;
-    background-color: rebeccapurple;
-    transition: 0.3s;
-    min-width: 20%;
-}
-
-.inputBtn:hover {
-    transition: 0.3s;
-    box-shadow: 1px 1px 10px 0px rgb(121, 121, 121);
-    cursor: pointer;
-}
-
-.btnLable {
-    margin-top: 5px;
-    font-weight: 300px;
-    font-size: 15px;
-}
-
-.inputField {
-    display: none;
-    border-color: rebeccapurple;
-    border-radius: 10px;
-    width: 200px;
-    font-size: 20px;
-    color: rebeccapurple;
-}
-
-.mainBody {
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-}
-
-.mobileEditorArea {
-    display: none;
-}
-
-@media screen and (max-width: 800px) {
-    .editorArea {
-        display: none;
-    }
-
-    .mainControlButtons {
-        display: none;
-    }
-
-    .topNavBar {
-        background-color: white;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 10px 0px 10px 0px;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        box-shadow: 1px 1px 10px 1px gray;
-        height: 40px;
-    }
-
-    .topNavBarButtons {
-        width: 100%;
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .bottomNavBarButtons {
-        width: 100%;
-        display: flex;
-        gap: 10px;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        margin: 0px 10px 0px 10px;
-    }
-
-    .tnbBtn {
-        border: none;
-        font-size: 20px;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: rebeccapurple;
-        color: white;
-    }
-
-    .bnbBtn {
-        border: none;
-        font-size: 20px;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: rebeccapurple;
-        color: white;
-        min-width: 115px;
-    }
-
-    .mobileEditorArea {
-        position: absolute;
-        flex-direction: column;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .cardArea {
-        width: 100%;
-        min-width: none;
-    }
-
-    .bottomNavBar {
-        background-color: white;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 10px 0px 10px 0px;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        box-shadow: 1px 1px 10px 1px gray;
-        height: 70px;
-    }
-
-    .navBtnLable {
-        margin-top: -1px;
-        font-size: 15px;
-    }
-
-    .hidden {
-        display: none;
-    }
-}
-
-.inputArea {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 15%;
-    height: 20%;
-}
-
-#warning {
-    display: none;
-}
-
-.Input {
-    background-color: rgb(77, 77, 77);
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: white;
-    box-shadow: 1px 1px 10px 1px gray;
-    width: 230px;
-    display: none;
-}
-
-.InputField {
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-bottom: 2px solid gray;
-    border-radius: 10px;
-    padding: 5px;
-    font-size: 20px;
-}
-
-.inputButtons {
+.cardNavArea {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
-.inputSubmitBtn {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    font-size: 20px;
-    padding: 5px;
+.btn1 {
+    width: 80px;
+    height: 40px;
+    border: 2px solid white;
+    color: gray;
+    background-color: lightgray;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
     transition: 0.3s;
 }
 
-.inputSubmitBtn:hover {
+.btn1:hover {
     background-color: gray;
     color: white;
     transition: 0.3s;
     cursor: pointer;
 }
 
-.basicContactSection {
-    margin-top: 10px;
+.logo {
+    border-radius: 5px;
+    width: 64px;
+    height: 64px;
+}
+
+.btn2 {
+    width: 55px;
+    height: 25px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn2:hover {
+    background-color: rgb(54, 54, 54);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.cardHeadArea {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
+
+.profilePic {
+    width: 128px;
+    height: 128px;
+    border-radius: 10px;
+    border: 2px solid white;
+    z-index: 2;
+}
+
+.profilePicBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
+    border-radius: 10px;
+    background-color: lightgray;
+    color: gray;
+    font-weight: bold;
+    font-size: 10px;
+    border: 2px solid white;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.profilePicBtn:Hover {
+    background-color: gray;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.nameDetailsPnl {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    background-color: black;
+    z-index: 1;
+    margin-top: -50px;
+    justify-content: center;
+}
+
+.nameField {
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.designationField {
+    text-align: center;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.companyField {
+    text-align: center;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.shareArea {
+    display: flex;
+    justify-content: space-between;
+}
+
+.primaryBtn {
+    width: 140px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+}
+
+.primaryBtn:hover {
+    background-color: rgb(54, 54, 54);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.secondaryBtn {
+    width: 140px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: rgb(204, 204, 204);
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.secondaryBtn:hover {
+    background-color: rgb(180, 180, 180);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap'); // Lato font
+// @import "~bootstrap-icons/font/bootstrap-icons.css"; // Bootstrap icons
+
+// * {
+//     font-family: 'Lato', sans-serif;
+// }
+
+// .gap {
+//     margin-top: 20px;
+// }
+
+// .body {
+//     display: flex;
+//     font-family: 'Lato', sans-serif;
+//     height: 100vh;
+//     width: 100%;
+// }
+
+// .cardArea {
+//     background-color: rgb(216, 216, 216);
+//     display: flex;
+//     gap: 50px;
+//     align-items: center;
+//     justify-content: center;
+//     overflow-y: scroll;
+//     width: 50%;
+//     min-width: 405px;
+// }
+
+// .mainControlButtons {
+//     display: flex;
+//     gap: 25px;
+//     width: 15%;
+//     margin: 50px 0px -50px 100px;
+// }
+
+// .btn {
+//     border: none;
+//     border-radius: 10px;
+//     font-size: 20px;
+//     padding: 10px 20px;
+// }
+
+// .btn:hover {
+//     cursor: pointer;
+// }
+
+// .primary {
+//     background-color: rebeccapurple;
+//     color: white;
+//     transition: 0.3s;
+// }
+
+// .primary:hover {
+//     background-color: rgb(139, 104, 175);
+//     transition: 0.3s;
+// }
+
+// .secondary {
+//     background-color: transparent;
+//     border: rebeccapurple solid 2px;
+//     color: rebeccapurple;
+//     transition: 0.3s;
+// }
+
+// .secondary:hover {
+//     background-color: rebeccapurple;
+//     color: white;
+//     transition: 0.3s;
+// }
+
+// .card {
+//     background-color: white;
+//     border-radius: 20px;
+//     padding-bottom: 10px;
+//     box-shadow: 1px 1px 10px 1px rgb(150, 150, 150);
+//     max-width: 300px;
+//     display: flex;
+//     flex-direction: column;
+//     margin-top: 100px;
+//     margin-bottom: 100px;
+// }
+
+// .cardImage {
+//     width: 300px;
+//     height: 300px;
+//     border-top-left-radius: 20px;
+//     border-top-right-radius: 20px;
+//     background-image: url("/assets/img/demoprofile.jpg");
+//     background-size: cover;
+//     z-index: 100;
+// }
+
+// .wave{
+//     position: relative;
+//     width: fit-content;
+// }
+
+// .down {
+//     fill: crimson;
+// }
+
+// .up {
+//     margin-top: 10px;
+//     fill: white;
+// }
+
+// .infoArea {
+//     margin-left: 20px;
+//     display: flex;
+//     flex-direction: column;
+//     text-overflow: ellipsis;
+// }
+
+// .designationField {
+//     margin-top: -20px;
+//     color: crimson;
+//     font-weight: bold;
+// }
+
+// .companyField {
+//     margin-top: -20px;
+//     color: crimson;
+// }
+
+// .userTitleArea {
+//     display: flex;
+//     gap: 10px;
+//     margin-top: -20px;
+// }
+
+// .userTitle p{
+//     background-color: rgb(255, 185, 199);
+//     color: rgb(61, 61, 61);
+//     border-radius: 10px;
+//     font-size: 15px;
+//     padding: 5px;
+// }
+
+// .additionalBlock {
+//     margin-top: 10px;
+//     display: flex;
+//     gap: 10px;
+//     align-items: center;
+// }
+
+// .blockIcon i{
+//     padding: 10px;
+//     background-color: rgb(255, 138, 161);
+//     border-radius: 10px;
+//     color: white;
+// }
+
+// .blockLable {
+//     font-weight: 700;
+// }
+
+// a {
+//     text-decoration: none;
+// }
+
+// .editorArea {
+//     background-color: white;
+//     width: 50%;
+//     overflow-y: scroll;
+// }
+
+// .title {
+//     margin-top: 100px;
+//     margin-left: 100px;
+//     font-size: 40px;
+//     font-weight: 700;
+// }
+
+// .caption {
+//     margin-left: 100px;
+//     font-size: 20px;
+//     font-weight: 300;
+// }
+
+// .buttonRows {
+//     display: block;
+//     margin: 100px 100px;
+// }
+
+// .buttonRow {
+//     display: flex;
+//     gap: 20px;
+// }
+
+// .inputBtn {
+//     border: none;
+//     border-radius: 10px;
+//     font-size: 30px;
+//     color: white;
+//     padding: 10px 10px 00px 10px;
+//     background-color: rebeccapurple;
+//     transition: 0.3s;
+//     min-width: 20%;
+// }
+
+// .inputBtn:hover {
+//     transition: 0.3s;
+//     box-shadow: 1px 1px 10px 0px rgb(121, 121, 121);
+//     cursor: pointer;
+// }
+
+// .btnLable {
+//     margin-top: 5px;
+//     font-weight: 300px;
+//     font-size: 15px;
+// }
+
+// .inputField {
+//     display: none;
+//     border-color: rebeccapurple;
+//     border-radius: 10px;
+//     width: 200px;
+//     font-size: 20px;
+//     color: rebeccapurple;
+// }
+
+// .mainBody {
+//     height: 100vh;
+//     width: 100%;
+//     overflow: hidden;
+// }
+
+// .mobileEditorArea {
+//     display: none;
+// }
+
+// @media screen and (max-width: 800px) {
+//     .editorArea {
+//         display: none;
+//     }
+
+//     .mainControlButtons {
+//         display: none;
+//     }
+
+//     .topNavBar {
+//         background-color: white;
+//         width: 100%;
+//         display: flex;
+//         justify-content: center;
+//         padding: 10px 0px 10px 0px;
+//         border-bottom-left-radius: 20px;
+//         border-bottom-right-radius: 20px;
+//         box-shadow: 1px 1px 10px 1px gray;
+//         height: 40px;
+//     }
+
+//     .topNavBarButtons {
+//         width: 100%;
+//         display: flex;
+//         gap: 10px;
+//         justify-content: center;
+//     }
+
+//     .bottomNavBarButtons {
+//         width: 100%;
+//         display: flex;
+//         gap: 10px;
+//         overflow-x: scroll;
+//         overflow-y: hidden;
+//         margin: 0px 10px 0px 10px;
+//     }
+
+//     .tnbBtn {
+//         border: none;
+//         font-size: 20px;
+//         padding: 10px;
+//         border-radius: 10px;
+//         background-color: rebeccapurple;
+//         color: white;
+//     }
+
+//     .bnbBtn {
+//         border: none;
+//         font-size: 20px;
+//         padding: 10px;
+//         border-radius: 10px;
+//         background-color: rebeccapurple;
+//         color: white;
+//         min-width: 115px;
+//     }
+
+//     .mobileEditorArea {
+//         position: absolute;
+//         flex-direction: column;
+//         width: 100%;
+//         height: 100vh;
+//         display: flex;
+//         justify-content: space-between;
+//     }
+
+//     .cardArea {
+//         width: 100%;
+//         min-width: none;
+//     }
+
+//     .bottomNavBar {
+//         background-color: white;
+//         width: 100%;
+//         display: flex;
+//         justify-content: center;
+//         padding: 10px 0px 10px 0px;
+//         border-top-left-radius: 20px;
+//         border-top-right-radius: 20px;
+//         box-shadow: 1px 1px 10px 1px gray;
+//         height: 70px;
+//     }
+
+//     .navBtnLable {
+//         margin-top: -1px;
+//         font-size: 15px;
+//     }
+
+//     .hidden {
+//         display: none;
+//     }
+// }
+
+// .inputArea {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     right: 0;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-top: auto;
+//     margin-bottom: auto;
+//     width: 15%;
+//     height: 20%;
+// }
+
+// #warning {
+//     display: none;
+// }
+
+// .Input {
+//     background-color: rgb(77, 77, 77);
+//     border-radius: 10px;
+//     padding: 10px 20px;
+//     color: white;
+//     box-shadow: 1px 1px 10px 1px gray;
+//     width: 230px;
+//     display: none;
+// }
+
+// .InputField {
+//     border-left: none;
+//     border-right: none;
+//     border-top: none;
+//     border-bottom: 2px solid gray;
+//     border-radius: 10px;
+//     padding: 5px;
+//     font-size: 20px;
+// }
+
+// .inputButtons {
+//     display: flex;
+//     justify-content: center;
+//     gap: 20px;
+//     width: 100%;
+// }
+
+// .inputSubmitBtn {
+//     width: 100%;
+//     border: none;
+//     border-radius: 10px;
+//     font-size: 20px;
+//     padding: 5px;
+//     transition: 0.3s;
+// }
+
+// .inputSubmitBtn:hover {
+//     background-color: gray;
+//     color: white;
+//     transition: 0.3s;
+//     cursor: pointer;
+// }
+
+// .basicContactSection {
+//     margin-top: 10px;
+//     display: flex;
+//     flex-direction: column;
+// }

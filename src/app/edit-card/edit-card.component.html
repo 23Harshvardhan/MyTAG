@@ -1,4 +1,39 @@
-<div class="mainBody">
+<div class="body">
+    <div class="cardContainer">
+        <div class="card">
+            <div class="container cardNavArea">
+                <input type="button" value="Add Image" class="btn1">
+                <img class="logo hidden" src="../../assets/img/logo.jpg">
+                <input type="button" value="Save" class="btn2">
+            </div>
+
+            <div class="container cardHeadArea">
+                <img class="profilePic hidden" src="../../assets/img/logo.jpg">
+                <div class="profilePicBtn">
+                    <p>Add Image</p>
+                </div>
+
+                <div class="nameDetailsPnl">
+                    <input class="nameField" id="name" placeholder="Enter Name" value="Shreeraj Rafeek">
+                    <input class="designationField" id="designation" placeholder="Enter Designation" value="Business Manager">
+                    <input class="companyField" id="company" placeholder="Enter Company" value="Nexware Technologies LLC">
+                </div>
+            </div>
+
+            <div class="container shareArea">
+                <input type="button" value="Save Contact" class="secondaryBtn">
+                <input type="button" value="Exchange Contact" class="primaryBtn">
+            </div>
+
+            <div class="container descArea">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="mainBody">
     <div class="inputArea">
         <div class="Input" id="inputWind">
             <p id="warning1">Use comma to seperate multiple values</p>
@@ -16,7 +51,6 @@
         </div>
     </div>
 
-    <!-- This section is mobile friendly and other is desktop friendly -->
     <div class="mobileEditorArea">
         <div class="topNavBar">
             <div class="topNavBarButtons">
@@ -84,12 +118,10 @@
     
     <div class="body">
         
-        <!-- This section consists of the card itself that updates dynamically while making changes. -->
         <div class="cardArea">
             <div class="card">
                 <div class="cardImage" id="cardImage">
                     <svg class="wave down" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
-                    <!-- <svg class="wave up" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg> -->
                 </div>
                 <div class="infoArea">
                     <h1 class="fullNameField" id="fullName">{{data.Name}}</h1>
@@ -182,7 +214,6 @@
             </div>
         </div>
 
-        <!-- This sections consists of the editor and the buttons -->
         
         <div class="editorArea">
             <div class="mainControlButtons">
@@ -194,7 +225,6 @@
             <p class="caption">Add all the relevant information to make your card more personalized!</p>
             <div class="buttonRows">
 
-                <!-- This row contains personal details of the user -->
                 <p>Personal Details</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
@@ -206,7 +236,6 @@
                     <button class="inputBtn" (click)="showImageInputWind()"><i class="bi bi-image"></i><p class="btnLable">Banner</p></button>
                 </div>
 
-                <!-- This row contains basic contact details of the user -->
                 <p>Basic Contact</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
@@ -218,7 +247,6 @@
                     <button class="inputBtn" (click)="showInputWind('Address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
                 </div>
 
-                <!-- This row contains social details of the user -->
                 <p>Social<br>Please use links in the below sections</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
@@ -236,7 +264,6 @@
                 <div class="buttonRow gap">
                     <button class="inputBtn" (click)="showInputWind('Youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
                 </div>
-                <!-- This row contains communication details of the user -->
                 <p>Communication</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
@@ -248,14 +275,12 @@
                     <button class="inputBtn" (click)="showInputWind('Telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
                 </div>
 
-                <!-- This row contains business details of the user -->
                 <p>Business</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
                     <button class="inputBtn" (click)="showInputWind('Calendly')"><i class="bi bi-calendar"></i><p class="btnLable">Calendly</p></button>
                 </div>
 
-                <!-- This row contains payment details of the user -->
                 <p>Payment</p>
                 <div class="buttonRow">
                     <button class="inputBtn" (click)="showInputWind('Paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
@@ -263,4 +288,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

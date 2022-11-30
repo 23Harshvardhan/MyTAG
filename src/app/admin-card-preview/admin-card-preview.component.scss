@@ -54,8 +54,8 @@ $foregroundColor: white;
     background-color: white;
     width: 300px;
     max-width: 300px;
-    height: 420px;
-    max-height: 420px;
+    height: 500px;
+    max-height: 500px;
     border-radius: 5px;
     box-shadow: 1px 1px 10px 1px rgb(163, 163, 163);
     display: flex;
@@ -89,6 +89,23 @@ $foregroundColor: white;
 
 .userCompany {
     font-size: 15px;
+}
+
+.btn {
+    margin-top: 30px;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transition: 0.3s;
+    background-color: #353535;
+    cursor: pointer;
 }
 
 .overlay {

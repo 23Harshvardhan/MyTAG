@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseChartDirective } from 'ng2-charts';
@@ -14,7 +14,8 @@ export class AdminCardPreviewComponent implements OnInit{
 
   constructor(
     private cookieService:CookieService,
-    private activatedRouter:ActivatedRoute
+    private activatedRouter:ActivatedRoute,
+    private router:Router
   ) {}
 
   // Variable to store recovered cookie from browser for verification purpose.
@@ -137,6 +138,10 @@ export class AdminCardPreviewComponent implements OnInit{
     var overlay = document.getElementById("overlay");
     toggle.classList.toggle('active');
     overlay.classList.toggle('open');
+  }
+
+  editCard() {
+    this.router.navigate(['/editCard/' + this.cardID]);
   }
 
   getCardData() {

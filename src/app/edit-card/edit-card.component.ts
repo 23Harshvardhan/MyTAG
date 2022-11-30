@@ -37,59 +37,6 @@ export class EditCardComponent implements OnInit {
     }
   }
 
-  showTabs(tabName:string) {
-    var personalInfo = document.getElementById("personalInfoTab");
-    var basicInfo = document.getElementById("basicInfoTab");
-    var socialInfo = document.getElementById("socialInfoTab");
-    var communicationInfo = document.getElementById("communiationInfoTab");
-    var businessInfo = document.getElementById("businessInfoTab");
-    var paymentInfo = document.getElementById("paymentInfoTab");
-    
-    if(tabName == "personalInfoTab") {
-      personalInfo.style.display = "block";
-      basicInfo.style.display = "none";
-      socialInfo.style.display = "none";
-      communicationInfo.style.display = "none";
-      businessInfo.style.display = "none";
-      paymentInfo.style.display = "none";
-    } else if(tabName == "basicInfoTab"){
-      personalInfo.style.display = "none";
-      basicInfo.style.display = "block";
-      socialInfo.style.display = "none";
-      communicationInfo.style.display = "none";
-      businessInfo.style.display = "none";
-      paymentInfo.style.display = "none";
-    } else if(tabName == "socialInfoTab"){
-      personalInfo.style.display = "none";
-      basicInfo.style.display = "none";
-      socialInfo.style.display = "block";
-      communicationInfo.style.display = "none";
-      businessInfo.style.display = "none";
-      paymentInfo.style.display = "none";
-    } else if(tabName == "communiationInfoTab"){
-      personalInfo.style.display = "none";
-      basicInfo.style.display = "none";
-      socialInfo.style.display = "none";
-      communicationInfo.style.display = "block";
-      businessInfo.style.display = "none";
-      paymentInfo.style.display = "none";
-    } else if(tabName == "businessInfoTab"){
-      personalInfo.style.display = "none";
-      basicInfo.style.display = "none";
-      socialInfo.style.display = "none";
-      communicationInfo.style.display = "none";
-      businessInfo.style.display = "block";
-      paymentInfo.style.display = "none";
-    } else if(tabName == "paymentInfoTab"){
-      personalInfo.style.display = "none";
-      basicInfo.style.display = "none";
-      socialInfo.style.display = "none";
-      communicationInfo.style.display = "none";
-      businessInfo.style.display = "none";
-      paymentInfo.style.display = "block";
-    }
-  }
-
   // Function to set the image URL stored in variable to the card image in preview panel.
   setImage() {
     var cardImage = document.getElementById("cardImage");
@@ -121,108 +68,53 @@ export class EditCardComponent implements OnInit {
   //Array storing all the socials
   socials:string[] = ["twitter","instagram","linkedin","facebook","snapchat","tiktok","twitch","yelp","youtube"];
 
-  //Variable to store the card's data. Needs to be overridden by the data fetched from API call.
-  data = {
-    "Name": "",
-    "Job_title": "",
-    "Department": "",
-    "Company_name": "",
-    "Accreditations": "",
-    "Headline": "",
-    "Email": "",
-    "Phone": "",
-    "Company_URL": "",
-    "Link": "",
-    "Address": "",
-    "Twitter": "",
-    "Instagram": "",
-    "Linkedin": "",
-    "Facebook": "",
-    "Youtube": "",
-    "Snapchat": "",
-    "Tiktok": "",
-    "Twitch": "",
-    "Yelp": "",
-    "Whatsapp": "",
-    "Signal_link": "",
-    "Discord": "",
-    "Skype": "",
-    "Telegram": "",
-    "Github": "",
-    "Calendly": "",
-    "Paypal": "",
-    "Image": ""
-  }
+ // Variable to store card data recovered via API.
+ data = {
+  "Batch": "",
+  "CardID": "",
+  "UserID": "",
+  "Name": "",
+  "Job_title": "",
+  "Department": "",
+  "Company_name": "",
+  "Accreditations": "",
+  "Headline": "",
+  "Email": "",
+  "Phone": "",
+  "Company_URL": "",
+  "Link": "",
+  "Address": "",
+  "Twitter": "",
+  "Instagram": "",
+  "Linkedin": "",
+  "Facebook": "",
+  "Youtube": "",
+  "Snapchat": "",
+  "Tiktok": "",
+  "Twitch": "",
+  "Yelp": "",
+  "Whatsapp": "",
+  "Discord": "",
+  "Signal_link": "",
+  "Telegram": "",
+  "Calendly": "",
+  "Github": "",
+  "Paypal": "",
+  "Skype": "",
+  "Image": "",
+  "Published": "",
+  "Created_date": "",
+  "Reg_date": "",
+  "Status": "",
+  "Type": "",
+  "Created_by": ""
+}
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
   cookie = {
     headers:{
       cki: this.cookieService.get("jwt")
     } 
-  }
-
-  //Function to show information input window. Takes the block name as parameter from to save the data in the relevant slot.
-  showInputWind(blockName:string) {
-    this.currentBlockName = blockName;
-
-    const warning1 = document.getElementById("warning1");
-    
-    var inputWind = document.getElementById("inputWind");
-    const inputArea = document.getElementById("textArea") as HTMLInputElement;
-    inputWind!.style.display = "block";
-    inputArea.focus();
-    var temp = this.data[blockName as keyof typeof this.data];
-    inputArea.value = temp;
-
-    if(this.currentBlockName == "Accreditations") {
-      warning1!.style.display = "block";
-    }
-    else{
-      warning1!.style.display = "none";
-    }
-  }
-
-  //Function to show image upload window.
-  showImageInputWind() {
-    var inputWind = document.getElementById("imageInputWind");
-    inputWind!.style.display = "block";
-  }
-
-  //Function responsive for live preview of the entered information. To be called in the key-press event of input field. 
-  updatePreview() {
-    const inputArea = document.getElementById("textArea") as HTMLInputElement;
-    var temp = inputArea.value;
-    this.data[this.currentBlockName as keyof typeof this.data] = temp;
-  }
-
-  //Function to save entered details close the input window.
-  closeWind() {
-    var inputWind = document.getElementById("inputWind");
-    const inputArea = document.getElementById("textArea") as HTMLInputElement;
-    var temp = inputArea.value;
-    this.data[this.currentBlockName as keyof typeof this.data] = temp;
-    inputWind!.style.display = "none";
-
-    if(this.currentBlockName == "Accreditations") {
-      if(temp != ""){
-        this.accreds = inputArea.value.split(',');
-      }
-    }
-  }
-
-  //Function to upload selected image and close the upload window for card banner/logo.
-  //Will upload image using service and then close the window.
-  //BROKEN BROKEN BROKEN
-  closeUploadWind() {
-    var uploadWind = document.getElementById("imageInputWind");
-    //BROKEN BROKEN BROKEN ----- CODE NEEDS TO BE HERE
-    uploadWind!.style.display = "none";
-  }
-
-  //Function to be called when user clicks on links. 
-  //NOT WORKING NOT WORKING NOT WORKING
-  openUrl(service:string) {
-    window.open(this.data[service as keyof typeof this.data], "_blank");
   }
 
   //Function to get card data using API call with card ID as query.
@@ -234,22 +126,6 @@ export class EditCardComponent implements OnInit {
       this.data = response.data[0];
 
       this.loadCardImage();
-
-      //SCRAP CODE SCRAP CODE SCRAP CODE ----- NEEDS TO BE REMOVED
-      if(this.data.Signal_link == "null" || this.data.Signal_link == null) {
-        this.data.Signal_link = "";
-      }
-      if(this.data.Github == "null" || this.data.Github == null) {
-        this.data.Github = "";
-      }
-      if(this.data.Calendly == "null" || this.data.Calendly == null) {
-        this.data.Calendly = "";
-      }
-      if(this.data.Paypal == "null" || this.data.Paypal == null) {
-        this.data.Paypal = "";
-      }
-
-      console.log(this.data);
     })
     .catch((error) => {
       console.log(error);
@@ -257,18 +133,7 @@ export class EditCardComponent implements OnInit {
     })
   }
 
-  //Function to removed unnecessary items from the data set to be uploaded.
-  filterData() {
-    delete this.data["CardID"];
-    delete this.data["Department"];
-    delete this.data["Headline"];
-    delete this.data["Image"];
-    delete this.data["UserID"];
-  }
-
   updateCard(cardId:String) {
-    this.filterData();
-
     axios.put('http://34.131.186.218/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
     .then ((response) => {
       this.uploadImage();
