@@ -49,7 +49,6 @@ export class InventoryComponent implements OnInit {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards', this.cookie)
     .then((response) => {
       this.responseData = response.data.data;
-      console.log(this.responseData);
     })
     .catch((error) => {
       console.log(error);

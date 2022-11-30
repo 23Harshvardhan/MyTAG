@@ -20,8 +20,11 @@ export class EditCardComponent implements OnInit {
   //Empty variable to store card ID from URL query.
   cardId;
 
+  // Empty variable to store user ID from data received over API.
+  userId;
+
   file;
-  imageUrl = "";
+  imageUrl = "http://34.131.186.218/v1/images/default.jpg";
 
   // Event function to be called when a new image is selected for banner using dialog.
   // This function reads the selected file and converts it into base64 and stores it in image URL variable.
@@ -48,14 +51,13 @@ export class EditCardComponent implements OnInit {
     this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
     
     //Calls the function with card ID as parameter to get data from the relevant card.
-    // this.getData(this.cardId);
+    this.getData(this.cardId);
   }
 
   // Function to load the card image into preview card.
   loadCardImage() {
     if(this.data.Image != "" || this.data.Image != null) {
-      var cardImg = document.getElementById("cardImage");
-      cardImg.style.backgroundImage = "url('http://34.131.186.218/v1/" + this.data.Image + "')";
+      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Image;
     }
   }
 
@@ -120,12 +122,13 @@ export class EditCardComponent implements OnInit {
   //Function to get card data using API call with card ID as query.
   //On success will return entered details of the card which was requested and on fail will log error in console and slow alert.
   getData(cardId:string) {
-    axios.get('http://34.131.186.218/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
+    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
-      this.data = response.data[0];
-
+      this.data = response.data.data[0]
       this.loadCardImage();
+
+      this.userId = this.data.UserID;
     })
     .catch((error) => {
       console.log(error);
@@ -133,8 +136,8 @@ export class EditCardComponent implements OnInit {
     })
   }
 
-  updateCard(cardId:String) {
-    axios.put('http://34.131.186.218/v1/api/activities/card_data/updatecard?id=' + cardId, {data: this.data}, this.cookie)
+  updateCard(cardId:String, userId:string) {
+    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: this.data, UserID: userId}, this.cookie)
     .then ((response) => {
       this.uploadImage();
     })

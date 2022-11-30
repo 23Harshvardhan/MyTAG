@@ -4,19 +4,16 @@
             <div class="container cardNavArea">
                 <input type="button" value="Add Image" class="btn1">
                 <img class="logo hidden" src="../../assets/img/logo.jpg">
-                <input type="button" value="Save" class="btn2">
+                <input type="button" value="Save" class="btn2" (click)="updateCard(cardId, userId)">
             </div>
 
             <div class="container cardHeadArea">
-                <img class="profilePic hidden" src="../../assets/img/logo.jpg">
-                <div class="profilePicBtn">
-                    <p>Add Image</p>
-                </div>
+                <img class="profilePic" id="profilePic" [src]="imageUrl" loading="lazy">
 
                 <div class="nameDetailsPnl">
-                    <input class="nameField" id="name" placeholder="Enter Name" value="">
-                    <input class="designationField" id="designation" placeholder="Enter Designation" value="">
-                    <input class="companyField" id="company" placeholder="Enter Company" value="">
+                    <input class="nameField" id="name" placeholder="Enter Name" value={{data.Name}}>
+                    <input class="designationField" id="designation" placeholder="Enter Designation" value={{data.Job_title}}>
+                    <input class="companyField" id="company" placeholder="Enter Company" value={{data.Company_name}}>
                 </div>
             </div>
 
@@ -26,29 +23,29 @@
             </div>
 
             <div class="container descArea">
-                <textarea class="descField" id="desc" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft"></textarea>
+                <textarea class="descField" id="desc" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft">{{data.Headline}}</textarea>
             </div>
 
             <div class="container basicContactArea">
                 <p class="lable">Contact No</p>
                 <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="phone" placeholder="Your number" value="">
+                <input type="text" class="inputField" id="phone" placeholder="Your number" value={{data.Phone}}>
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Email</p>
                 <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="email" placeholder="yourmail@service.com" value="">
+                <input type="text" class="inputField" id="email" placeholder="yourmail@service.com" value={{data.Email}}>
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Website</p>
-                <input type="text" class="inputField" id="website" placeholder="www.yourwebsite.com" value="">
+                <input type="text" class="inputField" id="website" placeholder="www.yourwebsite.com" value={{data.Link}}>
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Address</p>
-                <textarea class="inputField" id="desc" placeholder="Your address" rows="3" maxlength="125" wrap="soft"></textarea>
+                <textarea class="inputField" id="desc" placeholder="Your address" rows="3" maxlength="125" wrap="soft">{{data.Address}}</textarea>
             </div> 
         </div>
     </div>
