@@ -26,17 +26,23 @@ export class EditCardComponent implements OnInit {
   file:File;
   imageUrl = "http://34.131.186.218/v1/images/default.jpg";
 
+  formdata = new FormData();
+
   // Event function to be called when a new image is selected for banner using dialog.
   // This function reads the selected file and converts it into base64 and stores it in image URL variable.
   onFileSelected(event) {
     if(event.target.files.length > 0) {
-      this.file = event.target.files[0];
-      var reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload=(event:any) => {
-        this.imageUrl = event.target.result;
-      }
+      let file = event.target.files[0];
+      // var reader = new FileReader();
+      // reader.readAsDataURL(this.file);
+      // reader.onload=(event:any) => {
+      //   this.imageUrl = event.target.result;
+      // }
+
+      this.formdata.append("media", file);
     }
+
+    console.log(this.formdata)
   }
 
   selectFile() {
@@ -212,10 +218,9 @@ export class EditCardComponent implements OnInit {
   }
 
   uploadImage() {
-    var data = new FormData();
+    console.log(this.formdata);
     if(this.file != null) {
-      data.append('media', this.file);
-      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, data, this.cookie)
+      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, this.formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/inventory']);
       })

@@ -8,9 +8,9 @@
             </div>
 
             <div class="container cardHeadArea">
-                <img class="profilePic" id="profilePic" [src]="imageUrl">
+                <img class="profilePic" id="profilePic" [src]="imageUrl" (click)="selectFile()">
                 <!-- (click)="selectFile()" -->
-                <input type="file" id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
+                <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
 
                 <div class="nameDetailsPnl">
                     <input class="nameField" id="Name" placeholder="Enter Name" value={{data.Name}} (keyup)="selectField('Name')">
