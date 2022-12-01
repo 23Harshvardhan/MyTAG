@@ -111,6 +111,10 @@
     background-size: cover;
 }
 
+.profilePic:hover {
+    cursor: pointer;
+}
+
 .profilePicBtn {
     display: flex;
     justify-content: center;

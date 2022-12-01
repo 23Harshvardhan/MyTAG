@@ -23,7 +23,7 @@ export class EditCardComponent implements OnInit {
   // Empty variable to store user ID from data received over API.
   userId;
 
-  file;
+  file:File;
   imageUrl = "http://34.131.186.218/v1/images/default.jpg";
 
   // Event function to be called when a new image is selected for banner using dialog.
@@ -35,15 +35,13 @@ export class EditCardComponent implements OnInit {
       reader.readAsDataURL(this.file);
       reader.onload=(event:any) => {
         this.imageUrl = event.target.result;
-        this.setImage();
       }
     }
   }
 
-  // Function to set the image URL stored in variable to the card image in preview panel.
-  setImage() {
-    var cardImage = document.getElementById("cardImage");
-    cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
+  selectFile() {
+    var fileUpload = document.getElementById("FileUpload1");
+    fileUpload.click();
   }
 
   ngOnInit(): void {
@@ -70,53 +68,90 @@ export class EditCardComponent implements OnInit {
   //Array storing all the socials
   socials:string[] = ["twitter","instagram","linkedin","facebook","snapchat","tiktok","twitch","yelp","youtube"];
 
- // Variable to store card data recovered via API.
- data = {
-  "Batch": "",
-  "CardID": "",
-  "UserID": "",
-  "Name": "",
-  "Job_title": "",
-  "Department": "",
-  "Company_name": "",
-  "Accreditations": "",
-  "Headline": "",
-  "Email": "",
-  "Phone": "",
-  "Company_URL": "",
-  "Link": "",
-  "Address": "",
-  "Twitter": "",
-  "Instagram": "",
-  "Linkedin": "",
-  "Facebook": "",
-  "Youtube": "",
-  "Snapchat": "",
-  "Tiktok": "",
-  "Twitch": "",
-  "Yelp": "",
-  "Whatsapp": "",
-  "Discord": "",
-  "Signal_link": "",
-  "Telegram": "",
-  "Calendly": "",
-  "Github": "",
-  "Paypal": "",
-  "Skype": "",
-  "Image": "",
-  "Published": "",
-  "Created_date": "",
-  "Reg_date": "",
-  "Status": "",
-  "Type": "",
-  "Created_by": ""
-}
+  // Variable to store card data recovered via API.
+  data = {
+    "CardID": "",
+    "UserID": "",
+    "Name": "",
+    "Job_title": "",
+    "Department": "",
+    "Company_name": "",
+    "Accreditations": "",
+    "Headline": "",
+    "Email": "",
+    "Phone": "",
+    "Company_URL": "",
+    "Link": "",
+    "Address": "",
+    "Twitter": "",
+    "Instagram": "",
+    "Linkedin": "",
+    "Facebook": "",
+    "Youtube": "",
+    "Snapchat": "",
+    "Tiktok": "",
+    "Twitch": "",
+    "Yelp": "",
+    "Whatsapp": "",
+    "Discord": "",
+    "Signal_link": "",
+    "Telegram": "",
+    "Calendly": "",
+    "Github": "",
+    "Paypal": "",
+    "Skype": "",
+    "Image": "",
+    "Published": "",
+    "Created_date": "",
+    "Reg_date": "",
+    "Status": "",
+    "Type": "",
+    "Created_by": ""
+  }
+
+  // editedData = {
+    // "Name": this.data.Name,
+    // "Job_title": this.data.Job_title,
+    // "Department": this.data.Department,
+    // "Company_name": this.data.Company_name,
+    // "Accreditations": this.data.Accreditations,
+    // "Headline": this.data.Headline,
+    // "Email": this.data.Email,
+    // "Phone": this.data.Phone,
+    // "Company_URL": this.data.Company_URL,
+    // "Link": this.data.Link,
+    // "Address": this.data.Address,
+    // "Twitter": this.data.Twitter,
+    // "Instagram": this.data.Instagram,
+    // "Linkedin": this.data.Linkedin,
+    // "Facebook": this.data.Facebook,
+    // "Youtube": this.data.Youtube,
+    // "Snapchat": this.data.Snapchat,
+    // "Tiktok": this.data.Tiktok,
+    // "Twitch": this.data.Twitch,
+    // "Yelp": this.data.Yelp,
+    // "Whatsapp": this.data.Whatsapp,
+    // "Discord": this.data.Discord,
+    // "Signal_link": this.data.Signal_link,
+    // "Telegram": this.data.Telegram,
+    // "Calendly": this.data.Calendly,
+    // "Github": this.data.Github,
+    // "Paypal": this.data.Paypal,
+    // "Skype": this.data.Skype
+  // }
 
   //Stores cookies responsible for login and user verification. Required almost everytime while sending POST or GET request.
   cookie = {
     headers:{
       cki: this.cookieService.get("jwt")
     } 
+  }
+
+  selectField(blockName:string) {
+    this.currentBlockName = blockName;
+
+    var inputField = document.getElementById(blockName) as HTMLInputElement;
+    this.data[blockName as keyof typeof this.data] = inputField.value;
   }
 
   //Function to get card data using API call with card ID as query.
@@ -137,7 +172,36 @@ export class EditCardComponent implements OnInit {
   }
 
   updateCard(cardId:String, userId:string) {
-    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: this.data, UserID: userId}, this.cookie)
+    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Name": this.data.Name,
+      "Job_title": this.data.Job_title,
+      "Department": this.data.Department,
+      "Company_name": this.data.Company_name,
+      "Accreditations": this.data.Accreditations,
+      "Headline": this.data.Headline,
+      "Email": this.data.Email,
+      "Phone": this.data.Phone,
+      "Company_URL": this.data.Company_URL,
+      "Link": this.data.Link,
+      "Address": this.data.Address,
+      "Twitter": this.data.Twitter,
+      "Instagram": this.data.Instagram,
+      "Linkedin": this.data.Linkedin,
+      "Facebook": this.data.Facebook,
+      "Youtube": this.data.Youtube,
+      "Snapchat": this.data.Snapchat,
+      "Tiktok": this.data.Tiktok,
+      "Twitch": this.data.Twitch,
+      "Yelp": this.data.Yelp,
+      "Whatsapp": this.data.Whatsapp,
+      "Discord": this.data.Discord,
+      "Signal_link": this.data.Signal_link,
+      "Telegram": this.data.Telegram,
+      "Calendly": this.data.Calendly,
+      "Github": this.data.Github,
+      "Paypal": this.data.Paypal,
+      "Skype": this.data.Skype
+    }, UserID: userId}, this.cookie)
     .then ((response) => {
       this.uploadImage();
     })
@@ -150,11 +214,10 @@ export class EditCardComponent implements OnInit {
   uploadImage() {
     var formdata = new FormData();
     if(this.file != null) {
-      formdata.append('', this.file);
-
-      axios.put('http://34.131.186.218/v1/api/activities/card_data/updateimage?id=' + this.cardId, formdata, this.cookie)
+      formdata.append('media', this.file);
+      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
-        this.router.navigate(['/userDashboard']);
+        this.router.navigate(['/inventory']);
       })
       .catch((error) => {
         console.log(error);
@@ -162,12 +225,12 @@ export class EditCardComponent implements OnInit {
       })
     }
     else {
-      this.router.navigate(['/userDashboard']);
+      this.router.navigate(['/inventory']);
     }
   }
 
   //Function called by back button to go back to dashboard.
   backToDash() {
-    this.router.navigate(['/userDashboard']);
+    this.router.navigate(['/inventory']);
   }
 }

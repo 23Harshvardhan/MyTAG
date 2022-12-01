@@ -8,12 +8,14 @@
             </div>
 
             <div class="container cardHeadArea">
-                <img class="profilePic" id="profilePic" [src]="imageUrl" loading="lazy">
+                <img class="profilePic" id="profilePic" [src]="imageUrl"  >
+                <!-- (click)="selectFile()" -->
+                <input type="file" id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
 
                 <div class="nameDetailsPnl">
-                    <input class="nameField" id="name" placeholder="Enter Name" value={{data.Name}}>
-                    <input class="designationField" id="designation" placeholder="Enter Designation" value={{data.Job_title}}>
-                    <input class="companyField" id="company" placeholder="Enter Company" value={{data.Company_name}}>
+                    <input class="nameField" id="Name" placeholder="Enter Name" value={{data.Name}} (keyup)="selectField('Name')">
+                    <input class="designationField" id="Job_title" placeholder="Enter Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
+                    <input class="companyField" id="Company_name" placeholder="Enter Company" value={{data.Company_name}} (keyup)="selectField('Company_name')">
                 </div>
             </div>
 
@@ -23,29 +25,29 @@
             </div>
 
             <div class="container descArea">
-                <textarea class="descField" id="desc" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft">{{data.Headline}}</textarea>
+                <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
             </div>
 
             <div class="container basicContactArea">
                 <p class="lable">Contact No</p>
                 <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="phone" placeholder="Your number" value={{data.Phone}}>
+                <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')">
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Email</p>
                 <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="email" placeholder="yourmail@service.com" value={{data.Email}}>
+                <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')">
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Website</p>
-                <input type="text" class="inputField" id="website" placeholder="www.yourwebsite.com" value={{data.Link}}>
+                <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')">
             </div> 
 
             <div class="container basicContactArea">
                 <p class="lable">Address</p>
-                <textarea class="inputField" id="desc" placeholder="Your address" rows="3" maxlength="125" wrap="soft">{{data.Address}}</textarea>
+                <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
             </div> 
         </div>
     </div>
