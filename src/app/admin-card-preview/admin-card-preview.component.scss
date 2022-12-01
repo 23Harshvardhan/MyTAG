@@ -15,15 +15,17 @@ $foregroundColor: white;
 
 .body {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 2px);
+    min-height: 837px;
     display: flex;
-    background-color: rgb(199, 199, 199);
+    border-bottom: 2px solid black;
 }
 
 .contentArea {
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
 }
 
 .horizontalNavArea {
@@ -42,12 +44,17 @@ $foregroundColor: white;
 }
 
 .cardsPanel {
-    width: 100%; 
-    height: 100%;
     display: flex;
-    margin: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards {
+    display: flex;
     gap: 50px;
     flex-wrap: wrap;
+    width: 95%;
+    height: 90%;
 }
 
 .pnl {

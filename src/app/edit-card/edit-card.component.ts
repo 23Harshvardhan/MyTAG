@@ -212,10 +212,10 @@ export class EditCardComponent implements OnInit {
   }
 
   uploadImage() {
-    var formdata = new FormData();
+    var data = new FormData();
     if(this.file != null) {
-      formdata.append('media', this.file);
-      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, formdata, this.cookie)
+      data.append('media', this.file);
+      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, data, this.cookie)
       .then((response) => {
         this.router.navigate(['/inventory']);
       })
