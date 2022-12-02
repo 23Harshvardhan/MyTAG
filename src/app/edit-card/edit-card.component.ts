@@ -33,11 +33,11 @@ export class EditCardComponent implements OnInit {
   onFileSelected(event) {
     if(event.target.files.length > 0) {
       let file = event.target.files[0];
-      // var reader = new FileReader();
-      // reader.readAsDataURL(this.file);
-      // reader.onload=(event:any) => {
-      //   this.imageUrl = event.target.result;
-      // }
+      var reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
+        this.imageUrl = event.target.result;
+      }
 
       this.formdata.append("media", file);
     }
