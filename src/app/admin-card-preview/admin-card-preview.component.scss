@@ -250,7 +250,6 @@ $foregroundColor: white;
 }
 
 .intel {
-    font-size: 12px;
     margin-top: -15px;
 }
 
@@ -314,9 +313,8 @@ $foregroundColor: white;
     height: 90%;
 }
 
-#cardHeadArea {
+#cardHeadArea, #basicDetailArea {
     width: 95%;
-    background-color: white;
 }
 
 .white {
@@ -385,12 +383,19 @@ $foregroundColor: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
 
 .editBodyArea {
     display: flex;
     flex-direction: column;
     width: 95%;
+}
+
+.editBtnArea {
+    display: flex;
+    width: 95%;
+    justify-content: flex-end;
 }
 
 .editBtn {

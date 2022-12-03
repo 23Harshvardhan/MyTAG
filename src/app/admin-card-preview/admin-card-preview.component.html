@@ -19,7 +19,7 @@
 </div>
 
 <div class="body">
-    <div class="area"></div>
+    <div class="area" style="width: 60px;"></div>
     <app-admin-vert-navbar></app-admin-vert-navbar>
     
     <div class="contentArea">
@@ -57,6 +57,11 @@
                         <input type="button" value="Exchange Contact" class="primaryBtn">
                     </div>
 
+                    <div class="container descArea">
+                        <p class="descField">{{data.Headline}}</p>
+                        <!-- <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea> -->
+                    </div>
+
                     <div id="cardHeadArea" class="hidden">
                         <div class="container cardHeadEditArea" id="cardHeadArea">
                             <div class="saveBtnArea">
@@ -70,35 +75,58 @@
                                 <input class="inputField" id="Job_title" placeholder="Your Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
                                 <h4>Company Name</h4>
                                 <input class="inputField" id="Company_name" placeholder="Your Company Name" value={{data.Company_name}} (keyup)="selectField('Company_name')">
+                                <h4>Headline</h4>
+                                <textarea class="inputField" maxlength="96" id="Headline" placeholder="Enter Headline" rows="2" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
                             </div>
                         </div>
                     </div>
-        
-                    <div class="container descArea">
-                        <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
+                    <div class="editBtnArea">
+                        <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                     </div>
-        
                     <div class="container basicContactArea">
                         <p class="lable">Contact No</p>
-                        <p class="intel">Use , to seperate multiple numbers.</p>
-                        <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                        <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
+                        <!-- <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')"> -->
+                        <p class="intel">{{data.Phone}}</p>
                     </div> 
         
                     <div class="container basicContactArea">
                         <p class="lable">Email</p>
-                        <p class="intel">Use , to seperate multiple numbers.</p>
-                        <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')">
+                        <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
+                        <!-- <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')"> -->
+                        <p class="intel">{{data.Email}}</p>
                     </div> 
         
                     <div class="container basicContactArea">
                         <p class="lable">Website</p>
-                        <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')">
+                        <!-- <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')"> -->
+                        <p class="intel">{{data.Link}}</p>
                     </div> 
         
                     <div class="container basicContactArea">
                         <p class="lable">Address</p>
-                        <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
+                        <!-- <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
+                        <p class="intel">{{data.Address}}</p>
                     </div> 
+
+                    <div id="basicDetailArea" class="hidden">
+                        <div class="container cardHeadEditArea" id="basicDetailArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
+                            </div>
+                            <h3 class="editHeading">Edit your Basic Details</h3>
+                            <div class="editBodyArea">
+                                <h4>Contact No</h4>
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <h4>Email</h4>
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <h4>Website</h4>
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <h4>Address</h4>
+                                <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- <div class="pnl">

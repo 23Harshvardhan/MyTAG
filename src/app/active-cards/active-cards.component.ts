@@ -50,9 +50,21 @@ export class ActiveCardsComponent implements OnInit {
         var firstName = fullName[0];
         var lastName = fullName[1];
 
+        if(lastName == null) {
+          lastName = "-";
+        }
+
+        var type:string = "-";
+
+        if(element.Type == null) {
+          this.card.Type = type;
+        }
+        else {
+          this.card.Type = element.Type;
+        }
+
         this.card.CardID = element.CardID;
         this.card.Reg_date = element.Reg_date;
-        this.card.Type = element.Type;
         this.card.AccountID = element.UserID;
         this.card.FirstName = firstName;
         this.card.LastName = lastName;
