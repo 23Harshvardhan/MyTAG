@@ -19,6 +19,7 @@
 </div>
 
 <div class="body">
+    <div class="area"></div>
     <app-admin-vert-navbar></app-admin-vert-navbar>
     
     <div class="contentArea">
@@ -31,7 +32,76 @@
 
         <div class="cardsPanel">
             <div class="cards">
-                <div class="pnl">
+                <div class="card">
+                    <div class="container cardNavArea">
+                        <input type="button" value="Add Image" class="btn1">
+                        <img class="logo hidden" src="../../assets/img/logo.jpg">
+                        <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
+                        <!-- <input type="button" value="Save" class="btn2" (click)="updateCard(cardId, userId)"> -->
+                    </div>
+        
+                    <div class="container cardHeadArea">
+                        <img class="profilePic" id="profilePic" [src]="imageUrl" (click)="selectFile()">
+                        <!-- (click)="selectFile()" -->
+                        <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
+        
+                        <div class="nameDetailsPnl">
+                            <h3 class="nameField">{{data.Name}}</h3>
+                            <h5 class="designationField">{{data.Job_title}}</h5>
+                            <h5 class="companyField">{{data.Company_name}}</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="container shareArea">
+                        <input type="button" value="Save Contact" class="secondaryBtn">
+                        <input type="button" value="Exchange Contact" class="primaryBtn">
+                    </div>
+
+                    <div id="cardHeadArea" class="hidden">
+                        <div class="container cardHeadEditArea" id="cardHeadArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
+                            </div>
+                            <h3 class="editHeading">Edit your Card Header</h3>
+                            <div class="editBodyArea">
+                                <h4>Name</h4>
+                                <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')">
+                                <h4>Designation</h4>
+                                <input class="inputField" id="Job_title" placeholder="Your Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
+                                <h4>Company Name</h4>
+                                <input class="inputField" id="Company_name" placeholder="Your Company Name" value={{data.Company_name}} (keyup)="selectField('Company_name')">
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="container descArea">
+                        <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
+                    </div>
+        
+                    <div class="container basicContactArea">
+                        <p class="lable">Contact No</p>
+                        <p class="intel">Use , to seperate multiple numbers.</p>
+                        <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                    </div> 
+        
+                    <div class="container basicContactArea">
+                        <p class="lable">Email</p>
+                        <p class="intel">Use , to seperate multiple numbers.</p>
+                        <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')">
+                    </div> 
+        
+                    <div class="container basicContactArea">
+                        <p class="lable">Website</p>
+                        <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')">
+                    </div> 
+        
+                    <div class="container basicContactArea">
+                        <p class="lable">Address</p>
+                        <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
+                    </div> 
+                </div>
+
+                <!-- <div class="pnl">
                     <img [src]="cardImg" class="cardImg">
 
                     <div class="cardInfo">
@@ -41,30 +111,26 @@
                     </div>
 
                     <button class="btn" (click)="editCard()">Edit Card</button>
-                </div>
-                
-                <div class="pnl">
-                    <qrcode [qrdata]="cardViewLink" [width]="280" [errorCorrectionLevel]="'M'"></qrcode>
+                </div> -->
+                <div class="flexColumn">
 
-                    <div class="cardInfo">
-                        <div class="userName">QR Code</div>
+                    <div class="pnl sigPnl">
+                        <div class="cardInfo">
+                            <div class="userName">Email Signature</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="pnl">
-                    <div class="cardInfo">
-                        <div class="userName">Email Signature</div>
-                    </div>
-                </div>
-
-                <div class="pnl">
-                    <canvas baseChart width="400" height="400"
-                    [data]="lineChartData"
-                    [options]="lineChartOptions"
-                    [type]="lineChartType"></canvas>
-
-                    <div class="cardInfo">
-                        <div class="userName">Analytics</div>
+                    <div class="flexRow">
+                        <div class="pnl">
+                            <qrcode [qrdata]="cardViewLink" [width]="280" [errorCorrectionLevel]="'M'"></qrcode>
+                        </div>
+        
+                        <div class="pnl">
+                            <canvas baseChart width="400" height="400"
+                            [data]="lineChartData"
+                            [options]="lineChartOptions"
+                            [type]="lineChartType"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 
 .spacing {
   padding: 20px;
@@ -87,7 +87,7 @@ body{
   h1,h2,h3,h4,h5{
     margin: 0px;
     padding: $card_head_padding;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 700;
     font-size: 30px;
     color: $black;
@@ -111,7 +111,7 @@ body{
   
   p{
     margin: $card-padding-basis 0px 0px 0px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 500;
     letter-spacing: -0.25px;
     line-height: 1.25;

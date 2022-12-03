@@ -8,7 +8,7 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 
 .body {
     background-color: $backgroundAccentColor;
@@ -28,7 +28,7 @@ $foregroundColor: white;
 
 // Content Section
 .hero-caption {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-size: 50px;
     text-align: center;
     margin-top: 200px;
@@ -36,7 +36,7 @@ $foregroundColor: white;
 }
 
 .hero-desc {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 300;
     font-size: 18px;
     text-align: justify;
@@ -62,7 +62,7 @@ $foregroundColor: white;
 .btn {
     background-color: $primaryColor;
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: bold;
     padding: 15px 20px;
     border-radius: 5px;
@@ -179,7 +179,7 @@ $foregroundColor: white;
         font-size: 25px;
         font-weight: 400;
         text-align: center;
-        font-family: 'Lato', sans-serif;
+        font-family: 'SourceSansProRegular', sans-serif;
    }
     .overlay ul {
         list-style: none;

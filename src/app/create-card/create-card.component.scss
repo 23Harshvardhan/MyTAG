@@ -210,11 +210,14 @@
 
 
 // // Imports Section
-// @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+// @font-face {
+    font-family: SourceSansProRegular;
+    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+  }
 // @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 // * {
-//     font-family: 'Lato', sans-serif;
+//     font-family: 'SourceSansProRegular', sans-serif;
 // }
 
 // .gap {
@@ -223,7 +226,7 @@
 
 // .body {
 //     display: flex;
-//     font-family: 'Lato', sans-serif;
+//     font-family: 'SourceSansProRegular', sans-serif;
 //     height: 100vh;
 //     width: 100%;
 // }

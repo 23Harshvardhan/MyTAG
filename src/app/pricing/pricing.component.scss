@@ -8,7 +8,7 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 
 
 
@@ -40,13 +40,13 @@ $foregroundColor: white;
 }
 
 .topic-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 500;
     font-size: 70px;
 }
 
 .topic-caption {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 300;
     font-size: 20px;
 }
@@ -72,13 +72,13 @@ $foregroundColor: white;
 }
 
 .pricingTitle {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     text-align: center;
     font-size: 40px;
 }
 
 .pricingDesc {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     text-align: justify;
     font-size: 20px;
 }
@@ -91,7 +91,7 @@ $foregroundColor: white;
     color: #e9f4fb;
     cursor: pointer;
     outline: none;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-family: 400;
     padding: 10px 10px;
     transition: 0.5s;

@@ -8,19 +8,19 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 
 
 
 // Content Section
 .hero-caption {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-size: 50px;
     color: $primaryColor;
 }
 
 .hero-desc {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 300;
     font-size: 18px;
     text-align: justify;
@@ -51,13 +51,13 @@ $foregroundColor: white;
 }
 
 .topic-title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 500;
     font-size: 70px;
 }
 
 .topic-caption {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-weight: 300;
     font-size: 20px;
 }

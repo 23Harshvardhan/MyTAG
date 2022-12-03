@@ -39,7 +39,6 @@ export class AdminCardPreviewComponent implements OnInit{
 
   // Variable to store card data recovered via API.
   data = {
-    "Batch": "",
     "CardID": "",
     "UserID": "",
     "Name": "",
@@ -130,7 +129,103 @@ export class AdminCardPreviewComponent implements OnInit{
 
   ngOnInit(): void {
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
-    this.getCardData();
+    this.getData(this.cardID);
+  }
+
+  currentBlockName:string;
+  file:File;
+  userId:string;
+  formdata = new FormData();
+  imageUrl = "http://34.131.186.218/v1/images/default.jpg";
+
+  selectFile() {
+    var fileUpload = document.getElementById("FileUpload1");
+    fileUpload.click();
+  }
+
+  toggleEditField(field:string) {
+    var fieldToToggle = document.getElementById(field);
+    fieldToToggle.classList.toggle("hidden");
+  }
+
+  updateCard(cardId:String, userId:string) {
+    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Name": this.data.Name,
+      "Job_title": this.data.Job_title,
+      "Department": this.data.Department,
+      "Company_name": this.data.Company_name,
+      "Accreditations": this.data.Accreditations,
+      "Headline": this.data.Headline,
+      "Email": this.data.Email,
+      "Phone": this.data.Phone,
+      "Company_URL": this.data.Company_URL,
+      "Link": this.data.Link,
+      "Address": this.data.Address,
+      "Twitter": this.data.Twitter,
+      "Instagram": this.data.Instagram,
+      "Linkedin": this.data.Linkedin,
+      "Facebook": this.data.Facebook,
+      "Youtube": this.data.Youtube,
+      "Snapchat": this.data.Snapchat,
+      "Tiktok": this.data.Tiktok,
+      "Twitch": this.data.Twitch,
+      "Yelp": this.data.Yelp,
+      "Whatsapp": this.data.Whatsapp,
+      "Discord": this.data.Discord,
+      "Signal_link": this.data.Signal_link,
+      "Telegram": this.data.Telegram,
+      "Calendly": this.data.Calendly,
+      "Github": this.data.Github,
+      "Paypal": this.data.Paypal,
+      "Skype": this.data.Skype
+    }, UserID: userId}, this.cookie)
+    .then ((response) => {
+      this.uploadImage();
+      window.location.reload();
+    })
+    .catch ((error) => {
+      console.log(error);
+      alert("There was a problem. Please try again later.");
+    })
+  }
+
+  uploadImage() {
+    console.log(this.formdata);
+    if(this.file != null) {
+      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, this.formdata, this.cookie)
+      .then((response) => {
+        this.router.navigate(['/inventory']);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("There was an error updating card image. Please send console log to developer.");
+      })
+    }
+    else {
+      this.router.navigate(['/inventory']);
+    }
+  }
+
+  onFileSelected(event) {
+    if(event.target.files.length > 0) {
+      let file = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
+        this.imageUrl = event.target.result;
+      }
+
+      this.formdata.append("media", file);
+    }
+
+    console.log(this.formdata)
+  }
+
+  selectField(blockName:string) {
+    this.currentBlockName = blockName;
+    var inputField = document.getElementById(blockName) as HTMLInputElement;
+    this.data[blockName as keyof typeof this.data] = inputField.value;
+    console.log(this.data);
   }
 
   toggleNav() {
@@ -144,16 +239,25 @@ export class AdminCardPreviewComponent implements OnInit{
     this.router.navigate(['/editCard/' + this.cardID]);
   }
 
-  getCardData() {
-    axios.get(this.APIurl + "api/admin/analytics/getcards?CardID=" + this.cardID, this.cookie)
-    .then((response) => {
-      this.data = response.data.data[0];
-      this.cardImg = this.APIurl + this.data.Image;
+  getData(cardId:string) {
+    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
+    .then ((response) => {
+      //Store the card data in data variable to be accessed from front end.
+      this.data = response.data.data[0]
+      this.loadCardImage();
+
+      this.userId = this.data.UserID;
     })
     .catch((error) => {
       console.log(error);
-      alert("There was an error. Please check console log.");
-    });
+      alert("There was an error! Please send console log to developer.");
+    })
+  }
+
+  loadCardImage() {
+    if(this.data.Image != "" || this.data.Image != null) {
+      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Image;
+    }
   }
 
 }

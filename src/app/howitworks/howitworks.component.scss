@@ -8,7 +8,7 @@ $foregroundColor: white;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 
 
 
@@ -19,7 +19,7 @@ $foregroundColor: white;
 }
 
 .title {
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     font-size: 50px;
     color: $primaryColor;
     text-align: center;
@@ -33,7 +33,7 @@ $foregroundColor: white;
 
 .step {
     color: $foregroundColor;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     text-align: center;
 }
 

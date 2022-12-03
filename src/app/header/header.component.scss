@@ -14,7 +14,7 @@ $button-width: 35px;
 
 
 // Imports Section
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Varela+Round);
 
 
@@ -24,7 +24,7 @@ $button-width: 35px;
     margin: 0;
     padding: 0;
     color: $foregroundColor;
-    font-family: 'Lato', sans-serif;
+    font-family: 'SourceSansProRegular', sans-serif;
     letter-spacing: 1px;
     font-weight: 300;
 }

@@ -73,6 +73,6 @@ export class InventoryComponent implements OnInit {
   }
 
   viewCard(CardID:string) {
-    this.router.navigate(['/editCard/' + CardID]);
+    this.router.navigate(['/adminCardPreview/' + CardID]);
   }
 }
