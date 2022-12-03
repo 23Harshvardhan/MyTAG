@@ -4,6 +4,8 @@ import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { CompressImageService } from '../compress-image.service';
+import {take} from 'rxjs/operators'
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -15,7 +17,8 @@ export class AdminCardPreviewComponent implements OnInit{
   constructor(
     private cookieService:CookieService,
     private activatedRouter:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private compressImage:CompressImageService
   ) {}
 
   // Variable to store recovered cookie from browser for verification purpose.
@@ -144,8 +147,31 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   toggleEditField(field:string) {
-    var fieldToToggle = document.getElementById(field);
-    fieldToToggle.classList.toggle("hidden");
+    var cardHead = document.getElementById('cardHead');
+    var upperCard = document.getElementById('upperCard');
+    var cardHeadArea = document.getElementById('cardHeadArea');
+    var shareArea = document.getElementById('shareArea');
+    var descArea = document.getElementById('descArea');
+    var editBtnArea = document.getElementById('editBtnArea');
+    var basicContactArea = document.getElementById('basicContactArea');
+    var basicDetailArea = document.getElementById('basicDetailArea');
+    var videoArea = document.getElementById('videoArea');
+    var linksArea = document.getElementById('linksArea');
+
+    if(field == 'basicDetailArea') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+    }
+    else if(field == 'cardHeadArea') {
+      cardHeadArea.classList.toggle("hidden");
+    }
   }
 
   updateCard(cardId:String, userId:string) {
@@ -181,7 +207,6 @@ export class AdminCardPreviewComponent implements OnInit{
     }, UserID: userId}, this.cookie)
     .then ((response) => {
       this.uploadImage();
-      window.location.reload();
     })
     .catch ((error) => {
       console.log(error);
@@ -189,12 +214,42 @@ export class AdminCardPreviewComponent implements OnInit{
     })
   }
 
+  compressedImage:File;
+
+  onFileSelected(event) {
+    if(event.target.files.length > 0) {
+      this.file = event.target.files[0];
+
+      this.compressImage.compress(this.file)
+      .pipe(take(1))
+      .subscribe(compressedFile => {
+        this.compressedImage = compressedFile;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
+        this.imageUrl = event.target.result;
+        this.setImage();
+      }
+    }
+  }
+
+  setImage() {
+    var cardImage = document.getElementById("cardImage");
+    cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
+  }
+
   uploadImage() {
-    console.log(this.formdata);
-    if(this.file != null) {
-      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, this.formdata, this.cookie)
+    var formdata = new FormData();
+    if(this.compressedImage != null) {
+      formdata.append("media", this.compressedImage);
+      console.log(formdata);
+
+      axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
-        this.router.navigate(['/inventory']);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -202,23 +257,8 @@ export class AdminCardPreviewComponent implements OnInit{
       })
     }
     else {
-      this.router.navigate(['/inventory']);
+      window.location.reload();
     }
-  }
-
-  onFileSelected(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
-      var reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload=(event:any) => {
-        this.imageUrl = event.target.result;
-      }
-
-      this.formdata.append("media", file);
-    }
-
-    console.log(this.formdata)
   }
 
   selectField(blockName:string) {

@@ -33,33 +33,33 @@
         <div class="cardsPanel">
             <div class="cards">
                 <div class="card">
-                    <div class="container cardNavArea">
-                        <input type="button" value="Add Image" class="btn1">
-                        <img class="logo hidden" src="../../assets/img/logo.jpg">
-                        <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
-                        <!-- <input type="button" value="Save" class="btn2" (click)="updateCard(cardId, userId)"> -->
-                    </div>
-        
-                    <div class="container cardHeadArea">
-                        <img class="profilePic" id="profilePic" [src]="imageUrl" (click)="selectFile()">
-                        <!-- (click)="selectFile()" -->
-                        <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
-        
-                        <div class="nameDetailsPnl">
-                            <h3 class="nameField">{{data.Name}}</h3>
-                            <h5 class="designationField">{{data.Job_title}}</h5>
-                            <h5 class="companyField">{{data.Company_name}}</h5>
+                    <div class="upperCard" id="upperCard">
+                        <div class="container cardNavArea">
+                            <input type="button" value="Add Image" class="btn1">
+                            <img class="logo hidden" src="../../assets/img/logo.jpg">
+                            <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
                         </div>
                     </div>
                     
-                    <div class="container shareArea">
+                    <div class="container cardHeadArea" id="cardHead">
+                        <img class="profilePic" id="profilePic" [src]="imageUrl">
+                        <!-- (click)="selectFile()" -->
+                        <!-- <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)"> -->
+        
+                        <div class="nameDetailsPnl">
+                            <h3 class="nameField">{{data.Name}}</h3>
+                            <p class="designationField">{{data.Job_title}}</p>
+                            <p class="companyField">{{data.Company_name}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="container shareArea" id="shareArea">
                         <input type="button" value="Save Contact" class="secondaryBtn">
                         <input type="button" value="Exchange Contact" class="primaryBtn">
                     </div>
 
                     <div class="container descArea">
-                        <p class="descField">{{data.Headline}}</p>
-                        <!-- <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea> -->
+                        <p class="descField" id="descArea">{{data.Headline}}</p>
                     </div>
 
                     <div id="cardHeadArea" class="hidden">
@@ -69,6 +69,8 @@
                             </div>
                             <h3 class="editHeading">Edit your Card Header</h3>
                             <div class="editBodyArea">
+                                <h4>Profile Picture</h4>
+                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
                                 <h4>Name</h4>
                                 <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')">
                                 <h4>Designation</h4>
@@ -80,33 +82,51 @@
                             </div>
                         </div>
                     </div>
-                    <div class="editBtnArea">
+                    <div class="editBtnArea" id="editBtnArea">
+                        <p class="sectionHeading">Social Networks</p>
                         <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                     </div>
-                    <div class="container basicContactArea">
-                        <p class="lable">Contact No</p>
-                        <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
-                        <!-- <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')"> -->
-                        <p class="intel">{{data.Phone}}</p>
+
+                    <div class="socialIcons">
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <i class="fa-brands fa-skype"></i>
+                    </div>
+
+                    <div class="container basicContactArea" id="basicContactArea">
+                        <div class="cardInfoCont">
+                            <i class="fa-solid fa-phone"></i>
+                            <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
+                            <!-- <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')"> -->
+                            <p class="intel">{{data.Phone}}</p>
+                        </div>
                     </div> 
         
-                    <div class="container basicContactArea">
-                        <p class="lable">Email</p>
-                        <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
-                        <!-- <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')"> -->
-                        <p class="intel">{{data.Email}}</p>
+                    <div class="container basicContactArea" id="basicContactArea">
+                        <div class="cardInfoCont">
+                            <i class="fa-solid fa-envelope"></i>
+                            <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
+                            <!-- <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')"> -->
+                            <p class="intel">{{data.Email}}</p>
+                        </div>
                     </div> 
         
-                    <div class="container basicContactArea">
-                        <p class="lable">Website</p>
-                        <!-- <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')"> -->
-                        <p class="intel">{{data.Link}}</p>
+                    <div class="container basicContactArea" id="basicContactArea">
+                        <div class="cardInfoCont">
+                            <i class="fa-solid fa-link"></i>
+                            <!-- <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')"> -->
+                            <p class="intel">{{data.Link}}</p>
+                        </div>
                     </div> 
         
-                    <div class="container basicContactArea">
-                        <p class="lable">Address</p>
-                        <!-- <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
-                        <p class="intel">{{data.Address}}</p>
+                    <div class="container basicContactArea" id="basicContactArea">
+                        <div class="cardInfoCont">
+                            <i class="fa-solid fa-map"></i>
+                            <!-- <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
+                            <p class="intel">{{data.Address}}</p>
+                        </div>
                     </div> 
 
                     <div id="basicDetailArea" class="hidden">
@@ -116,6 +136,98 @@
                             </div>
                             <h3 class="editHeading">Edit your Basic Details</h3>
                             <div class="editBodyArea">
+                                <h4>Socials</h4>
+                                <div class="selectContainer">
+                                    <select id="socialSelector1" class="socialSelector">
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Linkedin">LinkedIn</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Youtube">YouTube</option>
+                                        <option value="Snapchat">Snapchat</option>
+                                        <option value="Tiktok">TikTok</option>
+                                        <option value="Twitch">Twitch</option>
+                                        <option value="Yelp">Yelp</option>
+                                        <option value="Whatsapp">WhatsApp</option>
+                                        <option value="Discord">Discord</option>
+                                        <option value="Signal_link">Signal</option>
+                                        <option value="Telegram">Telegram</option>
+                                    </select>
+                                    <input class="inputField" id="socialLink1" placeholder="Link" value="">
+                                </div>
+                                <div class="selectContainer">
+                                    <select id="socialSelector2" class="socialSelector">
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Linkedin">LinkedIn</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Youtube">YouTube</option>
+                                        <option value="Snapchat">Snapchat</option>
+                                        <option value="Tiktok">TikTok</option>
+                                        <option value="Twitch">Twitch</option>
+                                        <option value="Yelp">Yelp</option>
+                                        <option value="Whatsapp">WhatsApp</option>
+                                        <option value="Discord">Discord</option>
+                                        <option value="Signal_link">Signal</option>
+                                        <option value="Telegram">Telegram</option>
+                                    </select>
+                                    <input class="inputField" id="socialLink2" placeholder="Link" value="">
+                                </div>
+                                <div class="selectContainer">
+                                    <select id="socialSelector3" class="socialSelector">
+                                        <option value="Linkedin">LinkedIn</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Youtube">YouTube</option>
+                                        <option value="Snapchat">Snapchat</option>
+                                        <option value="Tiktok">TikTok</option>
+                                        <option value="Twitch">Twitch</option>
+                                        <option value="Yelp">Yelp</option>
+                                        <option value="Whatsapp">WhatsApp</option>
+                                        <option value="Discord">Discord</option>
+                                        <option value="Signal_link">Signal</option>
+                                        <option value="Telegram">Telegram</option>
+                                    </select>
+                                    <input class="inputField" id="socialLink3" placeholder="Link" value="">
+                                </div>
+                                <div class="selectContainer">
+                                    <select id="socialSelector4" class="socialSelector">
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Linkedin">LinkedIn</option>
+                                        <option value="Youtube">YouTube</option>
+                                        <option value="Snapchat">Snapchat</option>
+                                        <option value="Tiktok">TikTok</option>
+                                        <option value="Twitch">Twitch</option>
+                                        <option value="Yelp">Yelp</option>
+                                        <option value="Whatsapp">WhatsApp</option>
+                                        <option value="Discord">Discord</option>
+                                        <option value="Signal_link">Signal</option>
+                                        <option value="Telegram">Telegram</option>
+                                    </select>
+                                    <input class="inputField" id="socialLink4" placeholder="Link" value="">
+                                </div>
+                                <div class="selectContainer">
+                                    <select id="socialSelector5" class="socialSelector">
+                                        <option value="Youtube">YouTube</option>
+                                        <option value="Twitter">Twitter</option>
+                                        <option value="Instagram">Instagram</option>
+                                        <option value="Linkedin">LinkedIn</option>
+                                        <option value="Facebook">Facebook</option>
+                                        <option value="Snapchat">Snapchat</option>
+                                        <option value="Tiktok">TikTok</option>
+                                        <option value="Twitch">Twitch</option>
+                                        <option value="Yelp">Yelp</option>
+                                        <option value="Whatsapp">WhatsApp</option>
+                                        <option value="Discord">Discord</option>
+                                        <option value="Signal_link">Signal</option>
+                                        <option value="Telegram">Telegram</option>
+                                    </select>
+                                    <input class="inputField" id="socialLink5" placeholder="Link" value="">
+                                </div>
+                                    
                                 <h4>Contact No</h4>
                                 <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
                                 <h4>Email</h4>
@@ -125,6 +237,26 @@
                                 <h4>Address</h4>
                                 <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="" id="videoArea">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Video</p>
+                            <p class="editBtn" (click)="toggleEditField('')">Edit</p>
+                        </div>
+
+                        <div class="container flexColumn">
+                            <video width="330px" height="200" controls style="border-radius: 15px;">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="" id="linksArea">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Links</p>
+                            <p class="editBtn" (click)="toggleEditField('')">Edit</p>
                         </div>
                     </div>
                 </div>

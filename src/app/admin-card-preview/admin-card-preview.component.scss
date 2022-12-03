@@ -13,17 +13,43 @@ $foregroundColor: white;
     src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
 }
 
+@font-face {
+    font-family: MontserratBold;
+    src: url("../../assets/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../../assets/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: MontserratRegular;
+    src: url("../../assets/fonts/Montserrat-Regular.ttf");
+}
+
 // Card Editing CSS
 .card {
-    background-color: rgb(241, 241, 241);
-    min-width: 300px;
+    background-color: white;
+    min-width: 385px;
     width: -webkit-fill-content;
     min-height: 800px;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px 1px gray;
+    box-shadow: 2px 2px 10px 1px rgb(224, 224, 224);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.upperCard {
+    width: 100%;
+    background-color: #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .container {
@@ -37,6 +63,43 @@ $foregroundColor: white;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    width: 95%;
+}
+
+.socialIcons {
+    width: 90%;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: space-between;
+}
+
+#videoArea {
+    width: 100%;
+    margin-left: 5%;
+}
+
+#linksArea {
+    margin-left: 5%;
+    width: 100%;
+}
+
+.selectContainer {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.socialSelector {
+    font-size: 15px;
+    font-family: 'Montserrat-Regular', sans-serif;
+}
+
+.socialIcons i {
+    background-color: black;
+    color: white;
+    border-radius: 100%;
+    font-size: 20px;
+    padding: 10px;
 }
 
 .btn1 {
@@ -81,7 +144,7 @@ $foregroundColor: white;
 }
 
 .cardHeadArea {
-    margin-top: 20px;
+    margin-top: -140px;
     display: flex;
     flex-direction: column;
 }
@@ -145,13 +208,14 @@ $foregroundColor: white;
 }
 
 .nameField {
-    margin-top: 80px;
-    font-size: 20px;
+    margin-top: 70px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     background: none;
     color: white;
     border: none;
+    font-family: 'MontserratBold', sans-serif;
 }
 
 .designationField {
@@ -160,16 +224,20 @@ $foregroundColor: white;
     color: white;
     border: none;
     font-weight: lighter;
-    margin-top: -10px;
+    margin-top: -20px;
+    font-size: 15px;
+    font-family: 'MontserratRegular', sans-serif;
 }
 
 .companyField {
-    margin-top: -20px;
+    margin-top: -15px;
     font-weight: lighter;
     text-align: center;
     background: none;
     color: white;
     border: none;
+    font-size: 15px;
+    font-family: 'MontserratRegular', sans-serif;
 }
 
 .shareArea {
@@ -178,13 +246,15 @@ $foregroundColor: white;
 }
 
 .primaryBtn {
-    width: 140px;
-    height: 40px;
-    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
     border: none;
     background-color: black;
     color: white;
     transition: 0.3s;
+    font-size: 15px;
+    font-family: 'MontserratSemiBold', sans-serif;
 }
 
 .primaryBtn:hover {
@@ -194,14 +264,21 @@ $foregroundColor: white;
 }
 
 .secondaryBtn {
-    width: 140px;
-    height: 40px;
-    border-radius: 5px;
+    font-family: 'MontserratSemiBold', sans-serif;
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
     border: 1px solid gray;
     background-color: rgb(241, 241, 241);
     color: black;
     font-weight: bold;
     transition: 0.3s;
+    font-size: 15px;
+}
+
+.sectionHeading {
+    font-size: 14px;
+    font-family: 'MontserratBold', sans-serif;
 }
 
 .hidden {
@@ -218,6 +295,8 @@ $foregroundColor: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'MontserratRegular', sans-serif;
+    font-size: 16px;
 }
 
 .flexColumn {
@@ -246,17 +325,30 @@ $foregroundColor: white;
 }
 
 .lable {
-    font-weight: bold;
+    font-family: 'MontserratBold', sans-serif;
 }
 
 .intel {
-    margin-top: -15px;
+    margin-left: 15px;
+}
+
+.cardInfoCont {
+    display: flex;
+    align-items: center;
+}
+
+.cardInfoCont i {
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 100%;
 }
 
 .basicContactArea {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: -5px;
 }
 
 .inputField {
@@ -265,6 +357,7 @@ $foregroundColor: white;
     width: 100%;
     border-bottom: 1px solid gray;
     font-size: 15px;
+    font-family: 'MontserratRegular', sans-serif;
 }
 
 .body {
@@ -328,7 +421,7 @@ $foregroundColor: white;
     height: 300px;
     max-height: 300px;
     border-radius: 5px;
-    box-shadow: 1px 1px 10px 1px rgb(163, 163, 163);
+    box-shadow: 2px 2px 10px 1px rgb(224, 224, 224);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -395,13 +488,14 @@ $foregroundColor: white;
 .editBtnArea {
     display: flex;
     width: 95%;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .editBtn {
-    font-size: 13px;
+    font-size: 14px;
     padding-right: 10px;
     color: red;
+    font-family: 'MontserratSemiBold', sans-serif;
 }
 
 .editBtn:hover {

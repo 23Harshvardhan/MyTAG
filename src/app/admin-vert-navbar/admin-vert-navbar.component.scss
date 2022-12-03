@@ -3,6 +3,21 @@
     src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
 }
 
+@font-face {
+    font-family: MontserratBold;
+    src: url("../../assets/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../../assets/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: MontserratRegular;
+    src: url("../../assets/fonts/Montserrat-Regular.ttf");
+}
+
 .fa-2x {
     font-size: 2em;
 }
@@ -29,7 +44,7 @@
     
 .main-menu {
     background:#000000;
-    border-right:1px solid #e5e5e5;
+    border-right:1px solid black;
     position:absolute;
     top:0;
     bottom:0;
@@ -111,7 +126,7 @@ nav {
 }
 
 .item {
-    padding-top: 10px;
+    margin-top: 10px;
 }
     
 nav ul,nav li {
@@ -134,61 +149,3 @@ nav ul,nav li {
         display: none;
     }
 }
-
-// // Vertical Navigation Area
-// .verticalNavArea {
-//     border-right: 2px solid black;
-//     display: flex;
-//     flex-direction: column;
-//     width: 205px;
-//     min-width: 205px;
-//     height: 100%;
-//     min-height: 837px;
-//     background-color: black;
-//     color: white;
-// }
-
-// .logoImg {
-//     width: 100%;
-// }
-
-// .navigationMenu {
-//     display: flex;
-//     flex-direction: column;
-//     padding-top: 30px;
-//     padding-left: 30px;
-//     gap: 30px;
-//     justify-content: space-between;
-//     height: 100%;
-// }
-
-// .buttons {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 30px;
-// }
-
-// .navBtn {
-//     font-size: 14pt;
-//     font-weight: bold;
-// }
-
-// .navBtn:hover {
-//     cursor: pointer;
-// }
-
-// .flexBox {
-//     display: flex;
-//     align-items: center;
-//     gap: 10px;
-// }
-
-// .dateArea {
-//     font-size: 12pt;
-// }
-
-// @media only screen and (max-width: 600px) {
-//     .verticalNavArea {
-//         display: none;
-//     }
-// }
