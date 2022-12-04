@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import axios from 'axios';
+import {compareAsc, format, parseISO} from 'date-fns';
 
 @Component({
   selector: 'app-active-cards',
@@ -63,8 +64,11 @@ export class ActiveCardsComponent implements OnInit {
           this.card.Type = element.Type;
         }
 
+        var roughDate = element.Reg_date;
+        var refinedDate = format(parseInt(roughDate), 'dd-MM-yyyy');
+
         this.card.CardID = element.CardID;
-        this.card.Reg_date = element.Reg_date;
+        this.card.Reg_date = refinedDate;
         this.card.AccountID = element.UserID;
         this.card.FirstName = firstName;
         this.card.LastName = lastName;
