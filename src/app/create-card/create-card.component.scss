@@ -10,10 +10,11 @@
 
 * {
     font-family: SourceSansProRegular, sans-serif;
-}@font-face {
-    font-family: SourceSansProRegular;
+}
+@font-face {
+    font-family: "SourceSansProRegular";
     src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
-  }
+}
 
 .body {
     width: 100%;
@@ -206,14 +207,6 @@
     transition: 0.3s;
 }
 
-
-
-
-// // Imports Section
-// @font-face {
-    font-family: SourceSansProRegular;
-    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
-  }
 // @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 // * {

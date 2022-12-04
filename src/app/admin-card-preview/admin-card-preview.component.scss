@@ -9,7 +9,7 @@ $foregroundColor: white;
 }
 
 @font-face {
-    font-family: SourceSansProRegular;
+    font-family: "SourceSansProRegular";
     src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
 }
 
@@ -86,7 +86,8 @@ $foregroundColor: white;
 .selectContainer {
     display: flex;
     gap: 10px;
-    padding-bottom: 20px;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .socialSelector {
@@ -358,6 +359,14 @@ $foregroundColor: white;
     border-bottom: 1px solid gray;
     font-size: 15px;
     font-family: 'MontserratRegular', sans-serif;
+}
+
+.lableArea {
+    width: 30%;
+}
+
+.inputArea {
+    width: 70%;
 }
 
 .body {
