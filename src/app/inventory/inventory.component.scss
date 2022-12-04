@@ -277,26 +277,24 @@ border-collapse: collapse;
 .activee {
     background-color: #13c67d;
     color: white;
-    border-radius: 5px;
 }
 
 .cancelled {
     background-color: #f34134;
     color: white;
-    border-radius: 5px;
 }
 
 .pending {
     background-color: #e4c009;
     color: white;
-    border-radius: 5px;
 }
 
 .statusBtn {
-    min-width: 123px;
-    min-height: 40px;
+    min-width: 120px;
+    min-height: 30px;
     font-size: 20px;
     border: none;
+    border-radius: 5px;
 }
 
 
