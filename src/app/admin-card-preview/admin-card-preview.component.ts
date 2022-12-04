@@ -157,6 +157,10 @@ export class AdminCardPreviewComponent implements OnInit{
     var basicDetailArea = document.getElementById('basicDetailArea');
     var videoArea = document.getElementById('videoArea');
     var linksArea = document.getElementById('linksArea');
+    var basicContactSection = document.getElementById('basicContactSection');
+    var socialDetailSection = document.getElementById('socialDetailSection');
+    var socialEditSection = document.getElementById('socialEditSection');
+    var basicDetailEditArea = document.getElementById('basicDetailEditArea');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -168,9 +172,26 @@ export class AdminCardPreviewComponent implements OnInit{
       basicDetailArea.classList.toggle('hidden');
       videoArea.classList.toggle('hidden');
       linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      basicDetailEditArea.classList.toggle('hidden');
     }
     else if(field == 'cardHeadArea') {
       cardHeadArea.classList.toggle("hidden");
+    }
+    else if(field == 'socialEditSection') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      socialEditSection.classList.toggle('hidden');
     }
   }
 

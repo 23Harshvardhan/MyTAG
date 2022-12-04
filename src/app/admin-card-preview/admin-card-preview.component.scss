@@ -33,7 +33,6 @@ $foregroundColor: white;
     background-color: white;
     min-width: 385px;
     width: -webkit-fill-content;
-    min-height: 800px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px 1px rgb(224, 224, 224);
     display: flex;
@@ -81,6 +80,10 @@ $foregroundColor: white;
 #linksArea {
     margin-left: 5%;
     width: 100%;
+}
+
+.width95 {
+    width: 95%;
 }
 
 .selectContainer {
