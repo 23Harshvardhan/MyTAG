@@ -344,6 +344,7 @@ border-collapse: collapse;
 
 // Mobile View Section
 @media only screen and (max-width: 600px) {
+.area {display: none;}
     .pageTitle {
         margin-left: 10%;
     }
@@ -379,6 +380,7 @@ border-collapse: collapse;
 
     .overlay {
         display: block;
+        z-index: 100;
     }
 
     .verticalNavArea {

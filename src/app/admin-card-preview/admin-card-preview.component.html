@@ -7,11 +7,12 @@
   <nav class="overlay-menu">
     <ul>
         <li class="gapTop"><div class="flexBox"><a routerLink="/dashboard"><i class="fa-solid fa-table-columns" style="color: white;"></i>Dashboard</a></div></li>
+        <li><div class="flexBox"><a routerLink="/inventory"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i>Inventory</a></div></li>
         <li><div class="flexBox"><a routerLink="/accounts"><i class="fa-solid fa-users" style="color: white;"></i>Accounts</a></div></li>
         <li><div class="flexBox"><a routerLink="/activeCards"><i class="fa-solid fa-address-card" style="color: white;"></i>Active Cards</a></div></li>
         <li><div class="flexBox"><a routerLink="/orders"><i class="fa-solid fa-store" style="color: white;"></i>Orders</a></div></li>
-        <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Products</a></div></li>
-        <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Templates</a></div></li>
+        <li><div class="flexBox"><a><i class="fa-solid fa-table-columns" style="color: white;"></i>Products</a></div></li>
+        <li><div class="flexBox"><a><i class="fa-solid fa-table-columns" style="color: white;"></i>Templates</a></div></li>
         <li><div class="flexBox"><a routerLink="/adminSettings"><i class="fa-solid fa-gear" style="color: white;"></i>Settings</a></div></li>
         <li><div class="flexBox"><a routerLink="/"><i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i>Log Out</a></div></li>
     </ul>
@@ -341,13 +342,54 @@
                             <div class="signatureBox">
                                 <div class="sigBoxHeader">
                                     <div class="imgCont">
-                                        <img class="profilePic" id="profilePic" [src]="imageUrl">
+                                        <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
                                     </div>
                                     <div class="basicInfoCont">
-                                        
+                                        <h5 class="nameData">{{data.Name}}</h5>
+                                        <p class="data">{{data.Job_title}}</p>
+                                        <p class="data">{{data.Company_name}}</p>
                                     </div>
                                     <div class="logoCont">
-
+                                        <img class="profilePic sigLogo" id="profilePic" [src]="imageUrl">
+                                    </div>
+                                </div>
+                                <div class="sigBoxBody">
+                                    <div class="basicInfoCont">
+                                        <div style="gap: 5px; flex-direction: row; display: flex;">
+                                            <i class="fa-solid fa-phone data"></i>
+                                            <p class="data">{{data.Phone}}</p>
+                                        </div>
+                                        <div style="gap: 5px; flex-direction: row; display: flex;">
+                                            <i class="fa-solid fa-mobile data"></i>
+                                            <p class="data">{{data.Phone}}</p>
+                                        </div>
+                                        <div class="flexRow" style="gap: 5px;">
+                                            <i class="fa-solid fa-envelope data"></i>
+                                            <p class="data">{{data.Email}}</p>
+                                        </div>
+                                        <div class="flexRow" style="gap: 5px;">
+                                            <i class="fa-solid fa-link data"></i>
+                                            <p class="data">{{data.Link}}</p>
+                                        </div>
+                                        <div class="flexRow" style="gap: 5px;">
+                                            <i class="fa-solid fa-map data"></i>
+                                            <p class="data">{{data.Address}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="qrCont">
+                                        <qrcode [qrdata]="cardViewLink" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                    </div>
+                                </div>
+                                <div class="sigFooter">
+                                    <div class="socialsCont">
+                                        <i class="fa-brands fa-twitter"></i>
+                                        <i class="fa-brands fa-instagram"></i>
+                                        <i class="fa-brands fa-linkedin"></i>
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        <i class="fa-brands fa-skype"></i>
+                                    </div>
+                                    <div class="saveCont">
+                                        <button class="cpySigBtn">Save Contact</button>
                                     </div>
                                 </div>
                             </div>

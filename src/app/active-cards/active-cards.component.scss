@@ -327,6 +327,7 @@ input:checked + .slider:before {
 
 // Mobile View Section
 @media only screen and (max-width: 600px) {
+.area {display: none;}
     .pageTitle {
         margin-left: 10%;
     }
@@ -358,6 +359,7 @@ input:checked + .slider:before {
 
     .overlay {
         display: block;
+        z-index: 100;
     }
 
     .verticalNavArea {
