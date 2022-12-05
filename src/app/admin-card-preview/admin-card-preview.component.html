@@ -215,8 +215,6 @@
                         <div class="container basicContactArea" id="basicContactArea">
                             <div class="cardInfoCont">
                                 <i class="fa-solid fa-phone"></i>
-                                <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
-                                <!-- <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')"> -->
                                 <p class="intel">{{data.Phone}}</p>
                             </div>
                         </div> 
@@ -224,8 +222,6 @@
                         <div class="container basicContactArea" id="basicContactArea">
                             <div class="cardInfoCont">
                                 <i class="fa-solid fa-envelope"></i>
-                                <!-- <p class="intel">Use , to seperate multiple numbers.</p> -->
-                                <!-- <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')"> -->
                                 <p class="intel">{{data.Email}}</p>
                             </div>
                         </div> 
@@ -233,7 +229,6 @@
                         <div class="container basicContactArea" id="basicContactArea">
                             <div class="cardInfoCont">
                                 <i class="fa-solid fa-link"></i>
-                                <!-- <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')"> -->
                                 <p class="intel">{{data.Link}}</p>
                             </div>
                         </div> 
@@ -241,22 +236,9 @@
                         <div class="container basicContactArea" id="basicContactArea">
                             <div class="cardInfoCont">
                                 <i class="fa-solid fa-map"></i>
-                                <!-- <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
                                 <p class="intel">{{data.Address}}</p>
                             </div>
                         </div> 
-                    </div>
-
-                    <div id="videoEditArea" class="width95 hidden">
-                        <div class="container cardHeadEditArea">
-                            <div class="saveBtnArea">
-                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
-                            </div>
-                            <h3 class="editHeading">Edit your YouTube video link</h3>
-                            <div class="editBodyArea">
-                                <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')">
-                            </div>
-                        </div>
                     </div>
 
                     <div id="basicDetailEditArea" class="width95 hidden">
@@ -284,15 +266,62 @@
                             <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
                         </div>
 
-                        <div class="container flexColumn">
+                        <div class="container flexColumn" *ngIf="data.Company_URL.length > 0">
                             <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(finalLink)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div id="videoEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
+                            </div>
+                            <h3 class="editHeading">Edit your YouTube video link</h3>
+                            <div class="editBodyArea">
+                                <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')">
+                            </div>
                         </div>
                     </div>
 
                     <div class="" id="linksArea">
                         <div class="editBtnArea" id="editBtnArea">
                             <p class="sectionHeading">Links</p>
-                            <p class="editBtn" (click)="toggleEditField('')">Edit</p>
+                            <p class="editBtn" (click)="toggleEditField('linksEditArea')">Edit</p>
+                        </div>
+                        <div class="container basicContactArea" *ngIf="data.Calendly.length > 0">
+                            <div class="cardInfoCont">
+                                <i class="fa-solid fa-calendar"></i>
+                                <p class="intel">{{data.Calendly}}</p>
+                            </div>
+                        </div> 
+                        <div class="container basicContactArea" *ngIf="data.Github.length > 0">
+                            <div class="cardInfoCont">
+                                <i class="fa-brands fa-github"></i>
+                                <p class="intel">{{data.Github}}</p>
+                            </div>
+                        </div> 
+                        <div class="container basicContactArea" *ngIf="data.Paypal.length > 0">
+                            <div class="cardInfoCont">
+                                <i class="fa-brands fa-paypal"></i>
+                                <p class="intel">{{data.Paypal}}</p>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div id="linksEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
+                            </div>
+                            <h3 class="editHeading">Edit your Links</h3>
+                            <div class="editBodyArea">
+                                <h4>Calendly</h4>
+                                <input class="inputField" id="Calendly" placeholder="Link" value={{data.Calendly}} (keyup)="selectField('Calendly')">
+                                <h4>GitHub</h4>
+                                <input class="inputField" id="Github" placeholder="Link" value={{data.Github}} (keyup)="selectField('Github')">
+                                <h4>PayPal</h4>
+                                <input class="inputField" id="Paypal" placeholder="Link" value={{data.Paypal}} (keyup)="selectField('Paypal')">
+                            </div>
                         </div>
                     </div>
                 </div>

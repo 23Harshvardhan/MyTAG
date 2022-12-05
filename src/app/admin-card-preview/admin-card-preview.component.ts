@@ -168,6 +168,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var socialEditSection = document.getElementById('socialEditSection');
     var basicDetailEditArea = document.getElementById('basicDetailEditArea');
     var videoEditArea = document.getElementById('videoEditArea');
+    var linksEditArea = document.getElementById('linksEditArea');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -202,6 +203,19 @@ export class AdminCardPreviewComponent implements OnInit{
     }
     else if(field == 'videoEditArea') {
       videoEditArea.classList.toggle("hidden");
+    } else if (field == 'linksEditArea') {
+      linksEditArea.classList.toggle('hidden');
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
     }
   }
 
@@ -321,15 +335,12 @@ export class AdminCardPreviewComponent implements OnInit{
   filterLink(url:string) {
     if(url.includes(this.rawLink1)) {
       var newL = url.replace(this.rawLink1, this.replaceLink1);
-      console.log(newL);
       return newL;
     } else if (url.includes(this.rawLink2)) {
       var newL = url.replace(this.rawLink2, this.replaceLink2);
-      console.log(newL);
       return newL;
     } else if (url.includes(this.rawLink3)) {
       var newL = url.replace(this.rawLink3, this.replaceLink3);
-      console.log(newL);
       return newL;
     } else {
       return url;
@@ -345,7 +356,6 @@ export class AdminCardPreviewComponent implements OnInit{
     var formdata = new FormData();
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
-      console.log(formdata);
 
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
