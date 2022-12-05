@@ -6,6 +6,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
 import {take} from 'rxjs/operators'
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-admin-card-preview',
