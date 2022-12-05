@@ -6,6 +6,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
 import {take} from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -18,7 +19,8 @@ export class AdminCardPreviewComponent implements OnInit{
     private cookieService:CookieService,
     private activatedRouter:ActivatedRoute,
     private router:Router,
-    private compressImage:CompressImageService
+    private compressImage:CompressImageService,
+    private sanitizer:DomSanitizer
   ) {}
 
   // Variable to store recovered cookie from browser for verification purpose.
@@ -26,6 +28,10 @@ export class AdminCardPreviewComponent implements OnInit{
     headers:{
       cki: this.cookieService.get("jwt")
     } 
+  }
+
+  getSafeUrl(link:string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
 
   // Variable to store the API url. This will be called during every API request.
