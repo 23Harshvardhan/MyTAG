@@ -43,8 +43,6 @@
                     
                     <div class="container cardHeadArea" id="cardHead">
                         <img class="profilePic" id="profilePic" [src]="imageUrl">
-                        <!-- (click)="selectFile()" -->
-                        <!-- <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)"> -->
         
                         <div class="nameDetailsPnl">
                             <h3 class="nameField">{{data.Name}}</h3>
@@ -291,7 +289,7 @@
 
                 <div class="flexColumn">
                     <div>
-                        <div class="userName">Email Signature</div>
+                        <div class="userName fontMontserrateSemiBold">Email Signature</div>
 
                         <div class="pnl sigPnl">
                             <div class="btnRow">
@@ -302,8 +300,19 @@
                             </div>
 
                             <div class="signatureBox">
+                                <div class="sigBoxHeader">
+                                    <div class="imgCont">
+                                        <img class="profilePic" id="profilePic" [src]="imageUrl">
+                                    </div>
+                                    <div class="basicInfoCont">
+                                        
+                                    </div>
+                                    <div class="logoCont">
 
+                                    </div>
+                                </div>
                             </div>
+
                             <button class="cpySigBtn">Copy Signature</button>
                             <p class="sigIntel">Copy above signature and paste it as your email signature</p>
                         </div>

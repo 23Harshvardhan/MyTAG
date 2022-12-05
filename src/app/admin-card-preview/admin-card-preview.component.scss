@@ -5,12 +5,7 @@ $backgroundAccentColor: #646464;
 $foregroundColor: white;
 
 * {
-    font-family: SourceSansProRegular, sans-serif;
-}
-
-@font-face {
-    font-family: "SourceSansProRegular";
-    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+    font-family: MontserratRegular, sans-serif;
 }
 
 @font-face {
@@ -26,6 +21,11 @@ $foregroundColor: white;
 @font-face {
     font-family: MontserratRegular;
     src: url("../../assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: MontserratMedium;
+    src: url("../../assets/fonts/Montserrat-Medium.ttf");
 }
 
 // Card Editing CSS
@@ -70,6 +70,23 @@ $foregroundColor: white;
     display: flex;
     padding-bottom: 20px;
     justify-content: space-between;
+}
+
+.sigBoxHeader {
+    display: flex;
+    margin: 10px;
+}
+
+.imgCont {
+    width: 30%;
+}
+
+.basicInfoCont {
+    width: 40%;
+}
+
+.logoCont {
+    width: 30%;
 }
 
 #videoArea {
@@ -534,6 +551,11 @@ $foregroundColor: white;
     border-radius: 10px;
     border: 1px solid rgb(172, 172, 172);
     transition: 0.3s;
+    font-family: 'MontserratMedium';
+}
+
+.fontMontserrateSemiBold {
+    font-family: 'MontserratSemiBold';
 }
 
 .sigBtn:hover {
@@ -565,6 +587,11 @@ $foregroundColor: white;
     width: 500px;
     border-radius: 15px;
     margin-top: 20px;
+    font-family: 'MontserratRegular';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes fadeInDown {
