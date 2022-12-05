@@ -247,6 +247,18 @@
                         </div> 
                     </div>
 
+                    <div id="videoEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
+                            </div>
+                            <h3 class="editHeading">Edit your YouTube video link</h3>
+                            <div class="editBodyArea">
+                                <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')">
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="basicDetailEditArea" class="width95 hidden">
                         <div class="container cardHeadEditArea" id="basicDetailArea">
                             <div class="saveBtnArea">
@@ -269,13 +281,11 @@
                     <div class="" id="videoArea">
                         <div class="editBtnArea" id="editBtnArea">
                             <p class="sectionHeading">Video</p>
-                            <p class="editBtn" (click)="toggleEditField('')">Edit</p>
+                            <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
                         </div>
 
                         <div class="container flexColumn">
-                            <video width="330px" height="200" controls style="border-radius: 15px;">
-                                <source src="" type="video/mp4">
-                            </video>
+                            <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="finalLink" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
 

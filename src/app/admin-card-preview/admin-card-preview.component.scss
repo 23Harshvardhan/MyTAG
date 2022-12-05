@@ -75,6 +75,8 @@ $foregroundColor: white;
 .sigBoxHeader {
     display: flex;
     margin: 10px;
+    width: 95%;
+    height: 100%;
 }
 
 .imgCont {
@@ -87,6 +89,10 @@ $foregroundColor: white;
 
 .logoCont {
     width: 30%;
+}
+
+iframe {
+    border: none;
 }
 
 #videoArea {

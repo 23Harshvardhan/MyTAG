@@ -161,6 +161,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var socialDetailSection = document.getElementById('socialDetailSection');
     var socialEditSection = document.getElementById('socialEditSection');
     var basicDetailEditArea = document.getElementById('basicDetailEditArea');
+    var videoEditArea = document.getElementById('videoEditArea');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -192,6 +193,9 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
       socialEditSection.classList.toggle('hidden');
+    }
+    else if(field == 'videoEditArea') {
+      videoEditArea.classList.toggle("hidden");
     }
   }
 
@@ -299,6 +303,33 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  rawLink1 = "youtu.be/";
+  rawLink2 = "watch?v=";
+  rawLink3 = "&feature=youte.be";
+  replaceLink1 = "https://www.youtube.com/embed/";
+  replaceLink2 = "embed/";
+  replaceLink3 = "";
+
+  finalLink:string;
+
+  filterLink(url:string) {
+    if(url.includes(this.rawLink1)) {
+      var newL = url.replace(this.rawLink1, this.replaceLink1);
+      console.log(newL);
+      return newL;
+    } else if (url.includes(this.rawLink2)) {
+      var newL = url.replace(this.rawLink2, this.replaceLink2);
+      console.log(newL);
+      return newL;
+    } else if (url.includes(this.rawLink3)) {
+      var newL = url.replace(this.rawLink3, this.replaceLink3);
+      console.log(newL);
+      return newL;
+    } else {
+      return url;
+    }
+  }
+
   setImage() {
     var cardImage = document.getElementById("cardImage");
     cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
@@ -328,7 +359,6 @@ export class AdminCardPreviewComponent implements OnInit{
     this.currentBlockName = blockName;
     var inputField = document.getElementById(blockName) as HTMLInputElement;
     this.data[blockName as keyof typeof this.data] = inputField.value;
-    console.log(this.data);
   }
 
   toggleNav() {
@@ -350,6 +380,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.loadCardImage();
 
       this.userId = this.data.UserID;
+
+      this.finalLink = this.filterLink(this.data.Company_URL);
     })
     .catch((error) => {
       console.log(error);
