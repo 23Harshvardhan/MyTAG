@@ -196,6 +196,48 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   updateCard(cardId:String, userId:string) {
+    var social1 = document.getElementById('social1') as HTMLSelectElement;
+    var social2 = document.getElementById('social2') as HTMLSelectElement;
+    var social3 = document.getElementById('social3') as HTMLSelectElement;
+    var social4 = document.getElementById('social4') as HTMLSelectElement;
+    var social5 = document.getElementById('social5') as HTMLSelectElement;
+    var socialLink1 = document.getElementById('socialLink1') as HTMLInputElement;
+    var socialLink2 = document.getElementById('socialLink2') as HTMLInputElement;
+    var socialLink3 = document.getElementById('socialLink3') as HTMLInputElement;
+    var socialLink4 = document.getElementById('socialLink4') as HTMLInputElement;
+    var socialLink5 = document.getElementById('socialLink5') as HTMLInputElement;
+
+    var socialData = [];
+    var socialIndex = {
+      0:"Twitter",
+      1:"Instagram",
+      2:"Linkedin",
+      3:"Facebook",
+      4:"Youtube",
+      5:"Snapchat",
+      6:"Tiktok",
+      7:"Twitch",
+      8:"Yelp",
+      9:"Discord",
+      10:"Whatsapp",
+      11:"Skype",
+      12:"Telegram",
+    }
+
+    if(socialLink1.length > 0) {
+      if(!socialData.includes(social1.value)) {
+        
+      }
+    } else if (socialLink2.length > 0) {
+
+    } else if (socialLink3.length > 0) {
+      
+    } else if (socialLink4.length > 0) {
+      
+    } else if (socialLink5.length > 0) {
+      
+    } 
+  
     axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
       "Name": this.data.Name,
       "Job_title": this.data.Job_title,
