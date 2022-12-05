@@ -42,7 +42,6 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { ActiveCardsComponent } from './active-cards/active-cards.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-preview.component';
-import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -81,8 +80,7 @@ import { SafePipe } from './safe.pipe';
     AccountsComponent,
     ActiveCardsComponent,
     OrdersComponent,
-    AdminCardPreviewComponent,
-    SafePipe
+    AdminCardPreviewComponent
   ],
   imports: [
     BrowserModule,
