@@ -704,13 +704,25 @@ iframe {
 
     .data {
         font-size: 8px;
+        margin: 0;
+    }
+
+    .sigBoxBody {
+        margin-top: -10px;
+        display: flex;
+        width: 95%;
+        height: 40%;
+    }
+
+    .socialsCont {
+        margin-top: 10px;
     }
     
     .basicInfoCont {
         width: 70%;
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0;
     }
 
     .signatureBox {
