@@ -370,8 +370,8 @@ iframe {
 }
 
 .sigPnl {
-    width: 690px;
-    min-width: 690px;
+    width: 670px;
+    min-width: 670px;
     height: 450px;
     min-height: 450px;
 }
@@ -493,10 +493,8 @@ iframe {
 
 .pnl {
     background-color: white;
-    width: 320px;
-    max-width: 320px;
-    height: 320px;
-    max-height: 320px;
+    width: 310px;
+    height: 310px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -649,7 +647,7 @@ iframe {
 .signatureBox {
     border: 1px solid black;
     height: 300px;
-    width: 600px;
+    width: 550px;
     border-radius: 15px;
     margin-top: 10px;
     font-family: 'MontserratRegular';
@@ -688,6 +686,13 @@ iframe {
 }
 
 @media only screen and (max-width: 600px) {
+    .pnl {
+        width: 385px;
+        min-width: 385px;
+        height: 385px;
+        min-height: 385px;
+    }
+
     .sigImg {
         width: 70px;
         height: 70px;
@@ -728,7 +733,7 @@ iframe {
     .signatureBox {
         border: 1px solid black;
         height: 200px;
-        width: 300px;
+        width: 340px;
         border-radius: 15px;
         margin-top: 10px;
         font-family: 'MontserratRegular';
@@ -737,6 +742,10 @@ iframe {
         align-items: center;
         justify-content: center;
         gap: 10px;
+    }
+
+    .marginTop10 {
+        margin-top: 30px;
     }
 
     .cpySigBtn {
@@ -753,7 +762,7 @@ iframe {
     .sigIntel {
         font-size: 12px;
         margin-left: 10px;
-        margin-top: -2px;
+        margin-top: 10px;
     }
 
     .area {
@@ -772,10 +781,10 @@ iframe {
     }
 
     .sigPnl {
-        width: 320px;
-        min-width: 320px;
-        height: 320px;
-        min-height: 320px;
+        width: 385px;
+        min-width: 385px;
+        height: 345px;
+        min-height: 345px;
     }
 
     .cards {
@@ -872,7 +881,7 @@ iframe {
    .btnRow {
     display: flex;
     gap: 5px;
-    padding-top: 5px;
+    padding-top: 20px;
 }
 
     .button_container.active .bottom {

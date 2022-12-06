@@ -394,14 +394,15 @@
                                 </div>
                             </div>
 
-                            <button class="cpySigBtn">Copy Signature</button>
+                            <button class="cpySigBtn marginTop10">Copy Signature</button>
                             <p class="sigIntel">Copy above signature and paste it as your email signature</p>
                         </div>
                     </div>
 
                     <div class="flexRow">
                         <div class="pnl">
-                            <qrcode [qrdata]="cardViewLink" [width]="280" [errorCorrectionLevel]="'M'"></qrcode>
+                                <qrcode [qrdata]="cardViewLink" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
+                            <div class="userName fontMontserrateSemiBold">QR Code</div>
                         </div>
         
                         <div class="pnl">
