@@ -219,6 +219,20 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  activeSocials = [];
+
+  areDistinct(arr) {
+    let n = arr.length;
+    
+    let s = new Set();
+
+    for(let i = 0; i < n; i++) {
+      s.add(arr[i]);
+    }
+
+    return (s.size == arr.length);
+  }
+
   getSocialData() {
     var social1 = document.getElementById('social1') as HTMLSelectElement;
     var social2 = document.getElementById('social2') as HTMLSelectElement;
@@ -231,82 +245,80 @@ export class AdminCardPreviewComponent implements OnInit{
     var socialLink4 = document.getElementById('socialLink4') as HTMLInputElement;
     var socialLink5 = document.getElementById('socialLink5') as HTMLInputElement;
 
-    var socialData = [];
-    var socialIndex = {
-      0:"Twitter",
-      1:"Instagram",
-      2:"Linkedin",
-      3:"Facebook",
-      4:"Youtube",
-      5:"Snapchat",
-      6:"Tiktok",
-      7:"Twitch",
-      8:"Yelp",
-      9:"Discord",
-      10:"Whatsapp",
-      11:"Skype",
-      12:"Telegram",
-    }
-
-    if(socialLink1.length > 0) {
+    if(socialLink1.value.length > 0) {
       var type = social1.value;      
       this.data[type as keyof typeof this.data] = socialLink1.value;
-    } else if (socialLink2.length > 0) {
+      this.activeSocials.push(type);
+    }
+    
+    if (socialLink2.value.length > 0) {
       var type = social2.value;      
       this.data[type as keyof typeof this.data] = socialLink2.value;
-    } else if (socialLink3.length > 0) {
+      this.activeSocials.push(type);
+    }
+    
+    if (socialLink3.value.length > 0) {
       var type = social3.value;      
       this.data[type as keyof typeof this.data] = socialLink3.value;
-    } else if (socialLink4.length > 0) {
+      this.activeSocials.push(type);
+    } 
+    
+    if (socialLink4.value.length > 0) {
       var type = social4.value;      
       this.data[type as keyof typeof this.data] = socialLink4.value;
-    } else if (socialLink5.length > 0) {
+      this.activeSocials.push(type);
+    } 
+    
+    if (socialLink5.value.length > 0) {
       var type = social5.value;      
       this.data[type as keyof typeof this.data] = socialLink5.value;
+      this.activeSocials.push(type);
     } 
   }
 
   updateCard(cardId:String, userId:string) {
     this.getSocialData();
-    console.log(this.data);
-
-    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
-      "Name": this.data.Name,
-      "Job_title": this.data.Job_title,
-      "Department": this.data.Department,
-      "Company_name": this.data.Company_name,
-      "Accreditations": this.data.Accreditations,
-      "Headline": this.data.Headline,
-      "Email": this.data.Email,
-      "Phone": this.data.Phone,
-      "Company_URL": this.data.Company_URL,
-      "Link": this.data.Link,
-      "Address": this.data.Address,
-      "Twitter": this.data.Twitter,
-      "Instagram": this.data.Instagram,
-      "Linkedin": this.data.Linkedin,
-      "Facebook": this.data.Facebook,
-      "Youtube": this.data.Youtube,
-      "Snapchat": this.data.Snapchat,
-      "Tiktok": this.data.Tiktok,
-      "Twitch": this.data.Twitch,
-      "Yelp": this.data.Yelp,
-      "Whatsapp": this.data.Whatsapp,
-      "Discord": this.data.Discord,
-      "Signal_link": this.data.Signal_link,
-      "Telegram": this.data.Telegram,
-      "Calendly": this.data.Calendly,
-      "Github": this.data.Github,
-      "Paypal": this.data.Paypal,
-      "Skype": this.data.Skype
-    }, UserID: userId}, this.cookie)
-    .then ((response) => {
-      this.uploadImage();
-    })
-    .catch ((error) => {
-      console.log(error);
-      alert("There was a problem. Please try again later.");
-    })
+    if(this.areDistinct(this.activeSocials)) {
+      axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+        "Name": this.data.Name,
+        "Job_title": this.data.Job_title,
+        "Department": this.data.Department,
+        "Company_name": this.data.Company_name,
+        "Accreditations": this.data.Accreditations,
+        "Headline": this.data.Headline,
+        "Email": this.data.Email,
+        "Phone": this.data.Phone,
+        "Company_URL": this.data.Company_URL,
+        "Link": this.data.Link,
+        "Address": this.data.Address,
+        "Twitter": this.data.Twitter,
+        "Instagram": this.data.Instagram,
+        "Linkedin": this.data.Linkedin,
+        "Facebook": this.data.Facebook,
+        "Youtube": this.data.Youtube,
+        "Snapchat": this.data.Snapchat,
+        "Tiktok": this.data.Tiktok,
+        "Twitch": this.data.Twitch,
+        "Yelp": this.data.Yelp,
+        "Whatsapp": this.data.Whatsapp,
+        "Discord": this.data.Discord,
+        "Signal_link": this.data.Signal_link,
+        "Telegram": this.data.Telegram,
+        "Calendly": this.data.Calendly,
+        "Github": this.data.Github,
+        "Paypal": this.data.Paypal,
+        "Skype": this.data.Skype
+      }, UserID: userId}, this.cookie)
+      .then ((response) => {
+        this.uploadImage();
+      })
+      .catch ((error) => {
+        console.log(error);
+        alert("There was a problem. Please try again later.");
+      })
+    } else {
+      alert("You can't use same social media again!");
+    }
   }
 
   compressedImage:File;

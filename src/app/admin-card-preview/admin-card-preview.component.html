@@ -88,11 +88,19 @@
                         </div>
 
                         <div class="socialIcons">
-                            <i class="fa-brands fa-twitter"></i>
-                            <i class="fa-brands fa-instagram"></i>
-                            <i class="fa-brands fa-linkedin"></i>
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <i class="fa-brands fa-skype"></i>
+                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0"></i>
+                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0"></i>
+                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0"></i>
+                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0"></i>
+                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0"></i>
+                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0"></i>
+                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0"></i>
+                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0"></i>
+                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0"></i>
+                            <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0"></i>
+                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0"></i>
+                            <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0"></i>
+                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0"></i>
                         </div>
                     </div>
 
@@ -125,8 +133,8 @@
 
                                 <div class="selectContainer">
                                     <select id="social2" class="socialSelector">
-                                        <option value="Twitter">Twitter</option>
                                         <option value="Instagram">Instagram</option>
+                                        <option value="Twitter">Twitter</option>
                                         <option value="Linkedin">LinkedIn</option>
                                         <option value="Facebook">Facebook</option>
                                         <option value="Youtube">YouTube</option>
@@ -145,9 +153,9 @@
 
                                 <div class="selectContainer">
                                     <select id="social3" class="socialSelector">
+                                        <option value="Linkedin">LinkedIn</option>
                                         <option value="Twitter">Twitter</option>
                                         <option value="Instagram">Instagram</option>
-                                        <option value="Linkedin">LinkedIn</option>
                                         <option value="Facebook">Facebook</option>
                                         <option value="Youtube">YouTube</option>
                                         <option value="Snapchat">Snapchat</option>
@@ -165,10 +173,10 @@
 
                                 <div class="selectContainer">
                                     <select id="social4" class="socialSelector">
+                                        <option value="Facebook">Facebook</option>
                                         <option value="Twitter">Twitter</option>
                                         <option value="Instagram">Instagram</option>
                                         <option value="Linkedin">LinkedIn</option>
-                                        <option value="Facebook">Facebook</option>
                                         <option value="Youtube">YouTube</option>
                                         <option value="Snapchat">Snapchat</option>
                                         <option value="Tiktok">TikTok</option>
@@ -185,11 +193,11 @@
 
                                 <div class="selectContainer">
                                     <select id="social5" class="socialSelector">
+                                        <option value="Youtube">YouTube</option>
                                         <option value="Twitter">Twitter</option>
                                         <option value="Instagram">Instagram</option>
                                         <option value="Linkedin">LinkedIn</option>
                                         <option value="Facebook">Facebook</option>
-                                        <option value="Youtube">YouTube</option>
                                         <option value="Snapchat">Snapchat</option>
                                         <option value="Tiktok">TikTok</option>
                                         <option value="Twitch">Twitch</option>
