@@ -219,7 +219,7 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  updateCard(cardId:String, userId:string) {
+  getSocialData() {
     var social1 = document.getElementById('social1') as HTMLSelectElement;
     var social2 = document.getElementById('social2') as HTMLSelectElement;
     var social3 = document.getElementById('social3') as HTMLSelectElement;
@@ -249,19 +249,27 @@ export class AdminCardPreviewComponent implements OnInit{
     }
 
     if(socialLink1.length > 0) {
-      if(!socialData.includes(social1.value)) {
-        
-      }
+      var type = social1.value;      
+      this.data[type as keyof typeof this.data] = socialLink1.value;
     } else if (socialLink2.length > 0) {
-
+      var type = social2.value;      
+      this.data[type as keyof typeof this.data] = socialLink2.value;
     } else if (socialLink3.length > 0) {
-      
+      var type = social3.value;      
+      this.data[type as keyof typeof this.data] = socialLink3.value;
     } else if (socialLink4.length > 0) {
-      
+      var type = social4.value;      
+      this.data[type as keyof typeof this.data] = socialLink4.value;
     } else if (socialLink5.length > 0) {
-      
+      var type = social5.value;      
+      this.data[type as keyof typeof this.data] = socialLink5.value;
     } 
-  
+  }
+
+  updateCard(cardId:String, userId:string) {
+    this.getSocialData();
+    console.log(this.data);
+
     axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
       "Name": this.data.Name,
       "Job_title": this.data.Job_title,
