@@ -687,7 +687,8 @@ iframe {
 
 @media only screen and (max-width: 600px) {
     .pnl {
-        width: 100%;
+        width: 90vw;
+        min-width: 90vw;
         height: 385px;
         min-height: 385px;
     }
@@ -780,8 +781,8 @@ iframe {
     }
 
     .sigPnl {
-        width: 385px;
-        min-width: 385px;
+        width: 90vw;
+        min-width: 90vw;
         height: 345px;
         min-height: 345px;
     }
