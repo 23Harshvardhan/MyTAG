@@ -121,10 +121,10 @@ export class AdminCardPreviewComponent implements OnInit{
       'y-axis-1': {
         position: 'right',
         grid: {
-          color: 'rgba(255,0,0,0.3)',
+          color: 'rgba(0,0,0,0.3)',
         },
         ticks: {
-          color: 'red'
+          color: 'black'
         }
       }
     },
@@ -207,6 +207,10 @@ export class AdminCardPreviewComponent implements OnInit{
     }
     else if(field == 'cardHeadArea') {
       cardHeadArea.classList.toggle("hidden");
+      socialDetailSection.classList.toggle("hidden");
+      basicContactSection.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
     }
     else if(field == 'socialEditSection') {
       upperCard.classList.toggle("hidden");
@@ -224,6 +228,17 @@ export class AdminCardPreviewComponent implements OnInit{
     }
     else if(field == 'videoEditArea') {
       videoEditArea.classList.toggle("hidden");
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
     } else if (field == 'linksEditArea') {
       linksEditArea.classList.toggle('hidden');
       upperCard.classList.toggle("hidden");

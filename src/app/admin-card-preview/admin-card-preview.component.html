@@ -347,57 +347,59 @@
                                 <button class="sigBtn">Text</button>
                             </div>
 
-                            <div class="signatureBox" id="html">
-                                <div class="sigBoxHeader">
-                                    <div class="imgCont">
-                                        <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
-                                    </div>
-                                    <div class="basicInfoCont">
-                                        <h5 class="nameData">{{data.Name}}</h5>
-                                        <p class="data">{{data.Job_title}}</p>
-                                        <p class="data">{{data.Company_name}}</p>
-                                    </div>
-                                    <div class="logoCont">
-                                        <img class="profilePic sigLogo" id="profilePic" [src]="imageUrl">
-                                    </div>
-                                </div>
-                                <div class="sigBoxBody">
-                                    <div class="basicInfoCont">
-                                        <div style="gap: 5px; flex-direction: row; display: flex;">
-                                            <i class="fa-solid fa-phone data"></i>
-                                            <p class="data">{{data.Phone}}</p>
+                            <div id="html">
+                                <div class="signatureBox">
+                                    <div class="sigBoxHeader">
+                                        <div class="imgCont">
+                                            <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
                                         </div>
-                                        <div style="gap: 5px; flex-direction: row; display: flex;">
-                                            <i class="fa-solid fa-mobile data"></i>
-                                            <p class="data">{{data.Phone}}</p>
+                                        <div class="basicInfoCont">
+                                            <h5 class="nameData">{{data.Name}}</h5>
+                                            <p class="data">{{data.Job_title}}</p>
+                                            <p class="data">{{data.Company_name}}</p>
                                         </div>
-                                        <div style="gap: 5px; flex-direction: row; display: flex;">
-                                            <i class="fa-solid fa-envelope data"></i>
-                                            <p class="data">{{data.Email}}</p>
-                                        </div>
-                                        <div style="gap: 5px; flex-direction: row; display: flex;">
-                                            <i class="fa-solid fa-link data"></i>
-                                            <p class="data">{{data.Link}}</p>
-                                        </div>
-                                        <div style="gap: 5px; flex-direction: row; display: flex;">
-                                            <i class="fa-solid fa-map data"></i>
-                                            <p class="data">{{data.Address}}</p>
+                                        <div class="logoCont">
+                                            <img class="profilePic sigLogo" id="profilePic" [src]="imageUrl">
                                         </div>
                                     </div>
-                                    <div class="qrCont">
-                                        <qrcode [qrdata]="cardViewLink" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                    <div class="sigBoxBody">
+                                        <div class="basicInfoCont">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                                <i class="fa-solid fa-phone data"></i>
+                                                <p class="data">{{data.Phone}}</p>
+                                            </div>
+                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                                <i class="fa-solid fa-mobile data"></i>
+                                                <p class="data">{{data.Phone}}</p>
+                                            </div>
+                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                                <i class="fa-solid fa-envelope data"></i>
+                                                <p class="data">{{data.Email}}</p>
+                                            </div>
+                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                                <i class="fa-solid fa-link data"></i>
+                                                <p class="data">{{data.Link}}</p>
+                                            </div>
+                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                                <i class="fa-solid fa-map data"></i>
+                                                <p class="data">{{data.Address}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="qrCont">
+                                            <qrcode [qrdata]="cardViewLink" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="sigFooter">
-                                    <div class="socialsCont">
-                                        <i class="fa-brands fa-twitter"></i>
-                                        <i class="fa-brands fa-instagram"></i>
-                                        <i class="fa-brands fa-linkedin"></i>
-                                        <i class="fa-brands fa-whatsapp"></i>
-                                        <i class="fa-brands fa-skype"></i>
-                                    </div>
-                                    <div class="saveCont">
-                                        <button class="cpySigBtn">Save Contact</button>
+                                    <div class="sigFooter">
+                                        <div class="socialsCont">
+                                            <i class="fa-brands fa-twitter"></i>
+                                            <i class="fa-brands fa-instagram"></i>
+                                            <i class="fa-brands fa-linkedin"></i>
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                            <i class="fa-brands fa-skype"></i>
+                                        </div>
+                                        <div class="saveCont">
+                                            <button class="cpySigBtn">Save Contact</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
