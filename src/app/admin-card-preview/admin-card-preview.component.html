@@ -391,11 +391,19 @@
                                     </div>
                                     <div class="sigFooter">
                                         <div class="socialsCont">
-                                            <i class="fa-brands fa-twitter"></i>
-                                            <i class="fa-brands fa-instagram"></i>
-                                            <i class="fa-brands fa-linkedin"></i>
-                                            <i class="fa-brands fa-whatsapp"></i>
-                                            <i class="fa-brands fa-skype"></i>
+                                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0"></i>
+                                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0"></i>
+                                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0"></i>
+                                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0"></i>
+                                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0"></i>
+                                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0"></i>
+                                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0"></i>
+                                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0"></i>
+                                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0"></i>
+                                            <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0"></i>
+                                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0"></i>
+                                            <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0"></i>
+                                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0"></i>
                                         </div>
                                         <div class="saveCont">
                                             <button class="cpySigBtn">Save Contact</button>
