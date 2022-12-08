@@ -152,6 +152,27 @@ export class AdminCardPreviewComponent implements OnInit{
     fileUpload.click();
   }
 
+  cpySigBtn() {
+    var htmlEditor = document.getElementById('html');
+    this.cpySig(htmlEditor.innerHTML);
+  }
+
+  cpySig(html) {
+    var container = document.createElement('div')
+    container.innerHTML = html
+    container.style.position = 'fixed'
+    container.style.pointerEvents = 'none'
+    container.style.opacity = "0";
+    document.body.appendChild(container)
+    window.getSelection().removeAllRanges()
+    var range = document.createRange()
+    range.selectNode(container)
+    window.getSelection().addRange(range)
+    document.execCommand('copy')
+    document.body.removeChild(container);
+    alert("Copied")
+  }
+
   toggleEditField(field:string) {
     var cardHead = document.getElementById('cardHead');
     var upperCard = document.getElementById('upperCard');

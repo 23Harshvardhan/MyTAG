@@ -347,7 +347,7 @@
                                 <button class="sigBtn">Text</button>
                             </div>
 
-                            <div class="signatureBox">
+                            <div class="signatureBox" id="html">
                                 <div class="sigBoxHeader">
                                     <div class="imgCont">
                                         <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
@@ -402,7 +402,7 @@
                                 </div>
                             </div>
 
-                            <button class="cpySigBtn marginTop10">Copy Signature</button>
+                            <button class="cpySigBtn marginTop10" (click)="cpySigBtn()">Copy Signature</button>
                             <p class="sigIntel">Copy above signature and paste it as your email signature</p>
                         </div>
                     </div>
