@@ -219,7 +219,7 @@
                     <div id="basicContactSection" class="width95">
 
                         <div class="editBtnArea" id="editBtnArea">
-                            <p class="sectionHeading"></p>
+                            <p class="sectionHeading">Contact Info</p>
                             <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                         </div>
 
@@ -239,7 +239,7 @@
             
                         <div class="container basicContactArea" id="basicContactArea">
                             <div class="cardInfoCont">
-                                <i class="fa-solid fa-link"></i>
+                                <i class="fa-solid fa-globe"></i>
                                 <p class="intel">{{data.Link}}</p>
                             </div>
                         </div> 
@@ -301,19 +301,19 @@
                         </div>
                         <div class="container basicContactArea" *ngIf="data.Calendly.length > 0">
                             <div class="cardInfoCont">
-                                <i class="fa-solid fa-calendar"></i>
+                                <i class="fa-solid fa-link"></i>
                                 <p class="intel">{{data.Calendly}}</p>
                             </div>
                         </div> 
                         <div class="container basicContactArea" *ngIf="data.Github.length > 0">
                             <div class="cardInfoCont">
-                                <i class="fa-brands fa-github"></i>
+                                <i class="fa-solid fa-link"></i>
                                 <p class="intel">{{data.Github}}</p>
                             </div>
                         </div> 
                         <div class="container basicContactArea" *ngIf="data.Paypal.length > 0">
                             <div class="cardInfoCont">
-                                <i class="fa-brands fa-paypal"></i>
+                                <i class="fa-solid fa-link"></i>
                                 <p class="intel">{{data.Paypal}}</p>
                             </div>
                         </div> 
