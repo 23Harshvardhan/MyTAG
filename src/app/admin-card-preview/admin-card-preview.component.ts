@@ -455,7 +455,7 @@ export class AdminCardPreviewComponent implements OnInit{
       })
     }
     else {
-      window.location.reload();
+      this.uploadLogo();
     }
   }
 

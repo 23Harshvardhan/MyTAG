@@ -73,7 +73,7 @@
                                 <h4>Logo</h4>
                                 <input type="file" #imgInput2 id="FileUpload2" (change)="onFileSelected2($event)">
                                 <h4>Name</h4>
-                                <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')">
+                                <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')" maxlength="41">
                                 <h4>Designation</h4>
                                 <input class="inputField" id="Job_title" placeholder="Your Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
                                 <h4>Company Name</h4>
