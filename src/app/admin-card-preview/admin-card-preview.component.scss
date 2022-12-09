@@ -72,7 +72,8 @@ $foregroundColor: white;
     width: 90%;
     display: flex;
     padding-bottom: 20px;
-    justify-content: space-between;
+    gap: 21px;
+    // justify-content: space-between;
 }
 
 .sigBoxHeader {
