@@ -30,6 +30,8 @@
     "ngx-cookie-service": "^15.0.0",
     "ngx-cookieconsent": "^4.0.1",
     "ngx-copypaste": "^10.0.0",
+    "ngx-image-compress": "^13.1.13",
+    "ngx-image-cropper": "^6.3.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
