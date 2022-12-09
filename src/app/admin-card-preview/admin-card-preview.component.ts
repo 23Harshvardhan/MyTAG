@@ -84,7 +84,8 @@ export class AdminCardPreviewComponent implements OnInit{
     "Reg_date": "",
     "Status": "",
     "Type": "",
-    "Created_by": ""
+    "Created_by": "",
+    "Logo": ""
   }
 
   public lineChartData: ChartConfiguration['data'] = {
@@ -143,14 +144,21 @@ export class AdminCardPreviewComponent implements OnInit{
 
   currentBlockName:string;
   file:File;
+  file2:File;
   userId:string;
   formdata = new FormData();
   imageUrl = "http://34.131.186.218/v1/images/default.jpg";
+  logoUrl = "http://34.131.186.218/v1/images/default.jpg";
 
-  selectFile() {
-    var fileUpload = document.getElementById("FileUpload1");
-    fileUpload.click();
-  }
+  // selectFile() {
+  //   var fileUpload = document.getElementById("FileUpload1");
+  //   fileUpload.click();
+  // }
+
+  // selectFile2() {
+  //   var fileUpload = document.getElementById("FileUpload2");
+  //   fileUpload.click();
+  // }
 
   cpySigBtn() {
     var htmlEditor = document.getElementById('html');
@@ -358,6 +366,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   compressedImage:File;
+  compressedImage2:File;
 
   onFileSelected(event) {
     if(event.target.files.length > 0) {
@@ -374,7 +383,27 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.file);
       reader.onload=(event:any) => {
         this.imageUrl = event.target.result;
-        this.setImage();
+        // this.setImage();
+      }
+    }
+  }
+
+  onFileSelected2(event) {
+    if(event.target.files.length > 0) {
+      this.file2 = event.target.files[0];
+
+      this.compressImage.compress(this.file2)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedImage2 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.file2);
+      reader.onload=(event:any) => {
+        this.logoUrl = event.target.result;
+        // this.setImage();
       }
     }
   }
@@ -403,10 +432,12 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  setImage() {
-    var cardImage = document.getElementById("cardImage");
-    cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
-  }
+  // setImage() {
+  //   var cardImage = document.getElementById("cardImage");
+  //   cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
+
+  //   var cardLogo = document.getElementById('logo');
+  // }  
 
   uploadImage() {
     var formdata = new FormData();
@@ -414,6 +445,26 @@ export class AdminCardPreviewComponent implements OnInit{
       formdata.append("media", this.compressedImage);
 
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      .then((response) => {
+        console.log(response);
+        this.uploadLogo();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("There was an error updating card image. Please send console log to developer.");
+      })
+    }
+    else {
+      window.location.reload();
+    }
+  }
+
+  uploadLogo() {
+    var formdata = new FormData();
+    if(this.compressedImage2 != null) {
+      formdata.append("media", this.compressedImage2);
+
+      axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
         window.location.reload();
       })
@@ -464,6 +515,10 @@ export class AdminCardPreviewComponent implements OnInit{
   loadCardImage() {
     if(this.data.Image != "" || this.data.Image != null) {
       this.imageUrl = "http://34.131.186.218/v1/" + this.data.Image;
+    }
+
+    if(this.data.Logo != "" || this.data.Logo != null) {
+      this.logoUrl = "http://34.131.186.218/v1/" + this.data.Logo;
     }
   }
 

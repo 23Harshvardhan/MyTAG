@@ -36,8 +36,8 @@
                 <div class="card">
                     <div class="upperCard" id="upperCard">
                         <div class="container cardNavArea">
-                            <input type="button" value="Add Image" class="btn1">
-                            <img class="logo hidden" src="../../assets/img/logo.jpg">
+                            <!-- <input type="button" value="Add Image" class="btn1"> -->
+                            <img class="logo" id="logo" [src]="logoUrl">
                             <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
                         </div>
                     </div>
@@ -70,6 +70,8 @@
                             <div class="editBodyArea">
                                 <h4>Profile Picture</h4>
                                 <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
+                                <h4>Logo</h4>
+                                <input type="file" #imgInput2 id="FileUpload2" (change)="onFileSelected2($event)">
                                 <h4>Name</h4>
                                 <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')">
                                 <h4>Designation</h4>
@@ -359,7 +361,7 @@
                                             <p class="data">{{data.Company_name}}</p>
                                         </div>
                                         <div class="logoCont">
-                                            <img class="profilePic sigLogo" id="profilePic" [src]="imageUrl">
+                                            <img class="profilePic sigLogo" id="profilePic" [src]="logoUrl">
                                         </div>
                                     </div>
                                     <div class="sigBoxBody">
