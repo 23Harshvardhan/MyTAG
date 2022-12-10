@@ -10,7 +10,7 @@ export class AdminVertNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.fetchDate();
+    // this.fetchDate();
   }
 
   fetchDate() {

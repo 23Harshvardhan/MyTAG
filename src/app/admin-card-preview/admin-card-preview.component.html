@@ -23,7 +23,7 @@
 
 <!-- Overlay for image cropper. -->
 <div class="imageCropperOverlay hidden" id="cropperOverlay">
-    <div class="cropeprArea">
+    <div class="cropArea">
     <image-cropper
         [imageChangedEvent]="imgChangeEvent1"
         [aspectRatio]="4/4"
@@ -95,7 +95,7 @@
                             <h3 class="editHeading">Edit your Card Header</h3>
                             <div class="editBodyArea">
                                 <h4>Profile Picture</h4>
-                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)" (click)="cancelCropper()">
+                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
                                 <h4>Logo</h4>
                                 <input type="file" #imgInput2 id="FileUpload2" (change)="onFileSelected2($event)">
                                 <h4>Name</h4>
@@ -376,7 +376,17 @@
                             </div>
 
                             <div id="html">
-                                <div class="signatureBox">
+                                <div class="signatureBox" style="border: 1px solid black;
+                                height: 300px;
+                                width: 550px;
+                                border-radius: 15px;
+                                margin-top: 10px;
+                                font-family: 'MontserratRegular';
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 10px;">
                                     <div class="sigBoxHeader">
                                         <div class="imgCont">
                                             <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">

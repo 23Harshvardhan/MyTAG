@@ -377,22 +377,6 @@ export class AdminCardPreviewComponent implements OnInit{
 
   onFileSelected(event) {
     this.imgChangeEvent1 = event;
-    // if(event.target.files.length > 0) {
-    //   this.file = event.target.files[0];
-
-    //   this.compressImage.compress(this.file)
-    //   .pipe(take(1))
-    //   .subscribe(compressedFile => {
-    //     this.compressedImage = compressedFile;
-    //   })
-
-    //   var reader = new FileReader();
-
-    //   reader.readAsDataURL(this.file);
-    //   reader.onload=(event:any) => {
-    //     this.imageUrl = event.target.result;
-    //   }
-    // }
   }
 
   cropImg(e:ImageCroppedEvent) {
@@ -400,7 +384,8 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   imgLoad() {
-
+    var cropper = document.getElementById('cropperOverlay');
+    cropper.classList.toggle('hidden');
   }
 
   initCropper() {
