@@ -1,5 +1,7 @@
+<!-- Import for FontAwesome icons. -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
+<!-- Overlay for navigation menu in mobile view. -->
 <div class="overlay" id="overlay">
     <div class="logoContainer">
         <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
@@ -19,7 +21,31 @@
   </nav>
 </div>
 
+<!-- Overlay for image cropper. -->
+<div class="imageCropperOverlay hidden" id="cropperOverlay">
+    <div class="cropeprArea">
+    <image-cropper
+        [imageChangedEvent]="imgChangeEvent1"
+        [aspectRatio]="4/4"
+        [maintainAspectRatio]="true"
+        [resizeToWidth]="256"
+        format="png"
+        (imageCropped)="cropImg($event)"
+        (imageLoaded)="imgLoad()"
+        (cropperReady)="initCropper()"
+        (loadImageFailed)="imgFailed()"
+    ></image-cropper>
+    </div>
+
+    <div class="cropperButtonRow">
+        <button class="cropperBtn secondary" (click)="cancelCropper()">Cancel</button>
+        <button class="cropperBtn primary" (click)="finalizeCrop()">Finish</button> 
+    </div>
+</div>
+
+<!-- Code for entire page. -->
 <div class="body">
+    <!-- Div to give spacing for vertical navbar in desktop view. -->
     <div class="area" style="width: 60px;"></div>
     <app-admin-vert-navbar></app-admin-vert-navbar>
     
@@ -69,7 +95,7 @@
                             <h3 class="editHeading">Edit your Card Header</h3>
                             <div class="editBodyArea">
                                 <h4>Profile Picture</h4>
-                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
+                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)" (click)="cancelCropper()">
                                 <h4>Logo</h4>
                                 <input type="file" #imgInput2 id="FileUpload2" (change)="onFileSelected2($event)">
                                 <h4>Name</h4>

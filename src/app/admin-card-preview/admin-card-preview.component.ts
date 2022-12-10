@@ -7,6 +7,7 @@ import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
 import {take} from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -368,11 +369,60 @@ export class AdminCardPreviewComponent implements OnInit{
   compressedImage:File;
   compressedImage2:File;
 
-  onFileSelected(event) {
-    if(event.target.files.length > 0) {
-      this.file = event.target.files[0];
+  imgChangeEvent1;
+  imgChangeEvent2;
 
-      this.compressImage.compress(this.file)
+  cropImagePreview1;
+  cropImagePreview2;
+
+  onFileSelected(event) {
+    this.imgChangeEvent1 = event;
+    // if(event.target.files.length > 0) {
+    //   this.file = event.target.files[0];
+
+    //   this.compressImage.compress(this.file)
+    //   .pipe(take(1))
+    //   .subscribe(compressedFile => {
+    //     this.compressedImage = compressedFile;
+    //   })
+
+    //   var reader = new FileReader();
+
+    //   reader.readAsDataURL(this.file);
+    //   reader.onload=(event:any) => {
+    //     this.imageUrl = event.target.result;
+    //   }
+    // }
+  }
+
+  cropImg(e:ImageCroppedEvent) {
+    this.cropImagePreview1 = e.base64;
+  }
+
+  imgLoad() {
+
+  }
+
+  initCropper() {
+
+  }
+
+  cancelCropper() {
+    var cropper = document.getElementById('cropperOverlay');
+    cropper.classList.toggle('hidden')
+  }
+
+  finalizeCrop() {
+    var cropper = document.getElementById('cropperOverlay');
+
+    const url = this.cropImagePreview1;
+    fetch(url)
+    .then(res => res.blob())
+    .then(blob => {
+      this.file = new File([blob], "File name",{type: "image/png"})
+    })
+
+    this.compressImage.compress(this.file)
       .pipe(take(1))
       .subscribe(compressedFile => {
         this.compressedImage = compressedFile;
@@ -383,9 +433,13 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.file);
       reader.onload=(event:any) => {
         this.imageUrl = event.target.result;
-        // this.setImage();
       }
-    }
+
+      cropper.classList.toggle('hidden');
+  }
+
+  imgFailed() {
+    alert("Cropper failed to initialize. Please try again.");
   }
 
   onFileSelected2(event) {
@@ -403,7 +457,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.file2);
       reader.onload=(event:any) => {
         this.logoUrl = event.target.result;
-        // this.setImage();
       }
     }
   }
