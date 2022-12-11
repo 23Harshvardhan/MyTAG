@@ -23,23 +23,25 @@
 
 <!-- Overlay for image cropper. -->
 <div class="imageCropperOverlay hidden" id="cropperOverlay">
-    <div class="cropArea">
-    <image-cropper
-        [imageChangedEvent]="imgChangeEvent1"
-        [aspectRatio]="4/4"
-        [maintainAspectRatio]="true"
-        [resizeToWidth]="256"
-        format="png"
-        (imageCropped)="cropImg($event)"
-        (imageLoaded)="imgLoad()"
-        (cropperReady)="initCropper()"
-        (loadImageFailed)="imgFailed()"
-    ></image-cropper>
-    </div>
+    <div class="cropperBox">
+        <div class="cropArea">
+        <image-cropper
+            [imageChangedEvent]="imgChangeEvent1"
+            [aspectRatio]="4/4"
+            [maintainAspectRatio]="true"
+            [resizeToWidth]="256"
+            format="png"
+            (imageCropped)="cropImg($event)"
+            (imageLoaded)="imgLoad()"
+            (cropperReady)="initCropper()"
+            (loadImageFailed)="imgFailed()"
+        ></image-cropper>
+        </div>
 
-    <div class="cropperButtonRow">
-        <button class="cropperBtn secondary" (click)="cancelCropper()">Cancel</button>
-        <button class="cropperBtn primary" (click)="finalizeCrop()">Finish</button> 
+        <div class="cropperButtonRow">
+            <button class="cropperBtn secondary" (click)="cancelCropper()">Cancel</button>
+            <button class="cropperBtn primary" (click)="finalizeCrop()">Finish</button> 
+        </div>
     </div>
 </div>
 
@@ -376,17 +378,7 @@
                             </div>
 
                             <div id="html">
-                                <div class="signatureBox" style="border: 1px solid black;
-                                height: 300px;
-                                width: 550px;
-                                border-radius: 15px;
-                                margin-top: 10px;
-                                font-family: 'MontserratRegular';
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 10px;">
+                                <div class="signatureBox">
                                     <div class="sigBoxHeader">
                                         <div class="imgCont">
                                             <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">

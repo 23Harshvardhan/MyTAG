@@ -82,11 +82,20 @@ $foregroundColor: white;
 }
 
 .imageCropperOverlay {
-    position: absolute;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    justify-content: center;
+}
+
+.cropperBox {
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
-    margin-left: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -745,6 +754,11 @@ iframe {
 }
 
 @media only screen and (max-width: 600px) {
+    .cropArea {
+        width: 100vw;
+        height: 500px;
+    }
+
     .pnl {
         width: 90vw;
         min-width: 90vw;

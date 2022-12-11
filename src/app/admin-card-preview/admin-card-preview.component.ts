@@ -370,10 +370,8 @@ export class AdminCardPreviewComponent implements OnInit{
   compressedImage2:File;
 
   imgChangeEvent1;
-  imgChangeEvent2;
 
   cropImagePreview1;
-  cropImagePreview2;
 
   onFileSelected(event) {
     this.imgChangeEvent1 = event;
@@ -407,20 +405,14 @@ export class AdminCardPreviewComponent implements OnInit{
       this.file = new File([blob], "File name",{type: "image/png"})
     })
 
-    this.compressImage.compress(this.file)
-      .pipe(take(1))
-      .subscribe(compressedFile => {
-        this.compressedImage = compressedFile;
-      })
+    var reader = new FileReader();
 
-      var reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload=(event:any) => {
+      this.imageUrl = event.target.result;
+    }
 
-      reader.readAsDataURL(this.file);
-      reader.onload=(event:any) => {
-        this.imageUrl = event.target.result;
-      }
-
-      cropper.classList.toggle('hidden');
+    cropper.classList.toggle('hidden');
   }
 
   imgFailed() {
@@ -470,14 +462,13 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  // setImage() {
-  //   var cardImage = document.getElementById("cardImage");
-  //   cardImage.style.backgroundImage = "url('" + this.imageUrl + "')";
-
-  //   var cardLogo = document.getElementById('logo');
-  // }  
-
   uploadImage() {
+    this.compressImage.compress(this.file)
+      .pipe(take(1))
+      .subscribe(compressedFile => {
+        this.compressedImage = compressedFile;
+      })
+
     var formdata = new FormData();
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
