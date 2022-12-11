@@ -397,20 +397,24 @@ export class AdminCardPreviewComponent implements OnInit{
 
   finalizeCrop() {
     var cropper = document.getElementById('cropperOverlay');
+    var reader = new FileReader();
 
     const url = this.cropImagePreview1;
     fetch(url)
     .then(res => res.blob())
     .then(blob => {
-      this.file = new File([blob], "File name",{type: "image/png"})
-    })
-
-    var reader = new FileReader();
-
-    reader.readAsDataURL(this.file);
-    reader.onload=(event:any) => {
+      this.file = new File([blob], "File name",{type: "image/png"});
+      reader.readAsDataURL(this.file);
+      reader.onload=(event:any) => {
       this.imageUrl = event.target.result;
-    }
+
+      this.compressImage.compress(this.file)
+      .pipe(take(1))
+      .subscribe(compressedFile => {
+        this.compressedImage = compressedFile;
+      })
+      }
+    })
 
     cropper.classList.toggle('hidden');
   }
@@ -463,12 +467,6 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   uploadImage() {
-    this.compressImage.compress(this.file)
-      .pipe(take(1))
-      .subscribe(compressedFile => {
-        this.compressedImage = compressedFile;
-      })
-
     var formdata = new FormData();
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
