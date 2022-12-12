@@ -366,6 +366,34 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  // availableSocials = ['socialGroup2','socialGroup3','socialGroup4','socialGroup5'];
+  totalSocials = [];
+
+  addSocials() {
+    for(let i = 2; i < 6; i++) {
+      if(!this.totalSocials.includes("socialGroup" + i.toString())) {
+        var socialPnl = document.getElementById("socialGroup" + i.toString());
+        socialPnl.classList.remove('hidden');
+        this.totalSocials.push("socialGroup" + i.toString());
+        break;
+      }
+    }
+  }
+
+  getSocialValue(count:string) {
+    var selector = document.getElementById("social" + count) as HTMLSelectElement;
+    var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
+    var field = document.getElementById('socialLink' + count) as HTMLInputElement;
+    field.value = fieldValue;
+  }
+
+  removeSocialGroup(count:string) {
+    var index = this.totalSocials.indexOf("socialGroup" + count);
+    var socialPnl = document.getElementById("socialGroup" + count);
+    socialPnl.classList.add('hidden');
+    this.totalSocials.splice(index, 1);
+  }
+
   compressedImage:File;
   compressedImage2:File;
 

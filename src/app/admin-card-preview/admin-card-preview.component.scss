@@ -743,6 +743,10 @@ iframe {
     width: 95%;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
 .nameData {
     font-size: 20px;
     margin: 0;
