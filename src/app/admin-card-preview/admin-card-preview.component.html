@@ -160,102 +160,116 @@
                                         <option value="Telegram">Telegram</option>
                                     </select>
 
-                                    <input class="inputField" id="socialLink1" placeholder="Link" value="">
+                                    <input class="inputField" id="socialLink1" placeholder="Link" value={{data.Twitter}}>
                                 </div>
 
-                                <div class="selectContainer hidden" id="socialGroup2">
-                                    <select id="social2" class="socialSelector" (change)="getSocialValue('2')">
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Linkedin">LinkedIn</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Youtube">YouTube</option>
-                                        <option value="Snapchat">Snapchat</option>
-                                        <option value="Tiktok">TikTok</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Yelp">Yelp</option>
-                                        <option value="Discord">Discord</option>
-                                        <option value="Whatsapp">WhatsApp</option>
-                                        <option value="Skype">Skype</option>
-                                        <option value="Telegram">Telegram</option>
-                                    </select>
+                                <div class="selectContainer hidden" id="socialGroup2" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p>Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('2')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social2" class="socialSelector" (change)="getSocialValue('2')">
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
 
-                                    <input class="inputField" id="socialLink2" placeholder="Link" value="">
-
-                                    <i class="fa-solid fa-xmark" (click)="removeSocialGroup('2')"></i>
-                                </div>
-
-                                <div class="selectContainer hidden" id="socialGroup3">
-                                    <select id="social3" class="socialSelector" (change)="getSocialValue('3')">
-                                        <option value="Linkedin">LinkedIn</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Youtube">YouTube</option>
-                                        <option value="Snapchat">Snapchat</option>
-                                        <option value="Tiktok">TikTok</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Yelp">Yelp</option>
-                                        <option value="Discord">Discord</option>
-                                        <option value="Whatsapp">WhatsApp</option>
-                                        <option value="Skype">Skype</option>
-                                        <option value="Telegram">Telegram</option>
-                                    </select>
-
-                                    <input class="inputField" id="socialLink3" placeholder="Link" value="">
-
-                                    <div (click)="removeSocialGroup('3')">
-                                        <i class="fa-solid fa-xmark"></i>
+                                        <input class="inputField" id="socialLink2" placeholder="Link" value={{data.Youtube}}>
                                     </div>
                                 </div>
 
-                                <div class="selectContainer hidden" id="socialGroup4">
-                                    <select id="social4" class="socialSelector" (change)="getSocialValue('4')">
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Linkedin">LinkedIn</option>
-                                        <option value="Youtube">YouTube</option>
-                                        <option value="Snapchat">Snapchat</option>
-                                        <option value="Tiktok">TikTok</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Yelp">Yelp</option>
-                                        <option value="Discord">Discord</option>
-                                        <option value="Whatsapp">WhatsApp</option>
-                                        <option value="Skype">Skype</option>
-                                        <option value="Telegram">Telegram</option>
-                                    </select>
+                                <div class="selectContainer hidden" id="socialGroup3" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p>Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('3')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social3" class="socialSelector" (change)="getSocialValue('3')">
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
 
-                                    <input class="inputField" id="socialLink4" placeholder="Link" value="">
-
-                                    <i class="fa-solid fa-xmark" (click)="removeSocialGroup('4')"></i>
+                                        <input class="inputField" id="socialLink3" placeholder="Link" value={{data.Instagram}}>
+                                    </div>
                                 </div>
 
-                                <div class="selectContainer hidden" id="socialGroup5">
-                                    <select id="social5" class="socialSelector" (change)="getSocialValue('5')">
-                                        <option value="Youtube">YouTube</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Linkedin">LinkedIn</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Snapchat">Snapchat</option>
-                                        <option value="Tiktok">TikTok</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Yelp">Yelp</option>
-                                        <option value="Discord">Discord</option>
-                                        <option value="Whatsapp">WhatsApp</option>
-                                        <option value="Skype">Skype</option>
-                                        <option value="Telegram">Telegram</option>
-                                    </select>
+                                <div class="selectContainer hidden" id="socialGroup4" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p>Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social4" class="socialSelector" (change)="getSocialValue('4')">
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
 
-                                    <input class="inputField" id="socialLink5" placeholder="Link" value="">
+                                        <input class="inputField" id="socialLink4" placeholder="Link" value={{data.Linkedin}}>
+                                    </div>
+                                </div>
 
-                                    <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
+                                <div class="selectContainer hidden" id="socialGroup5" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p>Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social5" class="socialSelector" (change)="getSocialValue('5')">
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink5" placeholder="Link" value={{data.Facebook}}>
+                                    </div>
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalSocials.length < 4">
-                                    <div style="display: flex; gap: 10px; align-items: center; justify-content: center; background-color: black; color: white; border-radius: 5px; width: 100%;" (click)="addSocials()">
-                                        <i class="fa-solid fa-plus" style="padding: 2px; background-color: white; border-radius: 50px; color: black;"></i>
-                                        <p>Add Field</p>
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addSocials()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Social Network</p>
                                     </div>
                                 </div>
                             </div>

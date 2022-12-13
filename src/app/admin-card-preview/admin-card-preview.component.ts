@@ -151,16 +151,6 @@ export class AdminCardPreviewComponent implements OnInit{
   imageUrl = "http://34.131.186.218/v1/images/default.jpg";
   logoUrl = "http://34.131.186.218/v1/images/default.jpg";
 
-  // selectFile() {
-  //   var fileUpload = document.getElementById("FileUpload1");
-  //   fileUpload.click();
-  // }
-
-  // selectFile2() {
-  //   var fileUpload = document.getElementById("FileUpload2");
-  //   fileUpload.click();
-  // }
-
   cpySigBtn() {
     var htmlEditor = document.getElementById('html');
     this.cpySig(htmlEditor.innerHTML);
@@ -366,7 +356,6 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  // availableSocials = ['socialGroup2','socialGroup3','socialGroup4','socialGroup5'];
   totalSocials = [];
 
   addSocials() {
