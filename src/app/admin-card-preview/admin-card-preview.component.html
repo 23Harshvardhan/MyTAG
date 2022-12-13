@@ -160,12 +160,12 @@
                                         <option value="Telegram">Telegram</option>
                                     </select>
 
-                                    <input class="inputField" id="socialLink1" placeholder="Link" value={{data.Twitter}}>
+                                    <input class="inputField" id="socialLink1" placeholder="Link" value={{data.Twitter}} (keyup)="socialGetEvent('1')">
                                 </div>
 
                                 <div class="selectContainer hidden" id="socialGroup2" style="flex-direction: column; gap: 2px;">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
-                                        <p>Delete</p>
+                                        <p (click)="removeSocialGroup('2')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeSocialGroup('2')"></i>
                                     </div>
                                     <div style="display: flex; width: 100%; gap: 10px;">
@@ -185,13 +185,13 @@
                                             <option value="Telegram">Telegram</option>
                                         </select>
 
-                                        <input class="inputField" id="socialLink2" placeholder="Link" value={{data.Youtube}}>
+                                        <input class="inputField" id="socialLink2" placeholder="Link" value={{data.Youtube}} (keyup)="socialGetEvent('2')">
                                     </div>
                                 </div>
 
                                 <div class="selectContainer hidden" id="socialGroup3" style="flex-direction: column; gap: 2px;">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
-                                        <p>Delete</p>
+                                        <p (click)="removeSocialGroup('3')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeSocialGroup('3')"></i>
                                     </div>
                                     <div style="display: flex; width: 100%; gap: 10px;">
@@ -211,14 +211,14 @@
                                             <option value="Telegram">Telegram</option>
                                         </select>
 
-                                        <input class="inputField" id="socialLink3" placeholder="Link" value={{data.Instagram}}>
+                                        <input class="inputField" id="socialLink3" placeholder="Link" value={{data.Instagram}} (keyup)="socialGetEvent('3')">
                                     </div>
                                 </div>
 
                                 <div class="selectContainer hidden" id="socialGroup4" style="flex-direction: column; gap: 2px;">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
-                                        <p>Delete</p>
-                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
+                                        <p (click)="removeSocialGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('4')"></i>
                                     </div>
                                     <div style="display: flex; width: 100%; gap: 10px;">
                                         <select id="social4" class="socialSelector" (change)="getSocialValue('4')">
@@ -237,13 +237,13 @@
                                             <option value="Telegram">Telegram</option>
                                         </select>
 
-                                        <input class="inputField" id="socialLink4" placeholder="Link" value={{data.Linkedin}}>
+                                        <input class="inputField" id="socialLink4" placeholder="Link" value={{data.Linkedin}} (keyup)="socialGetEvent('4')">
                                     </div>
                                 </div>
 
                                 <div class="selectContainer hidden" id="socialGroup5" style="flex-direction: column; gap: 2px;">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
-                                        <p>Delete</p>
+                                        <p (click)="removeSocialGroup('5')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
                                     </div>
                                     <div style="display: flex; width: 100%; gap: 10px;">
@@ -263,7 +263,7 @@
                                             <option value="Telegram">Telegram</option>
                                         </select>
 
-                                        <input class="inputField" id="socialLink5" placeholder="Link" value={{data.Facebook}}>
+                                        <input class="inputField" id="socialLink5" placeholder="Link" value={{data.Facebook}} (keyup)="socialGetEvent('5')">
                                     </div>
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalSocials.length < 4">
@@ -389,12 +389,61 @@
                             </div>
                             <h3 class="editHeading">Edit your Links</h3>
                             <div class="editBodyArea">
-                                <h4>Calendly</h4>
+                                <div class="selectContainer" id="linkGroup1">
+                                    <select id="link1" class="socialSelector" (change)="getLinkValue('1')">
+                                        <option value="Calendly">Calendly</option>
+                                        <option value="Github">GitHub</option>
+                                        <option value="Paypal">PayPal</option>
+                                    </select>
+
+                                    <input class="inputField" id="linkLink1" placeholder="Link" value="{{data.Calendly}}" (keyup)="linkGetEvent('1')">
+                                </div>
+
+                                <div class="selectContainer hidden" id="linkGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeLinkGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeLinkGroup('2')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="link2" class="socialSelector" (change)="getLinkValue('2')">
+                                            <option value="Github">GitHub</option>
+                                            <option value="Calendly">Calendly</option>
+                                            <option value="Paypal">PayPal</option>
+                                        </select>
+
+                                        <input class="inputField" id="linkLink2" placeholder="Link" value="{{data.Github}}" (keyup)="linkGetEvent('2')">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="linkGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeLinkGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeLinkGroup('3')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="link3" class="socialSelector" (change)="getLinkValue('3')">
+                                            <option value="Paypal">PayPal</option>
+                                            <option value="Github">GitHub</option>
+                                            <option value="Calendly">Calendly</option>
+                                        </select>
+
+                                        <input class="inputField" id="linkLink3" placeholder="Link" value="{{data.Paypal}}" (keyup)="linkGetEvent('3')">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer clickable" *ngIf="totalLinks.length < 2">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addLinks()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Links</p>
+                                    </div>
+                                </div>
+
+                                <!-- <h4>Calendly</h4>
                                 <input class="inputField" id="Calendly" placeholder="Link" value={{data.Calendly}} (keyup)="selectField('Calendly')">
                                 <h4>GitHub</h4>
                                 <input class="inputField" id="Github" placeholder="Link" value={{data.Github}} (keyup)="selectField('Github')">
                                 <h4>PayPal</h4>
-                                <input class="inputField" id="Paypal" placeholder="Link" value={{data.Paypal}} (keyup)="selectField('Paypal')">
+                                <input class="inputField" id="Paypal" placeholder="Link" value={{data.Paypal}} (keyup)="selectField('Paypal')"> -->
                             </div>
                         </div>
                     </div>

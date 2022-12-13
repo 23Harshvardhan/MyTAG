@@ -268,51 +268,28 @@ export class AdminCardPreviewComponent implements OnInit{
     return (s.size == arr.length);
   }
 
-  getSocialData() {
-    var social1 = document.getElementById('social1') as HTMLSelectElement;
-    var social2 = document.getElementById('social2') as HTMLSelectElement;
-    var social3 = document.getElementById('social3') as HTMLSelectElement;
-    var social4 = document.getElementById('social4') as HTMLSelectElement;
-    var social5 = document.getElementById('social5') as HTMLSelectElement;
-    var socialLink1 = document.getElementById('socialLink1') as HTMLInputElement;
-    var socialLink2 = document.getElementById('socialLink2') as HTMLInputElement;
-    var socialLink3 = document.getElementById('socialLink3') as HTMLInputElement;
-    var socialLink4 = document.getElementById('socialLink4') as HTMLInputElement;
-    var socialLink5 = document.getElementById('socialLink5') as HTMLInputElement;
+  socialGetEvent(block) {
+    var category = document.getElementById("social" + block) as HTMLSelectElement;
+    var field = document.getElementById("socialLink" + block) as HTMLInputElement;
+    var type = category.value;
+    this.data[type as keyof typeof this.data] = field.value;
+  }
 
-    if(socialLink1.value.length > 0) {
-      var type = social1.value;      
-      this.data[type as keyof typeof this.data] = socialLink1.value;
-      this.activeSocials.push(type);
-    }
-    
-    if (socialLink2.value.length > 0) {
-      var type = social2.value;      
-      this.data[type as keyof typeof this.data] = socialLink2.value;
-      this.activeSocials.push(type);
-    }
-    
-    if (socialLink3.value.length > 0) {
-      var type = social3.value;      
-      this.data[type as keyof typeof this.data] = socialLink3.value;
-      this.activeSocials.push(type);
-    } 
-    
-    if (socialLink4.value.length > 0) {
-      var type = social4.value;      
-      this.data[type as keyof typeof this.data] = socialLink4.value;
-      this.activeSocials.push(type);
-    } 
-    
-    if (socialLink5.value.length > 0) {
-      var type = social5.value;      
-      this.data[type as keyof typeof this.data] = socialLink5.value;
-      this.activeSocials.push(type);
-    } 
+  linkGetEvent(block) {
+    var category = document.getElementById("link" + block) as HTMLSelectElement;
+    var field = document.getElementById('linkLink' + block) as HTMLInputElement;
+    var type = category.value;
+    this.data[type as keyof typeof this.data] = field.value;
+  }
+
+  getLinkValue(block) {
+    var selector = document.getElementById("link" + block) as HTMLSelectElement;
+    var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
+    var field = document.getElementById('linkLink' + block) as HTMLInputElement;
+    field.value = fieldValue;
   }
 
   updateCard(cardId:String, userId:string) {
-    this.getSocialData();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
@@ -357,6 +334,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   totalSocials = [];
+  totalLinks = [];
 
   addSocials() {
     for(let i = 2; i < 6; i++) {
@@ -364,6 +342,17 @@ export class AdminCardPreviewComponent implements OnInit{
         var socialPnl = document.getElementById("socialGroup" + i.toString());
         socialPnl.classList.remove('hidden');
         this.totalSocials.push("socialGroup" + i.toString());
+        break;
+      }
+    }
+  }
+
+  addLinks() {
+    for(let i = 2; i < 4; i++) {
+      if(!this.totalLinks.includes('linkGroup' + i.toString())) {
+        var linkPnl = document.getElementById('linkGroup' + i.toString());
+        linkPnl.classList.remove('hidden');
+        this.totalLinks.push("linkGroup" + i.toString());
         break;
       }
     }
@@ -381,6 +370,13 @@ export class AdminCardPreviewComponent implements OnInit{
     var socialPnl = document.getElementById("socialGroup" + count);
     socialPnl.classList.add('hidden');
     this.totalSocials.splice(index, 1);
+  }
+
+  removeLinkGroup(count:string) {
+    var index = this.totalLinks.indexOf('linkGroup' + count);
+    var linkPnl = document.getElementById('linkGroup' + count);
+    linkPnl.classList.add('hidden');
+    this.totalLinks.splice(index, 1);
   }
 
   compressedImage:File;
