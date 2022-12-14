@@ -321,10 +321,83 @@
                             <h3 class="editHeading">Edit your Basic Details</h3>
                             <div class="editBodyArea">
                                 <h4>Contact No</h4>
+                                <!-- <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
                                 <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')">
+                                <input class="inputField" id="Phone" placeholder="Your contact number" value={{data.Phone}} (keyup)="selectField('Phone')"> -->
+                                <div class="selectContainer hidden" id="contactGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact1" placeholder="Contact" value="{{phoneNumbers[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact2" placeholder="Contact" value="{{phoneNumbers[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact3" placeholder="Contact" value="{{phoneNumbers[2]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup4" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('4')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact4" placeholder="Contact" value="{{phoneNumbers[3]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup5" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('5')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact5" placeholder="Contact" value="{{phoneNumbers[4]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup6" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('6')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('6')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact6" placeholder="Contact" value="{{phoneNumbers[5]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup7" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('7')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('7')"></i>
+                                    </div>
+                                    <input class="inputField" id="contact7" placeholder="Contact" value="{{phoneNumbers[6]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalContacts.length < 7">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addContacts()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Contact No</p>
+                                    </div>
+                                </div>
                                 <h4>Email</h4>
                                 <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
+                                <input class="inputField" id="Email" placeholder="Your Email" value={{data.Email}} (keyup)="selectField('Email')">
                                 <h4>Website</h4>
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
+                                <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
                                 <input class="inputField" id="Link" placeholder="Your website" value={{data.Link}} (keyup)="selectField('Link')">
                                 <h4>Address</h4>
                                 <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>

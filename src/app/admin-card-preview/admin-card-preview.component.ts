@@ -335,6 +335,8 @@ export class AdminCardPreviewComponent implements OnInit{
 
   totalSocials = [];
   totalLinks = [];
+  totalContacts = [];
+  totalEmails = [];
 
   addSocials() {
     for(let i = 2; i < 6; i++) {
@@ -358,6 +360,21 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  addContacts() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalContacts.includes('contactGroup' + i.toString())) {
+        var contactPnl = document.getElementById('contactGroup' + i.toString());
+        contactPnl.classList.remove('hidden');
+        this.totalContacts.push('contactGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  addEmails() {
+
+  }
+
   getSocialValue(count:string) {
     var selector = document.getElementById("social" + count) as HTMLSelectElement;
     var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
@@ -376,6 +393,13 @@ export class AdminCardPreviewComponent implements OnInit{
     var index = this.totalLinks.indexOf('linkGroup' + count);
     var linkPnl = document.getElementById('linkGroup' + count);
     linkPnl.classList.add('hidden');
+    this.totalLinks.splice(index, 1);
+  }
+
+  removeContactGroup(count: string) {
+    var index = this.totalContacts.indexOf('contactGroup' + count);
+    var contactPnl = document.getElementById('contactGroup' + count);
+    contactPnl.classList.add('hidden');
     this.totalLinks.splice(index, 1);
   }
 
@@ -535,6 +559,8 @@ export class AdminCardPreviewComponent implements OnInit{
     this.router.navigate(['/editCard/' + this.cardID]);
   }
 
+  phoneNumbers = [];
+
   getData(cardId:string) {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
@@ -545,6 +571,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.userId = this.data.UserID;
 
       this.finalLink = this.filterLink(this.data.Company_URL);
+
+      this.phoneNumbers = this.data.Phone.split(',');
     })
     .catch((error) => {
       console.log(error);
