@@ -307,6 +307,60 @@ export class AdminCardPreviewComponent implements OnInit{
     return returnNumbers.toString();
   }
 
+  getEmails() {
+    var returnEmails:string;
+    var emails = [];
+
+    var lenght = this.totalEmails.length;
+    for(let i = 0; i < lenght; i++) {
+      var count = i + 1;
+      var emailBlock = document.getElementById('email' + count.toString()) as HTMLInputElement;
+      if(emailBlock.value.length > 0) {
+        emails.push(emailBlock.value);
+      }
+    }
+
+    returnEmails = emails.join(",");
+
+    return returnEmails.toString();
+  }
+
+  getWebsites() {
+    var returnWebsites:string;
+    var websites = [];
+
+    var lenght = this.totalWebsites.length;
+    for(let i = 0; i < lenght; i++) {
+      var count = i + 1;
+      var websiteBlock = document.getElementById('website' + count.toString()) as HTMLInputElement;
+      if(websiteBlock.value.length > 0) {
+        websites.push(websiteBlock.value);
+      }
+    }
+
+    returnWebsites = websites.join(",");
+
+    return returnWebsites.toString();
+  }
+
+  getAddresses() {
+    var returnAddresses:string;
+    var addresses = [];
+
+    var lenght = this.totalAddresses.length;
+    for(let i = 0; i < lenght; i++) {
+      var count = i + 1;
+      var addressBlock = document.getElementById('address' + count.toString()) as HTMLInputElement;
+      if(addressBlock.value.length > 0) {
+        addresses.push(addressBlock.value);
+      }
+    }
+
+    returnAddresses = addresses.join(",");
+
+    return returnAddresses.toString();
+  }
+
   updateCard(cardId:String, userId:string) {
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
@@ -316,11 +370,11 @@ export class AdminCardPreviewComponent implements OnInit{
         "Company_name": this.data.Company_name,
         "Accreditations": this.data.Accreditations,
         "Headline": this.data.Headline,
-        "Email": this.data.Email,
+        "Email": this.getEmails(),
         "Phone": this.getPhones(),
         "Company_URL": this.data.Company_URL,
-        "Link": this.data.Link,
-        "Address": this.data.Address,
+        "Link": this.getWebsites(),
+        "Address": this.getAddresses(),
         "Twitter": this.data.Twitter,
         "Instagram": this.data.Instagram,
         "Linkedin": this.data.Linkedin,
@@ -355,6 +409,8 @@ export class AdminCardPreviewComponent implements OnInit{
   totalLinks = [];
   totalContacts = [];
   totalEmails = [];
+  totalWebsites = [];
+  totalAddresses = [];
 
   addSocials() {
     for(let i = 2; i < 6; i++) {
@@ -390,7 +446,36 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   addEmails() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalEmails.includes('emailGroup' + i.toString())) {
+        var emailPnl = document.getElementById('emailGroup' + i.toString());
+        emailPnl.classList.remove('hidden');
+        this.totalEmails.push('emailGroup' + i.toString());
+        break;
+      }
+    }
+  }
 
+  addWebsites() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalWebsites.includes('websiteGroup' + i.toString())) {
+        var websitePnl = document.getElementById('websiteGroup' + i.toString());
+        websitePnl.classList.remove('hidden');
+        this.totalWebsites.push('websiteGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  addAddresses() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalAddresses.includes('addressGroup' + i.toString())) {
+        var addressPnl = document.getElementById('addressGroup' + i.toString());
+        addressPnl.classList.remove('hidden');
+        this.totalAddresses.push('addressGroup' + i.toString());
+        break;
+      }
+    }
   }
 
   getSocialValue(count:string) {
@@ -420,7 +505,34 @@ export class AdminCardPreviewComponent implements OnInit{
     var number = document.getElementById('contact' + count) as HTMLInputElement;
     number.value = "";
     contactPnl.classList.add('hidden');
-    this.totalLinks.splice(index, 1);
+    this.totalContacts.splice(index, 1);
+  }
+
+  removeEmailGroup(count: string) {
+    var index = this.totalEmails.indexOf('emailGroup' + count);
+    var emailPnl = document.getElementById('emailGroup' + count);
+    var email = document.getElementById('email' + count) as HTMLInputElement;
+    email.value = "";
+    emailPnl.classList.add('hidden');
+    this.totalEmails.splice(index, 1);
+  }
+
+  removeWebsiteGroup(count: string) {
+    var index = this.totalWebsites.indexOf('websiteGroup' + count);
+    var websitePnl = document.getElementById('websiteGroup' + count);
+    var website = document.getElementById('website' + count) as HTMLInputElement;
+    website.value = "";
+    websitePnl.classList.add('hidden');
+    this.totalWebsites.splice(index, 1);
+  }
+
+  removeAddressGroup(count: string) {
+    var index = this.totalAddresses.indexOf('addressGroup' + count);
+    var addressPnl = document.getElementById('addressGroup' + count);
+    var address = document.getElementById('address' + count) as HTMLInputElement;
+    address.value = "";
+    addressPnl.classList.add('hidden');
+    this.totalAddresses.splice(index, 1);
   }
 
   compressedImage:File;
@@ -589,7 +701,40 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  preloadEmail() {
+    var length = this.emails.length;
+    for (let i = 0; i < length; i++) {
+      var count = i + 1;
+      var block = document.getElementById('emailGroup' + count.toString());
+      block.classList.remove('hidden');
+      this.totalEmails.push('emailGroup' + count.toString());
+    }
+  }
+
+  preloadWebsites() {
+    var length = this.websites.length;
+    for (let i = 0; i < length; i++) {
+      var count = i + 1;
+      var block = document.getElementById('websiteGroup' + count.toString());
+      block.classList.remove('hidden');
+      this.totalWebsites.push('websiteGroup' + count.toString());
+    }
+  }
+
+  preloadAddresses() {
+    var length = this.addresses.length;
+    for (let i = 0; i < length; i++) {
+      var count = i + 1;
+      var block = document.getElementById('addressGroup' + count.toString());
+      block.classList.remove('hidden');
+      this.totalAddresses.push('addressGroup' + count.toString());
+    }
+  }
+
   phoneNumbers = [];
+  emails = [];
+  websites = [];
+  addresses =[];
 
   getData(cardId:string) {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
@@ -603,8 +748,14 @@ export class AdminCardPreviewComponent implements OnInit{
       this.finalLink = this.filterLink(this.data.Company_URL);
 
       this.phoneNumbers = this.data.Phone.split(',');
+      this.emails = this.data.Email.split(',');
+      this.websites = this.data.Link.split(',');
+      this.addresses = this.data.Address.split(',');
 
       this.preloadContact();
+      this.preloadEmail();
+      this.preloadWebsites();
+      // this.preloadAddresses();
     })
     .catch((error) => {
       console.log(error);
