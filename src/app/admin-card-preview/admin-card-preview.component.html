@@ -283,10 +283,10 @@
                             <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                         </div>
 
-                        <div class="container basicContactArea" id="basicContactArea">
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of phoneNumbers">
                             <div class="cardInfoCont">
                                 <i class="fa-solid fa-phone"></i>
-                                <p class="intel">{{data.Phone}}</p>
+                                <p class="intel">{{number}}</p>
                             </div>
                         </div> 
             
@@ -551,13 +551,13 @@
                                     </div>
                                     <div class="sigBoxBody">
                                         <div class="basicInfoCont">
-                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[0] != null">
                                                 <i class="fa-solid fa-phone data"></i>
-                                                <p class="data">{{data.Phone}}</p>
+                                                <p class="data">{{phoneNumbers[0]}}</p>
                                             </div>
-                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[1] != null">
                                                 <i class="fa-solid fa-mobile data"></i>
-                                                <p class="data">{{data.Phone}}</p>
+                                                <p class="data">{{phoneNumbers[0]}}</p>
                                             </div>
                                             <div style="gap: 5px; flex-direction: row; display: flex;">
                                                 <i class="fa-solid fa-envelope data"></i>

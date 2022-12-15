@@ -289,6 +289,24 @@ export class AdminCardPreviewComponent implements OnInit{
     field.value = fieldValue;
   }
 
+  getPhones() {
+    var returnNumbers:string;
+    var numbers = [];
+
+    var lenght = this.totalContacts.length;
+    for(let i = 0; i < lenght; i++) {
+      var count = i + 1;
+      var numberBlock = document.getElementById('contact' + count.toString()) as HTMLInputElement;
+      if(numberBlock.value.length > 0) {
+        numbers.push(numberBlock.value);
+      }
+    }
+
+    returnNumbers = numbers.join(",");
+
+    return returnNumbers.toString();
+  }
+
   updateCard(cardId:String, userId:string) {
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
@@ -299,7 +317,7 @@ export class AdminCardPreviewComponent implements OnInit{
         "Accreditations": this.data.Accreditations,
         "Headline": this.data.Headline,
         "Email": this.data.Email,
-        "Phone": this.data.Phone,
+        "Phone": this.getPhones(),
         "Company_URL": this.data.Company_URL,
         "Link": this.data.Link,
         "Address": this.data.Address,
@@ -399,6 +417,8 @@ export class AdminCardPreviewComponent implements OnInit{
   removeContactGroup(count: string) {
     var index = this.totalContacts.indexOf('contactGroup' + count);
     var contactPnl = document.getElementById('contactGroup' + count);
+    var number = document.getElementById('contact' + count) as HTMLInputElement;
+    number.value = "";
     contactPnl.classList.add('hidden');
     this.totalLinks.splice(index, 1);
   }
@@ -559,6 +579,16 @@ export class AdminCardPreviewComponent implements OnInit{
     this.router.navigate(['/editCard/' + this.cardID]);
   }
 
+  preloadContact() {
+    var length = this.phoneNumbers.length;
+    for (let i = 0; i < length; i++) {
+      var count = i + 1;
+      var block = document.getElementById('contactGroup' + count.toString());
+      block.classList.remove('hidden');
+      this.totalContacts.push('contactGroup' + count.toString());
+    }
+  }
+
   phoneNumbers = [];
 
   getData(cardId:string) {
@@ -573,6 +603,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.finalLink = this.filterLink(this.data.Company_URL);
 
       this.phoneNumbers = this.data.Phone.split(',');
+
+      this.preloadContact();
     })
     .catch((error) => {
       console.log(error);
