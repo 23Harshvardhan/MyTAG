@@ -356,7 +356,7 @@ export class AdminCardPreviewComponent implements OnInit{
       }
     }
 
-    returnAddresses = addresses.join(",");
+    returnAddresses = addresses.join("!");
 
     return returnAddresses.toString();
   }
@@ -693,41 +693,49 @@ export class AdminCardPreviewComponent implements OnInit{
 
   preloadContact() {
     var length = this.phoneNumbers.length;
-    for (let i = 0; i < length; i++) {
-      var count = i + 1;
-      var block = document.getElementById('contactGroup' + count.toString());
-      block.classList.remove('hidden');
-      this.totalContacts.push('contactGroup' + count.toString());
+    if(this.phoneNumbers[0] != '') {
+      for (let i = 0; i < length; i++) {
+        var count = i + 1;
+        var block = document.getElementById('contactGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalContacts.push('contactGroup' + count.toString());
+      }
     }
   }
 
   preloadEmail() {
     var length = this.emails.length;
-    for (let i = 0; i < length; i++) {
-      var count = i + 1;
-      var block = document.getElementById('emailGroup' + count.toString());
-      block.classList.remove('hidden');
-      this.totalEmails.push('emailGroup' + count.toString());
+    if(this.emails[0] != '') {
+      for (let i = 0; i < length; i++) {
+        var count = i + 1;
+        var block = document.getElementById('emailGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalEmails.push('emailGroup' + count.toString());
+      }
     }
   }
 
   preloadWebsites() {
     var length = this.websites.length;
-    for (let i = 0; i < length; i++) {
-      var count = i + 1;
-      var block = document.getElementById('websiteGroup' + count.toString());
-      block.classList.remove('hidden');
-      this.totalWebsites.push('websiteGroup' + count.toString());
+    if(this.websites[0] != '') {
+      for (let i = 0; i < length; i++) {
+        var count = i + 1;
+        var block = document.getElementById('websiteGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalWebsites.push('websiteGroup' + count.toString());
+      }
     }
   }
 
   preloadAddresses() {
     var length = this.addresses.length;
-    for (let i = 0; i < length; i++) {
-      var count = i + 1;
-      var block = document.getElementById('addressGroup' + count.toString());
-      block.classList.remove('hidden');
-      this.totalAddresses.push('addressGroup' + count.toString());
+    if(this.addresses[0] != '') {
+      for (let i = 0; i < length; i++) {
+        var count = i + 1;
+        var block = document.getElementById('addressGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalAddresses.push('addressGroup' + count.toString());
+      }
     }
   }
 
@@ -752,7 +760,7 @@ export class AdminCardPreviewComponent implements OnInit{
       this.phoneNumbers = this.data.Phone.split(',');
       this.emails = this.data.Email.split(',');
       this.websites = this.data.Link.split(',');
-      this.addresses = this.data.Address.split('+++');
+      this.addresses = this.data.Address.split('!');
 
       this.preloadContact();
       this.preloadEmail();

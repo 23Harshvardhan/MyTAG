@@ -516,7 +516,6 @@
                                         <p style="font-weight: bold;">Add Address</p>
                                     </div>
                                 </div>
-                                <!-- <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
                             </div>
                         </div>
                     </div>
@@ -667,7 +666,7 @@
                                     </div>
                                     <div class="sigBoxBody">
                                         <div class="basicInfoCont">
-                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[0] != null">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[0] != ''">
                                                 <div>
                                                     <i class="fa-solid fa-phone data"></i>
                                                     <p class="data">{{phoneNumbers[0]}}</p>
@@ -683,11 +682,11 @@
                                                     <p class="data">{{emails[0]}}</p>
                                                 </div>
                                             </div>
-                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="websites[0] != null">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="websites[0] != ''">
                                                 <i class="fa-solid fa-link data"></i>
                                                 <p class="data">{{websites[0]}}</p>
                                             </div>
-                                            <div style="gap: 5px; flex-direction: row; display: flex;">
+                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="addresses[0] != ''">
                                                 <div style="display: flex; gap: 5px" *ngIf="addresses[0] != ''">
                                                     <i class="fa-solid fa-map data"></i>
                                                     <p class="data">{{addresses[0]}}</p>
