@@ -284,30 +284,30 @@
                         </div>
 
                         <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of phoneNumbers">
-                            <div class="cardInfoCont">
+                            <div class="cardInfoCont" *ngIf="phoneNumbers[0] != ''">
                                 <i class="fa-solid fa-phone"></i>
                                 <p class="intel">{{number}}</p>
                             </div>
                         </div> 
             
                         <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
-                            <div class="cardInfoCont">
+                            <div class="cardInfoCont" *ngIf="emails[0] != ''">
                                 <i class="fa-solid fa-envelope"></i>
                                 <p class="intel">{{email}}</p>
                             </div>
                         </div> 
             
                         <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
-                            <div class="cardInfoCont">
+                            <div class="cardInfoCont" *ngIf="websites[0] != ''">
                                 <i class="fa-solid fa-globe"></i>
                                 <p class="intel">{{website}}</p>
                             </div>
                         </div> 
             
-                        <div class="container basicContactArea" id="basicContactArea">
-                            <div class="cardInfoCont">
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
+                            <div class="cardInfoCont" *ngIf="addresses[0] != ''">
                                 <i class="fa-solid fa-map"></i>
-                                <p class="intel">{{data.Address}}</p>
+                                <p class="intel">{{address}}</p>
                             </div>
                         </div> 
                     </div>
@@ -489,7 +489,34 @@
                                     </div>
                                 </div>
                                 <h4>Address</h4>
-                                <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
+                                <div class="selectContainer hidden" id="addressGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="address1" placeholder="Address" value="{{addresses[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="addressGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="address2" placeholder="Address" value="{{addresses[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="addressGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="address3" placeholder="Address" value="{{addresses[2]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalAddresses.length < 3">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addAddresses()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Address</p>
+                                    </div>
+                                </div>
+                                <!-- <textarea class="inputField" maxlength="96" id="Address" placeholder="Your Address" rows="3" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea> -->
                             </div>
                         </div>
                     </div>
@@ -641,24 +668,30 @@
                                     <div class="sigBoxBody">
                                         <div class="basicInfoCont">
                                             <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[0] != null">
-                                                <i class="fa-solid fa-phone data"></i>
-                                                <p class="data">{{phoneNumbers[0]}}</p>
+                                                <div>
+                                                    <i class="fa-solid fa-phone data"></i>
+                                                    <p class="data">{{phoneNumbers[0]}}</p>
+                                                </div>
                                             </div>
                                             <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[1] != null">
                                                 <i class="fa-solid fa-mobile data"></i>
-                                                <p class="data">{{phoneNumbers[0]}}</p>
+                                                <p class="data">{{phoneNumbers[1]}}</p>
                                             </div>
-                                            <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="emails[0] != null">
-                                                <i class="fa-solid fa-envelope data"></i>
-                                                <p class="data">{{emails[0]}}</p>
+                                            <div *ngIf="emails[0] != null">
+                                                <div style="display: flex; gap: 5px;" *ngIf="emails[0] != ''">
+                                                    <i class="fa-solid fa-envelope data"></i>
+                                                    <p class="data">{{emails[0]}}</p>
+                                                </div>
                                             </div>
                                             <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="websites[0] != null">
                                                 <i class="fa-solid fa-link data"></i>
                                                 <p class="data">{{websites[0]}}</p>
                                             </div>
                                             <div style="gap: 5px; flex-direction: row; display: flex;">
-                                                <i class="fa-solid fa-map data"></i>
-                                                <p class="data">{{data.Address}}</p>
+                                                <div style="display: flex; gap: 5px" *ngIf="addresses[0] != ''">
+                                                    <i class="fa-solid fa-map data"></i>
+                                                    <p class="data">{{addresses[0]}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="qrCont">

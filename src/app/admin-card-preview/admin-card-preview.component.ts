@@ -743,6 +743,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.data = response.data.data[0]
       this.loadCardImage();
 
+      console.log(response.data.data[0]);
+
       this.userId = this.data.UserID;
 
       this.finalLink = this.filterLink(this.data.Company_URL);
@@ -750,12 +752,12 @@ export class AdminCardPreviewComponent implements OnInit{
       this.phoneNumbers = this.data.Phone.split(',');
       this.emails = this.data.Email.split(',');
       this.websites = this.data.Link.split(',');
-      this.addresses = this.data.Address.split(',');
+      this.addresses = this.data.Address.split('+++');
 
       this.preloadContact();
       this.preloadEmail();
       this.preloadWebsites();
-      // this.preloadAddresses();
+      this.preloadAddresses();
     })
     .catch((error) => {
       console.log(error);
