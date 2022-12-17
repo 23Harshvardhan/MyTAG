@@ -21,7 +21,7 @@ export class InventoryComponent implements OnInit {
     } 
   }
 
-  responseData = []
+  responseData = [];
 
   ngOnInit(): void {
     this.checkAuth();
@@ -44,11 +44,23 @@ export class InventoryComponent implements OnInit {
       this.router.navigate(['/']);
     });
   }
+  
+  emails = [];
+
+  getEmails() {
+    this.responseData.forEach(element => {
+      if(element.Email != null) {
+        console.log(element.Email);
+        }
+    });
+  }
 
   loadData() {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards', this.cookie)
     .then((response) => {
       this.responseData = response.data.data;
+
+      this.getEmails();
     })
     .catch((error) => {
       console.log(error);

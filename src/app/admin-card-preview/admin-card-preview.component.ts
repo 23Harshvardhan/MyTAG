@@ -6,7 +6,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
 import {take} from 'rxjs/operators'
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
@@ -254,8 +254,6 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  activeSocials = [];
-
   areDistinct(arr) {
     let n = arr.length;
     
@@ -361,6 +359,8 @@ export class AdminCardPreviewComponent implements OnInit{
     return returnAddresses.toString();
   }
 
+  activeSocials = [];
+
   updateCard(cardId:String, userId:string) {
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
@@ -398,7 +398,7 @@ export class AdminCardPreviewComponent implements OnInit{
       })
       .catch ((error) => {
         console.log(error);
-        alert("There was a problem. Please try again later.");
+        alert("There was an error. Please send console log to developer.");
       })
     } else {
       alert("You can't use same social media again!");
@@ -413,7 +413,7 @@ export class AdminCardPreviewComponent implements OnInit{
   totalAddresses = [];
 
   addSocials() {
-    for(let i = 2; i < 6; i++) {
+    for(let i = 1; i < 6; i++) {
       if(!this.totalSocials.includes("socialGroup" + i.toString())) {
         var socialPnl = document.getElementById("socialGroup" + i.toString());
         socialPnl.classList.remove('hidden');
@@ -488,6 +488,11 @@ export class AdminCardPreviewComponent implements OnInit{
   removeSocialGroup(count:string) {
     var index = this.totalSocials.indexOf("socialGroup" + count);
     var socialPnl = document.getElementById("socialGroup" + count);
+    var link = document.getElementById('socialLink' + count) as HTMLInputElement;
+    var selector = document.getElementById('social' + count) as HTMLSelectElement;
+    var type = selector.value;
+    this.data[type as keyof typeof this.data] = "";
+    link.value = "";
     socialPnl.classList.add('hidden');
     this.totalSocials.splice(index, 1);
   }
@@ -690,6 +695,18 @@ export class AdminCardPreviewComponent implements OnInit{
   editCard() {
     this.router.navigate(['/editCard/' + this.cardID]);
   }
+  
+  preloadSocials() {
+    var lenght = this.socials.length;
+    if(this.socials[0] != '') {
+      for(let i = 0; i < lenght; i++) {
+        var count = i + 1;
+        var block = document.getElementById('socialGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalSocials.push('socialGroup' + count.toString());
+      }
+    }
+  }
 
   preloadContact() {
     var length = this.phoneNumbers.length;
@@ -739,10 +756,21 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  socials = [];
   phoneNumbers = [];
   emails = [];
   websites = [];
   addresses =[];
+
+  getSocials() {
+    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+
+    availableSocials.forEach(social => {
+      if(this.data[social as keyof typeof this.data] != '') {
+        this.socials.push(this.data[social as keyof typeof this.data]);
+      }
+    });
+  }
 
   getData(cardId:string) {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
@@ -750,8 +778,6 @@ export class AdminCardPreviewComponent implements OnInit{
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
       this.loadCardImage();
-
-      console.log(response.data.data[0]);
 
       this.userId = this.data.UserID;
 
@@ -762,6 +788,9 @@ export class AdminCardPreviewComponent implements OnInit{
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
 
+      this.getSocials();
+
+      this.preloadSocials();
       this.preloadContact();
       this.preloadEmail();
       this.preloadWebsites();
@@ -771,6 +800,19 @@ export class AdminCardPreviewComponent implements OnInit{
       console.log(error);
       alert("There was an error! Please send console log to developer.");
     })
+  }
+
+  redirectSocial(block:string) {
+    var url = this.data[block as keyof typeof this.data];
+    if(url.startsWith("https://")) {
+      window.open(url, "_blank");
+    } else {
+      window.open("https://" + url, "_blank");
+    }
+  }
+
+  test() {
+    alert('Working');
   }
 
   loadCardImage() {

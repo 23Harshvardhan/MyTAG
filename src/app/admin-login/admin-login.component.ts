@@ -40,7 +40,7 @@ export class AdminLoginComponent implements OnInit {
     })
     .catch ((error) => {
       console.log(error);
-      alert("There was a problem. Please try again later.")
+      alert("There was an error. Please send console log to developer.")
     })
   }
 }

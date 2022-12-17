@@ -119,19 +119,19 @@
                         </div>
 
                         <div class="socialIcons">
-                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0"></i>
-                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0"></i>
-                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0"></i>
-                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0"></i>
-                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0"></i>
-                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0"></i>
-                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0"></i>
-                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0"></i>
-                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0"></i>
-                            <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0"></i>
-                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0"></i>
-                            <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0"></i>
-                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0"></i>
+                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0" (click)="redirectSocial('Twitter')"></i>
+                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0" (click)="redirectSocial('Instagram')"></i>
+                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0" (click)="redirectSocial('Linkedin')"></i>
+                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0" (click)="redirectSocial('Facebook')"></i>
+                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0" (click)="redirectSocial('Youtube')"></i>
+                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0" (click)="redirectSocial('Snapchat')"></i>
+                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0" (click)="redirectSocial('Tiktok')"></i>
+                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0" (click)="redirectSocial('Twitch')"></i>
+                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0" (click)="redirectSocial('Yelp')"></i>
+                            <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0" (click)="redirectSocial('Discord')"></i>
+                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0" (click)="redirectSocial('Whatsapp')"></i>
+                            <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0" (click)="redirectSocial('Skype')"></i>
+                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0" (click)="redirectSocial('Telegram')"></i>
                         </div>
                     </div>
 
@@ -143,24 +143,30 @@
                             </div>
                             <h3 class="editHeading">Edit your Social Details</h3>
                             <div class="editBodyArea">
-                                <div class="selectContainer" id="socialGroup1">
-                                    <select id="social1" class="socialSelector" (change)="getSocialValue('1')">
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Linkedin">LinkedIn</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Youtube">YouTube</option>
-                                        <option value="Snapchat">Snapchat</option>
-                                        <option value="Tiktok">TikTok</option>
-                                        <option value="Twitch">Twitch</option>
-                                        <option value="Yelp">Yelp</option>
-                                        <option value="Discord">Discord</option>
-                                        <option value="Whatsapp">WhatsApp</option>
-                                        <option value="Skype">Skype</option>
-                                        <option value="Telegram">Telegram</option>
-                                    </select>
+                                <div class="selectContainer hidden" id="socialGroup1" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('1')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social1" class="socialSelector" (change)="getSocialValue('1')">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
 
-                                    <input class="inputField" id="socialLink1" placeholder="Link" value={{data.Twitter}} (keyup)="socialGetEvent('1')">
+                                        <input class="inputField" id="socialLink1" placeholder="Link" value={{data.Twitter}} (keyup)="socialGetEvent('1')">
+                                    </div>
                                 </div>
 
                                 <div class="selectContainer hidden" id="socialGroup2" style="flex-direction: column; gap: 2px;">
@@ -266,7 +272,7 @@
                                         <input class="inputField" id="socialLink5" placeholder="Link" value={{data.Facebook}} (keyup)="socialGetEvent('5')">
                                     </div>
                                 </div>
-                                <div class="selectContainer clickable" *ngIf="totalSocials.length < 4">
+                                <div class="selectContainer clickable" *ngIf="totalSocials.length < 5">
                                     <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addSocials()">
                                         <i class="fa-solid fa-plus" style="color: red;"></i>
                                         <p style="font-weight: bold;">Add Social Network</p>
