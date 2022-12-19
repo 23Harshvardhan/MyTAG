@@ -288,75 +288,88 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   getPhones() {
-    var returnNumbers:string;
-    var numbers = [];
+    var returnGroup = [];
+    var returnJoined;
 
-    var lenght = this.totalContacts.length;
-    for(let i = 0; i < lenght; i++) {
-      var count = i + 1;
-      var numberBlock = document.getElementById('contact' + count.toString()) as HTMLInputElement;
-      if(numberBlock.value.length > 0) {
-        numbers.push(numberBlock.value);
+    this.totalContacts.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
       }
-    }
+    });
 
-    returnNumbers = numbers.join(",");
-
-    return returnNumbers.toString();
+    returnJoined = returnGroup.join(',');
+    return returnJoined.toString();
   }
 
   getEmails() {
-    var returnEmails:string;
-    var emails = [];
+    var returnGroup = [];
+    var returnJoined;
 
-    var lenght = this.totalEmails.length;
-    for(let i = 0; i < lenght; i++) {
-      var count = i + 1;
-      var emailBlock = document.getElementById('email' + count.toString()) as HTMLInputElement;
-      if(emailBlock.value.length > 0) {
-        emails.push(emailBlock.value);
+    this.totalEmails.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
       }
-    }
+    });
 
-    returnEmails = emails.join(",");
-
-    return returnEmails.toString();
+    returnJoined = returnGroup.join(',');
+    return returnJoined.toString();
   }
 
   getWebsites() {
-    var returnWebsites:string;
-    var websites = [];
+    var returnGroup = [];
+    var returnJoined;
 
-    var lenght = this.totalWebsites.length;
-    for(let i = 0; i < lenght; i++) {
-      var count = i + 1;
-      var websiteBlock = document.getElementById('website' + count.toString()) as HTMLInputElement;
-      if(websiteBlock.value.length > 0) {
-        websites.push(websiteBlock.value);
+    this.totalWebsites.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
       }
-    }
+    });
 
-    returnWebsites = websites.join(",");
-
-    return returnWebsites.toString();
+    returnJoined = returnGroup.join(',');
+    return returnJoined.toString();
   }
 
   getAddresses() {
-    var returnAddresses:string;
     var addresses = [];
+    var returnAddresses;
 
-    var lenght = this.totalAddresses.length;
-    for(let i = 0; i < lenght; i++) {
-      var count = i + 1;
-      var addressBlock = document.getElementById('address' + count.toString()) as HTMLInputElement;
-      if(addressBlock.value.length > 0) {
-        addresses.push(addressBlock.value);
+    this.totalAddresses.forEach(addressGroup => {
+      var count = addressGroup.replace("Group", "");
+      var address = document.getElementById(count) as HTMLInputElement;
+      var addressVal = address.value;
+      if(addressVal.length > 0) {
+        addresses.push(addressVal);
       }
-    }
+    });
 
-    returnAddresses = addresses.join("!");
-
+    returnAddresses = addresses.join('!');
     return returnAddresses.toString();
+  }
+
+  getYoutubeLinks() {
+    var returnGroup = [];
+    var returnJoined;
+
+    this.totalYoutubeLinks.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
+      }
+    });
+
+    returnJoined = returnGroup.join(';');
+    return returnJoined.toString();
   }
 
   activeSocials = [];
@@ -372,7 +385,7 @@ export class AdminCardPreviewComponent implements OnInit{
         "Headline": this.data.Headline,
         "Email": this.getEmails(),
         "Phone": this.getPhones(),
-        "Company_URL": this.data.Company_URL,
+        "Company_URL": this.getYoutubeLinks(),
         "Link": this.getWebsites(),
         "Address": this.getAddresses(),
         "Twitter": this.data.Twitter,
@@ -411,6 +424,18 @@ export class AdminCardPreviewComponent implements OnInit{
   totalEmails = [];
   totalWebsites = [];
   totalAddresses = [];
+  totalYoutubeLinks = [];
+
+  addYoutubeLinks() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalYoutubeLinks.includes("youtubeGroup" + i.toString())) {
+        var youtubePnl = document.getElementById('youtubeGroup' + i.toString());
+        youtubePnl.classList.remove('hidden');
+        this.totalYoutubeLinks.push("youtubeGroup" + i.toString());
+        break;
+      }
+    }
+  }
 
   addSocials() {
     for(let i = 1; i < 6; i++) {
@@ -511,6 +536,15 @@ export class AdminCardPreviewComponent implements OnInit{
     number.value = "";
     contactPnl.classList.add('hidden');
     this.totalContacts.splice(index, 1);
+  }
+
+  removeYoutubeGroup(count: string) {
+    var index = this.totalYoutubeLinks.indexOf('youtubeGroup' + count);
+    var youtubePnl = document.getElementById('youtubeGroup' + count);
+    var link = document.getElementById('youtube' + count) as HTMLInputElement;
+    link.value = "";
+    youtubePnl.classList.add('hidden');
+    this.totalYoutubeLinks.splice(index, 1);
   }
 
   removeEmailGroup(count: string) {
@@ -623,21 +657,27 @@ export class AdminCardPreviewComponent implements OnInit{
   replaceLink2 = "embed/";
   replaceLink3 = "";
 
-  finalLink:string;
+  finalLinks = [];
 
-  filterLink(url:string) {
-    if(url.includes(this.rawLink1)) {
-      var newL = url.replace(this.rawLink1, this.replaceLink1);
-      return newL;
-    } else if (url.includes(this.rawLink2)) {
-      var newL = url.replace(this.rawLink2, this.replaceLink2);
-      return newL;
-    } else if (url.includes(this.rawLink3)) {
-      var newL = url.replace(this.rawLink3, this.replaceLink3);
-      return newL;
-    } else {
-      return url;
-    }
+  filterLink() {
+    this.youtubeLinks.forEach(element => {
+      if(element.includes(this.rawLink1)) {
+        var newL = element.replace(this.rawLink1, this.replaceLink1);
+        this.finalLinks.push(newL);
+        return '';
+      } else if (element.includes(this.rawLink2)) {
+        var newL = element.replace(this.rawLink2, this.replaceLink2);
+        this.finalLinks.push(newL);
+        return '';
+      } else if (element.includes(this.rawLink3)) {
+        var newL = element.replace(this.rawLink3, this.replaceLink3);
+        this.finalLinks.push(newL);
+        return '';
+      } else {
+        this.finalLinks.push(element);
+        return '';
+      }
+    });
   }
 
   uploadImage() {
@@ -756,11 +796,51 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  preloadYoutubeLinks() {
+    var length = this.youtubeLinks.length;
+    if(this.youtubeLinks[0] != '') {
+      for(let i = 0; i < length; i++) {
+        var count = i + 1;
+        var block = document.getElementById('youtubeGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalYoutubeLinks.push('youtubeGroup' + count.toString());
+      }
+    }
+  }
+
+  // finalLinks = [];
+
+  // filterLinks() {
+  //   this.youtubeLinks.forEach(element => {
+  //     var oldLink:string = element.toString();
+  //     var link:string;
+      
+  //     if(!oldLink.includes("https://")) {
+  //       if(!oldLink.includes("www.")) {
+  //         link = "https://www." + oldLink;
+  //       } else {
+  //         link = "https://" + oldLink;
+  //       }
+  //     }
+
+  //     if(link.includes('youtu.be/')) {
+  //       link.replace('youtu.be/' , 'youtube.com/embed/');
+  //     } else if (link.includes('watch?v=')) {
+  //       link.replace('watch?v=', 'embed/');
+  //     } else if (link.includes('&feature=youtu.be')) {
+  //       link.replace('&feature=youtu.be', '');
+  //     }
+
+  //     this.finalLinks.push(link);
+  //   });
+  // }
+
   socials = [];
   phoneNumbers = [];
   emails = [];
   websites = [];
-  addresses =[];
+  addresses = [];
+  youtubeLinks = [];
 
   getSocials() {
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
@@ -781,12 +861,13 @@ export class AdminCardPreviewComponent implements OnInit{
 
       this.userId = this.data.UserID;
 
-      this.finalLink = this.filterLink(this.data.Company_URL);
-
       this.phoneNumbers = this.data.Phone.split(',');
       this.emails = this.data.Email.split(',');
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
+      this.youtubeLinks = this.data.Company_URL.split(';');
+
+      this.filterLink();
 
       this.getSocials();
 
@@ -795,6 +876,7 @@ export class AdminCardPreviewComponent implements OnInit{
       this.preloadEmail();
       this.preloadWebsites();
       this.preloadAddresses();
+      this.preloadYoutubeLinks();
     })
     .catch((error) => {
       console.log(error);

@@ -532,8 +532,8 @@
                             <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
                         </div>
 
-                        <div class="container flexColumn" *ngIf="data.Company_URL.length > 0">
-                            <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(finalLink)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="container flexColumn" *ngFor="let link of finalLinks">
+                            <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
 
@@ -545,7 +545,34 @@
                             </div>
                             <h3 class="editHeading">Edit your YouTube video link</h3>
                             <div class="editBodyArea">
-                                <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')">
+                                <div class="selectContainer hidden" id="youtubeGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube1" placeholder="Link" value="{{youtubeLinks[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="youtubeGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube2" placeholder="Link" value="{{youtubeLinks[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="youtubeGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube3" placeholder="Link" value="{{youtubeLinks[2]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalYoutubeLinks.length < 3">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addYoutubeLinks()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add YouTube Link</p>
+                                    </div>
+                                </div>
+                                <!-- <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')"> -->
                             </div>
                         </div>
                     </div>
