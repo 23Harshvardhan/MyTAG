@@ -1075,6 +1075,19 @@ iframe {
         transition: 0.35s;
    }
 
+   .body {
+    overflow-x: hidden;
+   }
+
+   .horizontalNavArea {
+    position: fixed;
+    z-index: 10;
+   }
+
+   .cardsPanel {
+    margin-top: 70px;
+   }
+
     @keyframes fadeInRight {
         0% {
             opacity: 0;

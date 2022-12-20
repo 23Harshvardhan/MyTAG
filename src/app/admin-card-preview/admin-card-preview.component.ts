@@ -173,6 +173,9 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   toggleEditField(field:string) {
+    var top = document.getElementById('upperCard');
+    top.scrollIntoView({behavior: "smooth"});
+
     var cardHead = document.getElementById('cardHead');
     var upperCard = document.getElementById('upperCard');
     var cardHeadArea = document.getElementById('cardHeadArea');
