@@ -532,8 +532,10 @@
                             <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
                         </div>
 
-                        <div class="container flexColumn" *ngFor="let link of finalLinks">
-                            <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div *ngIf="finalLinks[0].length > 0">
+                            <div class="container flexColumn" *ngFor="let link of finalLinks">
+                                <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
 
