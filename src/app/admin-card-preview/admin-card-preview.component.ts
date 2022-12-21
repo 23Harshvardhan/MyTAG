@@ -458,7 +458,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   addLinks() {
-    for(let i = 2; i < 4; i++) {
+    for(let i = 1; i < 8; i++) {
       if(!this.totalLinks.includes('linkGroup' + i.toString())) {
         var linkPnl = document.getElementById('linkGroup' + i.toString());
         linkPnl.classList.remove('hidden');
