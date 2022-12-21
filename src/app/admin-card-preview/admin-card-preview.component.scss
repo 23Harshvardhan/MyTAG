@@ -28,6 +28,15 @@ $foregroundColor: white;
     src: url("../../assets/fonts/Montserrat-Medium.ttf");
 }
 
+@font-face {
+    font-family: GaretBook;
+    src: url("../../assets/fonts/Garet-Book.ttf");
+}
+@font-face {
+    font-family: GaretHeavy;
+    src: url("../../assets/fonts/Garet-Heavy.ttf");
+}
+
 // Card Editing CSS
 .card {
     background-color: white;
@@ -757,6 +766,47 @@ iframe {
     font-size: 15px;
 }
 
+.editFooter {
+    background-color: black;
+    height: 30px;
+    max-height: 30px;
+    width: 385px;
+    max-width: 385px;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerText h5 {
+    font-family: GaretHeavy;
+    color: white;
+}
+
+.footerText h6 {
+    font-family: GaretBook;
+    color: white;
+}
+
+.footerText {
+    display: flex;
+    gap: 10px;
+    // margin-top: -20px;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.footerButton {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 10px;
+    height: 20px;
+}
+
 @media only screen and (max-width: 600px) {
     .cropArea {
         width: 100vw;
@@ -1081,7 +1131,12 @@ iframe {
 
    .horizontalNavArea {
     position: fixed;
+    overflow-x: hidden;
     z-index: 10;
+   }
+
+   .contentArea {
+    overflow-x: hidden;
    }
 
    .cardsPanel {
