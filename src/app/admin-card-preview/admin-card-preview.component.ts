@@ -447,7 +447,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   addSocials() {
-    for(let i = 1; i < 6; i++) {
+    for(let i = 1; i < 11; i++) {
       if(!this.totalSocials.includes("socialGroup" + i.toString())) {
         var socialPnl = document.getElementById("socialGroup" + i.toString());
         socialPnl.classList.remove('hidden');
