@@ -192,6 +192,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var basicDetailEditArea = document.getElementById('basicDetailEditArea');
     var videoEditArea = document.getElementById('videoEditArea');
     var linksEditArea = document.getElementById('linksEditArea');
+    var secondaryPanel = document.getElementById('secondaryPanel');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -206,6 +207,7 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
       basicDetailEditArea.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
     }
     else if(field == 'cardHeadArea') {
       cardHeadArea.classList.toggle("hidden");
@@ -213,6 +215,7 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactSection.classList.toggle('hidden');
       videoArea.classList.toggle('hidden');
       linksArea.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
     }
     else if(field == 'socialEditSection') {
       upperCard.classList.toggle("hidden");
@@ -227,6 +230,7 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
       socialEditSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
     }
     else if(field == 'videoEditArea') {
       videoEditArea.classList.toggle("hidden");
@@ -241,6 +245,7 @@ export class AdminCardPreviewComponent implements OnInit{
       linksArea.classList.toggle('hidden');
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
     } else if (field == 'linksEditArea') {
       linksEditArea.classList.toggle('hidden');
       upperCard.classList.toggle("hidden");
@@ -254,6 +259,7 @@ export class AdminCardPreviewComponent implements OnInit{
       linksArea.classList.toggle('hidden');
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
     }
   }
 
