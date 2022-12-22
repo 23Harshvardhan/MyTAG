@@ -433,8 +433,8 @@
                             <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                         </div>
 
-                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of phoneNumbers">
-                            <div class="cardInfoCont" *ngIf="phoneNumbers[0] != ''">
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
+                            <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
                                 <i class="fa-solid fa-phone"></i>
                                 <p class="intel">{{number}}</p>
                             </div>
@@ -481,12 +481,12 @@
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
-                                            <option value="Instagram">Work</option>
-                                            <option value="Phone">Home Fax</option>
-                                            <option value="Fax">Work Fax</option>
-                                            <option value="Instagram">Other</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Home Fax">Home Fax</option>
+                                            <option value="Work Fax">Work Fax</option>
+                                            <option value="Other">Other</option>
                                         </select>
-                                        <input class="inputField" id="contact1" placeholder="Contact" value="{{phoneNumbers[0]}}">
+                                        <input class="inputField" id="contact1" placeholder="Contact" value="{{contactNums[0]}}">
                                     </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup2" style="flex-direction: column; gap: 2px">
@@ -495,7 +495,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('2')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType2" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -504,7 +504,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact2" placeholder="Contact" value="{{phoneNumbers[1]}}">
+                                    <input class="inputField" id="contact2" placeholder="Contact" value="{{contactNums[1]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup3" style="flex-direction: column; gap: 2px">
@@ -513,7 +513,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('3')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType3" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -522,7 +522,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact3" placeholder="Contact" value="{{phoneNumbers[2]}}">
+                                    <input class="inputField" id="contact3" placeholder="Contact" value="{{contactNums[2]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup4" style="flex-direction: column; gap: 2px">
@@ -531,7 +531,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('4')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType4" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -540,7 +540,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact4" placeholder="Contact" value="{{phoneNumbers[3]}}">
+                                    <input class="inputField" id="contact4" placeholder="Contact" value="{{contactNums[3]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup5" style="flex-direction: column; gap: 2px">
@@ -549,7 +549,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('5')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType5" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -558,7 +558,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact5" placeholder="Contact" value="{{phoneNumbers[4]}}">
+                                    <input class="inputField" id="contact5" placeholder="Contact" value="{{contactNums[4]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup6" style="flex-direction: column; gap: 2px">
@@ -567,7 +567,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('6')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType6" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -576,7 +576,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact6" placeholder="Contact" value="{{phoneNumbers[5]}}">
+                                    <input class="inputField" id="contact6" placeholder="Contact" value="{{contactNums[5]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup7" style="flex-direction: column; gap: 2px">
@@ -585,7 +585,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeContactGroup('7')"></i>
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
-                                        <select id="contactType1" class="socialSelector">
+                                        <select id="contactType7" class="socialSelector">
                                             <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
@@ -594,7 +594,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact7" placeholder="Contact" value="{{phoneNumbers[6]}}">
+                                    <input class="inputField" id="contact7" placeholder="Contact" value="{{contactNums[6]}}">
                                     </div>
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalContacts.length < 7">
@@ -940,15 +940,15 @@
                                         </div>
                                         <div class="sigBoxBody">
                                             <div class="basicInfoCont">
-                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[0] != ''">
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="contactNums[0] != ''">
                                                     <div>
                                                         <i class="fa-solid fa-phone data"></i>
-                                                        <p class="data">{{phoneNumbers[0]}}</p>
+                                                        <p class="data">{{contactNums[0]}}</p>
                                                     </div>
                                                 </div>
-                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="phoneNumbers[1] != null">
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="contactNums[1] != null">
                                                     <i class="fa-solid fa-mobile data"></i>
-                                                    <p class="data">{{phoneNumbers[1]}}</p>
+                                                    <p class="data">{{contactNums[1]}}</p>
                                                 </div>
                                                 <div *ngIf="emails[0] != null">
                                                     <div style="display: flex; gap: 5px;" *ngIf="emails[0] != ''">

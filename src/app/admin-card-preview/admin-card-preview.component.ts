@@ -297,20 +297,25 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   getPhones() {
-    var returnGroup = [];
-    var returnJoined;
+    var count = [];
+    var numWithTypes = [];
+    var returnGroup:string;
 
     this.totalContacts.forEach(element => {
-      var count = element.replace("Group", "");
-      var inputField = document.getElementById(count) as HTMLInputElement;
-      var inputValue = inputField.value;
-      if(inputValue.length > 0) {
-        returnGroup.push(inputValue);
-      }
+      var num = element.replace('contactGroup', '');
+      count.push(num);
     });
 
-    returnJoined = returnGroup.join(',');
-    return returnJoined.toString();
+    count.forEach(element => {
+      var inputField = document.getElementById('contact' + element) as HTMLInputElement;
+      var contactType = document.getElementById('contactType' + element) as HTMLSelectElement;
+      var type = contactType.options[contactType.selectedIndex].value;
+      var contactNum = inputField.value;
+      numWithTypes.push(type + '?' + contactNum);
+    });
+
+    returnGroup = numWithTypes.join(';');
+    return returnGroup;
   }
 
   getEmails() {
@@ -545,6 +550,8 @@ export class AdminCardPreviewComponent implements OnInit{
     number.value = "";
     contactPnl.classList.add('hidden');
     this.totalContacts.splice(index, 1);
+
+    console.log(this.totalContacts);
   }
 
   removeYoutubeGroup(count: string) {
@@ -757,18 +764,26 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  contactTypes = [];
+  contactNums = [];
+
   preloadContact() {
     var length = this.phoneNumbers.length;
     if(this.phoneNumbers[0] != '') {
       for (let i = 0; i < length; i++) {
         var count = i + 1;
+
+        var group = this.phoneNumbers[i].split('?');
+        this.contactTypes.push(group[0]);
+        this.contactNums.push(group[1]);
+
         var block = document.getElementById('contactGroup' + count.toString());
         block.classList.remove('hidden');
         this.totalContacts.push('contactGroup' + count.toString());
       }
     }
   }
-
+  
   preloadEmail() {
     var length = this.emails.length;
     if(this.emails[0] != '') {
@@ -817,33 +832,6 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  // finalLinks = [];
-
-  // filterLinks() {
-  //   this.youtubeLinks.forEach(element => {
-  //     var oldLink:string = element.toString();
-  //     var link:string;
-      
-  //     if(!oldLink.includes("https://")) {
-  //       if(!oldLink.includes("www.")) {
-  //         link = "https://www." + oldLink;
-  //       } else {
-  //         link = "https://" + oldLink;
-  //       }
-  //     }
-
-  //     if(link.includes('youtu.be/')) {
-  //       link.replace('youtu.be/' , 'youtube.com/embed/');
-  //     } else if (link.includes('watch?v=')) {
-  //       link.replace('watch?v=', 'embed/');
-  //     } else if (link.includes('&feature=youtu.be')) {
-  //       link.replace('&feature=youtu.be', '');
-  //     }
-
-  //     this.finalLinks.push(link);
-  //   });
-  // }
-
   socials = [];
   phoneNumbers = [];
   emails = [];
@@ -870,7 +858,7 @@ export class AdminCardPreviewComponent implements OnInit{
 
       this.userId = this.data.UserID;
 
-      this.phoneNumbers = this.data.Phone.split(',');
+      this.phoneNumbers = this.data.Phone.split(';');
       this.emails = this.data.Email.split(',');
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
