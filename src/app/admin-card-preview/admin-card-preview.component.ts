@@ -388,7 +388,33 @@ export class AdminCardPreviewComponent implements OnInit{
 
   activeSocials = [];
 
+  finalizeSocials() {
+    var index = [];
+    var socials = [];
+    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+
+    this.totalSocials.forEach(element => {
+      var count = element.replace('socialGroup', '');
+      index.push(count);
+    });
+
+    index.forEach(element => {
+      var selector = document.getElementById('social' + element) as HTMLSelectElement;
+      var social = selector.options[selector.selectedIndex].value;
+      socials.push(social);
+    });
+
+    availableSocials.forEach(element => {
+      if(this.data[element as keyof typeof this.data] != '') {
+        if(!socials.includes(element)) {
+          this.data[element as keyof typeof this.data] = '';
+        }
+      }
+    });
+  }
+
   updateCard(cardId:String, userId:string) {
+    this.finalizeSocials();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
@@ -751,6 +777,22 @@ export class AdminCardPreviewComponent implements OnInit{
   editCard() {
     this.router.navigate(['/editCard/' + this.cardID]);
   }
+
+  socialIndex = {
+    'Twitter':'0',
+    'Instagram':'1',
+    'Linkedin':'2',
+    'Facebook':'3',
+    'Youtube':'4',
+    'Snapchat':'5',
+    'Tiktok':'6',
+    'Twitch':'7',
+    'Yelp':'8',
+    'Discord':'9',
+    'Whatsapp':'10',
+    'Skype':'11',
+    'Telegram':'12'
+  }
   
   preloadSocials() {
     var lenght = this.socials.length;
@@ -760,6 +802,12 @@ export class AdminCardPreviewComponent implements OnInit{
         var block = document.getElementById('socialGroup' + count.toString());
         block.classList.remove('hidden');
         this.totalSocials.push('socialGroup' + count.toString());
+        var field = document.getElementById('socialLink' + count) as HTMLInputElement;
+        field.value = this.socials[i];
+        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+        var social = this.socalsInUse[i];
+        var index = this.socialIndex[social as keyof typeof this.socialIndex];
+        selector.options.selectedIndex = parseInt(index);
       }
     }
   }
@@ -838,13 +886,16 @@ export class AdminCardPreviewComponent implements OnInit{
   websites = [];
   addresses = [];
   youtubeLinks = [];
+  
+  socalsInUse = [];
 
   getSocials() {
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
-
+    
     availableSocials.forEach(social => {
       if(this.data[social as keyof typeof this.data] != '') {
         this.socials.push(this.data[social as keyof typeof this.data]);
+        this.socalsInUse.push(social);
       }
     });
   }
