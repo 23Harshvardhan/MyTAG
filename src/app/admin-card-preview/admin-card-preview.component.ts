@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseChartDirective } from 'ng2-charts';
@@ -149,8 +149,8 @@ export class AdminCardPreviewComponent implements OnInit{
   file2:File;
   userId:string;
   formdata = new FormData();
-  imageUrl = "http://34.131.186.218/v1/images/default.jpg";
-  logoUrl = "http://34.131.186.218/v1/images/default.jpg";
+  imageUrl = "http://34.131.186.218/v1/banner/default.jpg";
+  logoUrl = "http://34.131.186.218/v1/banner/default.jpg";
 
   cpySigBtn() {
     var htmlEditor = document.getElementById('html');
@@ -609,8 +609,6 @@ export class AdminCardPreviewComponent implements OnInit{
     number.value = "";
     contactPnl.classList.add('hidden');
     this.totalContacts.splice(index, 1);
-
-    console.log(this.totalContacts);
   }
 
   removeYoutubeGroup(count: string) {
@@ -992,10 +990,13 @@ export class AdminCardPreviewComponent implements OnInit{
         }
         this.dataToSendJson.data.push(dataSet);
         this.activeLinks.push(element);
+        this.totalLinks.push('linkGroup' + count.toString());
       }
 
       count++;
     });
+
+    console.log(this.totalLinks);
   }
 
   getData(cardId:string) {
