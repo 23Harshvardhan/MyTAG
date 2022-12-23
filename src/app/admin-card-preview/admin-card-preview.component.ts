@@ -464,7 +464,7 @@ export class AdminCardPreviewComponent implements OnInit{
         "Github": this.data.Github,
         "Paypal": this.data.Paypal,
         "Skype": this.data.Skype,
-        "External_links": this.linksDataJson
+        "External_links": this.dataToSendJson
       }, UserID: userId}, this.cookie)
       .then ((response) => {
         this.uploadImage();
@@ -582,17 +582,24 @@ export class AdminCardPreviewComponent implements OnInit{
     this.totalSocials.splice(index, 1);
   }
 
+  dataToSendJson = {
+    "data": [
+
+    ]
+  }
+
   removeLinkGroup(count:string) {
     var num:number = parseInt(count);
     var num = num - 1;
     var index = this.totalLinks.indexOf('linkGroup' + count);
     var linkPnl = document.getElementById('linkGroup' + count);
-    this.linksDataJson.data[num].link = "";
-    this.linksDataJson.data[num].link_title = "";
-    this.linksDataJson.data[num].link_logo = "";
+    var linkLinkArea = document.getElementById('linkLink' + count) as HTMLInputElement;
+    linkLinkArea.value = "";
+    var linkTitleArea = document.getElementById('linkLable' + count) as HTMLInputElement;
+    linkTitleArea.value = "";
+    this.dataToSendJson.data.splice(num, 1);
     linkPnl.classList.add('hidden');
     this.totalLinks.splice(index, 1);
-    console.log(this.linksDataJson);
   }
 
   removeContactGroup(count: string) {
@@ -978,6 +985,12 @@ export class AdminCardPreviewComponent implements OnInit{
         linkTitleArea.value = element.link_title;
         var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
         linkLinkArea.value = element.link;
+        var dataSet = {
+          "link_logo": "",
+          "link": element.link,
+          "link_title": element.link_title
+        }
+        this.dataToSendJson.data.push(dataSet);
         this.activeLinks.push(element);
       }
 
