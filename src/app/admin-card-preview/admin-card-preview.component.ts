@@ -79,6 +79,7 @@ export class AdminCardPreviewComponent implements OnInit{
     "Github": "",
     "Paypal": "",
     "Skype": "",
+    "Banner": "",
     "Image": "",
     "Published": "",
     "Created_date": "",
@@ -413,8 +414,26 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  linksToJson() {
+    var count = this.totalLinks.length;
+
+    for(let i = 0; i < count; i++) {
+      var num = i + 1;
+      var linkTitleArea = document.getElementById('linkLable' + num.toString()) as HTMLInputElement;
+      var linkLinkArea = document.getElementById('linkLink' + num.toString()) as HTMLInputElement;
+      var linkTitle = linkTitleArea.value;
+      var linkLink = linkLinkArea.value;
+
+      this.linksDataJson.data[i].link_title = linkTitle;
+      this.linksDataJson.data[i].link = linkLink;
+    }
+
+    console.log(this.linksDataJson);
+  }
+
   updateCard(cardId:String, userId:string) {
     this.finalizeSocials();
+    this.linksToJson();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
@@ -444,7 +463,8 @@ export class AdminCardPreviewComponent implements OnInit{
         "Calendly": this.data.Calendly,
         "Github": this.data.Github,
         "Paypal": this.data.Paypal,
-        "Skype": this.data.Skype
+        "Skype": this.data.Skype,
+        "External_links": this.linksDataJson
       }, UserID: userId}, this.cookie)
       .then ((response) => {
         this.uploadImage();
@@ -563,10 +583,16 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   removeLinkGroup(count:string) {
+    var num:number = parseInt(count);
+    var num = num - 1;
     var index = this.totalLinks.indexOf('linkGroup' + count);
     var linkPnl = document.getElementById('linkGroup' + count);
+    this.linksDataJson.data[num].link = "";
+    this.linksDataJson.data[num].link_title = "";
+    this.linksDataJson.data[num].link_logo = "";
     linkPnl.classList.add('hidden');
     this.totalLinks.splice(index, 1);
+    console.log(this.linksDataJson);
   }
 
   removeContactGroup(count: string) {
@@ -889,6 +915,46 @@ export class AdminCardPreviewComponent implements OnInit{
   
   socalsInUse = [];
 
+  linksDataJson = {
+    "data": [
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      },
+      {
+        "link": "",
+        "link_logo": "",
+        "link_title": ""
+      }
+    ]
+  }
+
   getSocials() {
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
     
@@ -900,11 +966,31 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  activeLinks = [];
+
+  preloadLinks() {
+    var count:number = 1;
+    this.linksDataJson.data.forEach(element => {
+      if(element.link != "" && element.link_title != "") {
+        var linkGroupArea = document.getElementById('linkGroup' + count.toString());
+        linkGroupArea.classList.remove('hidden');
+        var linkTitleArea = document.getElementById('linkLable' + count.toString()) as HTMLInputElement;
+        linkTitleArea.value = element.link_title;
+        var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
+        linkLinkArea.value = element.link;
+        this.activeLinks.push(element);
+      }
+
+      count++;
+    });
+  }
+
   getData(cardId:string) {
     axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
+      this.linksDataJson = response.data.data[0].External_links;
       this.loadCardImage();
 
       this.userId = this.data.UserID;
@@ -925,6 +1011,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.preloadWebsites();
       this.preloadAddresses();
       this.preloadYoutubeLinks();
+
+      this.preloadLinks();
     })
     .catch((error) => {
       console.log(error);
@@ -941,13 +1029,21 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  openLink(link:string) {
+    if(link.startsWith("https:///")) {
+      window.open(link, "_blank");
+    } else {
+      window.open("https://" + link, "_blank");
+    }
+  }
+
   test() {
     alert('Working');
   }
 
   loadCardImage() {
-    if(this.data.Image != "" || this.data.Image != null) {
-      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Image;
+    if(this.data.Banner != "" || this.data.Banner != null) {
+      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Banner;
     }
 
     if(this.data.Logo != "" || this.data.Logo != null) {
