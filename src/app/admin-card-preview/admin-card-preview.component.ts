@@ -427,8 +427,166 @@ export class AdminCardPreviewComponent implements OnInit{
       this.linksDataJson.data[i].link_title = linkTitle;
       this.linksDataJson.data[i].link = linkLink;
     }
+  }
 
-    console.log(this.linksDataJson);
+  linkLogo1:File;
+  compressedLogo1:File;
+  linkLogoUrl1;
+  linkLogo2:File;
+  compressedLogo2:File;
+  linkLogoUrl2;
+  linkLogo3:File;
+  compressedLogo3:File;
+  linkLogoUrl3;
+  linkLogo4:File;
+  compressedLogo4:File;
+  linkLogoUrl4;
+  linkLogo5:File;
+  compressedLogo5:File;
+  linkLogoUrl5;
+  linkLogo6:File;
+  compressedLogo6:File;
+  linkLogoUrl6;
+  linkLogo7:File;
+  compressedLogo7:File;
+  linkLogoUrl7;
+
+  logoUpload1(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo1 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo1)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo1 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo1);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl1 = event.target.result;
+      }
+    }
+  }
+
+  logoUpload2(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo2 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo2)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo2 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo2);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl2 = event.target.result;
+      }
+    }
+  }
+
+  logoUpload3(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo3 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo3)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo3 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo3);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl3 = event.target.result;
+      }
+    }
+  }
+
+  logoUpload4(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo4 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo4)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo4 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo4);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl4 = event.target.result;
+      }
+    }
+  }
+
+  openUpload(count:number) {
+    var upload = document.getElementById('linkLogoUpload' + count.toString());
+    upload.click();
+  }
+
+  logoUpload5(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo5 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo5)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo5 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo5);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl5 = event.target.result;
+      }
+    }
+  }
+
+  logoUpload6(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo6 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo6)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo6 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo6);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl6 = event.target.result;
+      }
+    }
+  }
+
+  logoUpload7(event) {
+    if(event.target.files.length > 0) {
+      this.linkLogo7 = event.target.files[0];
+
+      this.compressImage.compress(this.linkLogo7)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.compressedLogo7 = compressedFile2;
+      })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.linkLogo7);
+      reader.onload=(event:any) => {
+        this.linkLogoUrl7 = event.target.result;
+      }
+    }
   }
 
   updateCard(cardId:String, userId:string) {
@@ -760,7 +918,6 @@ export class AdminCardPreviewComponent implements OnInit{
 
       axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
-        console.log(response);
         this.uploadLogo();
       })
       .catch((error) => {
@@ -995,8 +1152,6 @@ export class AdminCardPreviewComponent implements OnInit{
 
       count++;
     });
-
-    console.log(this.totalLinks);
   }
 
   getData(cardId:string) {

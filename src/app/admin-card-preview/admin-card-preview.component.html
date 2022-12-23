@@ -848,8 +848,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink1" placeholder="Link" value="" (keyup)="linkGetEvent('1')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl1" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(1)"></i>
+                                                <input type="file" id="linkLogoUpload1" (change)="logoUpload1($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -867,8 +868,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink2" placeholder="Link" value="" (keyup)="linkGetEvent('2')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl2" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(2)"></i>
+                                                <input type="file" id="linkLogoUpload2" (change)="logoUpload2($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -886,8 +888,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink3" placeholder="Link" value="" (keyup)="linkGetEvent('3')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl3" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(3)"></i>
+                                                <input type="file" id="linkLogoUpload3" (change)="logoUpload3($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -904,8 +907,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink4" placeholder="Link" value="" (keyup)="linkGetEvent('4')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl4" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(4)"></i>
+                                                <input type="file" id="linkLogoUpload4" (change)="logoUpload4($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -922,8 +926,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink5" placeholder="Link" value="" (keyup)="linkGetEvent('5')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl5" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(5)"></i>
+                                                <input type="file" id="linkLogoUpload5" (change)="logoUpload5($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -940,8 +945,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink6" placeholder="Link" value="" (keyup)="linkGetEvent('6')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl6" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(6)"></i>
+                                                <input type="file" id="linkLogoUpload6" (change)="logoUpload6($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
@@ -958,8 +964,9 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink7" placeholder="Link" value="" (keyup)="linkGetEvent('7')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img src="../../assets/img/default.jpg" style="width: 50px; height: 50px;">
-                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;"></i>
+                                                <img [src]="linkLogoUrl7" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(7)"></i>
+                                                <input type="file" id="linkLogoUpload7" (change)="logoUpload7($event)" hidden>
                                             </div>
                                         </div>
                                     </div>
