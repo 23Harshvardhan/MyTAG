@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp (signUpCreds: {FirstName:string, LastName: string, Email:string, Password: string}){
-    axios.post('http://34.131.186.218/v1/api/auth/signup', {
+    axios.post('http://185.208.207.55/v1/api/auth/signup', {
       data: signUpCreds
     })
     .then( (response) => {
@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
     }
 
     if(otp != null) {
-      axios.post('http://34.131.186.218/v1/api/auth/verifyEmail', {
+      axios.post('http://185.208.207.55/v1/api/auth/verifyEmail', {
         data: otp
         }, cookie)
         .then( (response) => {
@@ -75,6 +75,6 @@ export class SignupComponent implements OnInit {
     } 
 
   resendOtp() {
-    axios.post('34.131.186.218/v1/api/auth/resendOtp');
+    axios.post('185.208.207.55/v1/api/auth/resendOtp');
   }
 }

@@ -36,7 +36,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   // Variable to store the API url. This will be called during every API request.
-  APIurl = "http://34.131.186.218/v1/";
+  APIurl = "http://185.208.207.55/v1/";
 
   // Variable to store current card ID.
   cardID;
@@ -149,8 +149,8 @@ export class AdminCardPreviewComponent implements OnInit{
   file2:File;
   userId:string;
   formdata = new FormData();
-  imageUrl = "http://34.131.186.218/v1/banner/default.jpg";
-  logoUrl = "http://34.131.186.218/v1/banner/default.jpg";
+  imageUrl = "http://185.208.207.55/v1/banner/default.jpg";
+  logoUrl = "http://185.208.207.55/v1/banner/default.jpg";
 
   cpySigBtn() {
     var htmlEditor = document.getElementById('html');
@@ -603,7 +603,7 @@ export class AdminCardPreviewComponent implements OnInit{
     this.finalizeSocials();
     this.linksToJson();
     if(this.areDistinct(this.activeSocials)) {
-      axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
         "Job_title": this.data.Job_title,
         "Department": this.data.Department,
@@ -926,7 +926,7 @@ export class AdminCardPreviewComponent implements OnInit{
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
 
-      axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
         this.uploadLogo();
       })
@@ -945,7 +945,7 @@ export class AdminCardPreviewComponent implements OnInit{
     if(this.compressedImage2 != null) {
       formdata.append("media", this.compressedImage2);
 
-      axios.put('http://34.131.186.218/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
         window.location.reload();
       })
@@ -1158,6 +1158,8 @@ export class AdminCardPreviewComponent implements OnInit{
         this.dataToSendJson.data.push(dataSet);
         this.activeLinks.push(element);
         this.totalLinks.push('linkGroup' + count.toString());
+
+        this['linkLogo' + count.toString()] = element.link_logo;
       }
 
       count++;
@@ -1165,7 +1167,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   getData(cardId:string) {
-    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
+    axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
@@ -1222,11 +1224,11 @@ export class AdminCardPreviewComponent implements OnInit{
 
   loadCardImage() {
     if(this.data.Banner != "" || this.data.Banner != null) {
-      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Banner;
+      this.imageUrl = "http://185.208.207.55/v1/" + this.data.Banner;
     }
 
     if(this.data.Logo != "" || this.data.Logo != null) {
-      this.logoUrl = "http://34.131.186.218/v1/" + this.data.Logo;
+      this.logoUrl = "http://185.208.207.55/v1/" + this.data.Logo;
     }
   }
 

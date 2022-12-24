@@ -822,6 +822,8 @@
                         <div *ngFor="let link of activeLinks">
                             <div class="container basicContactArea">
                                 <div class="cardInfoCont">
+                                    <i class="fa-solid fa-link" *ngIg="link.link_logo == ''"></i>
+                                    <img [src]="link.link_logo" style="height: 30px; width: 30px;">
                                     <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
                                 </div>
                             </div>

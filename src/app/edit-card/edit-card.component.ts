@@ -24,7 +24,7 @@ export class EditCardComponent implements OnInit {
   userId;
 
   file:File;
-  imageUrl = "http://34.131.186.218/v1/images/default.jpg";
+  imageUrl = "http://185.208.207.55/v1/images/default.jpg";
 
   formdata = new FormData();
 
@@ -61,7 +61,7 @@ export class EditCardComponent implements OnInit {
   // Function to load the card image into preview card.
   loadCardImage() {
     if(this.data.Image != "" || this.data.Image != null) {
-      this.imageUrl = "http://34.131.186.218/v1/" + this.data.Image;
+      this.imageUrl = "http://185.208.207.55/v1/" + this.data.Image;
     }
   }
 
@@ -163,7 +163,7 @@ export class EditCardComponent implements OnInit {
   //Function to get card data using API call with card ID as query.
   //On success will return entered details of the card which was requested and on fail will log error in console and slow alert.
   getData(cardId:string) {
-    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
+    axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
@@ -178,7 +178,7 @@ export class EditCardComponent implements OnInit {
   }
 
   updateCard(cardId:String, userId:string) {
-    axios.put('http://34.131.186.218/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
       "Name": this.data.Name,
       "Job_title": this.data.Job_title,
       "Department": this.data.Department,
@@ -220,7 +220,7 @@ export class EditCardComponent implements OnInit {
   uploadImage() {
     console.log(this.formdata);
     if(this.file != null) {
-      axios.put('http://34.131.186.218/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, this.formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/admin/updatecard/updatecardimage?id=' + this.cardId + '&userID=' + this.userId, this.formdata, this.cookie)
       .then((response) => {
         this.router.navigate(['/inventory']);
       })

@@ -35,7 +35,7 @@ export class InventoryComponent implements OnInit {
   }
 
   checkAuth() {
-    axios.get('http://34.131.186.218/v1/api/admin', this.cookie).
+    axios.get('http://185.208.207.55/v1/api/admin', this.cookie).
     then((response) => {
       this.loadData();
     })
@@ -47,20 +47,10 @@ export class InventoryComponent implements OnInit {
   
   emails = [];
 
-  getEmails() {
-    this.responseData.forEach(element => {
-      if(element.Email != null) {
-        console.log(element.Email);
-        }
-    });
-  }
-
   loadData() {
-    axios.get('http://34.131.186.218/v1/api/admin/analytics/getcards', this.cookie)
+    axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards', this.cookie)
     .then((response) => {
       this.responseData = response.data.data;
-
-      this.getEmails();
     })
     .catch((error) => {
       console.log(error);
@@ -73,7 +63,7 @@ export class InventoryComponent implements OnInit {
     var qty = qtyField.value;
 
     if(parseInt(qty) > 0) {
-      axios.post('http://34.131.186.218/v1/api/admin/updatecard/bulkadd', {"amount": qty}, this.cookie)
+      axios.post('http://185.208.207.55/v1/api/admin/updatecard/bulkadd', {"amount": qty}, this.cookie)
       .then((response) => {
         window.location.reload();
       })

@@ -31,7 +31,7 @@ export class AdminLoginComponent implements OnInit {
   }
 
   login(loginCreds : {Email:string, Username:string, Password:string}){
-    axios.post('http://34.131.186.218/v1/api/admin/login', {
+    axios.post('http://185.208.207.55/v1/api/admin/login', {
       data: loginCreds
     })
     .then ((response) => {
