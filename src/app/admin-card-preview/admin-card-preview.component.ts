@@ -426,6 +426,7 @@ export class AdminCardPreviewComponent implements OnInit{
 
       this.linksDataJson.data[i].link_title = linkTitle;
       this.linksDataJson.data[i].link = linkLink;
+      this.linksDataJson.data[i].link_logo = "";
     }
   }
 
@@ -466,6 +467,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo1);
       reader.onload=(event:any) => {
         this.linkLogoUrl1 = event.target.result;
+        this.dataToSendJson.data[0].link_logo = this.linkLogoUrl1;
       }
     }
   }
@@ -485,6 +487,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo2);
       reader.onload=(event:any) => {
         this.linkLogoUrl2 = event.target.result;
+        this.dataToSendJson.data[1].link_logo = this.linkLogoUrl2;
       }
     }
   }
@@ -504,6 +507,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo3);
       reader.onload=(event:any) => {
         this.linkLogoUrl3 = event.target.result;
+        this.dataToSendJson.data[2].link_logo = this.linkLogoUrl3;
       }
     }
   }
@@ -523,6 +527,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo4);
       reader.onload=(event:any) => {
         this.linkLogoUrl4 = event.target.result;
+        this.dataToSendJson.data[3].link_logo = this.linkLogoUrl4;
       }
     }
   }
@@ -547,6 +552,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo5);
       reader.onload=(event:any) => {
         this.linkLogoUrl5 = event.target.result;
+        this.dataToSendJson.data[4].link_logo = this.linkLogoUrl5;
       }
     }
   }
@@ -566,6 +572,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo6);
       reader.onload=(event:any) => {
         this.linkLogoUrl6 = event.target.result;
+        this.dataToSendJson.data[5].link_logo = this.linkLogoUrl6;
       }
     }
   }
@@ -585,6 +592,7 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo7);
       reader.onload=(event:any) => {
         this.linkLogoUrl7 = event.target.result;
+        this.dataToSendJson.data[6].link_logo = this.linkLogoUrl7;
       }
     }
   }
@@ -1141,7 +1149,7 @@ export class AdminCardPreviewComponent implements OnInit{
         var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
         linkLinkArea.value = element.link;
         var dataSet = {
-          "link_logo": "",
+          "link_logo": element.link_logo,
           "link": element.link,
           "link_title": element.link_title
         }
