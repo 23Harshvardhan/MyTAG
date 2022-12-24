@@ -194,6 +194,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var videoEditArea = document.getElementById('videoEditArea');
     var linksEditArea = document.getElementById('linksEditArea');
     var secondaryPanel = document.getElementById('secondaryPanel');
+    var nameDetailsPnl = document.getElementById('editFooter');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -217,6 +218,7 @@ export class AdminCardPreviewComponent implements OnInit{
       videoArea.classList.toggle('hidden');
       linksArea.classList.toggle('hidden');
       secondaryPanel.classList.toggle('hidden');
+      nameDetailsPnl.focus();
     }
     else if(field == 'socialEditSection') {
       upperCard.classList.toggle("hidden");
