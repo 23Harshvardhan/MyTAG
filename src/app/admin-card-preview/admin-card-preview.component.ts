@@ -469,7 +469,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo1);
       reader.onload=(event:any) => {
         this.linkLogoUrl1 = event.target.result;
-        this.dataToSendJson.data[0].link_logo = this.linkLogoUrl1;
       }
     }
   }
@@ -489,7 +488,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo2);
       reader.onload=(event:any) => {
         this.linkLogoUrl2 = event.target.result;
-        this.dataToSendJson.data[1].link_logo = this.linkLogoUrl2;
       }
     }
   }
@@ -509,7 +507,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo3);
       reader.onload=(event:any) => {
         this.linkLogoUrl3 = event.target.result;
-        this.dataToSendJson.data[2].link_logo = this.linkLogoUrl3;
       }
     }
   }
@@ -529,7 +526,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo4);
       reader.onload=(event:any) => {
         this.linkLogoUrl4 = event.target.result;
-        this.dataToSendJson.data[3].link_logo = this.linkLogoUrl4;
       }
     }
   }
@@ -554,7 +550,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo5);
       reader.onload=(event:any) => {
         this.linkLogoUrl5 = event.target.result;
-        this.dataToSendJson.data[4].link_logo = this.linkLogoUrl5;
       }
     }
   }
@@ -574,7 +569,6 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo6);
       reader.onload=(event:any) => {
         this.linkLogoUrl6 = event.target.result;
-        this.dataToSendJson.data[5].link_logo = this.linkLogoUrl6;
       }
     }
   }
@@ -594,14 +588,54 @@ export class AdminCardPreviewComponent implements OnInit{
       reader.readAsDataURL(this.linkLogo7);
       reader.onload=(event:any) => {
         this.linkLogoUrl7 = event.target.result;
-        this.dataToSendJson.data[6].link_logo = this.linkLogoUrl7;
       }
     }
+  }
+
+  updateLinkLogos() {
+    var formdata = new FormData();
+    if(this.compressedLogo1 != null) {
+      formdata.append('', this.compressedLogo1);
+    }
+
+    if(this.compressedLogo2 != null) {
+      formdata.append('', this.compressedLogo2);
+    }
+
+    if(this.compressedLogo3 != null) {
+      formdata.append('', this.compressedLogo3);
+    }
+
+    if(this.compressedLogo4 != null) {
+      formdata.append('', this.compressedLogo4);
+    }
+
+    if(this.compressedLogo5 != null) {
+      formdata.append('', this.compressedLogo5);
+    }
+
+    if(this.compressedLogo6 != null) {
+      formdata.append('', this.compressedLogo6);
+    }
+
+    if(this.compressedLogo7 != null) {
+      formdata.append('', this.compressedLogo7);
+    }
+
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+    .then((response) => {
+
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem updating link logos. Please send console log to developer.");
+    });
   }
 
   updateCard(cardId:String, userId:string) {
     this.finalizeSocials();
     this.linksToJson();
+    this.updateLinkLogos();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,

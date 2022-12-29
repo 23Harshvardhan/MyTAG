@@ -126,19 +126,19 @@
                         </div>
 
                         <div class="socialIcons">
-                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0" (click)="redirectSocial('Twitter')"></i>
-                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0" (click)="redirectSocial('Instagram')"></i>
-                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0" (click)="redirectSocial('Linkedin')"></i>
-                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0" (click)="redirectSocial('Facebook')"></i>
-                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0" (click)="redirectSocial('Youtube')"></i>
-                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0" (click)="redirectSocial('Snapchat')"></i>
-                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0" (click)="redirectSocial('Tiktok')"></i>
-                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0" (click)="redirectSocial('Twitch')"></i>
-                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0" (click)="redirectSocial('Yelp')"></i>
-                            <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0" (click)="redirectSocial('Discord')"></i>
-                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0" (click)="redirectSocial('Whatsapp')"></i>
-                            <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0" (click)="redirectSocial('Skype')"></i>
-                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0" (click)="redirectSocial('Telegram')"></i>
+                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="redirectSocial('Twitter')"></i>
+                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="redirectSocial('Instagram')"></i>
+                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin != ''" (click)="redirectSocial('Linkedin')"></i>
+                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook != ''" (click)="redirectSocial('Facebook')"></i>
+                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube != ''" (click)="redirectSocial('Youtube')"></i>
+                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat != ''" (click)="redirectSocial('Snapchat')"></i>
+                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok != ''" (click)="redirectSocial('Tiktok')"></i>
+                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch != ''" (click)="redirectSocial('Twitch')"></i>
+                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp != ''" (click)="redirectSocial('Yelp')"></i>
+                            <i class="fa-brands fa-discord" *ngIf="data.Discord != ''" (click)="redirectSocial('Discord')"></i>
+                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp != ''" (click)="redirectSocial('Whatsapp')"></i>
+                            <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="redirectSocial('Skype')"></i>
+                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="redirectSocial('Telegram')"></i>
                         </div>
                     </div>
 
@@ -822,7 +822,6 @@
                         <div *ngFor="let link of activeLinks">
                             <div class="container basicContactArea">
                                 <div class="cardInfoCont">
-                                    <i class="fa-solid fa-link" *ngIg="link.link_logo == ''"></i>
                                     <img [src]="link.link_logo" style="height: 30px; width: 30px;">
                                     <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
                                 </div>
@@ -1055,19 +1054,19 @@
                                         </div>
                                         <div class="sigFooter">
                                             <div class="socialsCont">
-                                                <i class="fa-brands fa-twitter" *ngIf="data.Twitter.length > 0" (click)="openLink(data.Twitter)"></i>
-                                                <i class="fa-brands fa-instagram" *ngIf="data.Instagram.length > 0" (click)="openLink(data.Instagram)"></i>
-                                                <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin.length > 0" (click)="openLink(data.Linkedin)"></i>
-                                                <i class="fa-brands fa-facebook" *ngIf="data.Facebook.length > 0" (click)="openLink(data.Facebook)"></i>
-                                                <i class="fa-brands fa-youtube" *ngIf="data.Youtube.length > 0" (click)="openLink(data.Youtube)"></i>
-                                                <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat.length > 0" (click)="openLink(data.Snapchat)"></i>
-                                                <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok.length > 0" (click)="openLink(data.Tiktok)"></i>
-                                                <i class="fa-brands fa-twitch" *ngIf="data.Twitch.length > 0" (click)="openLink(data.Twitch)"></i>
-                                                <i class="fa-brands fa-yelp" *ngIf="data.Yelp.length > 0" (click)="openLink(data.Yelp)"></i>
-                                                <i class="fa-brands fa-discord" *ngIf="data.Discord.length > 0" (click)="openLink(data.Discord)"></i>
-                                                <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp.length > 0" (click)="openLink(data.Whatsapp)"></i>
-                                                <i class="fa-brands fa-skype" *ngIf="data.Skype.length > 0" (click)="openLink(data.Skype)"></i>
-                                                <i class="fa-brands fa-telegram" *ngIf="data.Telegram.length > 0" (click)="openLink(data.Telegram)"></i>
+                                                <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="openLink(data.Twitter)"></i>
+                                                <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="openLink(data.Instagram)"></i>
+                                                <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin != ''" (click)="openLink(data.Linkedin)"></i>
+                                                <i class="fa-brands fa-facebook" *ngIf="data.Facebook != ''" (click)="openLink(data.Facebook)"></i>
+                                                <i class="fa-brands fa-youtube" *ngIf="data.Youtube != ''" (click)="openLink(data.Youtube)"></i>
+                                                <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat != ''" (click)="openLink(data.Snapchat)"></i>
+                                                <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok != ''" (click)="openLink(data.Tiktok)"></i>
+                                                <i class="fa-brands fa-twitch" *ngIf="data.Twitch != ''" (click)="openLink(data.Twitch)"></i>
+                                                <i class="fa-brands fa-yelp" *ngIf="data.Yelp != ''" (click)="openLink(data.Yelp)"></i>
+                                                <i class="fa-brands fa-discord" *ngIf="data.Discord != ''" (click)="openLink(data.Discord)"></i>
+                                                <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp != ''" (click)="openLink(data.Whatsapp)"></i>
+                                                <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="openLink(data.Skype)"></i>
+                                                <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="openLink(data.Telegram)"></i>
                                             </div>
                                             <div class="saveCont">
                                                 <button class="cpySigBtn">Save Contact</button>
