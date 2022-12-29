@@ -1186,7 +1186,7 @@ export class AdminCardPreviewComponent implements OnInit{
         linkLinkArea.value = element.link;
         var dataSet = {
           "link_logo": element.link_logo,
-          "link": element.link,
+          "link": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
           "link_title": element.link_title
         }
         this.dataToSendJson.data.push(dataSet);
@@ -1199,6 +1199,15 @@ export class AdminCardPreviewComponent implements OnInit{
       count++;
     });
   }
+
+  // loadLogos() {
+  //   var count:number = 1;
+
+  //   this.dataToSendJson.data.forEach(element => {
+  //     element.link_logo = "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString();
+  //     count++;
+  //   });
+  // }
 
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
@@ -1227,7 +1236,10 @@ export class AdminCardPreviewComponent implements OnInit{
       this.preloadAddresses();
       this.preloadYoutubeLinks();
 
+      // this.loadLogos();
+
       this.preloadLinks();
+
     })
     .catch((error) => {
       console.log(error);
