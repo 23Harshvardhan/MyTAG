@@ -624,7 +624,7 @@ export class AdminCardPreviewComponent implements OnInit{
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
     .then((response) => {
-
+      console.log(response);
     })
     .catch((error) => {
       console.log(error);
@@ -1185,8 +1185,8 @@ export class AdminCardPreviewComponent implements OnInit{
         var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
         linkLinkArea.value = element.link;
         var dataSet = {
-          "link_logo": element.link_logo,
-          "link": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
+          "link_logo": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
+          "link": element.link,
           "link_title": element.link_title
         }
         this.dataToSendJson.data.push(dataSet);
@@ -1199,15 +1199,6 @@ export class AdminCardPreviewComponent implements OnInit{
       count++;
     });
   }
-
-  // loadLogos() {
-  //   var count:number = 1;
-
-  //   this.dataToSendJson.data.forEach(element => {
-  //     element.link_logo = "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString();
-  //     count++;
-  //   });
-  // }
 
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
