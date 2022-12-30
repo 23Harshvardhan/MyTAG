@@ -195,6 +195,8 @@ export class AdminCardPreviewComponent implements OnInit{
     var linksEditArea = document.getElementById('linksEditArea');
     var secondaryPanel = document.getElementById('secondaryPanel');
     var nameDetailsPnl = document.getElementById('editFooter');
+    var imageEditArea = document.getElementById('imageEditArea');
+    var imageArea = document.getElementById('imageArea');
 
     if(field == 'basicDetailArea') {
       upperCard.classList.toggle("hidden");
@@ -210,6 +212,7 @@ export class AdminCardPreviewComponent implements OnInit{
       socialDetailSection.classList.toggle('hidden');
       basicDetailEditArea.classList.toggle('hidden');
       secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
     }
     else if(field == 'cardHeadArea') {
       cardHeadArea.classList.toggle("hidden");
@@ -218,6 +221,7 @@ export class AdminCardPreviewComponent implements OnInit{
       videoArea.classList.toggle('hidden');
       linksArea.classList.toggle('hidden');
       secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
       nameDetailsPnl.focus();
     }
     else if(field == 'socialEditSection') {
@@ -234,6 +238,7 @@ export class AdminCardPreviewComponent implements OnInit{
       socialDetailSection.classList.toggle('hidden');
       socialEditSection.classList.toggle('hidden');
       secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
     }
     else if(field == 'videoEditArea') {
       videoEditArea.classList.toggle("hidden");
@@ -244,6 +249,7 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactArea.classList.toggle("hidden");
       cardHead.classList.toggle('hidden');
       basicDetailArea.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
       videoArea.classList.toggle('hidden');
       linksArea.classList.toggle('hidden');
       basicContactSection.classList.toggle('hidden');
@@ -255,6 +261,7 @@ export class AdminCardPreviewComponent implements OnInit{
       shareArea.classList.toggle("hidden");
       descArea.classList.toggle("hidden");
       editBtnArea.classList.toggle("hidden");
+      imageArea.classList.toggle('hidden');
       basicContactArea.classList.toggle("hidden");
       cardHead.classList.toggle('hidden');
       basicDetailArea.classList.toggle('hidden');
@@ -263,6 +270,21 @@ export class AdminCardPreviewComponent implements OnInit{
       basicContactSection.classList.toggle('hidden');
       socialDetailSection.classList.toggle('hidden');
       secondaryPanel.classList.toggle('hidden');
+    } else if (field == 'imageEditArea') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      imageArea.classList.toggle('hidden');
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+      imageEditArea.classList.toggle('hidden');
     }
   }
 
@@ -454,6 +476,49 @@ export class AdminCardPreviewComponent implements OnInit{
   compressedLogo7:File;
   linkLogoUrl7;
 
+  cardImage1;
+  cardImage2;
+  cardImage3;
+  cardImageCompressed1;
+  cardImageCompressed2;
+  cardImageCompressed3;
+
+  imageUpload1(event) {
+    if(event.target.files.length > 0) {
+      this.cardImage1 = event.target.files[0];
+
+      this.compressImage.compress(this.cardImage1)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.cardImageCompressed1 = compressedFile2;
+      })
+    }
+  }
+
+  imageUpload2(event) {
+    if(event.target.files.length > 0) {
+      this.cardImage2 = event.target.files[0];
+
+      this.compressImage.compress(this.cardImage2)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.cardImageCompressed2 = compressedFile2;
+      })
+    }
+  }
+
+  imageUpload3(event) {
+    if(event.target.files.length > 0) {
+      this.cardImage3 = event.target.files[0];
+
+      this.compressImage.compress(this.cardImage3)
+      .pipe(take(1))
+      .subscribe(compressedFile2 => {
+        this.cardImageCompressed3 = compressedFile2;
+      })
+    }
+  }
+
   logoUpload1(event) {
     if(event.target.files.length > 0) {
       this.linkLogo1 = event.target.files[0];
@@ -532,6 +597,11 @@ export class AdminCardPreviewComponent implements OnInit{
 
   openUpload(count:number) {
     var upload = document.getElementById('linkLogoUpload' + count.toString());
+    upload.click();
+  }
+
+  openImageUpload(count:number) {
+    var upload = document.getElementById('imageUpload' + count.toString());
     upload.click();
   }
 
@@ -624,7 +694,6 @@ export class AdminCardPreviewComponent implements OnInit{
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
     .then((response) => {
-      console.log(response);
     })
     .catch((error) => {
       console.log(error);
@@ -632,10 +701,41 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  updateCardImages() {
+    var formdata = new FormData();
+
+    if(this.cardImageCompressed1 != null) {
+      formdata.append('', this.cardImageCompressed1);
+    }
+
+    if(this.cardImageCompressed2 != null) {
+      formdata.append('', this.cardImageCompressed2);
+    }
+
+    if(this.cardImageCompressed3 != null) {
+      formdata.append('', this.cardImageCompressed3);
+    }
+
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+    .then((response) => {
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("There was a problem updating card images. Please send console log to developer.");
+    });
+  }
+
+  imagesJson = {
+    data: [
+
+    ]
+  }
+
   updateCard(cardId:String, userId:string) {
     this.finalizeSocials();
     this.linksToJson();
     this.updateLinkLogos();
+    this.updateCardImages();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
@@ -666,7 +766,8 @@ export class AdminCardPreviewComponent implements OnInit{
         "Github": this.data.Github,
         "Paypal": this.data.Paypal,
         "Skype": this.data.Skype,
-        "External_links": this.dataToSendJson
+        "External_links": this.dataToSendJson,
+        "Images": this.imagesJson
       }, UserID: userId}, this.cookie)
       .then ((response) => {
         this.uploadImage();
@@ -687,6 +788,18 @@ export class AdminCardPreviewComponent implements OnInit{
   totalWebsites = [];
   totalAddresses = [];
   totalYoutubeLinks = [];
+  totalImages = [];
+
+  addImage() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalImages.includes("imageGroup" + i.toString())) {
+        var imagePnl = document.getElementById('imageGroup' + i.toString());
+        imagePnl.classList.remove('hidden');
+        this.totalImages.push('imageGroup' + i.toString());
+        break;
+      }
+    }
+  }
 
   addYoutubeLinks() {
     for(let i = 1; i < 4; i++) {
@@ -811,6 +924,13 @@ export class AdminCardPreviewComponent implements OnInit{
     number.value = "";
     contactPnl.classList.add('hidden');
     this.totalContacts.splice(index, 1);
+  }
+
+  removeImageGroup(count: string) {
+    var index = this.totalImages.indexOf('imageGroup' + count);
+    var pnl = document.getElementById('imageGroup' + count);
+    pnl.classList.add('hidden');
+    this.totalImages.splice(index, 1);
   }
 
   removeYoutubeGroup(count: string) {
@@ -1118,7 +1238,7 @@ export class AdminCardPreviewComponent implements OnInit{
   websites = [];
   addresses = [];
   youtubeLinks = [];
-  
+  images = []; 
   socalsInUse = [];
 
   linksDataJson = {
