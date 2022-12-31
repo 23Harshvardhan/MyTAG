@@ -90,6 +90,9 @@ export class AdminCardPreviewComponent implements OnInit{
     "Logo": ""
   }
 
+  // Variable of type boolean to keep track of loading status
+  isLoading:boolean = false;
+
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -305,6 +308,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var field = document.getElementById("socialLink" + block) as HTMLInputElement;
     var type = category.value;
     this.data[type as keyof typeof this.data] = field.value;
+    console.log(type);
   }
 
   linkGetEvent(block) {
@@ -732,6 +736,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   updateCard(cardId:String, userId:string) {
+    this.isLoading = true;
     this.finalizeSocials();
     this.linksToJson();
     this.updateLinkLogos();
@@ -882,7 +887,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var selector = document.getElementById("social" + count) as HTMLSelectElement;
     var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
     var field = document.getElementById('socialLink' + count) as HTMLInputElement;
-    field.value = fieldValue;
+    field.value = '';
   }
 
   removeSocialGroup(count:string) {
