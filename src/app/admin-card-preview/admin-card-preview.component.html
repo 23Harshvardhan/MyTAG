@@ -769,6 +769,10 @@
                             <p class="sectionHeading">Images</p>
                             <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
                         </div>
+
+                        <div class="container flexColumn" *ngFor="let image of activeImages">
+                            <img width="330px" height="200" [src]="image" style="border-radius: 10px;">
+                        </div>
                     </div>
 
                     <div id="imageEditArea" class="width95 hidden">

@@ -705,19 +705,27 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  imageLinks = [];
+  imageLink1;
+  imageLink2;
+  imageLink3;
+
   updateCardImages() {
     var formdata = new FormData();
 
     if(this.cardImageCompressed1 != null) {
       formdata.append('', this.cardImageCompressed1);
+      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_1.jpg');
     }
 
     if(this.cardImageCompressed2 != null) {
       formdata.append('', this.cardImageCompressed2);
+      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_2.jpg');
     }
 
     if(this.cardImageCompressed3 != null) {
       formdata.append('', this.cardImageCompressed3);
+      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_3.jpg');
     }
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
@@ -1325,12 +1333,26 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  activeImages = [];
+
+  preloadImages() {
+    var count:number = 1;
+    this.imagesJson.data.forEach(element => {
+      this.totalImages.push('imageGroup' + count.toString());
+      var pnl = document.getElementById('imageGroup' + count.toString());
+      pnl.classList.remove('hidden');
+      this.activeImages.push(element);
+      count++;
+    });
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
       this.linksDataJson = response.data.data[0].External_links;
+      this.imagesJson = response.data.data[0].Images;
       this.loadCardImage();
 
       this.userId = this.data.UserID;
@@ -1355,6 +1377,7 @@ export class AdminCardPreviewComponent implements OnInit{
       // this.loadLogos();
 
       this.preloadLinks();
+      this.preloadImages();
 
     })
     .catch((error) => {
@@ -1373,7 +1396,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   openLink(link:string) {
-    if(link.startsWith("https:///")) {
+    if(link.startsWith("https://")) {
       window.open(link, "_blank");
     } else {
       window.open("https://" + link, "_blank");

@@ -77,4 +77,8 @@ export class InventoryComponent implements OnInit {
   viewCard(CardID:string) {
     this.router.navigate(['/adminCardPreview/' + CardID]);
   }
+
+  openLink(link:string) {
+    window.open('http://185.208.207.55:4200/viewCard/' + link);
+  }
 }

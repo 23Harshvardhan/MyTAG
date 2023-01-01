@@ -104,7 +104,7 @@
                     <td>{{card.CardID}}</td>
                     <td>{{card.Batch}}</td>
                     <td>{{card.Created_date}}</td>
-                    <td>185.208.207.55:4200/viewCard/{{card.CardID}}</td>
+                    <td (click)="openLink(card.CardID)">185.208.207.55:4200/viewCard/{{card.CardID}}</td>
                     <td>{{card.UserID}}</td>
                     <td>{{card.Name}}</td>
                     <td>{{card.Email}}</td>
