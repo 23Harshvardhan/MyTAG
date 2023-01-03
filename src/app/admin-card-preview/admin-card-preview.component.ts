@@ -1093,7 +1093,7 @@ export class AdminCardPreviewComponent implements OnInit{
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
 
-      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardbanner?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
       .then((response) => {
         this.uploadLogo();
       })

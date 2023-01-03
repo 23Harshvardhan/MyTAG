@@ -598,7 +598,6 @@ iframe {
     height: calc(100vh - 2px);
     min-height: 550px;
     display: flex;
-    border-bottom: 2px solid black;
 }
 
 .contentArea {
@@ -634,12 +633,15 @@ iframe {
     // background-color: #f2f2f2;
     background-color: white;
     justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .cards {
     display: flex;
     gap: 50px;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     width: 95%;
     height: 90%;
 }
@@ -661,6 +663,12 @@ iframe {
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
+}
+
+.cardArea {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 }
 
 .cardImg {
@@ -1211,6 +1219,9 @@ iframe {
 
    .body {
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    }
 
    .horizontalNavArea {
