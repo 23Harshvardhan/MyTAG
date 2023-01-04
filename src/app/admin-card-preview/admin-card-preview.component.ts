@@ -8,6 +8,7 @@ import { CompressImageService } from '../compress-image.service';
 import {take} from 'rxjs/operators'
 import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { VCard } from 'ngx-vcard/public_api';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -146,6 +147,8 @@ export class AdminCardPreviewComponent implements OnInit{
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
     this.getData(this.cardID);
   }
+
+  
 
   currentBlockName:string;
   file:File;
@@ -737,6 +740,8 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  imagesToShow = [];
+
   imagesJson = {
     data: [
 
@@ -1107,6 +1112,16 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  showNotification(notifText:string) {
+    var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
+    var notificationOverlay = document.getElementById('notificationOverlay');
+    notificationOverlay.classList.remove('hidden');
+  }
+
   uploadLogo() {
     var formdata = new FormData();
     if(this.compressedImage2 != null) {
@@ -1346,6 +1361,24 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+      return true;
+    else
+      return false;
+  }
+
+  splitImages() {
+    this.imagesJson.data.forEach(element => {
+      if(this.UrlExists(element)) {
+        this.imagesToShow.push(element);
+      }
+    })
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
@@ -1353,6 +1386,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.data = response.data.data[0]
       this.linksDataJson = response.data.data[0].External_links;
       this.imagesJson = response.data.data[0].Images;
+      
+      this.splitImages();
       this.loadCardImage();
 
       this.userId = this.data.UserID;

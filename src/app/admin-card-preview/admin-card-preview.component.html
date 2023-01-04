@@ -55,6 +55,16 @@
     <h4 style="font-family: GaretBook; color: white;" class="loaderText">Loading...</h4>
 </div>
 
+<!-- Overlay for notification box. -->
+<div class="notificationOverlay hidden" id="notificationOverlay">
+    <div class="rectangle">
+        <div class="notification-text">
+            <i class="fa-solid fa-circle-info"></i>
+            <span id="notifText">&nbsp;&nbsp;This is a test notification.</span>
+        </div>
+    </div>
+</div>
+
 <!-- Code for entire page. -->
 <div class="body">
     <!-- Div to give spacing for vertical navbar in desktop view. -->
@@ -91,8 +101,8 @@
                     </div>
                     
                     <div class="container shareArea" id="shareArea">
-                        <input type="button" value="Save Contact" class="secondaryBtn">
-                        <input type="button" value="Exchange Contact" class="primaryBtn">
+                        <input type="button" value="Save Contact" class="secondaryBtn" (click)="showNotification('This action cannot be performed in preview/edit mode.')">
+                        <input type="button" value="Exchange Contact" class="primaryBtn" (click)="showNotification('This action cannot be performed in preview/edit mode.')">
                     </div>
 
                     <div class="container descArea">
@@ -770,7 +780,7 @@
                             <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
                         </div>
 
-                        <div class="container flexColumn" *ngFor="let image of activeImages">
+                        <div class="container flexColumn" *ngFor="let image of imagesToShow">
                             <img width="330px" height="200" [src]="image" style="border-radius: 10px;">
                         </div>
                     </div>

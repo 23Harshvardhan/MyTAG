@@ -598,6 +598,7 @@ iframe {
     height: calc(100vh - 2px);
     min-height: 550px;
     display: flex;
+    justify-content: center;
 }
 
 .contentArea {

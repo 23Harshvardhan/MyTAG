@@ -5,6 +5,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxVcardModule } from "ngx-vcard";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -90,7 +91,8 @@ import { AdminCardPreviewComponent } from './admin-card-preview/admin-card-previ
     NgChartsModule,
     FormsModule,
     HttpClientModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxVcardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

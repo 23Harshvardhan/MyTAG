@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
+import { VCard } from 'ngx-vcard';
 
 @Component({
   selector: 'app-view-card',
@@ -94,6 +95,7 @@ export class ViewCardComponent {
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
       this.youtubeLinks = this.data.Company_URL.split(';');
+      this.nameSplit = this.data.Name.split(' ');
 
       this.filterLink();
 
@@ -337,4 +339,13 @@ export class ViewCardComponent {
       window.open("https://" + link, "_blank");
     }
   }
+
+  nameSplit = [];
+
+  public vCard: VCard = {
+    name: {
+      firstNames: this.nameSplit[0],
+      lastNames: this.nameSplit[1]
+    }
+  };
 }
