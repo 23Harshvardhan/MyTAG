@@ -82,11 +82,32 @@ export class ViewCardComponent {
     }
   }
 
+  imagesToShow = [];
+
+  imagesJson = {
+    data: [
+
+    ]
+  }
+
+  UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+      return true;
+    else
+      return false;
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
+      this.imagesJson = response.data[0].Images;
+      
+      this.splitImages();
 
       this.loadCardImage();
       
@@ -226,6 +247,14 @@ export class ViewCardComponent {
     }
   }
 
+  splitImages() {
+    this.imagesJson.data.forEach(element => {
+      if(this.UrlExists(element)) {
+        this.imagesToShow.push(element);
+      }
+    })
+  }
+
   filterLink() {
     this.youtubeLinks.forEach(element => {
       if(element.includes(this.rawLink1)) {
@@ -346,6 +375,11 @@ export class ViewCardComponent {
     name: {
       firstNames: this.nameSplit[0],
       lastNames: this.nameSplit[1]
-    }
+    },
+    address: this.addresses[0],
+    email: this.emails[0],
+    organization: this.data.Company_name,
+    telephone: this.phoneNumbers[0],
+    url: this.websites[0]
   };
 }
