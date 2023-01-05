@@ -41,10 +41,9 @@ $foregroundColor: white;
 // Notification CSS
 .notificationOverlay {
     position: absolute;
-    margin-left: 60px;
+    margin-top: 10px;
+    margin-left: 70px;
     z-index: 10;
-    // top:calc(100% - 20px);
-    // left:calc(90% - 20px); 
 }
 
 .rectangle {
@@ -189,6 +188,7 @@ $foregroundColor: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 50px;
     // border: 1px solid black;
     // border-color: #E2E8F0;
 }

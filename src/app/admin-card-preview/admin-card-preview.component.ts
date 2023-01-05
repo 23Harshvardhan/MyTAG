@@ -1120,6 +1120,15 @@ export class AdminCardPreviewComponent implements OnInit{
     var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
     var notificationOverlay = document.getElementById('notificationOverlay');
     notificationOverlay.classList.remove('hidden');
+    setTimeout(function() {
+      var notificationOverlay = document.getElementById('notificationOverlay');
+      notificationOverlay.classList.add('hidden');
+    }, 5000);
+  }
+  
+  goToQrCode() {
+    var qrArea = document.getElementById('qrPanel');
+    qrArea.scrollIntoView({behavior:'smooth'});
   }
 
   uploadLogo() {

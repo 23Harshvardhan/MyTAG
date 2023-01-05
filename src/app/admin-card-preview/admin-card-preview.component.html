@@ -1078,7 +1078,7 @@
 
                             <div class="pnl sigPnl">
                                 <div class="btnRow">
-                                    <button class="sigBtn">QR Code</button>
+                                    <button class="sigBtn" (click)="goToQrCode()">QR Code</button>
                                     <button class="sigBtn">Logo & Image</button>
                                     <button class="sigBtn">Logo</button>
                                     <button class="sigBtn">Text</button>
@@ -1161,7 +1161,7 @@
                         </div>
 
                         <div class="flexRow">
-                            <div class="pnl">
+                            <div class="pnl" id="qrPanel">
                                     <qrcode [qrdata]="cardViewLink" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
                                 <div class="userName fontMontserrateSemiBold">QR Code</div>
                             </div>
