@@ -176,7 +176,7 @@ export class AdminCardPreviewComponent implements OnInit{
     window.getSelection().addRange(range)
     document.execCommand('copy')
     document.body.removeChild(container);
-    alert("Copied")
+    this.showNotification("Copied!");
   }
 
   toggleEditField(field:string) {

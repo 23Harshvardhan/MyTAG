@@ -506,7 +506,7 @@
                                             <option value="Work Fax">Work Fax</option>
                                             <option value="Other">Other</option>
                                         </select>
-                                        <input class="inputField" id="contact1" placeholder="Contact" value="{{contactNums[0]}}">
+                                        <input class="inputField" id="contact1" placeholder="Contact" maxlength="15" value="{{contactNums[0]}}">
                                     </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup2" style="flex-direction: column; gap: 2px">
@@ -524,7 +524,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact2" placeholder="Contact" value="{{contactNums[1]}}">
+                                    <input class="inputField" id="contact2" placeholder="Contact" maxlength="15" value="{{contactNums[1]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup3" style="flex-direction: column; gap: 2px">
@@ -542,7 +542,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact3" placeholder="Contact" value="{{contactNums[2]}}">
+                                    <input class="inputField" id="contact3" placeholder="Contact" maxlength="15" value="{{contactNums[2]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup4" style="flex-direction: column; gap: 2px">
@@ -560,7 +560,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact4" placeholder="Contact" value="{{contactNums[3]}}">
+                                    <input class="inputField" id="contact4" placeholder="Contact" maxlength="15" value="{{contactNums[3]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup5" style="flex-direction: column; gap: 2px">
@@ -578,7 +578,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact5" placeholder="Contact" value="{{contactNums[4]}}">
+                                    <input class="inputField" id="contact5" placeholder="Contact" maxlength="15" value="{{contactNums[4]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup6" style="flex-direction: column; gap: 2px">
@@ -596,7 +596,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact6" placeholder="Contact" value="{{contactNums[5]}}">
+                                    <input class="inputField" id="contact6" placeholder="Contact" maxlength="15" value="{{contactNums[5]}}">
                                 </div>
                                 </div>
                                 <div class="selectContainer hidden" id="contactGroup7" style="flex-direction: column; gap: 2px">
@@ -614,7 +614,7 @@
                                             <option value="Fax">Work Fax</option>
                                             <option value="Instagram">Other</option>
                                         </select>
-                                    <input class="inputField" id="contact7" placeholder="Contact" value="{{contactNums[6]}}">
+                                    <input class="inputField" id="contact7" placeholder="Contact" maxlength="15" value="{{contactNums[6]}}">
                                     </div>
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalContacts.length < 7">
@@ -629,49 +629,49 @@
                                         <p (click)="removeEmailGroup('1')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('1')"></i>
                                     </div>
-                                    <input class="inputField" id="email1" placeholder="Email" value="{{emails[0]}}">
+                                    <input class="inputField" id="email1" placeholder="Email" maxlength="30" value="{{emails[0]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup2" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('2')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('2')"></i>
                                     </div>
-                                    <input class="inputField" id="email2" placeholder="Email" value="{{emails[1]}}">
+                                    <input class="inputField" id="email2" placeholder="Email" maxlength="30" value="{{emails[1]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup3" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('3')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('3')"></i>
                                     </div>
-                                    <input class="inputField" id="email3" placeholder="Email" value="{{emails[2]}}">
+                                    <input class="inputField" id="email3" placeholder="Email" maxlength="30" value="{{emails[2]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup4" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('4')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('4')"></i>
                                     </div>
-                                    <input class="inputField" id="email4" placeholder="Email" value="{{emails[3]}}">
+                                    <input class="inputField" id="email4" placeholder="Email" maxlength="30" value="{{emails[3]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup5" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('5')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('5')"></i>
                                     </div>
-                                    <input class="inputField" id="email5" placeholder="Email" value="{{emails[4]}}">
+                                    <input class="inputField" id="email5" placeholder="Email" maxlength="30" value="{{emails[4]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup6" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('6')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('6')"></i>
                                     </div>
-                                    <input class="inputField" id="email6" placeholder="Email" value="{{emails[5]}}">
+                                    <input class="inputField" id="email6" placeholder="Email" maxlength="30" value="{{emails[5]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="emailGroup7" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeEmailGroup('7')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeEmailGroup('7')"></i>
                                     </div>
-                                    <input class="inputField" id="email7" placeholder="Email" value="{{emails[6]}}">
+                                    <input class="inputField" id="email7" placeholder="Email" maxlength="30" value="{{emails[6]}}">
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalEmails.length < 7">
                                     <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addEmails()">
@@ -685,49 +685,49 @@
                                         <p (click)="removeWebsiteGroup('1')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('1')"></i>
                                     </div>
-                                    <input class="inputField" id="website1" placeholder="Website Link" value="{{websites[0]}}">
+                                    <input class="inputField" id="website1" placeholder="Website Link" maxlength="30" value="{{websites[0]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup2" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('2')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('2')"></i>
                                     </div>
-                                    <input class="inputField" id="website2" placeholder="Website Link" value="{{websites[1]}}">
+                                    <input class="inputField" id="website2" placeholder="Website Link" maxlength="30" value="{{websites[1]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup3" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('3')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('3')"></i>
                                     </div>
-                                    <input class="inputField" id="website3" placeholder="Website Link" value="{{websites[2]}}">
+                                    <input class="inputField" id="website3" placeholder="Website Link" maxlength="30" value="{{websites[2]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup4" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('4')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('4')"></i>
                                     </div>
-                                    <input class="inputField" id="website4" placeholder="Website Link" value="{{websites[3]}}">
+                                    <input class="inputField" id="website4" placeholder="Website Link" maxlength="30" value="{{websites[3]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup5" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('5')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('5')"></i>
                                     </div>
-                                    <input class="inputField" id="website5" placeholder="Website Link" value="{{websites[4]}}">
+                                    <input class="inputField" id="website5" placeholder="Website Link" maxlength="30" value="{{websites[4]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup6" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('6')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('6')"></i>
                                     </div>
-                                    <input class="inputField" id="website6" placeholder="Website Link" value="{{websites[5]}}">
+                                    <input class="inputField" id="website6" placeholder="Website Link" maxlength="30" value="{{websites[5]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="websiteGroup7" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeWebsiteGroup('7')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('7')"></i>
                                     </div>
-                                    <input class="inputField" id="website7" placeholder="Website Link" value="{{websites[6]}}">
+                                    <input class="inputField" id="website7" placeholder="Website Link" maxlength="30" value="{{websites[6]}}">
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalWebsites.length < 7">
                                     <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addWebsites()">
@@ -741,21 +741,21 @@
                                         <p (click)="removeAddressGroup('1')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeAddressGroup('1')"></i>
                                     </div>
-                                    <input class="inputField" id="address1" placeholder="Address" value="{{addresses[0]}}">
+                                    <input class="inputField" id="address1" placeholder="Address" maxlength="40" value="{{addresses[0]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="addressGroup2" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeAddressGroup('2')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeAddressGroup('2')"></i>
                                     </div>
-                                    <input class="inputField" id="address2" placeholder="Address" value="{{addresses[1]}}">
+                                    <input class="inputField" id="address2" placeholder="Address" maxlength="40" value="{{addresses[1]}}">
                                 </div>
                                 <div class="selectContainer hidden" id="addressGroup3" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeAddressGroup('3')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeAddressGroup('3')"></i>
                                     </div>
-                                    <input class="inputField" id="address3" placeholder="Address" value="{{addresses[2]}}">
+                                    <input class="inputField" id="address3" placeholder="Address" maxlength="40" value="{{addresses[2]}}">
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalAddresses.length < 3">
                                     <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addAddresses()">
@@ -1149,7 +1149,7 @@
                                                 <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="openLink(data.Telegram)"></i>
                                             </div>
                                             <div class="saveCont">
-                                                <button class="cpySigBtn">Save Contact</button>
+                                                <button class="primaryBtn" style="margin-left: -30px;" (click)="showNotification('This action cannot be performed in preview/edit mode.')">Save Contact</button>
                                             </div>
                                         </div>
                                     </div>
