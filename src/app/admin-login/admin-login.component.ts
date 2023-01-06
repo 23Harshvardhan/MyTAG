@@ -30,6 +30,16 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showNotification(notifText:string) {
+    var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
+    var notificationOverlay = document.getElementById('notificationOverlay');
+    notificationOverlay.classList.remove('hidden');
+    setTimeout(function() {
+      var notificationOverlay = document.getElementById('notificationOverlay');
+      notificationOverlay.classList.add('hidden');
+    }, 5000);
+  }
+
   login(loginCreds : {Email:string, Username:string, Password:string}){
     axios.post('http://185.208.207.55/v1/api/admin/login', {
       data: loginCreds
@@ -39,8 +49,12 @@ export class AdminLoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     })
     .catch ((error) => {
+      if(error.response.data.message == "Incorrect Credentials") {
+        this.showNotification("Incorrect username or password.");
+      } else if (error.response.data.message == "Account does not exist") {
+        this.showNotification("Incorrect username or password.");
+      }
       console.log(error);
-      alert("There was an error. Please send console log to developer.")
     })
   }
 }

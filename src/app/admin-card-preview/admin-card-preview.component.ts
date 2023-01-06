@@ -738,6 +738,8 @@ export class AdminCardPreviewComponent implements OnInit{
   imageLink3;
 
   updateCardImages() {
+    this.isPreLoading = true;
+
     var formdata = new FormData();
 
     if(this.cardImageCompressed1 != null) {
@@ -757,10 +759,11 @@ export class AdminCardPreviewComponent implements OnInit{
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
     .then((response) => {
+      this.updateCard(this.cardID, this.userId);
     })
     .catch((error) => {
       console.log(error);
-      alert("There was a problem updating card images. Please send console log to developer.");
+      this.showNotification("There was a problem updating images.");
     });
   }
 
@@ -777,7 +780,6 @@ export class AdminCardPreviewComponent implements OnInit{
     this.finalizeSocials();
     this.linksToJson();
     this.updateLinkLogos();
-    this.updateCardImages();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
         "Name": this.data.Name,
@@ -1136,10 +1138,6 @@ export class AdminCardPreviewComponent implements OnInit{
     else {
       this.uploadLogo();
     }
-  }
-
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   showNotification(notifText:string) {

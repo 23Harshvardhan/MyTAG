@@ -23,6 +23,8 @@ export class InventoryComponent implements OnInit {
 
   responseData = [];
 
+  isPreLoading:boolean = true;
+
   ngOnInit(): void {
     this.checkAuth();
   }
@@ -45,16 +47,28 @@ export class InventoryComponent implements OnInit {
     });
   }
   
+  showNotification(notifText:string) {
+    var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
+    var notificationOverlay = document.getElementById('notificationOverlay');
+    notificationOverlay.classList.remove('hidden');
+    setTimeout(function() {
+      var notificationOverlay = document.getElementById('notificationOverlay');
+      notificationOverlay.classList.add('hidden');
+    }, 5000);
+  }
+
   emails = [];
 
   loadData() {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards', this.cookie)
     .then((response) => {
       this.responseData = response.data.data;
+      this.isPreLoading = false;
     })
     .catch((error) => {
+      this.isPreLoading = false;
       console.log(error);
-      alert("There was a problem loading date. Please refresh page.");
+      this.showNotification("There was a problem loading data.");
     });
   }
 

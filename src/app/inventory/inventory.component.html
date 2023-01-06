@@ -1,4 +1,27 @@
+<!-- Import for the font awesome kit. -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<!-- Overlay for preloader. -->
+<div class="cs-loader" *ngIf="isPreLoading">
+    <div class="cs-loader-inner">
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+    </div>
+</div>
+
+<!-- Overlay for notification box. -->
+<div class="notificationOverlay hidden" id="notificationOverlay">
+    <div class="rectangle">
+        <div class="notification-text">
+            <i class="fa-solid fa-circle-info"></i>
+            <span id="notifText">&nbsp;&nbsp;This is a test notification.</span>
+        </div>
+    </div>
+</div>
 
 <div class="overlay" id="overlay">
     <div class="logoContainer">
