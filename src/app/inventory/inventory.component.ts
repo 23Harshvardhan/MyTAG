@@ -57,6 +57,19 @@ export class InventoryComponent implements OnInit {
     }, 5000);
   }
 
+  showAlert(alertTitle:string, alertContent:string, alertButton:string) {
+    var alertTitleArea = document.getElementById('alertTitle').innerHTML = alertTitle;
+    var alertContentArea = document.getElementById('alertContent').innerHTML = alertContent;
+    var alertButtonArea = document.getElementById('alertButton').innerHTML = alertButton;
+    var alertBox = document.getElementById('alertBoxOverlay');
+    alertBox.classList.remove('hidden');
+  }
+
+  hideAlert() {
+    var alertBox = document.getElementById('alertBoxOverlay');
+    alertBox.classList.add('hidden');
+  }
+
   emails = [];
 
   loadData() {
@@ -88,8 +101,12 @@ export class InventoryComponent implements OnInit {
     }
   }
 
-  viewCard(CardID:string) {
-    this.router.navigate(['/adminCardPreview/' + CardID]);
+  viewCard(CardID:string, CardStatus:string) {
+    if(CardStatus == "active") {
+      this.router.navigate(['/adminCardPreview/' + CardID]);
+    } else if (CardStatus == "pending") {
+      this.showAlert("Warning", "This card is not alloted to a user yet. Editing this card is not possible as a valid account ID is required while editing.", "Okay");
+    }
   }
 
   openLink(link:string) {

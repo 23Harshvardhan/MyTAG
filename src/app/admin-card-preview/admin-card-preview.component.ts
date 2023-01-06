@@ -1452,7 +1452,7 @@ export class AdminCardPreviewComponent implements OnInit{
     .catch((error) => {
       console.log(error);
       this.isPreLoading = false;
-      this.showNotification("Please try again later.");
+      this.showNotification("Error loading card data.");
     })
   }
 

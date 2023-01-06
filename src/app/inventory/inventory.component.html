@@ -23,6 +23,17 @@
     </div>
 </div>
 
+<!-- Overlay for the alert box. -->
+<div class="alertBoxOverlay hidden" id="alertBoxOverlay">
+    <div class="alertBoxRect">
+        <i class="fa-solid fa-circle-info"></i>
+        <h3 id="alertTitle">Title</h3>
+        <p id="alertContent">Content.</p>
+        <button id="alertButton" (click)="hideAlert()">Close</button>
+    </div>
+</div>
+
+<!-- Code for the main body. -->
 <div class="overlay" id="overlay">
     <div class="logoContainer">
         <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
@@ -131,7 +142,7 @@
                     <td>{{card.UserID}}</td>
                     <td>{{card.Name}}</td>
                     <td>{{card.Email}}</td>
-                    <td><i class="fa-solid fa-pen-to-square" (click)="viewCard(card.CardID)"></i></td>
+                    <td><i class="fa-solid fa-pen-to-square" (click)="viewCard(card.CardID, card.Status)"></i></td>
                     <td *ngIf="card.Status == 'active'"><button class="statusBtn activee">Active</button></td>
                     <td *ngIf="card.Status == 'pending'"><button class="statusBtn pending">Pending</button></td>
                     <td *ngIf="card.Status == 'cancelled'"><button class="statusBtn cancelled">Cancelled</button></td>
