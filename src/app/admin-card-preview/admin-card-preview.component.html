@@ -45,14 +45,16 @@
     </div>
 </div>
 
-<!-- Overlay for page loader. -->
-<div class="loaderOverlay" *ngIf="isLoading">
-    <div id="loader">
-        <div id="top"></div>
-        <div id="bottom"></div>
-        <div id="line"></div>
+<!-- Overlay for preloader. -->
+<div class="cs-loader" *ngIf="isPreLoading">
+    <div class="cs-loader-inner">
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
     </div>
-    <h4 style="font-family: GaretBook; color: white;" class="loaderText">Loading...</h4>
 </div>
 
 <!-- Overlay for notification box. -->
@@ -798,24 +800,33 @@
                                         <p (click)="removeImageGroup('1')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('1')"></i>
                                     </div>
-                                    <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(1)"></i>
-                                    <input type="file" id="imageUpload1" (change)="imageUpload1($event)" hidden>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" [src]="imagesToShow[0]" id="imageHolder1">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(1)"></i>
+                                        <input type="file" id="imageUpload1" (change)="imageUpload1($event)" hidden>
+                                    </div>
                                 </div>
                                 <div class="selectContainer hidden" id="imageGroup2" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeImageGroup('2')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('2')"></i>
                                     </div>
-                                    <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(2)"></i>
-                                    <input type="file" id="imageUpload2" (change)="imageUpload2($event)" hidden>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" [src]="imagesToShow[1]" id="imageHolder2">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(2)"></i>
+                                        <input type="file" id="imageUpload2" (change)="imageUpload2($event)" hidden>
+                                    </div>
                                 </div>
                                 <div class="selectContainer hidden" id="imageGroup3" style="flex-direction: column; gap: 2px">
                                     <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
                                         <p (click)="removeImageGroup('3')">Delete</p>
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('3')"></i>
                                     </div>
-                                    <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(3)"></i>
-                                    <input type="file" id="imageUpload3" (change)="imageUpload3($event)" hidden>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" [src]="imagesToShow[2]" id="imageHolder3">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(3)"></i>
+                                        <input type="file" id="imageUpload3" (change)="imageUpload3($event)" hidden>
+                                    </div>
                                 </div>
                                 <div class="selectContainer clickable" *ngIf="totalImages.length < 3">
                                     <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addImage()">
@@ -924,7 +935,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('1')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable1" placeholder="Title" value="" style="width: 100%;">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink1" placeholder="Link" value="" (keyup)="linkGetEvent('1')">
@@ -944,7 +955,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('2')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable2" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink2" placeholder="Link" value="" (keyup)="linkGetEvent('2')">
@@ -964,7 +975,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('3')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable3" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink3" placeholder="Link" value="" (keyup)="linkGetEvent('3')">
@@ -983,7 +994,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('4')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable4" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink4" placeholder="Link" value="" (keyup)="linkGetEvent('4')">
@@ -1002,7 +1013,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('5')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable5" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink5" placeholder="Link" value="" (keyup)="linkGetEvent('5')">
@@ -1021,7 +1032,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('6')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable6" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink6" placeholder="Link" value="" (keyup)="linkGetEvent('6')">
@@ -1040,7 +1051,7 @@
                                             <i class="fa-solid fa-xmark" (click)="removeLinkGroup('7')"></i>
                                         </div>
                                         <div>
-                                            <p>Lable</p>
+                                            <p>Title</p>
                                             <input class="inputField" id="linkLable7" placeholder="Title" value="">
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink7" placeholder="Link" value="" (keyup)="linkGetEvent('7')">

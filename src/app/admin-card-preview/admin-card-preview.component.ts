@@ -92,7 +92,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   // Variable of type boolean to keep track of loading status
-  isLoading:boolean = false;
+  isPreLoading:boolean = true;
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -499,6 +499,14 @@ export class AdminCardPreviewComponent implements OnInit{
       .subscribe(compressedFile2 => {
         this.cardImageCompressed1 = compressedFile2;
       })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.cardImage1);
+      reader.onload=(event:any) => {
+        var imgHolder = document.getElementById('imageHolder1') as HTMLImageElement;
+        imgHolder.src = event.target.result;
+      }
     }
   }
 
@@ -511,6 +519,14 @@ export class AdminCardPreviewComponent implements OnInit{
       .subscribe(compressedFile2 => {
         this.cardImageCompressed2 = compressedFile2;
       })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.cardImage2);
+      reader.onload=(event:any) => {
+        var imgHolder = document.getElementById('imageHolder2') as HTMLImageElement;
+        imgHolder.src = event.target.result;
+      }
     }
   }
 
@@ -523,6 +539,14 @@ export class AdminCardPreviewComponent implements OnInit{
       .subscribe(compressedFile2 => {
         this.cardImageCompressed3 = compressedFile2;
       })
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(this.cardImage3);
+      reader.onload=(event:any) => {
+        var imgHolder = document.getElementById('imageHolder3') as HTMLImageElement;
+        imgHolder.src = event.target.result;
+      }
     }
   }
 
@@ -749,7 +773,7 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   updateCard(cardId:String, userId:string) {
-    this.isLoading = true;
+    this.isPreLoading = true;
     this.finalizeSocials();
     this.linksToJson();
     this.updateLinkLogos();
@@ -949,6 +973,8 @@ export class AdminCardPreviewComponent implements OnInit{
     var pnl = document.getElementById('imageGroup' + count);
     pnl.classList.add('hidden');
     this.totalImages.splice(index, 1);
+    this['cardImage' + count] = null;
+    this['cardImageCompressed' + count] = null;
   }
 
   removeYoutubeGroup(count: string) {
@@ -1362,10 +1388,12 @@ export class AdminCardPreviewComponent implements OnInit{
   preloadImages() {
     var count:number = 1;
     this.imagesJson.data.forEach(element => {
-      this.totalImages.push('imageGroup' + count.toString());
-      var pnl = document.getElementById('imageGroup' + count.toString());
-      pnl.classList.remove('hidden');
-      this.activeImages.push(element);
+      if(this.UrlExists(element)) {
+        this.totalImages.push('imageGroup' + count.toString());
+        var pnl = document.getElementById('imageGroup' + count.toString());
+        pnl.classList.remove('hidden');
+        this.activeImages.push(element);
+      }
       count++;
     });
   }
@@ -1418,15 +1446,15 @@ export class AdminCardPreviewComponent implements OnInit{
       this.preloadAddresses();
       this.preloadYoutubeLinks();
 
-      // this.loadLogos();
-
       this.preloadLinks();
       this.preloadImages();
 
+      this.isPreLoading = false;
     })
     .catch((error) => {
       console.log(error);
-      alert("There was an error! Please send console log to developer.");
+      this.isPreLoading = false;
+      this.showNotification("Please try again later.");
     })
   }
 
