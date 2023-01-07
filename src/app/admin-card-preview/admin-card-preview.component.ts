@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router';
-import axios from 'axios';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BaseChartDirective } from 'ng2-charts';
-import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
-import {take} from 'rxjs/operators'
-import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
+import { take} from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { VCard } from 'ngx-vcard/public_api';
+import { Buffer } from 'buffer';
+import axios from 'axios';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -37,16 +36,22 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   // Variable to store the API url. This will be called during every API request.
-  APIurl = "http://185.208.207.55/v1/";
+  APIurl:string = "http://185.208.207.55/v1/";
 
   // Variable to store current card ID.
-  cardID;
+  cardID:string;
 
   // Variable to store card image url.
-  cardImg;
+  cardImg:string;
 
   // Variable to store data for QR code.
-  cardViewLink = "https://185.208.207.55:4200/viewCard/" + this!.cardID;
+  cardViewLink:string = "https://185.208.207.55:4200/viewCard/" + this!.cardID;
+
+  // Variable to store mime of type JPEG for conversion purpose.
+  mime:string = "image/jpeg";
+
+  // Variable to store file name for images. This will be used while uploading images to server via API.
+  fileName:string = "image.jpg";
 
   // Variable to store card data recovered via API.
   data = {
@@ -148,15 +153,13 @@ export class AdminCardPreviewComponent implements OnInit{
     this.getData(this.cardID);
   }
 
-  
-
   currentBlockName:string;
   file:File;
   file2:File;
   userId:string;
   formdata = new FormData();
-  imageUrl = "http://185.208.207.55/v1/banner/default.jpg";
-  logoUrl = "http://185.208.207.55/v1/banner/default.jpg";
+  imageUrl = "http://185.208.207.55/v1/banners/default.jpg";
+  logoUrl = "http://185.208.207.55/v1/banners/default.jpg";
 
   cpySigBtn() {
     var htmlEditor = document.getElementById('html');
@@ -483,12 +486,55 @@ export class AdminCardPreviewComponent implements OnInit{
   compressedLogo7:File;
   linkLogoUrl7;
 
+  cardImageB641;
+  cardImageB642;
+  cardImageB643;
   cardImage1;
   cardImage2;
   cardImage3;
   cardImageCompressed1;
   cardImageCompressed2;
   cardImageCompressed3;
+
+  downloadImage(url:string): string {
+    var imageData;
+
+    axios.get(url, {responseType: 'arraybuffer'})
+    .then((response) => {
+      const res = response.data;
+      console.log(res);
+      imageData = Buffer.from(res, 'binary').toString('base64');
+    });
+
+    console.log(imageData);
+    return imageData;
+  }  
+
+  base64ToBlob(base64:string, mime:string):Blob {
+    const byteCharacters = atob(base64);
+    const byteArrays = [];
+
+    for(let i = 0; i < byteCharacters.length; i += 512) {
+      const slice = byteCharacters.slice(i, i + 512);
+      const byteNumbers = new Array(slice.length);
+
+      for(let j = 0; j < slice.length; j++) {
+        byteNumbers[j] = slice.charCodeAt(j);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, {type: mime});
+    return blob;
+  }
+
+  base64ToFile(base64:string, fileName:string, mime:string): File {
+    const blob = this.base64ToBlob(base64, mime);
+    const file = new File([blob], fileName, {type: mime});
+    return file;
+  }
 
   imageUpload1(event) {
     if(event.target.files.length > 0) {
@@ -1414,6 +1460,22 @@ export class AdminCardPreviewComponent implements OnInit{
     })
   }
 
+  storeImages() {
+    var count:number = 1;
+    this.imagesToShow.forEach(element => {
+      const base64:string = this.downloadImage(element);
+      this['cardImage' + count] = this.base64ToFile(base64, this.fileName, this.mime);
+
+      this.compressImage.compress(this['cardIamge' + count])
+      .pipe(take(1))
+      .subscribe(compressed => {
+        this['cardImageCompressed' + count] = compressed;
+      });
+
+      count++;
+    });
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
@@ -1423,6 +1485,7 @@ export class AdminCardPreviewComponent implements OnInit{
       this.imagesJson = response.data.data[0].Images;
       
       this.splitImages();
+      this.storeImages();
       this.loadCardImage();
 
       this.userId = this.data.UserID;

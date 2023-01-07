@@ -1,3 +1,4 @@
+import { getLocaleEraNames } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
@@ -56,5 +57,9 @@ export class AdminLoginComponent implements OnInit {
       }
       console.log(error);
     })
+  }
+
+  loginClick() {
+    document.getElementById('loginBtn').click();
   }
 }
