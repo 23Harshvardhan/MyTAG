@@ -6,8 +6,9 @@ import { CompressImageService } from '../compress-image.service';
 import { take} from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { Buffer } from 'buffer';
+import { HttpClient } from '@angular/common/http'
 import axios from 'axios';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -21,7 +22,8 @@ export class AdminCardPreviewComponent implements OnInit{
     private activatedRouter:ActivatedRoute,
     private router:Router,
     private compressImage:CompressImageService,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private http:HttpClient
   ) {}
 
   // Variable to store recovered cookie from browser for verification purpose.
@@ -496,44 +498,15 @@ export class AdminCardPreviewComponent implements OnInit{
   cardImageCompressed2;
   cardImageCompressed3;
 
-  downloadImage(url:string): string {
-    var imageData;
-
-    axios.get(url, {responseType: 'arraybuffer'})
-    .then((response) => {
-      const res = response.data;
-      console.log(res);
-      imageData = Buffer.from(res, 'binary').toString('base64');
-    });
-
-    console.log(imageData);
-    return imageData;
+  downloadImage(url:string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' });
   }  
 
-  base64ToBlob(base64:string, mime:string):Blob {
-    const byteCharacters = atob(base64);
-    const byteArrays = [];
-
-    for(let i = 0; i < byteCharacters.length; i += 512) {
-      const slice = byteCharacters.slice(i, i + 512);
-      const byteNumbers = new Array(slice.length);
-
-      for(let j = 0; j < slice.length; j++) {
-        byteNumbers[j] = slice.charCodeAt(j);
-      }
-
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
-
-    const blob = new Blob(byteArrays, {type: mime});
-    return blob;
-  }
-
-  base64ToFile(base64:string, fileName:string, mime:string): File {
-    const blob = this.base64ToBlob(base64, mime);
-    const file = new File([blob], fileName, {type: mime});
-    return file;
+  async getFile(imageUrl:string): Promise<File> {
+    const blob = await this.downloadImage(imageUrl).toPromise();
+    const fileToReturn = new File([blob], 'image.jpg', {type: blob.type});
+    console.log(fileToReturn.size);
+    return fileToReturn;
   }
 
   imageUpload1(event) {
@@ -1463,14 +1436,8 @@ export class AdminCardPreviewComponent implements OnInit{
   storeImages() {
     var count:number = 1;
     this.imagesToShow.forEach(element => {
-      const base64:string = this.downloadImage(element);
-      this['cardImage' + count] = this.base64ToFile(base64, this.fileName, this.mime);
-
-      this.compressImage.compress(this['cardIamge' + count])
-      .pipe(take(1))
-      .subscribe(compressed => {
-        this['cardImageCompressed' + count] = compressed;
-      });
+      this['cardImage' + count] = this.getFile(element);
+      this['cardImageCompressed' + count] = this.getFile(element);
 
       count++;
     });
