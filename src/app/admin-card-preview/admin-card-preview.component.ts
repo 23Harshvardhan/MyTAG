@@ -762,18 +762,24 @@ export class AdminCardPreviewComponent implements OnInit{
     var formdata = new FormData();
 
     if(this.cardImageCompressed1 != null) {
-      formdata.append('', this.cardImageCompressed1);
-      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_1.jpg');
+      formdata.append('1', this.cardImageCompressed1);
+      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
+        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
+      }
     }
 
     if(this.cardImageCompressed2 != null) {
-      formdata.append('', this.cardImageCompressed2);
-      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_2.jpg');
+      formdata.append('2', this.cardImageCompressed2);
+      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg')) {
+        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg');
+      }
     }
 
     if(this.cardImageCompressed3 != null) {
-      formdata.append('', this.cardImageCompressed3);
-      this.imagesJson.data.push('http://185.208.207.55/v1/card_images/0000002_3.jpg');
+      formdata.append('3', this.cardImageCompressed3);
+      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg')) {
+        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg');
+      }
     }
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
