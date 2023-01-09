@@ -1210,6 +1210,7 @@ export class AdminCardPreviewComponent implements OnInit{
     this.router.navigate(['/editCard/' + this.cardID]);
   }
 
+  // Keeps track of indexing of all the socials.
   socialIndex = {
     'Twitter':'0',
     'Instagram':'1',
@@ -1226,17 +1227,18 @@ export class AdminCardPreviewComponent implements OnInit{
     'Telegram':'12'
   }
   
+  // This function looks though all the socials in use and accordingly unhides editor panel and puts value.
   preloadSocials() {
     var lenght = this.socials.length;
     if(this.socials[0] != '') {
       for(let i = 0; i < lenght; i++) {
         var count = i + 1;
-        var block = document.getElementById('socialGroup' + count.toString());
+        var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
         block.classList.remove('hidden');
-        this.totalSocials.push('socialGroup' + count.toString());
-        var field = document.getElementById('socialLink' + count) as HTMLInputElement;
+        this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
+        var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
         field.value = this.socials[i];
-        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
         var social = this.socalsInUse[i];
         var index = this.socialIndex[social as keyof typeof this.socialIndex];
         selector.options.selectedIndex = parseInt(index);
@@ -1452,7 +1454,7 @@ export class AdminCardPreviewComponent implements OnInit{
       this.imagesJson = response.data.data[0].Images;
       
       this.splitImages();
-      this.storeImages();
+      // this.storeImages();
       this.loadCardImage();
 
       this.userId = this.data.UserID;
