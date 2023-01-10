@@ -1,6 +1,19 @@
 <!-- Import for FontAwesome icons. -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
+<!-- Overlay for preloader. -->
+<div class="cs-loader" *ngIf="isPreLoading">
+    <div class="cs-loader-inner">
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+    </div>
+</div>
+
+<!-- Code for the main body including card begins here. -->
 <div class="body">
     <div class="cardArea">
         <div class="card">

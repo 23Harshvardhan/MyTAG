@@ -19,6 +19,10 @@ export class ViewCardComponent {
     private sanitizer:DomSanitizer
   ) { }
 
+  // Variable of type boolean to keep track of the loading process of page.
+  isPreLoading:Boolean = true;
+
+  // Variable of type key-value pair to keep store all the data received from API call.
   data = {
     "Name": "",
     "Job_title": "",
@@ -53,10 +57,12 @@ export class ViewCardComponent {
     "Banner": ""
   }
 
-  cardId;
+  // Variable of type string to keep track of the card ID received from activated route.
+  cardId:string;
 
   accreds:string[] = [];
 
+  // Variable to store and access cookies whenever needed by APIs.
   cookie = {
     headers:{
       cki: this.cookieService.get("jwt")
@@ -82,14 +88,15 @@ export class ViewCardComponent {
     }
   }
 
+  // Variable of type array to keep track of the image URLs that needs to be shown in the main card.
   imagesToShow = [];
 
+  // Varibale in JSON format to store images received from API call.
   imagesJson = {
-    data: [
-
-    ]
+    data: []
   }
 
+  // Function to check if a URL is valid or not. Returns true or false.
   UrlExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
@@ -100,12 +107,14 @@ export class ViewCardComponent {
       return false;
   }
 
+  // Function to make API call and get card data and handle it accordingly.
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId)
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
       this.imagesJson = response.data[0].Images;
+      this.linksDataJson = response.data[0].External_links;
       
       this.splitImages();
 
@@ -128,6 +137,9 @@ export class ViewCardComponent {
       this.preloadWebsites();
       this.preloadAddresses();
       this.preloadYoutubeLinks();
+      this.preloadLinks();
+
+      this.isPreLoading = false;
     })
     .catch((error) => {
       console.log(error);

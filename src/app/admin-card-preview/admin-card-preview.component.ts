@@ -1460,7 +1460,6 @@ export class AdminCardPreviewComponent implements OnInit{
       this.imagesJson = response.data.data[0].Images;
       
       this.splitImages();
-      // this.storeImages();
       this.loadCardImage();
 
       this.userId = this.data.UserID;

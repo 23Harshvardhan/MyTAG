@@ -83,16 +83,18 @@
 
         <div class="cardsPanel">
             <div class="cards">
+                <!-- Code of the online smart business card begins here. -->
                 <div class="card">
                     <div class="upperCard" id="upperCard">
                         <div class="container cardNavArea">
-                            <!-- <input type="button" value="Add Image" class="btn1"> -->
+                            <!-- Card logo element. -->
                             <img class="logo" id="logo" [src]="logoUrl">
                             <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
                         </div>
                     </div>
                     
                     <div class="container cardHeadArea" id="cardHead">
+                        <!-- Card profile picture element. -->
                         <img class="profilePic" id="profilePic" [src]="imageUrl">
         
                         <div class="nameDetailsPnl" id="nameDetailsPnl">
@@ -536,7 +538,6 @@
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
                                         <select id="contactType3" class="socialSelector">
-                                            <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
                                             <option value="Instagram">Work</option>
@@ -554,7 +555,6 @@
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
                                         <select id="contactType4" class="socialSelector">
-                                            <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
                                             <option value="Instagram">Work</option>
@@ -572,7 +572,6 @@
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
                                         <select id="contactType5" class="socialSelector">
-                                            <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
                                             <option value="Instagram">Work</option>
@@ -590,7 +589,6 @@
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
                                         <select id="contactType6" class="socialSelector">
-                                            <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
                                             <option value="Instagram">Work</option>
@@ -608,7 +606,6 @@
                                     </div>
                                     <div style="display:flex; width: 100%; gap: 10px;">
                                         <select id="contactType7" class="socialSelector">
-                                            <!-- (change)="getContactType('1')" -->
                                             <option value="Home">Home</option>
                                             <option value="Mobile">Mobile</option>
                                             <option value="Instagram">Work</option>
@@ -893,7 +890,6 @@
                                         <p style="font-weight: bold;">Add YouTube Link</p>
                                     </div>
                                 </div>
-                                <!-- <input class="inputField" id="Company_URL" placeholder="Link to YouTube video" value={{data.Company_URL}} (keyup)="selectField('Company_URL')"> -->
                             </div>
                         </div>
                         <div class="editFooter" style="margin-left: -20px;">
@@ -905,6 +901,7 @@
                         </div>
                     </div>
 
+                    <!-- Code for the card's Links panel starts here. -->
                     <div class="" id="linksArea">
                         <div class="editBtnArea" id="editBtnArea">
                             <p class="sectionHeading">Links</p>
@@ -920,6 +917,7 @@
                         </div>
                     </div>
 
+                    <!-- Code for the card Links editing panel starts here. -->
                     <div id="linksEditArea" class="width95 hidden">
                         <div class="container cardHeadEditArea">
                             <div class="saveBtnArea">
@@ -1084,6 +1082,7 @@
 
                 <div id="secondaryPanel">
                     <div class="flexColumn">
+                        <!-- Code for the email signature panel starts here. -->
                         <div>
                             <div class="userName fontMontserrateSemiBold">Email Signature</div>
 
@@ -1099,6 +1098,7 @@
                                     <div class="signatureBox">
                                         <div class="sigBoxHeader">
                                             <div class="imgCont">
+                                                <!-- Element for the profile picture in email signaure panel. -->
                                                 <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
                                             </div>
                                             <div class="basicInfoCont">
@@ -1107,6 +1107,7 @@
                                                 <p class="data">{{data.Company_name}}</p>
                                             </div>
                                             <div class="logoCont">
+                                                <!-- Element for the logo in email signature panel. -->
                                                 <img class="profilePic sigLogo" id="profilePic" [src]="logoUrl">
                                             </div>
                                         </div>
@@ -1139,11 +1140,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- Code for the QR code in the email signature panel starts here. -->
                                             <div class="qrCont">
                                                 <qrcode [qrdata]="cardViewLink" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
                                             </div>
                                         </div>
                                         <div class="sigFooter">
+                                            <!-- Code for the social media icons in email signature panel starts here. -->
                                             <div class="socialsCont">
                                                 <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="openLink(data.Twitter)"></i>
                                                 <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="openLink(data.Instagram)"></i>
@@ -1159,8 +1162,9 @@
                                                 <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="openLink(data.Skype)"></i>
                                                 <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="openLink(data.Telegram)"></i>
                                             </div>
+                                            <!-- Code for the save button in email signature panel starts here. -->
                                             <div class="saveCont">
-                                                <button class="primaryBtn" style="margin-left: -30px;" (click)="showNotification('This action cannot be performed in preview/edit mode.')">Save Contact</button>
+                                                <button class="secondaryBtn" style="margin-left: -30px;" (click)="showNotification('This action cannot be performed in preview/edit mode.')">Save Contact</button>
                                             </div>
                                         </div>
                                     </div>
