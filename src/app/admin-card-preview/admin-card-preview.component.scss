@@ -888,7 +888,8 @@ iframe {
 .sigLogo {
     width: auto;
     max-width: 150px;
-    height: 70px;
+    height: auto;
+    max-height: 70px;
 }
 
 .signatureBox {
