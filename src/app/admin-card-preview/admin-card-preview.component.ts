@@ -1002,6 +1002,8 @@ export class AdminCardPreviewComponent implements OnInit{
     this.totalImages.splice(index, 1);
     this['cardImage' + count] = null;
     this['cardImageCompressed' + count] = null;
+    var imageLinkIndex = this.imagesJson.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_' + count + '.jpg');
+    this.imagesJson.data.splice(imageLinkIndex, 1);
   }
 
   removeYoutubeGroup(count: string) {

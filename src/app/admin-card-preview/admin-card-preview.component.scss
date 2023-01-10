@@ -338,7 +338,8 @@ iframe {
     border-radius: 5px;
     width: auto;
     max-width: 200px;
-    height: 64px;
+    height: auto;
+    max-height: 64px;
 }
 
 .btn2 {
