@@ -855,13 +855,16 @@ iframe {
 
 .cpySigBtn {
     margin-top: 10px;
-    font-size: 20px;
-    padding: 8px 15px;
-    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    min-height: 50px;
+    border-radius: 10px;
     border: none;
     background-color: black;
     color: white;
     transition: 0.3s;
+    font-size: 15px;
+    font-family: 'MontserratSemiBold', sans-serif;
 }
 
 .cpySigBtn:hover {
@@ -878,6 +881,7 @@ iframe {
 .sigIntel {
     font-size: 15px;
     margin-left: 10px;
+    margin-top: 4px;
 }
 
 .saveCont {

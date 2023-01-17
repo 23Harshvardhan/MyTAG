@@ -46,9 +46,6 @@ export class AdminCardPreviewComponent implements OnInit{
   // Variable to store card image url.
   cardImg:string;
 
-  // Variable to store data for QR code.
-  cardViewLink:string = "https://185.208.207.55:4200/viewCard/" + this!.cardID;
-
   // Variable to store mime of type JPEG for conversion purpose.
   mime:string = "image/jpeg";
 
@@ -150,9 +147,13 @@ export class AdminCardPreviewComponent implements OnInit{
 
   public lineChartType: ChartType = 'line';
 
+  // Variable to store data for QR code.
+  cardViewLink:string;
+
   ngOnInit(): void {
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
     this.getData(this.cardID);
+    this.cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.cardID;
   }
 
   currentBlockName:string;
@@ -459,7 +460,6 @@ export class AdminCardPreviewComponent implements OnInit{
       var linkLinkArea = document.getElementById('linkLink' + num.toString()) as HTMLInputElement;
       var linkTitle = linkTitleArea.value;
       var linkLink = linkLinkArea.value;
-
       this.linksDataJson.data[i].link_title = linkTitle;
       this.linksDataJson.data[i].link = linkLink;
       this.linksDataJson.data[i].link_logo = "";
@@ -744,6 +744,7 @@ export class AdminCardPreviewComponent implements OnInit{
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
     .then((response) => {
+      console.log(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -766,6 +767,9 @@ export class AdminCardPreviewComponent implements OnInit{
       if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
         this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
       }
+    } else if (this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
+      var index = this.imagesJson.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
+      this.imagesJson.data.splice(index, 1);
     }
 
     if(this.cardImageCompressed2 != null) {
@@ -1121,7 +1125,7 @@ export class AdminCardPreviewComponent implements OnInit{
   rawLink1 = "youtu.be/";
   rawLink2 = "watch?v=";
   rawLink3 = "&feature=youte.be";
-  replaceLink1 = "https://www.youtube.com/embed/";
+  replaceLink1 = "youtube.com/embed/";
   replaceLink2 = "embed/";
   replaceLink3 = "";
 
@@ -1442,7 +1446,7 @@ export class AdminCardPreviewComponent implements OnInit{
       }
     })
   }
-
+ata
   storeImages() {
     var count:number = 1;
     this.imagesToShow.forEach(element => {

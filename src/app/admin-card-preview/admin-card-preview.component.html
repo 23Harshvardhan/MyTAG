@@ -119,7 +119,7 @@
                                 <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('cardHeadArea')">
                                 <input type="button" value="Save" class="btn2" (click)="updateCard(cardID, userId)">
                             </div>
-                            <h3 class="editHeading">Edit your Card Header</h3>
+                            <h3 class="editHeading">Edit your Profile Information</h3>
                             <div class="editBodyArea">
                                 <h4>Profile Picture</h4>
                                 <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
@@ -798,7 +798,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('1')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" [src]="imagesToShow[0]" id="imageHolder1">
+                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[0]" id="imageHolder1">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(1)"></i>
                                         <input type="file" id="imageUpload1" (change)="imageUpload1($event)" hidden>
                                     </div>
@@ -809,7 +809,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('2')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" [src]="imagesToShow[1]" id="imageHolder2">
+                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[1]" id="imageHolder2">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(2)"></i>
                                         <input type="file" id="imageUpload2" (change)="imageUpload2($event)" hidden>
                                     </div>
@@ -820,7 +820,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('3')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" [src]="imagesToShow[2]" id="imageHolder3">
+                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[2]" id="imageHolder3">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(3)"></i>
                                         <input type="file" id="imageUpload3" (change)="imageUpload3($event)" hidden>
                                     </div>
@@ -938,7 +938,7 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink1" placeholder="Link" value="" (keyup)="linkGetEvent('1')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img [src]="linkLogoUrl1" style="width: 50px; height: 50px;">
+                                                <img [src]="linkLogoUrl1" style="max-width: 50px; max-height: 50px;">
                                                 <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(1)"></i>
                                                 <input type="file" id="linkLogoUpload1" (change)="logoUpload1($event)" hidden>
                                             </div>
@@ -958,7 +958,7 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink2" placeholder="Link" value="" (keyup)="linkGetEvent('2')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img [src]="linkLogoUrl2" style="width: 50px; height: 50px;">
+                                                <img [src]="linkLogoUrl2" style="max-width: 50px; max-height: 50px;">
                                                 <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(2)"></i>
                                                 <input type="file" id="linkLogoUpload2" (change)="logoUpload2($event)" hidden>
                                             </div>
@@ -978,7 +978,7 @@
                                             <p>URL</p>
                                             <input class="inputField" id="linkLink3" placeholder="Link" value="" (keyup)="linkGetEvent('3')">
                                             <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
-                                                <img [src]="linkLogoUrl3" style="width: 50px; height: 50px;">
+                                                <img [src]="linkLogoUrl3" style="max-width: 50px; max-height: 50px;">
                                                 <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(3)"></i>
                                                 <input type="file" id="linkLogoUpload3" (change)="logoUpload3($event)" hidden>
                                             </div>
@@ -1088,10 +1088,10 @@
 
                             <div class="pnl sigPnl">
                                 <div class="btnRow">
-                                    <button class="sigBtn" (click)="goToQrCode()">QR Code</button>
+                                    <!-- <button class="sigBtn" (click)="goToQrCode()">QR Code</button>
                                     <button class="sigBtn">Logo & Image</button>
                                     <button class="sigBtn">Logo</button>
-                                    <button class="sigBtn">Text</button>
+                                    <button class="sigBtn">Text</button> -->
                                 </div>
 
                                 <div id="html">
