@@ -468,25 +468,25 @@ export class AdminCardPreviewComponent implements OnInit{
 
   linkLogo1:File;
   compressedLogo1:File;
-  linkLogoUrl1;
+  linkLogoUrl1 = "http://185.208.207.55/v1/link_logos/0000002_1.jpg";
   linkLogo2:File;
   compressedLogo2:File;
-  linkLogoUrl2;
+  linkLogoUrl2 = "http://185.208.207.55/v1/link_logos/0000002_2.jpg";
   linkLogo3:File;
   compressedLogo3:File;
-  linkLogoUrl3;
+  linkLogoUrl3 = "http://185.208.207.55/v1/link_logos/0000002_3.jpg";
   linkLogo4:File;
   compressedLogo4:File;
-  linkLogoUrl4;
+  linkLogoUrl4 = "http://185.208.207.55/v1/link_logos/0000002_4.jpg";
   linkLogo5:File;
   compressedLogo5:File;
-  linkLogoUrl5;
+  linkLogoUrl5 = "http://185.208.207.55/v1/link_logos/0000002_5.jpg";
   linkLogo6:File;
   compressedLogo6:File;
-  linkLogoUrl6;
+  linkLogoUrl6 = "http://185.208.207.55/v1/link_logos/0000002_6.jpg";
   linkLogo7:File;
   compressedLogo7:File;
-  linkLogoUrl7;
+  linkLogoUrl7 = "http://185.208.207.55/v1/link_logos/0000002_7.jpg";
 
   cardImageB641;
   cardImageB642;
@@ -716,36 +716,41 @@ export class AdminCardPreviewComponent implements OnInit{
     var formdata = new FormData();
     if(this.compressedLogo1 != null) {
       formdata.append('', this.compressedLogo1);
+      this.linksDataJson.data[0].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_1.jpg'; 
     }
 
     if(this.compressedLogo2 != null) {
       formdata.append('', this.compressedLogo2);
+      this.linksDataJson.data[1].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_2.jpg'; 
     }
 
     if(this.compressedLogo3 != null) {
       formdata.append('', this.compressedLogo3);
+      this.linksDataJson.data[2].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_3.jpg'; 
     }
 
     if(this.compressedLogo4 != null) {
       formdata.append('', this.compressedLogo4);
+      this.linksDataJson.data[3].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_4.jpg'; 
     }
 
     if(this.compressedLogo5 != null) {
       formdata.append('', this.compressedLogo5);
+      this.linksDataJson.data[4].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_5.jpg'; 
     }
 
     if(this.compressedLogo6 != null) {
       formdata.append('', this.compressedLogo6);
+      this.linksDataJson.data[5].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_6.jpg'; 
     }
 
     if(this.compressedLogo7 != null) {
       formdata.append('', this.compressedLogo7);
+      this.linksDataJson.data[6].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_7.jpg'; 
     }
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
-    .then((response) => {
-      console.log(response.data);
-    })
+    .then((response) => {})
     .catch((error) => {
       console.log(error);
       alert("There was a problem updating link logos. Please send console log to developer.");
@@ -839,7 +844,7 @@ export class AdminCardPreviewComponent implements OnInit{
         "Github": this.data.Github,
         "Paypal": this.data.Paypal,
         "Skype": this.data.Skype,
-        "External_links": this.dataToSendJson,
+        "External_links": this.linksDataJson,
         "Images": this.imagesJson
       }, UserID: userId}, this.cookie)
       .then ((response) => {
