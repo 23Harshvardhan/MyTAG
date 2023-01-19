@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="container flexColumn" *ngFor="let image of imagesToShow">
-                    <img width="330px" height="200" [src]="image" style="border-radius: 10px;">
+                    <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
                 </div>
             </div>
 
@@ -116,7 +116,7 @@
 
                 <div *ngIf="finalLinks[0].length > 0">
                     <div class="container flexColumn" *ngFor="let link of finalLinks">
-                        <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

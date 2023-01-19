@@ -773,14 +773,18 @@
                         </div>
                     </div>
 
-                    <div class="" id="imageArea">
+                    <div class="" id="imageArea" style="margin-top: 50px;">
                         <div class="editBtnArea" id="editBtnArea">
                             <p class="sectionHeading">Images</p>
                             <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
                         </div>
 
                         <div class="container flexColumn" *ngFor="let image of imagesToShow">
-                            <img width="330px" height="200" [src]="image" style="border-radius: 10px;">
+                            <div style="width: 95%; display: flex;">
+                                <p style="margin-bottom: -25px;">Test Caption</p>
+                            </div>
+                            <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
+                            
                         </div>
                     </div>
 
@@ -842,7 +846,7 @@
                         </div>
                     </div>
 
-                    <div class="" id="videoArea">
+                    <div class="" id="videoArea" style="margin-top: 50px;">
                         <div class="editBtnArea" id="editBtnArea">
                             <p class="sectionHeading">Videos</p>
                             <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
@@ -850,7 +854,10 @@
 
                         <div *ngIf="finalLinks[0].length > 0">
                             <div class="container flexColumn" *ngFor="let link of finalLinks">
-                                <iframe width="330px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div style="width: 95%; display: flex;">
+                                    <p style="margin-bottom: -25px;">Test Caption</p>
+                                </div>
+                                <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>

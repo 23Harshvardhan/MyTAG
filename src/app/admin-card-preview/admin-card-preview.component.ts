@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
-import { take} from 'rxjs/operators'
+import { elementAt, take} from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpClient } from '@angular/common/http'
@@ -43,6 +43,9 @@ export class AdminCardPreviewComponent implements OnInit{
   // Variable to store current card ID.
   cardID:string;
 
+  // Variable to store card's owner's ID.
+  userId:string;
+  
   // Variable to store card image url.
   cardImg:string;
 
@@ -51,6 +54,9 @@ export class AdminCardPreviewComponent implements OnInit{
 
   // Variable to store file name for images. This will be used while uploading images to server via API.
   fileName:string = "image.jpg";
+
+  // Variable to store link of default logo.
+  defaultLogo:string = "";
 
   // Variable to store card data recovered via API.
   data = {
@@ -93,6 +99,50 @@ export class AdminCardPreviewComponent implements OnInit{
     "Type": "",
     "Created_by": "",
     "Logo": ""
+  }
+
+  dataLinks = {
+    "data": [
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      },
+      {
+          "link": "",
+          "link_logo": "",
+          "link_title": ""
+      }
+    ]
+  }
+
+  dataImages = {
+    data: []
   }
 
   // Variable of type boolean to keep track of loading status
@@ -159,7 +209,6 @@ export class AdminCardPreviewComponent implements OnInit{
   currentBlockName:string;
   file:File;
   file2:File;
-  userId:string;
   formdata = new FormData();
   imageUrl = "http://185.208.207.55/v1/banners/default.jpg";
   logoUrl = "http://185.208.207.55/v1/banners/default.jpg";
@@ -312,12 +361,26 @@ export class AdminCardPreviewComponent implements OnInit{
     return (s.size == arr.length);
   }
 
+  // Variables of type array to store multiple social media values.
+  Twitter = [];
+  Instagram = [];
+  Linkedin = [];
+  Facebook = [];
+  Youtube = [];
+  Snapchat = [];
+  Tiktok = [];
+  Yelp = [];
+  Discord = [];
+  Whatsapp = [];
+  Skype = [];
+  Telegram = [];
+  Twitch = [];
+
   socialGetEvent(block) {
     var category = document.getElementById("social" + block) as HTMLSelectElement;
     var field = document.getElementById("socialLink" + block) as HTMLInputElement;
     var type = category.value;
-    this.data[type as keyof typeof this.data] = field.value;
-    console.log(type);
+    this[type].push(field.value);
   }
 
   linkGetEvent(block) {
@@ -427,19 +490,75 @@ export class AdminCardPreviewComponent implements OnInit{
   activeSocials = [];
 
   finalizeSocials() {
-    var index = [];
-    var socials = [];
+    // Variable of type array to store all available social media types for indexing purpose.
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
 
+    // Variable to keep track of indexes of all the social media groups.
+    var index = [];
+
+    // Variable to keep track of all the selected social media groups.
+    var socials = [];
+
+    // Looping through all the occupied social media groups to get their indexes.
     this.totalSocials.forEach(element => {
       var count = element.replace('socialGroup', '');
       index.push(count);
     });
 
+    // Looping through the indexes to get and store the selected social media types.
     index.forEach(element => {
       var selector = document.getElementById('social' + element) as HTMLSelectElement;
       var social = selector.options[selector.selectedIndex].value;
       socials.push(social);
+    });
+
+    var allSocialValues = {
+      "Twitter": "",
+      "Instagram": "",
+      "Linkedin": "",
+      "Facebook": "",
+      "Youtube": "",
+      "Snapchat": "",
+      "Tiktok": "",
+      "Yelp": "",
+      "Discord": "",
+      "Whatsapp": "",
+      "Skype": "",
+      "Telegram": "",
+      "Twitch": ""
+    }
+
+    var twitterData = this.Twitter.join('~');
+    allSocialValues.Twitter = twitterData;
+    var instagramData = this.Instagram.join('~');
+    allSocialValues.Instagram = instagramData;
+    var linkedinData = this.Linkedin.join('~');
+    allSocialValues.Linkedin = linkedinData;
+    var facebookData = this.Facebook.join('~');
+    allSocialValues.Facebook = facebookData;
+    var youtubeData = this.Youtube.join('~');
+    allSocialValues.Youtube = youtubeData;
+    var snapchatData = this.Snapchat.join('~');
+    allSocialValues.Snapchat = snapchatData;
+    var tiktokData = this.Tiktok.join('~');
+    allSocialValues.Tiktok = tiktokData;
+    var yelpData = this.Yelp.join('~');
+    allSocialValues.Yelp = yelpData;
+    var discordData = this.Discord.join('~');
+    allSocialValues.Discord = discordData;
+    var whatsappData = this.Whatsapp.join('~');
+    allSocialValues.Whatsapp = whatsappData;
+    var skypeData = this.Skype.join('~');
+    allSocialValues.Skype = skypeData;
+    var telegramData = this.Telegram.join('~');
+    allSocialValues.Telegram = telegramData;
+    var twitchData = this.Twitch.join('~');
+    allSocialValues.Twitch = twitchData;
+
+    availableSocials.forEach(element => {
+      if(allSocialValues[element] != "") {
+        this.data[element] = allSocialValues[element];
+      }
     });
 
     availableSocials.forEach(element => {
@@ -449,21 +568,6 @@ export class AdminCardPreviewComponent implements OnInit{
         }
       }
     });
-  }
-
-  linksToJson() {
-    var count = this.totalLinks.length;
-
-    for(let i = 0; i < count; i++) {
-      var num = i + 1;
-      var linkTitleArea = document.getElementById('linkLable' + num.toString()) as HTMLInputElement;
-      var linkLinkArea = document.getElementById('linkLink' + num.toString()) as HTMLInputElement;
-      var linkTitle = linkTitleArea.value;
-      var linkLink = linkLinkArea.value;
-      this.linksDataJson.data[i].link_title = linkTitle;
-      this.linksDataJson.data[i].link = linkLink;
-      this.linksDataJson.data[i].link_logo = "";
-    }
   }
 
   linkLogo1:File;
@@ -716,40 +820,40 @@ export class AdminCardPreviewComponent implements OnInit{
     var formdata = new FormData();
     if(this.compressedLogo1 != null) {
       formdata.append('', this.compressedLogo1);
-      this.linksDataJson.data[0].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_1.jpg'; 
+      this.dataLinks.data[0].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_1.jpg'; 
     }
 
     if(this.compressedLogo2 != null) {
       formdata.append('', this.compressedLogo2);
-      this.linksDataJson.data[1].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_2.jpg'; 
+      this.dataLinks.data[1].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_2.jpg'; 
     }
 
     if(this.compressedLogo3 != null) {
       formdata.append('', this.compressedLogo3);
-      this.linksDataJson.data[2].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_3.jpg'; 
+      this.dataLinks.data[2].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_3.jpg'; 
     }
 
     if(this.compressedLogo4 != null) {
       formdata.append('', this.compressedLogo4);
-      this.linksDataJson.data[3].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_4.jpg'; 
+      this.dataLinks.data[3].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_4.jpg'; 
     }
 
     if(this.compressedLogo5 != null) {
       formdata.append('', this.compressedLogo5);
-      this.linksDataJson.data[4].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_5.jpg'; 
+      this.dataLinks.data[4].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_5.jpg'; 
     }
 
     if(this.compressedLogo6 != null) {
       formdata.append('', this.compressedLogo6);
-      this.linksDataJson.data[5].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_6.jpg'; 
+      this.dataLinks.data[5].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_6.jpg'; 
     }
 
     if(this.compressedLogo7 != null) {
       formdata.append('', this.compressedLogo7);
-      this.linksDataJson.data[6].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_7.jpg'; 
+      this.dataLinks.data[6].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_7.jpg'; 
     }
 
-    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
     .then((response) => {})
     .catch((error) => {
       console.log(error);
@@ -769,31 +873,31 @@ export class AdminCardPreviewComponent implements OnInit{
 
     if(this.cardImageCompressed1 != null) {
       formdata.append('1', this.cardImageCompressed1);
-      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
-        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
+      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
+        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
       }
-    } else if (this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
-      var index = this.imagesJson.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
-      this.imagesJson.data.splice(index, 1);
+    } else if (this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
+      var index = this.dataImages.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
+      this.dataImages.data.splice(index, 1);
     }
 
     if(this.cardImageCompressed2 != null) {
       formdata.append('2', this.cardImageCompressed2);
-      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg')) {
-        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg');
+      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg')) {
+        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg');
       }
     }
 
     if(this.cardImageCompressed3 != null) {
       formdata.append('3', this.cardImageCompressed3);
-      if(!this.imagesJson.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg')) {
-        this.imagesJson.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg');
+      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg')) {
+        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg');
       }
     }
 
-    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
     .then((response) => {
-      this.updateCard(this.cardID, this.userId);
+      this.updateCard(this.cardID, this.data.UserID);
     })
     .catch((error) => {
       console.log(error);
@@ -803,16 +907,9 @@ export class AdminCardPreviewComponent implements OnInit{
 
   imagesToShow = [];
 
-  imagesJson = {
-    data: [
-
-    ]
-  }
-
   updateCard(cardId:String, userId:string) {
     this.isPreLoading = true;
     this.finalizeSocials();
-    this.linksToJson();
     this.updateLinkLogos();
     if(this.areDistinct(this.activeSocials)) {
       axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
@@ -844,8 +941,8 @@ export class AdminCardPreviewComponent implements OnInit{
         "Github": this.data.Github,
         "Paypal": this.data.Paypal,
         "Skype": this.data.Skype,
-        "External_links": this.linksDataJson,
-        "Images": this.imagesJson
+        "External_links": this.dataLinks,
+        "Images": this.dataImages
       }, UserID: userId}, this.cookie)
       .then ((response) => {
         this.uploadImage();
@@ -975,12 +1072,6 @@ export class AdminCardPreviewComponent implements OnInit{
     this.totalSocials.splice(index, 1);
   }
 
-  dataToSendJson = {
-    "data": [
-
-    ]
-  }
-
   removeLinkGroup(count:string) {
     var num:number = parseInt(count);
     var num = num - 1;
@@ -990,7 +1081,11 @@ export class AdminCardPreviewComponent implements OnInit{
     linkLinkArea.value = "";
     var linkTitleArea = document.getElementById('linkLable' + count) as HTMLInputElement;
     linkTitleArea.value = "";
-    this.dataToSendJson.data.splice(num, 1);
+
+    this.dataLinks.data[num].link = "";
+    this.dataLinks.data[num].link_logo = this.defaultLogo;
+    this.dataLinks.data[num].link_title = "";
+
     linkPnl.classList.add('hidden');
     this.totalLinks.splice(index, 1);
   }
@@ -1011,8 +1106,8 @@ export class AdminCardPreviewComponent implements OnInit{
     this.totalImages.splice(index, 1);
     this['cardImage' + count] = null;
     this['cardImageCompressed' + count] = null;
-    var imageLinkIndex = this.imagesJson.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_' + count + '.jpg');
-    this.imagesJson.data.splice(imageLinkIndex, 1);
+    var imageLinkIndex = this.dataImages.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_' + count + '.jpg');
+    this.dataImages.data.splice(imageLinkIndex, 1);
   }
 
   removeYoutubeGroup(count: string) {
@@ -1162,7 +1257,7 @@ export class AdminCardPreviewComponent implements OnInit{
     if(this.compressedImage != null) {
       formdata.append("media", this.compressedImage);
 
-      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardbanner?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardbanner?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
       .then((response) => {
         this.uploadLogo();
       })
@@ -1196,7 +1291,7 @@ export class AdminCardPreviewComponent implements OnInit{
     if(this.compressedImage2 != null) {
       formdata.append("media", this.compressedImage2);
 
-      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.userId, formdata, this.cookie)
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
       .then((response) => {
         window.location.reload();
       })
@@ -1340,46 +1435,6 @@ export class AdminCardPreviewComponent implements OnInit{
   images = []; 
   socalsInUse = [];
 
-  linksDataJson = {
-    "data": [
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      }
-    ]
-  }
-
   getSocials() {
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
     
@@ -1395,20 +1450,22 @@ export class AdminCardPreviewComponent implements OnInit{
 
   preloadLinks() {
     var count:number = 1;
-    this.linksDataJson.data.forEach(element => {
-      if(element.link != "" && element.link_title != "") {
+
+    this.dataLinks.data.forEach(element => {
+      if(element.link_title != "") {
         var linkGroupArea = document.getElementById('linkGroup' + count.toString());
         linkGroupArea.classList.remove('hidden');
         var linkTitleArea = document.getElementById('linkLable' + count.toString()) as HTMLInputElement;
         linkTitleArea.value = element.link_title;
         var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
         linkLinkArea.value = element.link;
-        var dataSet = {
-          "link_logo": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
-          "link": element.link,
-          "link_title": element.link_title
-        }
-        this.dataToSendJson.data.push(dataSet);
+        
+        // var dataSet = {
+        //   "link_logo": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
+        //   "link": element.link,
+        //   "link_title": element.link_title
+        // }
+        // this.dataToSendJson.data.push(dataSet);
         this.activeLinks.push(element);
         this.totalLinks.push('linkGroup' + count.toString());
 
@@ -1423,7 +1480,7 @@ export class AdminCardPreviewComponent implements OnInit{
 
   preloadImages() {
     var count:number = 1;
-    this.imagesJson.data.forEach(element => {
+    this.dataImages.data.forEach(element => {
       if(this.UrlExists(element)) {
         this.totalImages.push('imageGroup' + count.toString());
         var pnl = document.getElementById('imageGroup' + count.toString());
@@ -1445,13 +1502,13 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   splitImages() {
-    this.imagesJson.data.forEach(element => {
+    this.dataImages.data.forEach(element => {
       if(this.UrlExists(element)) {
         this.imagesToShow.push(element);
       }
     })
   }
-ata
+
   storeImages() {
     var count:number = 1;
     this.imagesToShow.forEach(element => {
@@ -1467,13 +1524,13 @@ ata
     .then ((response) => {
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data.data[0]
-      this.linksDataJson = response.data.data[0].External_links;
-      this.imagesJson = response.data.data[0].Images;
+      this.dataLinks = response.data.data[0].External_links;
+      this.dataImages = response.data.data[0].Images;
       
+      this.userId = this.data.UserID;
+
       this.splitImages();
       this.loadCardImage();
-
-      this.userId = this.data.UserID;
 
       this.phoneNumbers = this.data.Phone.split(';');
       this.emails = this.data.Email.split(',');
@@ -1534,5 +1591,4 @@ ata
       this.logoUrl = "http://185.208.207.55/v1/" + this.data.Logo;
     }
   }
-
 }
