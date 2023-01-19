@@ -33,6 +33,7 @@ export class AdminCardPreviewComponent implements OnInit{
     } 
   }
 
+  // Function to take URL and bypass it for security trust reasons and return it.
   getSafeUrl(link:string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
@@ -376,12 +377,12 @@ export class AdminCardPreviewComponent implements OnInit{
   Telegram = [];
   Twitch = [];
 
-  socialGetEvent(block) {
-    var category = document.getElementById("social" + block) as HTMLSelectElement;
-    var field = document.getElementById("socialLink" + block) as HTMLInputElement;
-    var type = category.value;
-    this[type].push(field.value);
-  }
+  // socialGetEvent(block) {
+  //   var category = document.getElementById("social" + block) as HTMLSelectElement;
+  //   var field = document.getElementById("socialLink" + block) as HTMLInputElement;
+  //   var type = category.value;
+  //   this[type].push(field.value);
+  // }
 
   linkGetEvent(block) {
     var category = document.getElementById("link" + block) as HTMLSelectElement;
@@ -490,14 +491,8 @@ export class AdminCardPreviewComponent implements OnInit{
   activeSocials = [];
 
   finalizeSocials() {
-    // Variable of type array to store all available social media types for indexing purpose.
-    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
-
     // Variable to keep track of indexes of all the social media groups.
     var index = [];
-
-    // Variable to keep track of all the selected social media groups.
-    var socials = [];
 
     // Looping through all the occupied social media groups to get their indexes.
     this.totalSocials.forEach(element => {
@@ -509,65 +504,53 @@ export class AdminCardPreviewComponent implements OnInit{
     index.forEach(element => {
       var selector = document.getElementById('social' + element) as HTMLSelectElement;
       var social = selector.options[selector.selectedIndex].value;
-      socials.push(social);
+      var linkField = document.getElementById('socialLink' + element) as HTMLInputElement;
+      var link = linkField.value;
+      this[social].push(link);
+      // socials.push(social);
     });
-
-    var allSocialValues = {
-      "Twitter": "",
-      "Instagram": "",
-      "Linkedin": "",
-      "Facebook": "",
-      "Youtube": "",
-      "Snapchat": "",
-      "Tiktok": "",
-      "Yelp": "",
-      "Discord": "",
-      "Whatsapp": "",
-      "Skype": "",
-      "Telegram": "",
-      "Twitch": ""
-    }
 
     var twitterData = this.Twitter.join('~');
-    allSocialValues.Twitter = twitterData;
+    this.data.Twitter = twitterData;
     var instagramData = this.Instagram.join('~');
-    allSocialValues.Instagram = instagramData;
+    this.data.Instagram = instagramData;
     var linkedinData = this.Linkedin.join('~');
-    allSocialValues.Linkedin = linkedinData;
+    this.data.Linkedin = linkedinData;
     var facebookData = this.Facebook.join('~');
-    allSocialValues.Facebook = facebookData;
+    this.data.Facebook = facebookData;
     var youtubeData = this.Youtube.join('~');
-    allSocialValues.Youtube = youtubeData;
+    this.data.Youtube = youtubeData;
     var snapchatData = this.Snapchat.join('~');
-    allSocialValues.Snapchat = snapchatData;
+    this.data.Snapchat = snapchatData;
     var tiktokData = this.Tiktok.join('~');
-    allSocialValues.Tiktok = tiktokData;
+    this.data.Tiktok = tiktokData;
     var yelpData = this.Yelp.join('~');
-    allSocialValues.Yelp = yelpData;
+    this.data.Yelp = yelpData;
     var discordData = this.Discord.join('~');
-    allSocialValues.Discord = discordData;
+    this.data.Discord = discordData;
     var whatsappData = this.Whatsapp.join('~');
-    allSocialValues.Whatsapp = whatsappData;
+    this.data.Whatsapp = whatsappData;
     var skypeData = this.Skype.join('~');
-    allSocialValues.Skype = skypeData;
+    this.data.Skype = skypeData;
     var telegramData = this.Telegram.join('~');
-    allSocialValues.Telegram = telegramData;
+    this.data.Telegram = telegramData;
     var twitchData = this.Twitch.join('~');
-    allSocialValues.Twitch = twitchData;
+    this.data.Twitch = twitchData;
 
-    availableSocials.forEach(element => {
-      if(allSocialValues[element] != "") {
-        this.data[element] = allSocialValues[element];
-      }
-    });
+    // availableSocials.forEach(element => {
+    //   console.log(this.data[element]);
+    //   // if(allSocialValues[element] != "") {
+    //   //   this.data[element] = allSocialValues[element];
+    //   // }
+    // });
 
-    availableSocials.forEach(element => {
-      if(this.data[element as keyof typeof this.data] != '') {
-        if(!socials.includes(element)) {
-          this.data[element as keyof typeof this.data] = '';
-        }
-      }
-    });
+    // availableSocials.forEach(element => {
+    //   if(this.data[element as keyof typeof this.data] != '') {
+    //     if(!socials.includes(element)) {
+    //       this.data[element as keyof typeof this.data] = '';
+    //     }
+    //   }
+    // });
   }
 
   linkLogo1:File;
@@ -949,10 +932,10 @@ export class AdminCardPreviewComponent implements OnInit{
       })
       .catch ((error) => {
         console.log(error);
-        alert("There was an error. Please send console log to developer.");
+        this.showNotification("There was an error.");
       })
     } else {
-      alert("You can't use same social media again!");
+      this.showNotification("You can't use same social media again!");
     }
   }
 
@@ -1235,18 +1218,22 @@ export class AdminCardPreviewComponent implements OnInit{
     this.youtubeLinks.forEach(element => {
       if(element.includes(this.rawLink1)) {
         var newL = element.replace(this.rawLink1, this.replaceLink1);
-        this.finalLinks.push(newL);
+        var sanitized = this.getSafeUrl(newL);
+        this.finalLinks.push(sanitized);
         return '';
       } else if (element.includes(this.rawLink2)) {
         var newL = element.replace(this.rawLink2, this.replaceLink2);
-        this.finalLinks.push(newL);
+        var sanitized = this.getSafeUrl(newL);
+        this.finalLinks.push(sanitized);
         return '';
       } else if (element.includes(this.rawLink3)) {
         var newL = element.replace(this.rawLink3, this.replaceLink3);
-        this.finalLinks.push(newL);
+        var sanitized = this.getSafeUrl(newL);
+        this.finalLinks.push(sanitized);
         return '';
       } else {
-        this.finalLinks.push(element);
+        var sanitized = this.getSafeUrl(element);
+        this.finalLinks.push(sanitized);
         return '';
       }
     });
@@ -1263,7 +1250,7 @@ export class AdminCardPreviewComponent implements OnInit{
       })
       .catch((error) => {
         console.log(error);
-        alert("There was an error updating card image. Please send console log to developer.");
+        this.showNotification("There was an error updating card image.");
       })
     }
     else {
@@ -1297,7 +1284,7 @@ export class AdminCardPreviewComponent implements OnInit{
       })
       .catch((error) => {
         console.log(error);
-        alert("There was an error updating card image. Please send console log to developer.");
+        this.showNotification("There was an error updating card image.");
       })
     }
     else {
@@ -1341,21 +1328,61 @@ export class AdminCardPreviewComponent implements OnInit{
   
   // This function looks though all the socials in use and accordingly unhides editor panel and puts value.
   preloadSocials() {
-    var lenght = this.socials.length;
-    if(this.socials[0] != '') {
-      for(let i = 0; i < lenght; i++) {
-        var count = i + 1;
-        var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
-        block.classList.remove('hidden');
-        this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
-        var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
-        field.value = this.socials[i];
-        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
-        var social = this.socalsInUse[i];
-        var index = this.socialIndex[social as keyof typeof this.socialIndex];
-        selector.options.selectedIndex = parseInt(index);
+    // Variable of type array to store all available social media types for indexing purpose.
+    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+
+    // Variable to keep track of all active socials.
+    var socials = [];
+
+    // Variable to store incrementation of forEach loop.
+    var count:number = 1;
+
+    // Loop through all the available socials in the card to get active socials.
+    availableSocials.forEach(element => {
+      if(this[element] != '') {
+        socials.push(element);
       }
-    }
+    });
+
+    socials.forEach(element => {
+      if(this[element].lenght > 1) {
+        var lenght:number = this[element].lenght;
+
+        for(let i=0; i<lenght;i++) {
+          var socialGroup = document.getElementById('socialGroup' + count.toString());
+          socialGroup.classList.remove('hidden');
+          var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+          selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
+          var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
+          inputField.value = this[element][i];
+        }
+      } else {
+        var socialGroup = document.getElementById('socialGroup' + count.toString());
+        socialGroup.classList.remove('hidden');
+        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+        selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
+        var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
+        inputField.value = this[element][0];
+      }
+
+      count++;
+    });
+
+    // var lenght = this.socials.length;
+    // if(this.socials[0] != '') {
+    //   for(let i = 0; i < lenght; i++) {
+    //     var count = i + 1;
+    //     var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
+    //     block.classList.remove('hidden');
+    //     this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
+    //     var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
+    //     field.value = this.socials[i];
+    //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
+    //     var social = this.socalsInUse[i];
+    //     var index = this.socialIndex[social as keyof typeof this.socialIndex];
+    //     selector.options.selectedIndex = parseInt(index);
+    //   }
+    // }
   }
 
   contactTypes = [];
@@ -1537,6 +1564,19 @@ export class AdminCardPreviewComponent implements OnInit{
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
       this.youtubeLinks = this.data.Company_URL.split(';');
+      this.Twitter = this.data.Twitter.split('~');
+      this.Instagram = this.data.Instagram.split('~');
+      this.Linkedin = this.data.Linkedin.split('~');
+      this.Facebook = this.data.Facebook.split('~');
+      this.Youtube = this.data.Youtube.split('~');
+      this.Snapchat = this.data.Snapchat.split('~');
+      this.Tiktok = this.data.Tiktok.split('~');
+      this.Yelp = this.data.Yelp.split('~');
+      this.Discord = this.data.Discord.split('~');
+      this.Whatsapp = this.data.Whatsapp.split('~');
+      this.Skype = this.data.Skype.split('~');
+      this.Telegram = this.data.Telegram.split('~');
+      this.Twitch = this.data.Twitch.split('~');
 
       this.filterLink();
 
