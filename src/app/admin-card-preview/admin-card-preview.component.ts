@@ -303,6 +303,7 @@ export class AdminCardPreviewComponent implements OnInit{
       imageArea.classList.toggle('hidden');
     }
     else if(field == 'videoEditArea') {
+      this.showNotification("Videos won't work without SSL!");
       videoEditArea.classList.toggle("hidden");
       upperCard.classList.toggle("hidden");
       shareArea.classList.toggle("hidden");
@@ -491,6 +492,9 @@ export class AdminCardPreviewComponent implements OnInit{
   activeSocials = [];
 
   finalizeSocials() {
+    // Variable of type array to store all available social media types for indexing purpose.
+    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+
     // Variable to keep track of indexes of all the social media groups.
     var index = [];
 
@@ -506,51 +510,37 @@ export class AdminCardPreviewComponent implements OnInit{
       var social = selector.options[selector.selectedIndex].value;
       var linkField = document.getElementById('socialLink' + element) as HTMLInputElement;
       var link = linkField.value;
-      this[social].push(link);
-      // socials.push(social);
+      if(!this[social].includes(link)) {
+       this[social].push(link);
+      }  
     });
 
-    var twitterData = this.Twitter.join('~');
-    this.data.Twitter = twitterData;
-    var instagramData = this.Instagram.join('~');
-    this.data.Instagram = instagramData;
-    var linkedinData = this.Linkedin.join('~');
-    this.data.Linkedin = linkedinData;
-    var facebookData = this.Facebook.join('~');
-    this.data.Facebook = facebookData;
-    var youtubeData = this.Youtube.join('~');
-    this.data.Youtube = youtubeData;
-    var snapchatData = this.Snapchat.join('~');
-    this.data.Snapchat = snapchatData;
-    var tiktokData = this.Tiktok.join('~');
-    this.data.Tiktok = tiktokData;
-    var yelpData = this.Yelp.join('~');
-    this.data.Yelp = yelpData;
-    var discordData = this.Discord.join('~');
-    this.data.Discord = discordData;
-    var whatsappData = this.Whatsapp.join('~');
-    this.data.Whatsapp = whatsappData;
-    var skypeData = this.Skype.join('~');
-    this.data.Skype = skypeData;
-    var telegramData = this.Telegram.join('~');
-    this.data.Telegram = telegramData;
-    var twitchData = this.Twitch.join('~');
-    this.data.Twitch = twitchData;
+    // Variable for storing social media links of a particular type. To be cleared at the end of loop.
+    var temp1 = [];
 
-    // availableSocials.forEach(element => {
-    //   console.log(this.data[element]);
-    //   // if(allSocialValues[element] != "") {
-    //   //   this.data[element] = allSocialValues[element];
-    //   // }
-    // });
+    // Variable for storing joined social media links. To be cleared at the end of the loop.
+    var temp2 = "";
 
-    // availableSocials.forEach(element => {
-    //   if(this.data[element as keyof typeof this.data] != '') {
-    //     if(!socials.includes(element)) {
-    //       this.data[element as keyof typeof this.data] = '';
-    //     }
-    //   }
-    // });
+    // Loop through all the available socials.
+    availableSocials.forEach(social => {
+      // Loop through each social media array containing social media links and store them in temp1 array.
+      this[social].forEach(link => {
+        temp1.push(link);
+      });
+
+      // This variable filters the temp1 array and stores the returned values in itself.
+      var temp3 = temp1.filter(elm => elm);
+
+      // Temp2 is storing the joined links.
+      temp2 = temp3.join("~");
+
+      // Sync to the Json data for sending via API call.
+      this.data[social] = temp2;
+
+      // Clearing the temp1 and temp2 variables in the end.
+      temp1.splice(0);
+      temp2 = "";
+    });
   }
 
   linkLogo1:File;
@@ -1310,20 +1300,26 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   // Keeps track of indexing of all the socials.
-  socialIndex = {
-    'Twitter':'0',
-    'Instagram':'1',
-    'Linkedin':'2',
-    'Facebook':'3',
-    'Youtube':'4',
-    'Snapchat':'5',
-    'Tiktok':'6',
-    'Twitch':'7',
-    'Yelp':'8',
-    'Discord':'9',
-    'Whatsapp':'10',
-    'Skype':'11',
-    'Telegram':'12'
+  
+
+  getSocialIndex(socialType:string):number {
+    var socialIndex = {
+      'Twitter': 0,
+      'Instagram': 1,
+      'Linkedin': 2,
+      'Facebook': 3,
+      'Youtube': 4,
+      'Snapchat': 5,
+      'Tiktok': 6,
+      'Twitch': 7,
+      'Yelp': 8,
+      'Discord': 9,
+      'Whatsapp': 10,
+      'Skype': 11,
+      'Telegram': 12
+    }
+
+    return socialIndex[socialType as keyof typeof socialIndex];
   }
   
   // This function looks though all the socials in use and accordingly unhides editor panel and puts value.
@@ -1331,61 +1327,24 @@ export class AdminCardPreviewComponent implements OnInit{
     // Variable of type array to store all available social media types for indexing purpose.
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
 
-    
+    // Variable to store incrementation of forEach loop.
+    var count:number = 1;
 
-    // // Variable to keep track of all active socials.
-    // var socials = [];
-
-    // // Variable to store incrementation of forEach loop.
-    // var count:number = 1;
-
-    // // Loop through all the available socials in the card to get active socials.
-    // availableSocials.forEach(element => {
-    //   if(this[element] != '') {
-    //     socials.push(element);
-    //   }
-    // });
-
-    // socials.forEach(element => {
-    //   console.log(element);
-    //   // if(this[element].lenght > 1) {
-    //   //   var lenght:number = this[element].lenght;
-
-    //   //   for(let i=0; i<lenght;i++) {
-    //   //     var socialGroup = document.getElementById('socialGroup' + count.toString());
-    //   //     socialGroup.classList.remove('hidden');
-    //   //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
-    //   //     selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
-    //   //     var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
-    //   //     inputField.value = this[element][i];
-    //   //     count++;
-    //   //   }
-    //   // } else {
-    //   //   var socialGroup = document.getElementById('socialGroup' + count.toString());
-    //   //   socialGroup.classList.remove('hidden');
-    //   //   var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
-    //   //   selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
-    //   //   var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
-    //   //   inputField.value = this[element][0];
-    //   //   count++;
-    //   // }
-    // });
-
-    // // var lenght = this.socials.length;
-    // // if(this.socials[0] != '') {
-    // //   for(let i = 0; i < lenght; i++) {
-    // //     var count = i + 1;
-    // //     var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
-    // //     block.classList.remove('hidden');
-    // //     this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
-    // //     var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
-    // //     field.value = this.socials[i];
-    // //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
-    // //     var social = this.socalsInUse[i];
-    // //     var index = this.socialIndex[social as keyof typeof this.socialIndex];
-    // //     selector.options.selectedIndex = parseInt(index);
-    // //   }
-    // // }
+    // Loop through all the available socials in the card to get active socials.
+    availableSocials.forEach(socialName => {
+      if(this[socialName].length > 0 && this[socialName][0] != '') {
+        this[socialName].forEach(socialLink => {
+          var socialGroup = document.getElementById('socialGroup' + count.toString());
+          socialGroup.classList.remove('hidden');
+          this.totalSocials.push('socialGroup' + count.toString());
+          var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+          selector.selectedIndex = this.getSocialIndex(socialName);
+          var inputField = document.getElementById('socialLink' + count.toString()) as HTMLInputElement;
+          inputField.value = socialLink;
+          count++;
+        });
+      }
+    });
   }
 
   contactTypes = [];
