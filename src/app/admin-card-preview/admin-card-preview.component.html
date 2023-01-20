@@ -150,19 +150,45 @@
                         </div>
 
                         <div class="socialIcons">
-                            <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="redirectSocial('Twitter')"></i>
-                            <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="redirectSocial('Instagram')"></i>
-                            <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin != ''" (click)="redirectSocial('Linkedin')"></i>
-                            <i class="fa-brands fa-facebook" *ngIf="data.Facebook != ''" (click)="redirectSocial('Facebook')"></i>
-                            <i class="fa-brands fa-youtube" *ngIf="data.Youtube != ''" (click)="redirectSocial('Youtube')"></i>
-                            <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat != ''" (click)="redirectSocial('Snapchat')"></i>
-                            <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok != ''" (click)="redirectSocial('Tiktok')"></i>
-                            <i class="fa-brands fa-twitch" *ngIf="data.Twitch != ''" (click)="redirectSocial('Twitch')"></i>
-                            <i class="fa-brands fa-yelp" *ngIf="data.Yelp != ''" (click)="redirectSocial('Yelp')"></i>
-                            <i class="fa-brands fa-discord" *ngIf="data.Discord != ''" (click)="redirectSocial('Discord')"></i>
-                            <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp != ''" (click)="redirectSocial('Whatsapp')"></i>
-                            <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="redirectSocial('Skype')"></i>
-                            <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="redirectSocial('Telegram')"></i>
+                            <div *ngFor="let element of Twitter">
+                                <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Instagram">
+                                <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="redirectSocial('Instagram')"></i>
+                            </div>
+                            <div *ngFor="let element of Linkedin">
+                                <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin != ''" (click)="redirectSocial('Linkedin')"></i>
+                            </div>
+                            <div *ngFor="let element of Facebook">
+                                <i class="fa-brands fa-facebook" *ngIf="data.Facebook != ''" (click)="redirectSocial('Facebook')"></i>
+                            </div>
+                            <div *ngFor="let element of Youtube">
+                                <i class="fa-brands fa-youtube" *ngIf="data.Youtube != ''" (click)="redirectSocial('Youtube')"></i>
+                            </div>
+                            <div *ngFor="let element of Snapchat">
+                                <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat != ''" (click)="redirectSocial('Snapchat')"></i>
+                            </div>
+                            <div *ngFor="let element of Tiktok">
+                                <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok != ''" (click)="redirectSocial('Tiktok')"></i>
+                            </div>
+                            <div *ngFor="let element of Twitch">
+                                <i class="fa-brands fa-twitch" *ngIf="data.Twitch != ''" (click)="redirectSocial('Twitch')"></i>
+                            </div>
+                            <div *ngFor="let element of Yelp">
+                                <i class="fa-brands fa-yelp" *ngIf="data.Yelp != ''" (click)="redirectSocial('Yelp')"></i>
+                            </div>
+                            <div *ngFor="let element of Discord">
+                                <i class="fa-brands fa-discord" *ngIf="data.Discord != ''" (click)="redirectSocial('Discord')"></i>
+                            </div>
+                            <div *ngFor="let element of Whatsapp">
+                                <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp != ''" (click)="redirectSocial('Whatsapp')"></i>
+                            </div>
+                            <div *ngFor="let element of Skype">
+                                <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="redirectSocial('Skype')"></i>
+                            </div>
+                            <div *ngFor="let element of Telegram">
+                                <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="redirectSocial('Telegram')"></i>
+                            </div>
                         </div>
                     </div>
 

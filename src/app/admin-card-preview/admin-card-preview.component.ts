@@ -1331,58 +1331,61 @@ export class AdminCardPreviewComponent implements OnInit{
     // Variable of type array to store all available social media types for indexing purpose.
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
 
-    // Variable to keep track of all active socials.
-    var socials = [];
+    
 
-    // Variable to store incrementation of forEach loop.
-    var count:number = 1;
+    // // Variable to keep track of all active socials.
+    // var socials = [];
 
-    // Loop through all the available socials in the card to get active socials.
-    availableSocials.forEach(element => {
-      if(this[element] != '') {
-        socials.push(element);
-      }
-    });
+    // // Variable to store incrementation of forEach loop.
+    // var count:number = 1;
 
-    socials.forEach(element => {
-      if(this[element].lenght > 1) {
-        var lenght:number = this[element].lenght;
-
-        for(let i=0; i<lenght;i++) {
-          var socialGroup = document.getElementById('socialGroup' + count.toString());
-          socialGroup.classList.remove('hidden');
-          var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
-          selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
-          var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
-          inputField.value = this[element][i];
-        }
-      } else {
-        var socialGroup = document.getElementById('socialGroup' + count.toString());
-        socialGroup.classList.remove('hidden');
-        var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
-        selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
-        var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
-        inputField.value = this[element][0];
-      }
-
-      count++;
-    });
-
-    // var lenght = this.socials.length;
-    // if(this.socials[0] != '') {
-    //   for(let i = 0; i < lenght; i++) {
-    //     var count = i + 1;
-    //     var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
-    //     block.classList.remove('hidden');
-    //     this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
-    //     var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
-    //     field.value = this.socials[i];
-    //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
-    //     var social = this.socalsInUse[i];
-    //     var index = this.socialIndex[social as keyof typeof this.socialIndex];
-    //     selector.options.selectedIndex = parseInt(index);
+    // // Loop through all the available socials in the card to get active socials.
+    // availableSocials.forEach(element => {
+    //   if(this[element] != '') {
+    //     socials.push(element);
     //   }
-    // }
+    // });
+
+    // socials.forEach(element => {
+    //   console.log(element);
+    //   // if(this[element].lenght > 1) {
+    //   //   var lenght:number = this[element].lenght;
+
+    //   //   for(let i=0; i<lenght;i++) {
+    //   //     var socialGroup = document.getElementById('socialGroup' + count.toString());
+    //   //     socialGroup.classList.remove('hidden');
+    //   //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+    //   //     selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
+    //   //     var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
+    //   //     inputField.value = this[element][i];
+    //   //     count++;
+    //   //   }
+    //   // } else {
+    //   //   var socialGroup = document.getElementById('socialGroup' + count.toString());
+    //   //   socialGroup.classList.remove('hidden');
+    //   //   var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
+    //   //   selector.selectedIndex = parseInt(this.socialIndex[element as keyof typeof this.socialIndex]);
+    //   //   var inputField = document.getElementById("socialLink" + count.toString()) as HTMLInputElement;
+    //   //   inputField.value = this[element][0];
+    //   //   count++;
+    //   // }
+    // });
+
+    // // var lenght = this.socials.length;
+    // // if(this.socials[0] != '') {
+    // //   for(let i = 0; i < lenght; i++) {
+    // //     var count = i + 1;
+    // //     var block = document.getElementById('socialGroup' + count.toString()); // Entire social editor block.
+    // //     block.classList.remove('hidden');
+    // //     this.totalSocials.push('socialGroup' + count.toString()); // Total socials keeps track of all the active social blocks.
+    // //     var field = document.getElementById('socialLink' + count) as HTMLInputElement; // Text field where user puts his social data.
+    // //     field.value = this.socials[i];
+    // //     var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement; // Selector which the user uses to select which data he is selecting.
+    // //     var social = this.socalsInUse[i];
+    // //     var index = this.socialIndex[social as keyof typeof this.socialIndex];
+    // //     selector.options.selectedIndex = parseInt(index);
+    // //   }
+    // // }
   }
 
   contactTypes = [];
@@ -1602,11 +1605,15 @@ export class AdminCardPreviewComponent implements OnInit{
   }
 
   redirectSocial(block:string) {
-    var url = this.data[block as keyof typeof this.data];
-    if(url.startsWith("https://")) {
-      window.open(url, "_blank");
-    } else {
-      window.open("https://" + url, "_blank");
+    try {
+      var url = block;
+      if(url.startsWith("https://")) {
+        window.open(url, "_blank");
+      } else {
+        window.open("https://" + url, "_blank");
+      }
+    } catch {
+      this.showNotification("Link is invalid. Please fix link.");
     }
   }
 
