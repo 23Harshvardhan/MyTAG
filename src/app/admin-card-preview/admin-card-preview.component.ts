@@ -378,19 +378,12 @@ export class AdminCardPreviewComponent implements OnInit{
   Telegram = [];
   Twitch = [];
 
-  // socialGetEvent(block) {
-  //   var category = document.getElementById("social" + block) as HTMLSelectElement;
-  //   var field = document.getElementById("socialLink" + block) as HTMLInputElement;
+  // linkGetEvent(block) {
+  //   var category = document.getElementById("link" + block) as HTMLSelectElement;
+  //   var field = document.getElementById('linkLink' + block) as HTMLInputElement;
   //   var type = category.value;
-  //   this[type].push(field.value);
+  //   this.data[type as keyof typeof this.data] = field.value;
   // }
-
-  linkGetEvent(block) {
-    var category = document.getElementById("link" + block) as HTMLSelectElement;
-    var field = document.getElementById('linkLink' + block) as HTMLInputElement;
-    var type = category.value;
-    this.data[type as keyof typeof this.data] = field.value;
-  }
 
   getLinkValue(block) {
     var selector = document.getElementById("link" + block) as HTMLSelectElement;
@@ -491,10 +484,10 @@ export class AdminCardPreviewComponent implements OnInit{
 
   activeSocials = [];
 
-  finalizeSocials() {
-    // Variable of type array to store all available social media types for indexing purpose.
-    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+  // Variable of type array to store all available social media types for indexing purpose.
+  availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
 
+  finalizeSocials() {
     // Variable to keep track of indexes of all the social media groups.
     var index = [];
 
@@ -522,7 +515,7 @@ export class AdminCardPreviewComponent implements OnInit{
     var temp2 = "";
 
     // Loop through all the available socials.
-    availableSocials.forEach(social => {
+    this.availableSocials.forEach(social => {
       // Loop through each social media array containing social media links and store them in temp1 array.
       this[social].forEach(link => {
         temp1.push(link);
@@ -543,27 +536,29 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  activeLinkImages:string[] = []
+
   linkLogo1:File;
   compressedLogo1:File;
-  linkLogoUrl1 = "http://185.208.207.55/v1/link_logos/0000002_1.jpg";
+  linkLogoUrl1;
   linkLogo2:File;
   compressedLogo2:File;
-  linkLogoUrl2 = "http://185.208.207.55/v1/link_logos/0000002_2.jpg";
+  linkLogoUrl2;
   linkLogo3:File;
   compressedLogo3:File;
-  linkLogoUrl3 = "http://185.208.207.55/v1/link_logos/0000002_3.jpg";
+  linkLogoUrl3;
   linkLogo4:File;
   compressedLogo4:File;
-  linkLogoUrl4 = "http://185.208.207.55/v1/link_logos/0000002_4.jpg";
+  linkLogoUrl4;
   linkLogo5:File;
   compressedLogo5:File;
-  linkLogoUrl5 = "http://185.208.207.55/v1/link_logos/0000002_5.jpg";
+  linkLogoUrl5;
   linkLogo6:File;
   compressedLogo6:File;
-  linkLogoUrl6 = "http://185.208.207.55/v1/link_logos/0000002_6.jpg";
+  linkLogoUrl6;
   linkLogo7:File;
   compressedLogo7:File;
-  linkLogoUrl7 = "http://185.208.207.55/v1/link_logos/0000002_7.jpg";
+  linkLogoUrl7;
 
   cardImageB641;
   cardImageB642;
@@ -582,7 +577,6 @@ export class AdminCardPreviewComponent implements OnInit{
   async getFile(imageUrl:string): Promise<File> {
     const blob = await this.downloadImage(imageUrl).toPromise();
     const fileToReturn = new File([blob], 'image.jpg', {type: blob.type});
-    console.log(fileToReturn.size);
     return fileToReturn;
   }
 
@@ -646,78 +640,22 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  logoUpload1(event) {
+  logoUpload(event, count:number) {
     if(event.target.files.length > 0) {
-      this.linkLogo1 = event.target.files[0];
+      this['linkLogo' + count.toString()] = event.target.files[0];
 
-      this.compressImage.compress(this.linkLogo1)
+      this.compressImage.compress(this['linkLogo' + count.toString()])
       .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo1 = compressedFile2;
+      .subscribe(compressedFile => {
+        this["compressedLogo" + count.toString()] = compressedFile;
       })
 
       var reader = new FileReader();
 
-      reader.readAsDataURL(this.linkLogo1);
+      reader.readAsDataURL(this['linkLogo' + count.toString()]);
       reader.onload=(event:any) => {
-        this.linkLogoUrl1 = event.target.result;
-      }
-    }
-  }
-
-  logoUpload2(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo2 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo2)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo2 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo2);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl2 = event.target.result;
-      }
-    }
-  }
-
-  logoUpload3(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo3 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo3)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo3 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo3);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl3 = event.target.result;
-      }
-    }
-  }
-
-  logoUpload4(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo4 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo4)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo4 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo4);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl4 = event.target.result;
+        var imgHolder = document.getElementById('logoImgHolder' + count.toString()) as HTMLImageElement;
+        imgHolder.src = event.target.result;
       }
     }
   }
@@ -732,105 +670,70 @@ export class AdminCardPreviewComponent implements OnInit{
     upload.click();
   }
 
-  logoUpload5(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo5 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo5)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo5 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo5);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl5 = event.target.result;
-      }
-    }
-  }
-
-  logoUpload6(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo6 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo6)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo6 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo6);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl6 = event.target.result;
-      }
-    }
-  }
-
-  logoUpload7(event) {
-    if(event.target.files.length > 0) {
-      this.linkLogo7 = event.target.files[0];
-
-      this.compressImage.compress(this.linkLogo7)
-      .pipe(take(1))
-      .subscribe(compressedFile2 => {
-        this.compressedLogo7 = compressedFile2;
-      })
-
-      var reader = new FileReader();
-
-      reader.readAsDataURL(this.linkLogo7);
-      reader.onload=(event:any) => {
-        this.linkLogoUrl7 = event.target.result;
-      }
-    }
-  }
-
   updateLinkLogos() {
+    this.isPreLoading = true;
+
     var formdata = new FormData();
     if(this.compressedLogo1 != null) {
-      formdata.append('', this.compressedLogo1);
-      this.dataLinks.data[0].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_1.jpg'; 
+      formdata.append('1', this.compressedLogo1);
     }
 
     if(this.compressedLogo2 != null) {
-      formdata.append('', this.compressedLogo2);
-      this.dataLinks.data[1].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_2.jpg'; 
+      formdata.append('2', this.compressedLogo2);
     }
 
     if(this.compressedLogo3 != null) {
-      formdata.append('', this.compressedLogo3);
-      this.dataLinks.data[2].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_3.jpg'; 
+      formdata.append('3', this.compressedLogo3);
     }
 
     if(this.compressedLogo4 != null) {
-      formdata.append('', this.compressedLogo4);
-      this.dataLinks.data[3].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_4.jpg'; 
+      formdata.append('4', this.compressedLogo4);
     }
 
     if(this.compressedLogo5 != null) {
-      formdata.append('', this.compressedLogo5);
-      this.dataLinks.data[4].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_5.jpg'; 
+      formdata.append('5', this.compressedLogo5);
     }
 
     if(this.compressedLogo6 != null) {
-      formdata.append('', this.compressedLogo6);
-      this.dataLinks.data[5].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_6.jpg'; 
+      formdata.append('6', this.compressedLogo6);
     }
 
     if(this.compressedLogo7 != null) {
-      formdata.append('', this.compressedLogo7);
-      this.dataLinks.data[6].link_logo = 'http://185.208.207.55/v1/link_logos/' + this.cardID + '_7.jpg'; 
+      formdata.append('7', this.compressedLogo7);
     }
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
-    .then((response) => {})
+    .then((response) => {
+      let imageUrls: string[] = response.data.paths.map(path => {
+        let values = Object.values(path);
+        return "http://185.208.207.55/v1/" + values[0];
+      });
+
+      var updatedLogosNum:string[] = [];
+      var updatedLogoExtensions:string[] = [];
+
+      imageUrls.forEach(link => {
+        var start = link.lastIndexOf('_') + 1;
+        var end = link.lastIndexOf('.');
+        var num = link.substring(start, end);
+        updatedLogosNum.push(num);
+        var extStart = link.lastIndexOf('.') + 1;
+        var ext = link.substring(extStart);
+        updatedLogoExtensions.push(ext);
+      });
+
+      updatedLogosNum.forEach(num => {
+        var count:number = parseInt(num) - 1;
+        var increment:number = 0;
+        this.dataLinks.data[count].link_logo = "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + num + "." + updatedLogoExtensions[increment];
+        increment++;
+      });
+
+      this.updateCard(this.cardID, this.userId);
+    })
     .catch((error) => {
       console.log(error);
-      alert("There was a problem updating link logos. Please send console log to developer.");
+      this.showNotification("There was a problem updating link logos.");
     });
   }
 
@@ -874,16 +777,6 @@ export class AdminCardPreviewComponent implements OnInit{
         } else {
           this.dataImages.data.push(link);
         }
-
-        // if(!this.dataImages.data.some((element) => element.includes(toFind[0]))) {
-        //   this.dataImages.data.push(link);
-        // } else {
-        //   const index = this.dataImages.data.findIndex((element) => element.includes(toFind[0]));
-        //   this.dataImages.data.splice(1, index);
-        //   this.dataImages.data.push(link);
-        //   console.log(index);
-        //   console.log(this.dataImages.data);
-        // }
       });
 
       this.updateCard(this.cardID, this.data.UserID);
@@ -894,55 +787,66 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  finalizeLinks() {
+    const length = this.totalLinks.length;
+    
+    for(let i = 1; i < length + 1; i++) {
+      const linkTitleField = document.getElementById('linkLable' + i.toString()) as HTMLInputElement;
+      const linkLinkField = document.getElementById('linkLink' + i.toString()) as HTMLInputElement;
+      const linkTitle = linkTitleField.value;
+      const linkContent = linkLinkField.value;
+
+      this.dataLinks.data[i-1].link_title = linkTitle;
+      this.dataLinks.data[i-1].link = linkContent;
+    }
+  }
+
   imagesToShow = [];
 
   updateCard(cardId:String, userId:string) {
     this.isPreLoading = true;
     this.finalizeSocials();
-    this.updateLinkLogos();
-    if(this.areDistinct(this.activeSocials)) {
-      axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
-        "Name": this.data.Name,
-        "Job_title": this.data.Job_title,
-        "Department": this.data.Department,
-        "Company_name": this.data.Company_name,
-        "Accreditations": this.data.Accreditations,
-        "Headline": this.data.Headline,
-        "Email": this.getEmails(),
-        "Phone": this.getPhones(),
-        "Company_URL": this.getYoutubeLinks(),
-        "Link": this.getWebsites(),
-        "Address": this.getAddresses(),
-        "Twitter": this.data.Twitter,
-        "Instagram": this.data.Instagram,
-        "Linkedin": this.data.Linkedin,
-        "Facebook": this.data.Facebook,
-        "Youtube": this.data.Youtube,
-        "Snapchat": this.data.Snapchat,
-        "Tiktok": this.data.Tiktok,
-        "Twitch": this.data.Twitch,
-        "Yelp": this.data.Yelp,
-        "Whatsapp": this.data.Whatsapp,
-        "Discord": this.data.Discord,
-        "Signal_link": this.data.Signal_link,
-        "Telegram": this.data.Telegram,
-        "Calendly": this.data.Calendly,
-        "Github": this.data.Github,
-        "Paypal": this.data.Paypal,
-        "Skype": this.data.Skype,
-        "External_links": this.dataLinks,
-        "Images": this.dataImages
-      }, UserID: userId}, this.cookie)
-      .then ((response) => {
-        this.uploadImage();
-      })
-      .catch ((error) => {
-        console.log(error);
-        this.showNotification("There was an error.");
-      })
-    } else {
-      this.showNotification("You can't use same social media again!");
-    }
+    this.finalizeLinks();
+    
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Name": this.data.Name,
+      "Job_title": this.data.Job_title,
+      "Department": this.data.Department,
+      "Company_name": this.data.Company_name,
+      "Accreditations": this.data.Accreditations,
+      "Headline": this.data.Headline,
+      "Email": this.getEmails(),
+      "Phone": this.getPhones(),
+      "Company_URL": this.getYoutubeLinks(),
+      "Link": this.getWebsites(),
+      "Address": this.getAddresses(),
+      "Twitter": this.data.Twitter,
+      "Instagram": this.data.Instagram,
+      "Linkedin": this.data.Linkedin,
+      "Facebook": this.data.Facebook,
+      "Youtube": this.data.Youtube,
+      "Snapchat": this.data.Snapchat,
+      "Tiktok": this.data.Tiktok,
+      "Twitch": this.data.Twitch,
+      "Yelp": this.data.Yelp,
+      "Whatsapp": this.data.Whatsapp,
+      "Discord": this.data.Discord,
+      "Signal_link": this.data.Signal_link,
+      "Telegram": this.data.Telegram,
+      "Calendly": this.data.Calendly,
+      "Github": this.data.Github,
+      "Paypal": this.data.Paypal,
+      "Skype": this.data.Skype,
+      "External_links": this.dataLinks,
+      "Images": this.dataImages
+    }, UserID: userId}, this.cookie)
+    .then ((response) => {
+      this.uploadImage();
+    })
+    .catch ((error) => {
+      console.log(error);
+      this.showNotification("There was an error.");
+    });
   }
 
   totalSocials = [];
@@ -1534,8 +1438,7 @@ export class AdminCardPreviewComponent implements OnInit{
       this.dataImages = response.data.data[0].Images;
 
       this.userId = this.data.UserID;
-
-      // this.splitImages();
+          
       this.loadCardImage();
 
       this.phoneNumbers = this.data.Phone.split(';');
