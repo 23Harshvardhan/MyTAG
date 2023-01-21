@@ -1,4 +1,98 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<div class="overlay" id="overlay">
+    <div class="logoContainer">
+        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
+    </div>
+  <nav class="overlay-menu">
+    <ul>
+      <li class="gapTop"><div class="flexBox"><a routerLink="/userInventory"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i>Inventory</a></div></li>
+      <!-- <li><div class="flexBox"><a routerLink="/accounts"><i class="fa-solid fa-users" style="color: white;"></i>Accounts</a></div></li> -->
+      <li><div class="flexBox"><a routerLink="/activeCards"><i class="fa-solid fa-address-card" style="color: white;"></i>Active Cards</a></div></li>
+      <!-- <li><div class="flexBox"><a routerLink="/orders"><i class="fa-solid fa-store" style="color: white;"></i>Orders</a></div></li> -->
+      <!-- <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Products</a></div></li> -->
+      <!-- <li><div class="flexBox"><i class="fa-solid fa-table-columns" style="color: white;"></i><a>Templates</a></div></li> -->
+      <li><div class="flexBox"><a routerLink="/adminSettings"><i class="fa-solid fa-gear" style="color: white;"></i>Settings</a></div></li>
+      <li><div class="flexBox"><a routerLink="/"><i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i>Log Out</a></div></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="body">
+    <div class="area" style="width: 60px;"></div>
+    <app-user-dashboard-nav></app-user-dashboard-nav>
+    <div class="contentArea">
+        <div class="horizontalNavArea">
+            <div class="hamContainer">
+                <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+                <h1 class="pageTitle">Dashboard</h1> 
+            </div>
+            
+            <div class="totalCards">
+                <h3 class="mobileHide">MYTAG</h3>
+                <h5>Cards: </h5>
+            </div>
+        </div>
+        <div class="searchArea">
+            <div class="searchLableContainer width10">
+                <p class="lable">Set</p>
+                <p class="lable">Date</p>
+            </div>
+            <div class="searchContainer gap">
+                <select name="type" id="type" class="dateSpecifier">
+                    <option value="day">This Day</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="year">This Year</option>
+                </select>
+                <div class="flexBox1">
+                    <input type="date" id="startDate" class="dateField">
+                    <input type="date" id="endDate" class="dateField">
+                </div>
+            </div>
+            <div class="searchLableContainer width20">
+                <p class="lable">Card ID: </p>
+                <p class="lable">Account ID: </p>
+            </div> 
+            <div class="searchContainer gap">
+                <input type="text" id="cardID" class="inputField">
+                <input type="text" id="accountID" class="inputField">
+            </div>
+            <div class="searchLableContainer width20">
+                <p class="lable">Batch ID: </p>
+                <p class="lable">Name: </p>
+            </div>
+            <div class="searchContainer gap">
+                <input type="number" id="batchID" class="inputField">
+                <input type="text" id="name" class="inputField">
+            </div>
+            <div class="checkBoxContainer">
+                <label>Pending </label>
+                <label>Active </label>
+                <label>Cancelled </label>
+            </div>
+            <div class="checkBoxContainer">    
+                <input type="checkbox" />
+                <input type="checkbox" />
+                <input type="checkbox" />
+            </div>
+            <div class="searchContainer gap">
+                <input type="button" value="View" class="btnField">
+                <input type="number" placeholder="" class="invisible" id="qty" disabled>
+            </div>
+            <div class="searchContainer gap">
+                <!-- <input type="button" value="Add Card" class="btnField" (click)="addCards()"> -->
+                <!-- <input type="number" placeholder="Quantity" class="numField" id="qty"> -->
+            </div>
+        </div>
+
+        <div class="tableArea">
+            
+        </div>
+    </div>
+</div>
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <div class="body">
     <app-user-dashboard-nav></app-user-dashboard-nav>
 
@@ -9,10 +103,10 @@
                     <input type="text" required (keyup)="searchByName()" id="nameSearchField">
                     <label>Search by Name</label>
                 </div>
-                <!-- <div class="txt_field">
+                <div class="txt_field">
                     <input type="text" required (keyup)="searchById()" id="idSearchField">
                     <label>Search by Card ID</label>
-                </div> -->
+                </div>
             </form>
             <div class="buttons">
                 <button routerLink="/createCard">Add Card</button>                   
@@ -47,4 +141,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -16,26 +16,37 @@ export class UserDashboardNavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoad();
+    // this.onLoad();
   }
 
-  onLoad (){
-    const cookie = {
-      headers:{
-        cki: this.cookieService.get("jwt")
-      } 
-    }
-
-    axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
-    .then( (response) => {
-      var name = response.data.userInfo.Name;
-      var splitted = name.split(" ", 1)
-      var usrName = document.getElementById("userName");
-      usrName!.innerText=splitted;
-    })
-    .catch( (error) => {
-      console.log(error);
-      this.router.navigate(['/login']);
-    });
+  toggleNav() {
+    var toggle = document.getElementById("toggle");
+    var overlay = document.getElementById("overlay");
+    toggle.classList.toggle('active');
+    overlay.classList.toggle('open');
   }
+
+  reroute(path:string) {
+    
+  }
+
+  // onLoad (){
+  //   const cookie = {
+  //     headers:{
+  //       cki: this.cookieService.get("jwt")
+  //     } 
+  //   }
+
+  //   axios.get('http://185.208.207.55/v1/api/activities/dashboard', cookie)
+  //   .then( (response) => {
+  //     var name = response.data.userInfo.Name;
+  //     var splitted = name.split(" ", 1)
+  //     var usrName = document.getElementById("userName");
+  //     usrName!.innerText=splitted;
+  //   })
+  //   .catch( (error) => {
+  //     console.log(error);
+  //     this.router.navigate(['/login']);
+  //   });
+  // }
 }

@@ -1,13 +1,94 @@
-<div class="body">
-  <div class="navbar">
-    <div class="logoContainer">
-      <img src="/assets/img/logo.jpg" alt="Logo Image">
-    </div>
-    <div class="accountIDcontainer">
-      <div class="accountStatus">
-        <h1 id="userName"></h1>
-        <p id="cardsLeft">Cards Left: 0</p>
-      </div>
-    </div>
-  </div>
-</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<nav class="main-menu">
+    <ul>
+        <li>
+            <a>
+                <img src="../../assets/img/logoWithoutCaption.jpg" alt="MyTag Logo" class="logoImg">
+                <span class="nav-text" style="font-size: 20px; padding-left: 20px; font-family: 'GaretHeavy', sans-serif;">
+                    MYTAG
+                </span>
+                <span class="nav-text" style="font-size: 10px; padding-left: 0px; font-family: 'GaretBook', sans-serif;">
+                    SMART BUSINESS CARD
+                </span>
+            </a>
+        </li>
+        <hr>
+        <li class="item">
+            <a (click)="reroute('userDashboard')">
+                <i class="fa fa-solid fa-table-columns fa-2x"></i>
+                <span class="nav-text">
+                    Dashboard
+                </span>
+            </a>
+          
+        </li>
+        <li class="item">
+            <a (click)="reroute('userInventory')">
+                <i class="fa fa-solid fa-boxes-stacked fa-2x"></i>
+                <span class="nav-text">
+                    Inventory
+                </span>
+            </a>
+            
+        </li>
+        <!-- <li class="item">
+            <a routerLink="/accounts">
+               <i class="fa fa-solid fa-users fa-2x"></i>
+                <span class="nav-text">
+                    Accounts
+                </span>
+            </a>
+            
+        </li> -->
+        <li class="item">
+            <a routerLink="/activeCards">
+               <i class="fa fa-solid fa-address-card fa-2x"></i>
+                <span class="nav-text">
+                    Active Cards
+                </span>
+            </a>
+           
+        </li>
+        <!-- <li class="item">
+            <a routerLink="/orders">
+                <i class="fa fa-solid fa-store fa-2x"></i>
+                <span class="nav-text">
+                    Orders
+                </span>
+            </a>
+        </li>
+        <li class="item">
+            <a href="#">
+                <i class="fa fa-solid fa-gem fa-2x"></i>
+                <span class="nav-text">
+                   Products
+                </span>
+            </a>
+        </li>
+        <li class="item">
+           <a href="#">
+               <i class="fa fa-solid fa-database fa-2x"></i>
+                <span class="nav-text">
+                    Templates
+                </span>
+            </a>
+        </li> -->
+        <li class="item">
+           <a routerLink="/adminSettings">
+                <i class="fa fa-solid fa-gear fa-2x"></i>
+                <span class="nav-text">
+                    Settings
+                </span>
+            </a>
+        </li>
+        <li class="item">
+            <a routerLink="/">
+               <i class="fa fa-solid fa-arrow-right-from-bracket fa-2x"></i>
+                <span class="nav-text">
+                    Log Out
+                </span>
+            </a>
+        </li>
+    </ul>
+</nav>

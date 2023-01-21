@@ -1,102 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=SourceSansProRegular:wght@300;400&display=swap');
+@font-face {
+    font-family: "SourceSansProRegular";
+    src: url("../../assets/fonts/SourceSansPro-Regular.ttf");
+}
 
-.body {
+@font-face {
+    font-family: MontserratBold;
+    src: url("../../assets/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../../assets/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: MontserratRegular;
+    src: url("../../assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: GaretBook;
+    src: url("../../assets/fonts/Garet-Book.ttf");
+}
+
+@font-face {
+    font-family: GaretHeavy;
+    src: url("../../assets/fonts/Garet-Heavy.ttf");
+}
+
+.fa-2x {
+    font-size: 2em;
+}
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+}
+    
+    
+.main-menu:hover,nav.main-menu.expanded {
+    width:250px;
+    overflow:visible;
+}
+
+.logoImg {
+    width: 60px;
+    height: 60px;
+}
+    
+.main-menu {
+    background:#000000;
+    border-right:1px solid black;
+    position:absolute;
+    top:0;
+    bottom:0;
+    height:100%;
+    left:0;
+    width:60px;
+    overflow:hidden;
+    -webkit-transition:width .05s linear;
+    transition:width .05s linear;
+    z-index:1000;
+}
+    
+.main-menu>ul {
+    margin:7px 0;
+}
+    
+.main-menu li {
+    position:relative;
+    display:block;
+    width:250px;
+}
+    
+.main-menu li>a {
+    position:relative;
+    display:table;
+    border-collapse:collapse;
+    border-spacing:0;
+    color:#fff;
+    font-family: arial;
+    font-size: 14px;
+    text-decoration:none;
+    -webkit-transition:all .1s linear;
+    transition:all .1s linear;      
+}
+    
+.main-menu .nav-icon {
+    position:relative;
+    display:table-cell;
+    width:60px;
+    height:36px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+}
+    
+.main-menu .nav-text {
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    width:190px;
+    padding-left: 30px;
+    font-family: 'SourceSansProRegular', sans-serif;
+}
+    
+.main-menu>ul.logout {
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+    
+.no-touch .scrollable.hover {
+    overflow-y:hidden;
+}
+    
+.no-touch .scrollable.hover:hover {
+    overflow-y:auto;
+    overflow:visible;
+}
+    
+a:hover,a:focus {
+    text-decoration:none;
+}
+    
+nav {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+
+.item {
+    margin-top: 10px;
+}
+    
+nav ul,nav li {
+    outline:0;
+    margin:0;
+    padding: 0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+    color:#999;
+}
+.area {
+    float: left;
+    background: #e2e2e2;
     width: 100%;
+    height: 100%;
 }
 
-.navbar {
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    width: 100%;
-    background-color: rgb(233, 233, 233);
-    display: flex;
-    justify-content: center;
-    padding: 10px 0px 10px 0px;
-    overflow: hidden;
-    height: 9%;
-}
-
-.logoContainer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-}
-
-.logoContainer img {
-    height: 5rem;
-    width: 5rem;
-}
-
-.logo {
-    font-family: 'SourceSansProRegular', sans-serif;
-    font-weight: 300;
-    text-decoration: none;
-    color: #3d3d3d;
-    font-size: 30px;
-}
-
-.navbar button {
-    padding: 10px 20px;
-    float: right;
-}
-
-.accountIDcontainer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.btn {
-    background-color: white;
-    border: none;
-    font-family: 'SourceSansProRegular', sans-serif;
-    font-size: 15px;
-    border-radius: 50px;
-}
-
-.btn:hover {
-    background-color: rgb(245, 245, 255);
-    cursor: pointer;
-}
-
-.loginbtn {
-    margin-left: 20px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-family: 'SourceSansProRegular', sans-serif;
-    font-size: 17px;
-    background-color: #3d3d3d;
-}
-
-.loginbtn:hover {
-    cursor: pointer;
-}
-
-.accountStatus {
-    background-color: #3d3d3d;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.30) 1.95px 1.95px 2.6px;
-    border-radius: 5px;
-    padding: 0px 20px 0px 20px;
-    margin-right: 200px;
-}
-
-.accountStatus h1{
-    font-family: 'SourceSansProRegular', sans-serif;
-    font-size: 20px;
-}
-
-.accountStatus p {
-    font-family: 'SourceSansProRegular', sans-serif;
-    font-weight: 300;
-    margin-top: -10px;
-}
-
-@media screen and (max-width: 800px) {
-    .navbar {
-        display: flex;
-        gap: 50px;
+@media only screen and (max-width: 600px) {
+.area {display: none;}
+    .main-menu {
+        display: none;
     }
 }

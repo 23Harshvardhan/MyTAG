@@ -32,31 +32,43 @@ export class UserDashboardComponent implements OnInit {
     } 
   }
 
+  toggleNav() {
+    var toggle = document.getElementById("toggle");
+    var overlay = document.getElementById("overlay");
+    toggle.classList.toggle('active');
+    overlay.classList.toggle('open');
+  }
+
+  reroute(path:string) {
+    
+  }
+
   //Function to load cards on page initialization. Called in "ngOnInit()"
   //On success it dashboard will load available cards and on fail will redirect back to login after logging error in console.
   onLoad (){
-    //Stores the total number of cards in a user's account
-    length = null;
+    // //Stores the total number of cards in a user's account
+    // length = null;
 
-    axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
-    .then( (response) => {
-      this.length = response.data.userInfo.cards.length; //Storing number of cards from response.
-      var i = 0; //Empty variable to be used in while loop.
+    // axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
+    // .then( (response) => {
+    //   this.length = response.data.userInfo.cards.length; //Storing number of cards from response.
+    //   var i = 0; //Empty variable to be used in while loop.
 
-      //Storing card id and card name in a external variable to be accessed from frontend
-      while(i < this.length) {
-        this.cards.push({
-          cardName: response.data.userInfo.cards[i].Name,
-          cardId: response.data.userInfo.cards[i].CardID,
-          cardImage: response.data.userInfo.cards[i].Image
-        })
-        i++;
-      }
-    })
-    .catch( (error) => { //Catch error and log it in console. Afterwards redirect the user to login page.
-      console.log(error);
-      this.router.navigate(['/login']);
-    });
+    //   //Storing card id and card name in a external variable to be accessed from frontend
+    //   while(i < this.length) {
+    //     this.cards.push({
+    //       cardName: response.data.userInfo.cards[i].Name,
+    //       cardId: response.data.userInfo.cards[i].CardID,
+    //       cardImage: response.data.userInfo.cards[i].Image
+    //     })
+    //     i++;
+    //   }
+    // })
+    // .catch( (error) => { //Catch error and log it in console. Afterwards redirect the user to login page.
+    //   console.log(error);
+    //   alert(error);
+    //   // this.router.navigate(['/login']);
+    // });
   }
 
   //Function to delete card. Takes card ID as parameter and sends delete request with card ID as query.

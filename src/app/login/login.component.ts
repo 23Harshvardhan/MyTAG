@@ -18,14 +18,6 @@ export class LoginComponent implements OnInit {
   setCookie(token:string){
     this.cookieService.set('jwt', token);
   }
-   
-  deleteCookie(cookieName:string){
-    this.cookieService.delete(cookieName);
-  }
-   
-  deleteAll(){
-    this.cookieService.deleteAll();
-  }
 
   ngOnInit(): void {
   }
