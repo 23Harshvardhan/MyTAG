@@ -1,312 +1,1222 @@
-<div class="body">
-    <div class="cardContainer">
-        <div class="card">
-            <div class="container cardNavArea">
-                <input type="button" value="Add Image" class="btn1">
-                <img class="logo hidden" src="../../assets/img/logo.jpg">
-                <input type="button" value="Save" class="btn2" (click)="updateCard(cardId, userId)">
-            </div>
+<!-- Import for FontAwesome icons. -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
-            <div class="container cardHeadArea">
-                <img class="profilePic" id="profilePic" [src]="imageUrl" (click)="selectFile()">
-                <!-- (click)="selectFile()" -->
-                <input type="file" #imgInput id="FileUpload1" style="display: none" (change)="onFileSelected($event)">
+<!-- Overlay for navigation menu in mobile view. -->
+<div class="overlay" id="overlay">
+    <div class="logoContainer">
+        <img src="../../assets/img/logo.jpg" alt="MyTag Logo" class="navLogo">
+    </div>
+  <nav class="overlay-menu">
+    <ul>
+        <li class="gapTop"><div class="flexBox"><a routerLink="/dashboard"><i class="fa-solid fa-table-columns" style="color: white;"></i>Dashboard</a></div></li>
+        <li><div class="flexBox"><a routerLink="/inventory"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i>Inventory</a></div></li>
+        <!-- <li><div class="flexBox"><a routerLink="/accounts"><i class="fa-solid fa-users" style="color: white;"></i>Accounts</a></div></li> -->
+        <li><div class="flexBox"><a routerLink="/activeCards"><i class="fa-solid fa-address-card" style="color: white;"></i>Active Cards</a></div></li>
+        <li><div class="flexBox"><a routerLink="/orders"><i class="fa-solid fa-store" style="color: white;"></i>Orders</a></div></li>
+        <!-- <li><div class="flexBox"><a><i class="fa-solid fa-table-columns" style="color: white;"></i>Products</a></div></li> -->
+        <!-- <li><div class="flexBox"><a><i class="fa-solid fa-table-columns" style="color: white;"></i>Templates</a></div></li> -->
+        <li><div class="flexBox"><a routerLink="/adminSettings"><i class="fa-solid fa-gear" style="color: white;"></i>Settings</a></div></li>
+        <li><div class="flexBox"><a routerLink="/"><i class="fa-solid fa-arrow-right-from-bracket" style="color: white;"></i>Log Out</a></div></li>
+    </ul>
+  </nav>
+</div>
 
-                <div class="nameDetailsPnl">
-                    <input class="nameField" id="Name" placeholder="Enter Name" value={{data.Name}} (keyup)="selectField('Name')">
-                    <input class="designationField" id="Job_title" placeholder="Enter Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
-                    <input class="companyField" id="Company_name" placeholder="Enter Company" value={{data.Company_name}} (keyup)="selectField('Company_name')">
-                </div>
-            </div>
+<!-- Overlay for image cropper. -->
+<div class="imageCropperOverlay hidden" id="cropperOverlay">
+    <div class="cropperBox">
+        <div class="cropArea">
+        <image-cropper
+            [imageChangedEvent]="imgChangeEvent1"
+            [aspectRatio]="4/4"
+            [maintainAspectRatio]="true"
+            [resizeToWidth]="256"
+            format="png"
+            (imageCropped)="cropImg($event)"
+            (imageLoaded)="imgLoad()"
+            (cropperReady)="initCropper()"
+            (loadImageFailed)="imgFailed()"
+        ></image-cropper>
+        </div>
 
-            <div class="container shareArea">
-                <input type="button" value="Save Contact" class="secondaryBtn">
-                <input type="button" value="Exchange Contact" class="primaryBtn">
-            </div>
-
-            <div class="container descArea">
-                <textarea class="descField" id="Headline" placeholder="Enter Description" rows="2" maxlength="96" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
-            </div>
-
-            <div class="container basicContactArea">
-                <p class="lable">Contact No</p>
-                <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="Phone" placeholder="Your number" value={{data.Phone}} (keyup)="selectField('Phone')">
-            </div> 
-
-            <div class="container basicContactArea">
-                <p class="lable">Email</p>
-                <p class="intel">Use , to seperate multiple numbers.</p>
-                <input type="text" class="inputField" id="Email" placeholder="yourmail@service.com" value={{data.Email}} (keyup)="selectField('Email')">
-            </div> 
-
-            <div class="container basicContactArea">
-                <p class="lable">Website</p>
-                <input type="text" class="inputField" id="Link" placeholder="www.yourwebsite.com" value={{data.Link}} (keyup)="selectField('Link')">
-            </div> 
-
-            <div class="container basicContactArea">
-                <p class="lable">Address</p>
-                <textarea class="inputField" id="Address" placeholder="Your address" rows="3" maxlength="125" wrap="soft" (keyup)="selectField('Address')">{{data.Address}}</textarea>
-            </div> 
+        <div class="cropperButtonRow">
+            <button class="cropperBtn secondary" (click)="cancelCropper()">Cancel</button>
+            <button class="cropperBtn primary" (click)="finalizeCrop()">Finish</button> 
         </div>
     </div>
 </div>
 
+<!-- Overlay for preloader. -->
+<div class="cs-loader" *ngIf="isPreLoading">
+    <div class="cs-loader-inner">
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+      <label>●</label>
+    </div>
+</div>
 
-<!-- <div class="mainBody">
-    <div class="inputArea">
-        <div class="Input" id="inputWind">
-            <p id="warning1">Use comma to seperate multiple values</p>
-            <input type="text" #input class="InputField" placeholder="Enter here" id="textArea" (keyup.enter)="closeWind()" (keyup)="updatePreview()">
-            <div class="inputButtons gap">
-                <input type="button" value="Save" class="inputSubmitBtn" (click)="closeWind()">
-            </div>
-        </div>
-
-        <div class="Input" id="imageInputWind">
-            <input type="file" #imgInput class="imgInput" placeholder="Upload Banner Here" id="imgInputArea" (change)="onFileSelected($event)">
-            <div class="inputButtons gap">
-                <input type="button" value="Save" class="inputSubmitBtn" (click)="closeUploadWind()">
-            </div>
+<!-- Overlay for notification box. -->
+<div class="notificationOverlay hidden" id="notificationOverlay">
+    <div class="rectangle">
+        <div class="notification-text">
+            <i class="fa-solid fa-circle-info"></i>
+            <span id="notifText">&nbsp;&nbsp;This is a test notification.</span>
         </div>
     </div>
+</div>
 
-    <div class="mobileEditorArea">
-        <div class="topNavBar">
-            <div class="topNavBarButtons">
-                <button class="tnbBtn" (click)="showTabs('personalInfoTab')"><i class="bi bi-person"></i></button>
-                <button class="tnbBtn" (click)="showTabs('basicInfoTab')"><i class="bi bi-person-lines-fill"></i></button>
-                <button class="tnbBtn" (click)="showTabs('socialInfoTab')"><i class="bi bi-chat-square-quote"></i></button>
-                <button class="tnbBtn" (click)="showTabs('communicationInfoTab')"><i class="bi bi-person-rolodex"></i></button>
-                <button class="tnbBtn" (click)="showTabs('businessInfoTab')"><i class="bi bi-briefcase"></i></button>
-                <button class="tnbBtn" (click)="showTabs('paymentInfoTab')"><i class="bi bi-cash-coin"></i></button>
-            </div>
-        </div>
-
-        <div class="bottomNavBar" id="personalInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
-                <button class="inputBtn" (click)="showInputWind('Job_title')"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
-                <button class="inputBtn" (click)="showInputWind('Company_name')"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
-                <button class="inputBtn" (click)="showInputWind('Accreditations')"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
-                <button class="inputBtn" (click)="showImageInputWind()"><i class="bi bi-image"></i><p class="btnLable">Banner</p></button>
-            </div>
-        </div>
-        <div class="bottomNavBar hidden" id="basicInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
-                <button class="inputBtn" (click)="showInputWind('Phone')"><i class="bi bi-telephone"></i><p class="btnLable">Phone</p></button>
-                <button class="inputBtn" (click)="showInputWind('Company_URL')"><i class="bi bi-box-arrow-up-left"></i><p class="btnLable">Company URL</p></button>
-                <button class="inputBtn" (click)="showInputWind('Link')"><i class="bi bi-link"></i><p class="btnLable">Link</p></button>
-                <button class="inputBtn" (click)="showInputWind('Address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
-            </div>
-        </div>
-        <div class="bottomNavBar hidden" id="socialInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
-                <button class="inputBtn" (click)="showInputWind('Instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
-                <button class="inputBtn" (click)="showInputWind('Linkedin')"><i class="bi bi-linkedin"></i><p class="btnLable">LinkedIn</p></button>
-                <button class="inputBtn" (click)="showInputWind('Facebook')"><i class="bi bi-facebook"></i><p class="btnLable">Facebook</p></button>
-                <button class="inputBtn" (click)="showInputWind('Snapchat')"><i class="bi bi-snapchat"></i><p class="btnLable">Snapchat</p></button>
-                <button class="inputBtn" (click)="showInputWind('Tiktok')"><i class="bi bi-tiktok"></i><p class="btnLable">TikTok</p></button>
-                <button class="inputBtn" (click)="showInputWind('Twitch')"><i class="bi bi-twitch"></i><p class="btnLable">Twitch</p></button>
-                <button class="inputBtn" (click)="showInputWind('Yelp')"><i class="bi bi-yelp"></i><p class="btnLable">Yelp</p></button>
-                <button class="inputBtn" (click)="showInputWind('Youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
-            </div>
-        </div>
-        <div class="bottomNavBar hidden" id="communicationInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
-                <button class="inputBtn" (click)="showInputWind('Signal_link')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
-                <button class="inputBtn" (click)="showInputWind('Discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
-                <button class="inputBtn" (click)="showInputWind('Skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
-                <button class="inputBtn" (click)="showInputWind('Telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
-            </div>
-        </div>
-        <div class="bottomNavBar hidden" id="businessInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
-                <button class="inputBtn" (click)="showInputWind('Calendly')"><i class="bi bi-calendly"></i><p class="btnLable">Calendly</p></button>
-            </div>
-        </div>
-        <div class="bottomNavBar hidden" id="paymentInfoTab">
-            <div class="bottomNavBarButtons">
-                <button class="inputBtn" (click)="showInputWind('Paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
-            </div>
-        </div>
-    </div>
+<!-- Code for entire page. -->
+<div class="body">
+    <!-- Div to give spacing for vertical navbar in desktop view. -->
+    <div class="area" style="width: 60px;"></div>
+    <app-user-dashboard-nav></app-user-dashboard-nav>
     
-    <div class="body">
-        
-        <div class="cardArea">
-            <div class="card">
-                <div class="cardImage" id="cardImage">
-                    <svg class="wave down" id="visual" viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 274L7.2 273.2C14.3 272.3 28.7 270.7 43 270.7C57.3 270.7 71.7 272.3 86 274.3C100.3 276.3 114.7 278.7 128.8 280.3C143 282 157 283 171.2 280.3C185.3 277.7 199.7 271.3 214 268.2C228.3 265 242.7 265 257 266.5C271.3 268 285.7 271 292.8 272.5L300 274L300 301L292.8 301C285.7 301 271.3 301 257 301C242.7 301 228.3 301 214 301C199.7 301 185.3 301 171.2 301C157 301 143 301 128.8 301C114.7 301 100.3 301 86 301C71.7 301 57.3 301 43 301C28.7 301 14.3 301 7.2 301L0 301Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
-                </div>
-                <div class="infoArea">
-                    <h1 class="fullNameField" id="fullName">{{data.Name}}</h1>
-                    <p class="designationField" id="designation">{{data.Job_title}}</p>
-                    <p class="companyField" id="companyName">{{data.Company_name}}</p>
+    <div class="contentArea">
+        <div class="horizontalNavArea">
+            <div class="hamContainer">
+                <div class="button_container" id="toggle" (click)="toggleNav()"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+                <h1 class="pageTitle">Cards</h1> 
+            </div>
+        </div>
 
-                    <div class="userTitleArea" id="accredsArea">
-                        <div class="userTitle" *ngFor="let accred of accreds">
-                            <p>{{accred}}</p>
+        <div class="cardsPanel">
+            <div class="cards">
+                <!-- Code of the online smart business card begins here. -->
+                <div class="card">
+                    <div class="upperCard" id="upperCard">
+                        <div class="container cardNavArea">
+                            <!-- Card logo element. -->
+                            <img class="logo" id="logo" [src]="logoUrl">
+                            <p class="editBtn" (click)="toggleEditField('cardHeadArea')">Edit</p>
+                        </div>
+                    </div>
+                    
+                    <div class="container cardHeadArea" id="cardHead">
+                        <!-- Card profile picture element. -->
+                        <img class="profilePic" id="profilePic" [src]="imageUrl">
+        
+                        <div class="nameDetailsPnl" id="nameDetailsPnl">
+                            <h3 class="nameField">{{data.Name}}</h3>
+                            <p class="designationField">{{data.Job_title}}</p>
+                            <p class="companyField">{{data.Company_name}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="container shareArea" id="shareArea">
+                        <input type="button" value="Save Contact" class="secondaryBtn" (click)="showNotification('This action cannot be performed in preview/edit mode.')">
+                        <input type="button" value="Exchange Contact" class="primaryBtn" (click)="showNotification('This action cannot be performed in preview/edit mode.')">
+                    </div>
+
+                    <div class="container descArea">
+                        <p class="descField" id="descArea">{{data.Headline}}</p>
+                    </div>
+
+                    <div id="cardHeadArea" class="hidden">
+                        <div class="container cardHeadEditArea" id="cardHeadArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('cardHeadArea')">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID)">
+                            </div>
+                            <h3 class="editHeading">Edit your Profile Information</h3>
+                            <div class="editBodyArea">
+                                <h4>Profile Picture</h4>
+                                <input type="file" #imgInput id="FileUpload1" (change)="onFileSelected($event)">
+                                <h4>Logo</h4>
+                                <input type="file" #imgInput2 id="FileUpload2" (change)="onFileSelected2($event)">
+                                <h4>Name</h4>
+                                <input class="inputField" id="Name" placeholder="Your Name" value={{data.Name}} (keyup)="selectField('Name')" maxlength="41">
+                                <h4>Designation</h4>
+                                <input class="inputField" id="Job_title" placeholder="Your Designation" value={{data.Job_title}} (keyup)="selectField('Job_title')">
+                                <h4>Company Name</h4>
+                                <input class="inputField" id="Company_name" placeholder="Your Company Name" value={{data.Company_name}} (keyup)="selectField('Company_name')">
+                                <h4>Headline</h4>
+                                <textarea class="inputField" maxlength="96" id="Headline" placeholder="Enter Headline" rows="2" wrap="soft" (keyup)="selectField('Headline')">{{data.Headline}}</textarea>
+                            </div>
+                            <div class="editFooter" id="editFooter">
+                                <div class="footerText">
+                                    <h5>MYTAG</h5>
+                                    <h6>SMART BUSINESS CARD</h6>
+                                </div>
+                                <button class="footerButton">Get Your Card</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="width95" id="socialDetailSection">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Social Networks</p>
+                            <p class="editBtn" (click)="toggleEditField('socialEditSection')">Edit</p>
+                        </div>
+
+                        <div class="socialIcons">
+                            <div *ngFor="let element of Twitter">
+                                <i class="fa-brands fa-twitter" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Instagram">
+                                <i class="fa-brands fa-instagram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Linkedin">
+                                <i class="fa-brands fa-linkedin" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Facebook">
+                                <i class="fa-brands fa-facebook" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Youtube">
+                                <i class="fa-brands fa-youtube" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Snapchat">
+                                <i class="fa-brands fa-snapchat" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Tiktok">
+                                <i class="fa-brands fa-tiktok" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Twitch">
+                                <i class="fa-brands fa-twitch" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Yelp">
+                                <i class="fa-brands fa-yelp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Discord">
+                                <i class="fa-brands fa-discord" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Whatsapp">
+                                <i class="fa-brands fa-whatsapp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Skype">
+                                <i class="fa-brands fa-skype" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Telegram">
+                                <i class="fa-brands fa-telegram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="basicContactSection" id="contactSection">
-                        <div *ngIf="data.Email != ''"><i class="bi bi-envelope"> {{data.Email}}</i></div>
-                        <div *ngIf="data.Phone != ''"><i class="bi bi-telephone"> {{data.Phone}}</i></div>
-                        <div *ngIf="data.Company_URL != ''"><i class="bi bi-box-arrow-up-left"> {{data.Company_URL}}</i></div>
-                        <div *ngIf="data.Link != ''"><i class="bi bi-link"> {{data.Link}}</i></div>
-                        <div *ngIf="data.Address != ''"><i class="bi bi-map"> {{data.Address}}</i></div>
+                    <div class="width95 hidden" id="socialEditSection">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('socialEditSection')">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID)">
+                            </div>
+                            <h3 class="editHeading">Edit your Social Details</h3>
+                            <div class="editBodyArea">
+                                <div class="selectContainer hidden" id="socialGroup1" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('1')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social1" class="socialSelector">
+                                            <option value="Twitter" selected>Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink1" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup2" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('2')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social2" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram" selected>Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink2" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup3" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('3')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social3" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin" selected>LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink3" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup4" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('4')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social4" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook" selected>Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink4" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup5" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('5')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social5" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube" selected>YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink5" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup6" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('6')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social6" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat" selected>Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink6" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup7" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('7')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('7')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social7" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok" selected>TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink7" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup8" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('8')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('8')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social8" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch" selected>Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink8" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup9" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('9')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('9')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social9" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch" selected>Twitch</option>
+                                            <option value="Yelp">Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink9" placeholder="Link">
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="socialGroup10" style="flex-direction: column; gap: 2px;">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px;">
+                                        <p (click)="removeSocialGroup('10')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeSocialGroup('10')"></i>
+                                    </div>
+                                    <div style="display: flex; width: 100%; gap: 10px;">
+                                        <select id="social10" class="socialSelector">
+                                            <option value="Twitter">Twitter</option>
+                                            <option value="Instagram">Instagram</option>
+                                            <option value="Linkedin">LinkedIn</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Youtube">YouTube</option>
+                                            <option value="Snapchat">Snapchat</option>
+                                            <option value="Tiktok">TikTok</option>
+                                            <option value="Twitch">Twitch</option>
+                                            <option value="Yelp" selected>Yelp</option>
+                                            <option value="Discord">Discord</option>
+                                            <option value="Whatsapp">WhatsApp</option>
+                                            <option value="Skype">Skype</option>
+                                            <option value="Telegram">Telegram</option>
+                                        </select>
+
+                                        <input class="inputField" id="socialLink10" placeholder="Link">
+                                    </div>
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalSocials.length < 10">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addSocials()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Social Network</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="editFooter" style="margin-left: -1px;">
+                                <div class="footerText">
+                                    <h5>MYTAG</h5>
+                                    <h6>SMART BUSINESS CARD</h6>
+                                </div>
+                                <button class="footerButton">Get Your Card</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="additionalBlock" *ngIf="data.Twitter != ''">
-                        <div class="blockIcon"><i class="bi bi-twitter"></i></div>
-                        <a (click)="openUrl('twitter')" target="_blank"><p class="blockLable">Twitter</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Instagram != ''">
-                        <div class="blockIcon"><i class="bi bi-instagram"></i></div>
-                        <a href={{data.Instagram}}><p class="blockLable">Instagram</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Linkedin!= ''">
-                        <div class="blockIcon"><i class="bi bi-linkedin"></i></div>
-                        <a href={{data.Linkedin}}><p class="blockLable">LinkedIn</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Facebook!= ''">
-                        <div class="blockIcon"><i class="bi bi-facebook"></i></div>
-                        <a href={{data.Facebook}}><p class="blockLable">Facebook</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Snapchat!= ''">
-                        <div class="blockIcon"><i class="bi bi-snapchat"></i></div>
-                        <a href={{data.Snapchat}}><p class="blockLable">Snapchat</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Tiktok != ''">
-                        <div class="blockIcon"><i class="bi bi-tiktok"></i></div>
-                        <a href={{data.Tiktok}}><p class="blockLable">TikTok</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Twitch!= ''">
-                        <div class="blockIcon"><i class="bi bi-twitch"></i></div>
-                        <a href={{data.Twitch}}><p class="blockLable">Twitch</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Yelp != ''">
-                        <div class="blockIcon"><i class="bi bi-yelp"></i></div>
-                        <a href={{data.Yelp}}><p class="blockLable">Yelp</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Youtube!= ''">
-                        <div class="blockIcon"><i class="bi bi-youtube"></i></div>
-                        <a href={{data.Youtube}}><p class="blockLable">YouTube</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Whatsapp!= ''">
-                        <div class="blockIcon"><i class="bi bi-whatsapp"></i></div>
-                        <a href={{data.Whatsapp}}><p class="blockLable">WhatsApp</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Signal_link!= ''">
-                        <div class="blockIcon"><i class="bi bi-signal"></i></div>
-                        <a href={{data.Signal_link}}><p class="blockLable">Signal</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Discord!= ''">
-                        <div class="blockIcon"><i class="bi bi-discord"></i></div>
-                        <a href={{data.Discord}}><p class="blockLable">Discord</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Skype!= ''">
-                        <div class="blockIcon"><i class="bi bi-skype"></i></div>
-                        <a href={{data.Skype}}><p class="blockLable">Skype</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Telegram!= ''">
-                        <div class="blockIcon"><i class="bi bi-telegram"></i></div>
-                        <a href={{data.Telegram}}><p class="blockLable">Telegram</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Github!= ''">
-                        <div class="blockIcon"><i class="bi bi-github"></i></div>
-                        <a href={{data.Github}}><p class="blockLable">GitHub</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Calendly!= ''">
-                        <div class="blockIcon"><i class="bi bi-calendar"></i></div>
-                        <a href={{data.Calendly}}><p class="blockLable">Calendly</p></a>
-                    </div>
-                    <div class="additionalBlock" *ngIf="data.Paypal!= ''">
-                        <div class="blockIcon"><i class="bi bi-paypal"></i></div>
-                        <a href={{data.Paypal}}><p class="blockLable">PayPal</p></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div id="basicContactSection" class="width95">
 
-        
-        <div class="editorArea">
-            <div class="mainControlButtons">
-                <button class="btn secondary" (click)="backToDash()">Cancel</button>
-                <button class="btn primary" (click)="updateCard(cardId)">Finish</button>
-            </div>
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Contact Info</p>
+                            <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
+                        </div>
+
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
+                            <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
+                                <i class="fa-solid fa-phone"></i>
+                                <p class="intel">{{number}}</p>
+                            </div>
+                        </div> 
             
-            <h1 class="title">Customize Your Card</h1>
-            <p class="caption">Add all the relevant information to make your card more personalized!</p>
-            <div class="buttonRows">
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
+                            <div class="cardInfoCont" *ngIf="emails[0] != ''">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p class="intel">{{email}}</p>
+                            </div>
+                        </div> 
+            
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
+                            <div class="cardInfoCont" *ngIf="websites[0] != ''">
+                                <i class="fa-solid fa-globe"></i>
+                                <p class="intel">{{website}}</p>
+                            </div>
+                        </div> 
+            
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
+                            <div class="cardInfoCont" *ngIf="addresses[0] != ''">
+                                <i class="fa-solid fa-map"></i>
+                                <p class="intel">{{address}}</p>
+                            </div>
+                        </div> 
+                    </div>
 
-                <p>Personal Details</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Name')"><i class="bi bi-cursor-text"></i><p class="btnLable">Name</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Job_title')"><i class="bi bi-people"></i><p class="btnLable">Designation</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Company_name')"><i class="bi bi-building"></i><p class="btnLable">Company Name</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Accreditations')"><i class="bi bi-award"></i><p class="btnLable">Accreditations</p></button>
-                </div>
-                <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showImageInputWind()"><i class="bi bi-image"></i><p class="btnLable">Banner</p></button>
+                    <div id="basicDetailEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea" id="basicDetailArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('basicDetailArea')">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID)">
+                            </div>
+                            <h3 class="editHeading">Edit your Basic Details</h3>
+                            <div class="editBodyArea">
+                                <h4>Contact No</h4>
+                                <div class="selectContainer hidden" id="contactGroup1" style="flex-direction: column; gap: 2px"> 
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('1')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType1" class="socialSelector">
+                                            <!-- (change)="getContactType('1')" -->
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Home Fax">Home Fax</option>
+                                            <option value="Work Fax">Work Fax</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <input class="inputField" id="contact1" placeholder="Contact" maxlength="15" value="{{contactNums[0]}}">
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('2')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType2" class="socialSelector">
+                                            <!-- (change)="getContactType('1')" -->
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact2" placeholder="Contact" maxlength="15" value="{{contactNums[1]}}">
+                                </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('3')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType3" class="socialSelector">
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact3" placeholder="Contact" maxlength="15" value="{{contactNums[2]}}">
+                                </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup4" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('4')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType4" class="socialSelector">
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact4" placeholder="Contact" maxlength="15" value="{{contactNums[3]}}">
+                                </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup5" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('5')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType5" class="socialSelector">
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact5" placeholder="Contact" maxlength="15" value="{{contactNums[4]}}">
+                                </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup6" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('6')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('6')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType6" class="socialSelector">
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact6" placeholder="Contact" maxlength="15" value="{{contactNums[5]}}">
+                                </div>
+                                </div>
+                                <div class="selectContainer hidden" id="contactGroup7" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeContactGroup('7')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeContactGroup('7')"></i>
+                                    </div>
+                                    <div style="display:flex; width: 100%; gap: 10px;">
+                                        <select id="contactType7" class="socialSelector">
+                                            <option value="Home">Home</option>
+                                            <option value="Mobile">Mobile</option>
+                                            <option value="Instagram">Work</option>
+                                            <option value="Phone">Home Fax</option>
+                                            <option value="Fax">Work Fax</option>
+                                            <option value="Instagram">Other</option>
+                                        </select>
+                                    <input class="inputField" id="contact7" placeholder="Contact" maxlength="15" value="{{contactNums[6]}}">
+                                    </div>
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalContacts.length < 7">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addContacts()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Contact No</p>
+                                    </div>
+                                </div>
+                                <h4>Email</h4>
+                                <div class="selectContainer hidden" id="emailGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="email1" placeholder="Email" maxlength="30" value="{{emails[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="email2" placeholder="Email" maxlength="30" value="{{emails[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="email3" placeholder="Email" maxlength="30" value="{{emails[2]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup4" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('4')"></i>
+                                    </div>
+                                    <input class="inputField" id="email4" placeholder="Email" maxlength="30" value="{{emails[3]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup5" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('5')"></i>
+                                    </div>
+                                    <input class="inputField" id="email5" placeholder="Email" maxlength="30" value="{{emails[4]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup6" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('6')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('6')"></i>
+                                    </div>
+                                    <input class="inputField" id="email6" placeholder="Email" maxlength="30" value="{{emails[5]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="emailGroup7" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeEmailGroup('7')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeEmailGroup('7')"></i>
+                                    </div>
+                                    <input class="inputField" id="email7" placeholder="Email" maxlength="30" value="{{emails[6]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalEmails.length < 7">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addEmails()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Email</p>
+                                    </div>
+                                </div>
+                                <h4>Website</h4>
+                                <div class="selectContainer hidden" id="websiteGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="website1" placeholder="Website Link" maxlength="30" value="{{websites[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="website2" placeholder="Website Link" maxlength="30" value="{{websites[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="website3" placeholder="Website Link" maxlength="30" value="{{websites[2]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup4" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('4')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('4')"></i>
+                                    </div>
+                                    <input class="inputField" id="website4" placeholder="Website Link" maxlength="30" value="{{websites[3]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup5" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('5')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('5')"></i>
+                                    </div>
+                                    <input class="inputField" id="website5" placeholder="Website Link" maxlength="30" value="{{websites[4]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup6" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('6')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('6')"></i>
+                                    </div>
+                                    <input class="inputField" id="website6" placeholder="Website Link" maxlength="30" value="{{websites[5]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="websiteGroup7" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeWebsiteGroup('7')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeWebsiteGroup('7')"></i>
+                                    </div>
+                                    <input class="inputField" id="website7" placeholder="Website Link" maxlength="30" value="{{websites[6]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalWebsites.length < 7">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addWebsites()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Website</p>
+                                    </div>
+                                </div>
+                                <h4>Address</h4>
+                                <div class="selectContainer hidden" id="addressGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="address1" placeholder="Address" maxlength="40" value="{{addresses[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="addressGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="address2" placeholder="Address" maxlength="40" value="{{addresses[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="addressGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeAddressGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeAddressGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="address3" placeholder="Address" maxlength="40" value="{{addresses[2]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalAddresses.length < 3">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addAddresses()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Address</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editFooter" style="margin-left: -20px;">
+                            <div class="footerText">
+                                <h5>MYTAG</h5>
+                                <h6>SMART BUSINESS CARD</h6>
+                            </div>
+                            <button class="footerButton">Get Your Card</button>
+                        </div>
+                    </div>
+
+                    <div class="" id="imageArea" style="margin-top: 50px;">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Images</p>
+                            <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
+                        </div>
+
+                        <div class="container flexColumn" *ngFor="let image of activeImages">
+                            <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
+                        </div>
+                    </div>
+
+                    <div id="imageEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('imageEditArea')">
+                                <input type="button" value="Save" class="btn2" (click)="updateCardImages()">
+                            </div>
+                            <h3 class="editHeading">Edit your images</h3>
+                            <div class="editBodyArea">
+                                <div class="selectContainer hidden" id="imageGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeImageGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeImageGroup('1')"></i>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[0]" id="imageHolder1">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(1)"></i>
+                                        <input type="file" id="imageUpload1" (change)="imageUpload1($event)" hidden>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="imageGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeImageGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeImageGroup('2')"></i>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[1]" id="imageHolder2">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(2)"></i>
+                                        <input type="file" id="imageUpload2" (change)="imageUpload2($event)" hidden>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="imageGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeImageGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeImageGroup('3')"></i>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 30px;">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[2]" id="imageHolder3">
+                                        <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(3)"></i>
+                                        <input type="file" id="imageUpload3" (change)="imageUpload3($event)" hidden>
+                                    </div>
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalImages.length < 3">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addImage()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Image</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editFooter" style="margin-left: -20px;">
+                            <div class="footerText">
+                                <h5>MYTAG</h5>
+                                <h6>SMART BUSINESS CARD</h6>
+                            </div>
+                            <button class="footerButton">Get Your Card</button>
+                        </div>
+                    </div>
+
+                    <div class="" id="videoArea" style="margin-top: 50px;">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Videos</p>
+                            <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
+                        </div>
+
+                        <div *ngIf="finalLinks[0].length > 0">
+                            <div class="container flexColumn" *ngFor="let link of finalLinks">
+                                <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="link" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="videoEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('videoEditArea')">
+                                <input type="button" value="Save" class="btn2" (click)="updateCard(cardID)">
+                            </div>
+                            <h3 class="editHeading">Edit your YouTube video link</h3>
+                            <div class="editBodyArea">
+                                <div class="selectContainer hidden" id="youtubeGroup1" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('1')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('1')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube1" placeholder="Link" value="{{youtubeLinks[0]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="youtubeGroup2" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('2')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('2')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube2" placeholder="Link" value="{{youtubeLinks[1]}}">
+                                </div>
+                                <div class="selectContainer hidden" id="youtubeGroup3" style="flex-direction: column; gap: 2px">
+                                    <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                        <p (click)="removeYoutubeGroup('3')">Delete</p>
+                                        <i class="fa-solid fa-xmark" (click)="removeYoutubeGroup('3')"></i>
+                                    </div>
+                                    <input class="inputField" id="youtube3" placeholder="Link" value="{{youtubeLinks[2]}}">
+                                </div>
+                                <div class="selectContainer clickable" *ngIf="totalYoutubeLinks.length < 3">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addYoutubeLinks()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add YouTube Link</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editFooter" style="margin-left: -20px;">
+                            <div class="footerText">
+                                <h5>MYTAG</h5>
+                                <h6>SMART BUSINESS CARD</h6>
+                            </div>
+                            <button class="footerButton">Get Your Card</button>
+                        </div>
+                    </div>
+
+                    <!-- Code for the card's Links panel starts here. -->
+                    <div class="" id="linksArea">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <p class="sectionHeading">Links</p>
+                            <p class="editBtn" (click)="toggleEditField('linksEditArea')">Edit</p>
+                        </div>
+                        <div *ngFor="let link of activeLinks">
+                            <div class="container basicContactArea">
+                                <div class="cardInfoCont">
+                                    <img [src]="link.link_logo" style="height: 30px; width: 30px;">
+                                    <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code for the card Links editing panel starts here. -->
+                    <div id="linksEditArea" class="width95 hidden">
+                        <div class="container cardHeadEditArea">
+                            <div class="saveBtnArea">
+                                <input type="button" value="Cancel" class="btn2" style="background-color: white; color: black; border: 1px solid black;" (click)="toggleEditField('linksEditArea')">
+                                <input type="button" value="Save" class="btn2" (click)="updateLinkLogos()">
+                            </div>
+                            <h3 class="editHeading">Edit your Links</h3>
+                            <div class="editBodyArea">
+                                <div class="selectContainer hidden" id="linkGroup1">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('1')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('1')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable1" placeholder="Title" value="" style="width: 100%;">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink1" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[0]" id="logoImgHolder1" style="max-width: 50px; max-height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(1)"></i>
+                                                <input type="file" id="linkLogoUpload1" (change)="logoUpload($event, 1)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="linkGroup2">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('2')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('2')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable2" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink2" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[1]" id="logoImgHolder2" style="max-width: 50px; max-height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(2)"></i>
+                                                <input type="file" id="linkLogoUpload2" (change)="logoUpload($event, 2)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer hidden" id="linkGroup3">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('3')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('3')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable3" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink3" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[2]" id="logoImgHolder3" style="max-width: 50px; max-height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(3)"></i>
+                                                <input type="file" id="linkLogoUpload3" (change)="logoUpload($event, 3)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="linkGroup4">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('4')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('4')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable4" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink4" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[3]" id="logoImgHolder4" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(4)"></i>
+                                                <input type="file" id="linkLogoUpload4" (change)="logoUpload($event, 4)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="linkGroup5">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('5')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('5')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable5" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink5" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[4]" id="logoImgHolder5" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(5)"></i>
+                                                <input type="file" id="linkLogoUpload5" (change)="logoUpload($event, 5)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="linkGroup6">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('6')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('6')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable6" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink6" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[5]" id="logoImgHolder6" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(6)"></i>
+                                                <input type="file" id="linkLogoUpload6" (change)="logoUpload($event, 6)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="selectContainer hidden" id="linkGroup7">
+                                    <div style="display: flex; flex-direction: column; width: 100%;">
+                                        <div style="display: flex; justify-content: flex-end; width: 100%; align-items: center; gap: 5px">
+                                            <p (click)="removeLinkGroup('7')">Delete</p>
+                                            <i class="fa-solid fa-xmark" (click)="removeLinkGroup('7')"></i>
+                                        </div>
+                                        <div>
+                                            <p>Title</p>
+                                            <input class="inputField" id="linkLable7" placeholder="Title" value="">
+                                            <p>URL</p>
+                                            <input class="inputField" id="linkLink7" placeholder="Link" value="">
+                                            <div style="display: flex; margin-top: 20px; gap: 20px; align-items: center;">
+                                                <img [src]="activeLinkImages[6]" id="logoImgHolder7" style="width: 50px; height: 50px;">
+                                                <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openUpload(7)"></i>
+                                                <input type="file" id="linkLogoUpload7" (change)="logoUpload($event, 7)" hidden>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="selectContainer clickable" *ngIf="totalLinks.length < 7">
+                                    <div style="display: flex; gap: 10px; align-items: center; color: red; width: 100%;" (click)="addLinks()">
+                                        <i class="fa-solid fa-plus" style="color: red;"></i>
+                                        <p style="font-weight: bold;">Add Links</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="editFooter" style="margin-left: -20px;">
+                            <div class="footerText">
+                                <h5>MYTAG</h5>
+                                <h6>SMART BUSINESS CARD</h6>
+                            </div>
+                            <button class="footerButton">Get Your Card</button>
+                        </div>
+                    </div>
                 </div>
 
-                <p>Basic Contact</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Email')"><i class="bi bi-envelope"></i><p class="btnLable">Email</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Phone')"><i class="bi bi-telephone"></i><p class="btnLable">Phone</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Company_URL')"><i class="bi bi-box-arrow-up-left"></i><p class="btnLable">Company URL</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Link')"><i class="bi bi-link"></i><p class="btnLable">Link</p></button>
-                </div>
-                <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('Address')"><i class="bi bi-map"></i><p class="btnLable">Address</p></button>
-                </div>
+                <div id="secondaryPanel">
+                    <div class="flexColumn">
+                        <!-- Code for the email signature panel starts here. -->
+                        <div>
+                            <div class="userName fontMontserrateSemiBold">Email Signature</div>
 
-                <p>Social<br>Please use links in the below sections</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Twitter')"><i class="bi bi-twitter"></i><p class="btnLable">Twitter</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Instagram')"><i class="bi bi-instagram"></i><p class="btnLable">Instagram</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Linkedin')"><i class="bi bi-linkedin"></i><p class="btnLable">LinkedIn</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Facebook')"><i class="bi bi-facebook"></i><p class="btnLable">Facebook</p></button>
-                    
-                </div>
-                <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('Snapchat')"><i class="bi bi-snapchat"></i><p class="btnLable">Snapchat</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Tiktok')"><i class="bi bi-tiktok"></i><p class="btnLable">TikTok</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Twitch')"><i class="bi bi-twitch"></i><p class="btnLable">Twitch</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Yelp')"><i class="bi bi-yelp"></i><p class="btnLable">Yelp</p></button>
-                </div>
-                <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('Youtube')"><i class="bi bi-youtube"></i><p class="btnLable">YouTube</p></button>
-                </div>
-                <p>Communication</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Whatsapp')"><i class="bi bi-whatsapp"></i><p class="btnLable">WhatsApp</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Signal_link')"><i class="bi bi-signal"></i><p class="btnLable">Signal</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Discord')"><i class="bi bi-discord"></i><p class="btnLable">Discord</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Skype')"><i class="bi bi-skype"></i><p class="btnLable">Skype</p></button>
-                </div>
-                <div class="buttonRow gap">
-                    <button class="inputBtn" (click)="showInputWind('Telegram')"><i class="bi bi-telegram"></i><p class="btnLable">Telegram</p></button>
-                </div>
+                            <div class="pnl sigPnl">
+                                <div class="btnRow">
+                                    <!-- <button class="sigBtn" (click)="goToQrCode()">QR Code</button>
+                                    <button class="sigBtn">Logo & Image</button>
+                                    <button class="sigBtn">Logo</button>
+                                    <button class="sigBtn">Text</button> -->
+                                </div>
 
-                <p>Business</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Github')"><i class="bi bi-github"></i><p class="btnLable">GitHub</p></button>
-                    <button class="inputBtn" (click)="showInputWind('Calendly')"><i class="bi bi-calendar"></i><p class="btnLable">Calendly</p></button>
-                </div>
+                                <div id="html">
+                                    <div class="signatureBox">
+                                        <div class="sigBoxHeader">
+                                            <div class="imgCont">
+                                                <!-- Element for the profile picture in email signaure panel. -->
+                                                <img class="profilePic sigImg" id="profilePic" [src]="imageUrl">
+                                            </div>
+                                            <div class="basicInfoCont">
+                                                <h5 class="nameData">{{data.Name}}</h5>
+                                                <p class="data">{{data.Job_title}}</p>
+                                                <p class="data">{{data.Company_name}}</p>
+                                            </div>
+                                            <div class="logoCont">
+                                                <!-- Element for the logo in email signature panel. -->
+                                                <img class="profilePic sigLogo" id="profilePic" [src]="logoUrl">
+                                            </div>
+                                        </div>
+                                        <div class="sigBoxBody">
+                                            <div class="basicInfoCont">
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="contactNums[0] != ''">
+                                                    <div style="display: flex; gap: 5px;">
+                                                        <i class="fa-solid fa-phone data"></i>
+                                                        <p class="data">{{contactNums[0]}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="contactNums[1] != null">
+                                                    <i class="fa-solid fa-mobile data"></i>
+                                                    <p class="data">{{contactNums[1]}}</p>
+                                                </div>
+                                                <div *ngIf="emails[0] != null">
+                                                    <div style="display: flex; gap: 5px;" *ngIf="emails[0] != ''">
+                                                        <i class="fa-solid fa-envelope data"></i>
+                                                        <p class="data">{{emails[0]}}</p>
+                                                    </div>
+                                                </div>
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="websites[0] != ''">
+                                                    <i class="fa-solid fa-link data"></i>
+                                                    <p class="data">{{websites[0]}}</p>
+                                                </div>
+                                                <div style="gap: 5px; flex-direction: row; display: flex;" *ngIf="addresses[0] != ''">
+                                                    <div style="display: flex; gap: 5px" *ngIf="addresses[0] != ''">
+                                                        <i class="fa-solid fa-map data"></i>
+                                                        <p class="data">{{addresses[0]}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Code for the QR code in the email signature panel starts here. -->
+                                            <div class="qrCont">
+                                                <qrcode [qrdata]="cardViewLink" [width]="80" [errorCorrectionLevel]="'M'"></qrcode>
+                                            </div>
+                                        </div>
+                                        <div class="sigFooter">
+                                            <!-- Code for the social media icons in email signature panel starts here. -->
+                                            <div class="socialsCont">
+                                                <i class="fa-brands fa-twitter" *ngIf="data.Twitter != ''" (click)="openLink(data.Twitter)"></i>
+                                                <i class="fa-brands fa-instagram" *ngIf="data.Instagram != ''" (click)="openLink(data.Instagram)"></i>
+                                                <i class="fa-brands fa-linkedin" *ngIf="data.Linkedin != ''" (click)="openLink(data.Linkedin)"></i>
+                                                <i class="fa-brands fa-facebook" *ngIf="data.Facebook != ''" (click)="openLink(data.Facebook)"></i>
+                                                <i class="fa-brands fa-youtube" *ngIf="data.Youtube != ''" (click)="openLink(data.Youtube)"></i>
+                                                <i class="fa-brands fa-snapchat" *ngIf="data.Snapchat != ''" (click)="openLink(data.Snapchat)"></i>
+                                                <i class="fa-brands fa-tiktok" *ngIf="data.Tiktok != ''" (click)="openLink(data.Tiktok)"></i>
+                                                <i class="fa-brands fa-twitch" *ngIf="data.Twitch != ''" (click)="openLink(data.Twitch)"></i>
+                                                <i class="fa-brands fa-yelp" *ngIf="data.Yelp != ''" (click)="openLink(data.Yelp)"></i>
+                                                <i class="fa-brands fa-discord" *ngIf="data.Discord != ''" (click)="openLink(data.Discord)"></i>
+                                                <i class="fa-brands fa-whatsapp" *ngIf="data.Whatsapp != ''" (click)="openLink(data.Whatsapp)"></i>
+                                                <i class="fa-brands fa-skype" *ngIf="data.Skype != ''" (click)="openLink(data.Skype)"></i>
+                                                <i class="fa-brands fa-telegram" *ngIf="data.Telegram != ''" (click)="openLink(data.Telegram)"></i>
+                                            </div>
+                                            <!-- Code for the save button in email signature panel starts here. -->
+                                            <div class="saveCont">
+                                                <button class="secondaryBtn" style="margin-left: -30px;" (click)="showNotification('This action cannot be performed in preview/edit mode.')">Save Contact</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <p>Payment</p>
-                <div class="buttonRow">
-                    <button class="inputBtn" (click)="showInputWind('Paypal')"><i class="bi bi-paypal"></i><p class="btnLable">PayPal</p></button>
+                                <button class="cpySigBtn marginTop10" (click)="cpySigBtn()">Copy Signature</button>
+                                <p class="sigIntel">Copy above signature and paste it as your email signature</p>
+                            </div>
+                        </div>
+
+                        <div class="flexRow">
+                            <div class="pnl" id="qrPanel">
+                                    <qrcode [qrdata]="cardViewLink" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
+                                <div class="userName fontMontserrateSemiBold">QR Code</div>
+                            </div>
+            
+                            <div class="pnl">
+                                <canvas baseChart width="400" height="400"
+                                [data]="lineChartData"
+                                [options]="lineChartOptions"
+                                [type]="lineChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>

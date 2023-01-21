@@ -6,7 +6,7 @@
     </div>
   <nav class="overlay-menu">
     <ul>
-      <li class="gapTop"><div class="flexBox"><a routerLink="/userInventory"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i>Inventory</a></div></li>
+      <li class="gapTop"><div class="flexBox"><a (click)="reroute('userInventory')"><i class="fa-solid fa-boxes-stacked" style="color: white;"></i>Inventory</a></div></li>
       <!-- <li><div class="flexBox"><a routerLink="/accounts"><i class="fa-solid fa-users" style="color: white;"></i>Accounts</a></div></li> -->
       <li><div class="flexBox"><a routerLink="/activeCards"><i class="fa-solid fa-address-card" style="color: white;"></i>Active Cards</a></div></li>
       <!-- <li><div class="flexBox"><a routerLink="/orders"><i class="fa-solid fa-store" style="color: white;"></i>Orders</a></div></li> -->
@@ -30,7 +30,7 @@
             
             <div class="totalCards">
                 <h3 class="mobileHide">MYTAG</h3>
-                <h5>Cards: </h5>
+                <h5>Cards: {{totalCards}}</h5>
             </div>
         </div>
         <div class="searchArea">
@@ -86,8 +86,36 @@
             </div>
         </div>
 
-        <div class="tableArea">
-            
+        <div class="cards-panel">
+            <div class="card" *ngFor="let card of dataCards">
+                <div class="upperCard" id="upperCard">
+                    <div class="container cardNavArea">
+                        <!-- Card logo element. -->
+                        <img class="logo" id="logo" [src]="'http://185.208.207.55/v1/' + card.Logo">
+                        
+                    </div>
+                </div>
+                
+                <div class="container cardHeadArea" id="cardHead">
+                    <!-- Card profile picture element. -->
+                    <img class="profilePic" id="profilePic" [src]="'http://185.208.207.55/v1/' + card.Banner">
+    
+                    <div class="nameDetailsPnl" id="nameDetailsPnl">
+                        <h3 class="nameField">{{card.Name}}</h3>
+                        <p class="designationField">{{card.Job_title}}</p>
+                        <p class="companyField">{{card.Company_name}}</p>
+                    </div>
+                </div>
+
+                <div class="container shareArea" id="shareArea">
+                    <input type="button" value="Edit Card" class="secondaryBtn" (click)="viewCard(card.CardID, card.Status)">
+                    <input type="button" value="View Card" class="primaryBtn" (click)="openLink(viewCardPrefix + card.CardID, false)">
+                </div>
+
+                <div class="container descArea">
+                    <p class="descField" id="descArea">{{card.Headline}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

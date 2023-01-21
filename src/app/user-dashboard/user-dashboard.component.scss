@@ -231,6 +231,163 @@ $foregroundColor: white;
   border: 2px solid #3d3d3d;
 }
 
+.card {
+  background-color: white;
+  min-width: 385px;
+  max-width: 385px;
+  width: -webkit-fill-content;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px 1px rgb(214, 214, 214);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.upperCard {
+  width: 100%;
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cardNavArea {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.logo {
+  border-radius: 5px;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 64px;
+}
+
+.editBtn {
+  font-size: 14px;
+  color: red;
+  font-family: 'MontserratSemiBold', sans-serif;
+}
+
+.cardHeadArea {
+  margin-top: -140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePic {
+  width: 128px;
+  height: 128px;
+  border-radius: 10px;
+  border: 2px solid white;
+  z-index: 2;
+  background-image: url(../../assets/img/logo.jpg);
+  background-size: cover;
+}
+
+.nameDetailsPnl {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  background-color: black;
+  z-index: 1;
+  margin-top: -35px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 2px 1px rgb(167, 167, 167);
+}
+
+.nameField {
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  background: none;
+  color: white;
+  border: none;
+  font-family: 'MontserratBold', sans-serif;
+}
+
+.designationField {
+  text-align: center;
+  background: none;
+  color: white;
+  border: none;
+  font-weight: lighter;
+  margin-top: -20px;
+  font-size: 15px;
+  font-family: 'MontserratRegular', sans-serif;
+}
+
+.companyField {
+  margin-top: -15px;
+  font-weight: lighter;
+  text-align: center;
+  background: none;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-family: 'MontserratRegular', sans-serif;
+}
+
+.shareArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.secondaryBtn {
+  font-family: 'MontserratSemiBold', sans-serif;
+  width: 180px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  background-color: rgb(241, 241, 241);
+  color: black;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.secondaryBtn:hover {
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primaryBtn {
+  width: 180px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  transition: 0.3s;
+  font-size: 15px;
+  font-family: 'MontserratSemiBold', sans-serif;
+}
+
+.primaryBtn:hover {
+  background-color: rgb(54, 54, 54);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
 .btnField {
   background-color: #000000;
   color: white;

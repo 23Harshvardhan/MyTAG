@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'features', component:FeaturesComponent},
   {path: 'contactus', component:ContactusComponent},
   {path: 'pricing', component:PricingComponent},
-  {path: 'userDashboard/:id', component:UserDashboardComponent},
+  {path: 'userDashboard', component:UserDashboardComponent},
   {path: 'teamsDashboard', component:TeamsDashboardComponent},
   {path: 'createCard', component:CreateCardComponent},
   {path: 'userDashboardNav', component:UserDashboardNavComponent},
@@ -68,7 +68,7 @@ const routes: Routes = [
   {path: 'activeCards', component:ActiveCardsComponent},
   {path: 'orders', component:OrdersComponent},
   {path: 'adminCardPreview/:id', component:AdminCardPreviewComponent},
-  {path: 'userInventory/:id', component:UserInventoryComponent}
+  {path: 'userInventory', component:UserInventoryComponent}
 ];
 
 @NgModule({

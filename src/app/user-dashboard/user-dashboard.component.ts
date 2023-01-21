@@ -43,9 +43,69 @@ export class UserDashboardComponent implements OnInit {
     
   }
 
+  responseData = {
+    "userInfo": {
+      "Email":"",
+      "IsEmailVerified":"",
+      "Name":"",
+      "NumberOfCards":""
+    }
+  }
+
+  openLink(link:string, secureMode:boolean=true) {
+    if(secureMode) {
+      if(link.startsWith("https://")) {
+        window.open(link, "_blank");
+      } else {
+        window.open("https://" + link, "_blank");
+      }
+    } else {
+      window.open(link, "_blank");
+    }
+  }
+
+  showAlert(alertTitle:string, alertContent:string, alertButton:string) {
+    var alertTitleArea = document.getElementById('alertTitle').innerHTML = alertTitle;
+    var alertContentArea = document.getElementById('alertContent').innerHTML = alertContent;
+    var alertButtonArea = document.getElementById('alertButton').innerHTML = alertButton;
+    var alertBox = document.getElementById('alertBoxOverlay');
+    alertBox.classList.remove('hidden');
+  }
+
+  viewCard(CardID:string, CardStatus:string) {
+    if(CardStatus == "active") {
+      this.router.navigate(['/editCard/' + CardID]);
+    } else if (CardStatus == "pending") {
+      this.showAlert("Warning", "This card is not alloted to a user yet. Editing this card is not possible as a valid account ID is required while editing.", "Okay");
+    }
+  }
+  
+  viewCardPrefix:string = "http://185.208.207.55:4200/viewCard/";
+
+  dataCards = [];
+
+  logoUrl:string[] = [];
+  imageUrl:string[] = [];
+
+  totalCards:string;
+    
   //Function to load cards on page initialization. Called in "ngOnInit()"
   //On success it dashboard will load available cards and on fail will redirect back to login after logging error in console.
   onLoad (){
+    axios.get('http://185.208.207.55/v1/api/activities/dashboard', this.cookie)
+    .then((response) => {
+      this.responseData = response.data;   
+      this.dataCards = response.data.userInfo.cards;
+      this.totalCards = response.data.userInfo.NumberOfCards;   
+
+      this.dataCards.forEach(card => {
+        this.logoUrl.push("http://185.208.207.55/v1/" + card.Logo);
+        this.imageUrl.push("http://185.208.207.55/v1/" + card.Banner);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     // //Stores the total number of cards in a user's account
     // length = null;
 

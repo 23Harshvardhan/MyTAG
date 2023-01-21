@@ -1496,11 +1496,15 @@ export class AdminCardPreviewComponent implements OnInit{
     }
   }
 
-  openLink(link:string) {
-    if(link.startsWith("https://")) {
-      window.open(link, "_blank");
+  openLink(link:string, secureMode:boolean=true) {
+    if(secureMode) {
+      if(link.startsWith("https://")) {
+        window.open(link, "_blank");
+      } else {
+        window.open("https://" + link, "_blank");
+      }
     } else {
-      window.open("https://" + link, "_blank");
+      window.open(link, "_blank");
     }
   }
 
