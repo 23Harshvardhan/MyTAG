@@ -846,30 +846,46 @@ export class AdminCardPreviewComponent implements OnInit{
 
     if(this.cardImageCompressed1 != null) {
       formdata.append('1', this.cardImageCompressed1);
-      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
-        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
-      }
-    } else if (this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg')) {
-      var index = this.dataImages.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_1.jpg');
-      this.dataImages.data.splice(index, 1);
     }
 
     if(this.cardImageCompressed2 != null) {
       formdata.append('2', this.cardImageCompressed2);
-      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg')) {
-        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_2.jpg');
-      }
     }
 
     if(this.cardImageCompressed3 != null) {
       formdata.append('3', this.cardImageCompressed3);
-      if(!this.dataImages.data.includes('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg')) {
-        this.dataImages.data.push('http://185.208.207.55/v1/card_images/' + this.cardID + '_3.jpg');
-      }
     }
 
     axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
     .then((response) => {
+      let imageUrls: string[] = response.data.paths.map(path => {
+        let values = Object.values(path);
+        return "http://185.208.207.55/v1/" + values[0];
+      });
+      
+      imageUrls.forEach(link => {
+        const lastSlashIndex:number = link.lastIndexOf('.');
+        const toFind:string = link.substring(0, lastSlashIndex);
+        
+        if(this.dataImages.data.some((element) => element.startsWith(toFind))) {
+          const index = this.dataImages.data.findIndex((element) => element.startsWith(toFind));
+          this.dataImages.data.splice(1, index);
+          this.dataImages.data.push(link);
+        } else {
+          this.dataImages.data.push(link);
+        }
+
+        // if(!this.dataImages.data.some((element) => element.includes(toFind[0]))) {
+        //   this.dataImages.data.push(link);
+        // } else {
+        //   const index = this.dataImages.data.findIndex((element) => element.includes(toFind[0]));
+        //   this.dataImages.data.splice(1, index);
+        //   this.dataImages.data.push(link);
+        //   console.log(index);
+        //   console.log(this.dataImages.data);
+        // }
+      });
+
       this.updateCard(this.cardID, this.data.UserID);
     })
     .catch((error) => {
@@ -1480,6 +1496,7 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  // This functions takes a URL as parameter and sends a request to the URL to check if its valid or not based on request status.
   UrlExists(url) {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
@@ -1515,10 +1532,10 @@ export class AdminCardPreviewComponent implements OnInit{
       this.data = response.data.data[0]
       this.dataLinks = response.data.data[0].External_links;
       this.dataImages = response.data.data[0].Images;
-      
+
       this.userId = this.data.UserID;
 
-      this.splitImages();
+      // this.splitImages();
       this.loadCardImage();
 
       this.phoneNumbers = this.data.Phone.split(';');

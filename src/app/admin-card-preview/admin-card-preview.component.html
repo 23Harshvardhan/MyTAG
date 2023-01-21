@@ -805,7 +805,7 @@
                             <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
                         </div>
 
-                        <div class="container flexColumn" *ngFor="let image of imagesToShow">
+                        <div class="container flexColumn" *ngFor="let image of activeImages">
                             <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
                         </div>
                     </div>
@@ -824,7 +824,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('1')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[0]" id="imageHolder1">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[0]" id="imageHolder1">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(1)"></i>
                                         <input type="file" id="imageUpload1" (change)="imageUpload1($event)" hidden>
                                     </div>
@@ -835,7 +835,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('2')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[1]" id="imageHolder2">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[1]" id="imageHolder2">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(2)"></i>
                                         <input type="file" id="imageUpload2" (change)="imageUpload2($event)" hidden>
                                     </div>
@@ -846,7 +846,7 @@
                                         <i class="fa-solid fa-xmark" (click)="removeImageGroup('3')"></i>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 30px;">
-                                        <img height="100px" style="max-width: 200px" [src]="imagesToShow[2]" id="imageHolder3">
+                                        <img height="100px" style="max-width: 200px" [src]="activeImages[2]" id="imageHolder3">
                                         <i class="fa-solid fa-arrow-up-from-bracket" style="border: 2px solid black; border-radius: 50px; font-size: 20px; padding: 5px;" (click)="openImageUpload(3)"></i>
                                         <input type="file" id="imageUpload3" (change)="imageUpload3($event)" hidden>
                                     </div>
