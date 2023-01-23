@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxVcardModule } from "ngx-vcard";
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -94,7 +95,8 @@ import { UserInventoryComponent } from './user-inventory/user-inventory.componen
     FormsModule,
     HttpClientModule,
     ImageCropperModule,
-    NgxVcardModule
+    NgxVcardModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

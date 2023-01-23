@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartConfiguration, ChartType } from 'chart.js';
@@ -9,6 +9,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpClient } from '@angular/common/http'
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-admin-card-preview',
@@ -31,6 +32,14 @@ export class AdminCardPreviewComponent implements OnInit{
     headers:{
       cki: this.cookieService.get("jwt")
     } 
+  }
+
+  order = ["social", "details", "images", "videos", "links"];
+
+  drop(event) {
+    console.log(event.previousIndex, event.currentIndex);
+    console.log(this.order);
+    moveItemInArray(this.order, event.previousIndex, event.currentIndex);
   }
 
   // Function to take URL and bypass it for security trust reasons and return it.
@@ -205,6 +214,9 @@ export class AdminCardPreviewComponent implements OnInit{
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
     this.getData(this.cardID);
     this.cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.cardID;
+  }
+
+  ngAfterViewInit(): void {
   }
 
   currentBlockName:string;
