@@ -34,12 +34,31 @@ export class AdminCardPreviewComponent implements OnInit{
     } 
   }
 
-  order = ["social", "details", "images", "videos", "links"];
+  // Variable to type array to keep track of the card's order.
+  order = ["social","contacts","images","videos","links"];
 
+  // Event to be triggered every time the card order is changed by user.
   drop(event) {
-    console.log(event.previousIndex, event.currentIndex);
-    console.log(this.order);
     moveItemInArray(this.order, event.previousIndex, event.currentIndex);
+    this.updateOrderAPI(this.cardID, this.userId);
+  }
+
+  // This function is called everytime a block is moved. It updates the order with the server.
+  updateOrderAPI(cardId:string, userId:string) {
+    this.isInternalLoading = true;
+    var order = this.order.join("!");
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Accreditations": order
+    }, UserID: userId}, this.cookie)
+    .then ((response) => {
+      this.isInternalLoading = false;
+      this.showNotification("Synced card order!");
+    })
+    .catch ((error) => {
+      console.log(error);
+      this.showNotification("There was an error syncing card order.");
+      this.isInternalLoading = false;
+    });
   }
 
   // Function to take URL and bypass it for security trust reasons and return it.
@@ -74,9 +93,9 @@ export class AdminCardPreviewComponent implements OnInit{
     "UserID": "",
     "Name": "",
     "Job_title": "",
+    "Accreditations": "",
     "Department": "",
     "Company_name": "",
-    "Accreditations": "",
     "Headline": "",
     "Email": "",
     "Phone": "",
@@ -157,6 +176,9 @@ export class AdminCardPreviewComponent implements OnInit{
 
   // Variable of type boolean to keep track of loading status
   isPreLoading:boolean = true;
+
+  // Variable of type boolean to keep track of internal loading status
+  isInternalLoading:boolean = false;
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -825,7 +847,6 @@ export class AdminCardPreviewComponent implements OnInit{
       "Job_title": this.data.Job_title,
       "Department": this.data.Department,
       "Company_name": this.data.Company_name,
-      "Accreditations": this.data.Accreditations,
       "Headline": this.data.Headline,
       "Email": this.getEmails(),
       "Phone": this.getPhones(),
@@ -1203,6 +1224,7 @@ export class AdminCardPreviewComponent implements OnInit{
       axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
       .then((response) => {
         window.location.reload();
+        this.isPreLoading = false;
       })
       .catch((error) => {
         console.log(error);
@@ -1471,6 +1493,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.Skype = this.data.Skype.split('~');
       this.Telegram = this.data.Telegram.split('~');
       this.Twitch = this.data.Twitch.split('~');
+
+      this.order = this.data.Accreditations.split('!');
 
       this.filterLink();
 

@@ -57,6 +57,13 @@
     </div>
 </div>
 
+<!-- Overlay for internal loader. -->
+<div class="backg" *ngIf="isInternalLoading">
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+       <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+</div>
+
 <!-- Overlay for notification box. -->
 <div class="notificationOverlay hidden" id="notificationOverlay">
     <div class="rectangle">
@@ -146,131 +153,133 @@
 
                     <!-- MAIN CARD DRAGGABLE CONTENTS START HERE -->
                     <div cdkDropList [cdkDropListData]="order" (cdkDropListDropped)="drop($event)">
-                        <div class="width95" id="socialDetailSection" cdkDrag>
-                                <div class="editBtnArea" id="editBtnArea">
-                                    <p class="sectionHeading">Social Networks</p>
-                                    <p class="editBtn" (click)="toggleEditField('socialEditSection')">Edit</p>
-                                </div>
+                        <div *ngFor="let element of order" class="width95" id="{{element}}" cdkDrag>
+                            <div class="width95" id="socialDetailSection" *ngIf="element=='social'">
+                                    <div class="editBtnArea" id="editBtnArea">
+                                        <p class="sectionHeading">Social Networks</p>
+                                        <p class="editBtn" (click)="toggleEditField('socialEditSection')">Edit</p>
+                                    </div>
 
-                                <div class="socialIcons">
-                                    <div *ngFor="let element of Twitter">
-                                        <i class="fa-brands fa-twitter" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Instagram">
-                                        <i class="fa-brands fa-instagram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Linkedin">
-                                        <i class="fa-brands fa-linkedin" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Facebook">
-                                        <i class="fa-brands fa-facebook" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Youtube">
-                                        <i class="fa-brands fa-youtube" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Snapchat">
-                                        <i class="fa-brands fa-snapchat" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Tiktok">
-                                        <i class="fa-brands fa-tiktok" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Twitch">
-                                        <i class="fa-brands fa-twitch" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Yelp">
-                                        <i class="fa-brands fa-yelp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Discord">
-                                        <i class="fa-brands fa-discord" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Whatsapp">
-                                        <i class="fa-brands fa-whatsapp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Skype">
-                                        <i class="fa-brands fa-skype" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                    <div *ngFor="let element of Telegram">
-                                        <i class="fa-brands fa-telegram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div id="basicContactSection" class="width95" cdkDrag>
-                            
-                                <div class="editBtnArea" id="editBtnArea">
-                                    <p class="sectionHeading">Contact Info</p>
-                                    <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
-                                </div>
-
-                                <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
-                                    <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
-                                        <i class="fa-solid fa-phone"></i>
-                                        <p class="intel">{{number}}</p>
-                                    </div>
-                                </div> 
-                    
-                                <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
-                                    <div class="cardInfoCont" *ngIf="emails[0] != ''">
-                                        <i class="fa-solid fa-envelope"></i>
-                                        <p class="intel">{{email}}</p>
-                                    </div>
-                                </div> 
-                    
-                                <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
-                                    <div class="cardInfoCont" *ngIf="websites[0] != ''">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <p class="intel">{{website}}</p>
-                                    </div>
-                                </div> 
-                    
-                                <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
-                                    <div class="cardInfoCont" *ngIf="addresses[0] != ''">
-                                        <i class="fa-solid fa-map"></i>
-                                        <p class="intel">{{address}}</p>
-                                    </div>
-                                </div> 
-                        </div>
-
-                        <div id="imageArea" style="margin-top: 50px;" cdkDrag>
-                            
-                                <div class="editBtnArea" id="editBtnArea">
-                                    <p class="sectionHeading">Images</p>
-                                    <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
-                                </div>
-
-                                <div class="container flexColumn" *ngFor="let image of activeImages">
-                                    <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
-                                </div>
-                        </div>
-
-                        <div id="videoArea" style="margin-top: 50px;" cdkDrag>
-                            
-                                <div class="editBtnArea" id="editBtnArea">
-                                    <p class="sectionHeading">Videos</p>
-                                    <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
-                                </div>
-
-                                <div *ngIf="finalLinks[0].length > 0">
-                                    <div class="container flexColumn" *ngFor="let link of finalLinks">
-                                        <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="link" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div id="linksArea" cdkDrag>
-                            
-                                <div class="editBtnArea" id="editBtnArea">
-                                    <p class="sectionHeading">Links</p>
-                                    <p class="editBtn" (click)="toggleEditField('linksEditArea')">Edit</p>
-                                </div>
-                                <div *ngFor="let link of activeLinks">
-                                    <div class="container basicContactArea">
-                                        <div class="cardInfoCont">
-                                            <img [src]="link.link_logo" style="height: 30px; width: 30px;">
-                                            <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
+                                    <div class="socialIcons">
+                                        <div *ngFor="let element of Twitter">
+                                            <i class="fa-brands fa-twitter" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Instagram">
+                                            <i class="fa-brands fa-instagram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Linkedin">
+                                            <i class="fa-brands fa-linkedin" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Facebook">
+                                            <i class="fa-brands fa-facebook" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Youtube">
+                                            <i class="fa-brands fa-youtube" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Snapchat">
+                                            <i class="fa-brands fa-snapchat" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Tiktok">
+                                            <i class="fa-brands fa-tiktok" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Twitch">
+                                            <i class="fa-brands fa-twitch" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Yelp">
+                                            <i class="fa-brands fa-yelp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Discord">
+                                            <i class="fa-brands fa-discord" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Whatsapp">
+                                            <i class="fa-brands fa-whatsapp" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Skype">
+                                            <i class="fa-brands fa-skype" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
+                                        </div>
+                                        <div *ngFor="let element of Telegram">
+                                            <i class="fa-brands fa-telegram" *ngIf="element != ''" (click)="redirectSocial(element)"></i>
                                         </div>
                                     </div>
-                                </div>
+                            </div>
+
+                            <div id="basicContactSection" class="width95" *ngIf="element=='contacts'">
+                                
+                                    <div class="editBtnArea" id="editBtnArea">
+                                        <p class="sectionHeading">Contact Info</p>
+                                        <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
+                                    </div>
+
+                                    <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
+                                        <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
+                                            <i class="fa-solid fa-phone"></i>
+                                            <p class="intel">{{number}}</p>
+                                        </div>
+                                    </div> 
+                        
+                                    <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
+                                        <div class="cardInfoCont" *ngIf="emails[0] != ''">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            <p class="intel">{{email}}</p>
+                                        </div>
+                                    </div> 
+                        
+                                    <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
+                                        <div class="cardInfoCont" *ngIf="websites[0] != ''">
+                                            <i class="fa-solid fa-globe"></i>
+                                            <p class="intel">{{website}}</p>
+                                        </div>
+                                    </div> 
+                        
+                                    <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
+                                        <div class="cardInfoCont" *ngIf="addresses[0] != ''">
+                                            <i class="fa-solid fa-map"></i>
+                                            <p class="intel">{{address}}</p>
+                                        </div>
+                                    </div> 
+                            </div>
+
+                            <div id="imageArea" style="margin-top: 50px;" *ngIf="element=='images'">
+                                
+                                    <div class="editBtnArea" id="editBtnArea">
+                                        <p class="sectionHeading">Images</p>
+                                        <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
+                                    </div>
+
+                                    <div class="container flexColumn" *ngFor="let image of activeImages">
+                                        <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
+                                    </div>
+                            </div>
+
+                            <div id="videoArea" style="margin-top: 50px;" *ngIf="element=='videos'">
+                                
+                                    <div class="editBtnArea" id="editBtnArea">
+                                        <p class="sectionHeading">Videos</p>
+                                        <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
+                                    </div>
+
+                                    <div *ngIf="finalLinks[0].length > 0">
+                                        <div class="container flexColumn" *ngFor="let link of finalLinks">
+                                            <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="link" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div id="linksArea" *ngIf="element=='links'">
+                                
+                                    <div class="editBtnArea" id="editBtnArea">
+                                        <p class="sectionHeading">Links</p>
+                                        <p class="editBtn" (click)="toggleEditField('linksEditArea')">Edit</p>
+                                    </div>
+                                    <div *ngFor="let link of activeLinks">
+                                        <div class="container basicContactArea">
+                                            <div class="cardInfoCont">
+                                                <img [src]="link.link_logo" style="height: 30px; width: 30px;">
+                                                <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
 
