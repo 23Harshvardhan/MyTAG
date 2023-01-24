@@ -9,6 +9,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpClient } from '@angular/common/http'
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-edit-card',
@@ -30,6 +31,35 @@ export class EditCardComponent implements OnInit {
     headers:{
       cki: this.cookieService.get("jwt")
     } 
+  }
+
+  // Variable to type array to keep track of the card's order.
+  order = ["social","contacts","images","videos","links"];
+
+  // Event to be triggered every time the card order is changed by user.
+  drop(event) {
+    moveItemInArray(this.order, event.previousIndex, event.currentIndex);
+    this.updateOrderAPI(this.cardID);
+  }
+
+  isInternalLoading:boolean = false;
+
+  // This function is called everytime a block is moved. It updates the order with the server.
+  updateOrderAPI(cardId:string) {
+    this.isInternalLoading = true;
+    var order = this.order.join("!");
+    axios.put('http://185.208.207.55/v1/api/activities/card_data/updatecard?id=' + cardId, {"data": {
+      "Accreditations": order
+    }}, this.cookie)
+    .then ((response) => {
+      this.isInternalLoading = false;
+      this.showNotification("Synced card order!");
+    })
+    .catch ((error) => {
+      console.log(error);
+      this.showNotification("There was an error syncing card order.");
+      this.isInternalLoading = false;
+    });
   }
 
   // Function to take URL and bypass it for security trust reasons and return it.
@@ -812,7 +842,6 @@ export class EditCardComponent implements OnInit {
       "Job_title": this.data.Job_title,
       "Department": this.data.Department,
       "Company_name": this.data.Company_name,
-      "Accreditations": this.data.Accreditations,
       "Headline": this.data.Headline,
       "Email": this.getEmails(),
       "Phone": this.getPhones(),
@@ -1451,6 +1480,8 @@ export class EditCardComponent implements OnInit {
       this.Skype = this.data.Skype.split('~');
       this.Telegram = this.data.Telegram.split('~');
       this.Twitch = this.data.Twitch.split('~');
+
+      this.order = this.data.Accreditations.split('!');
 
       this.filterLink();
 
