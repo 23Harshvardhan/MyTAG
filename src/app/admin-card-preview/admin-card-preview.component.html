@@ -156,7 +156,10 @@
                         <div *ngFor="let element of order" class="width95" id="{{element}}" cdkDrag>
                             <div class="width95" id="socialDetailSection" *ngIf="element=='social'">
                                     <div class="editBtnArea" id="editBtnArea">
-                                        <p class="sectionHeading">Social Networks</p>
+                                        <div style="display: flex; align-items: center; gap: 20px">
+                                            <i class="fa-solid fa-grip-vertical dragHandle" cdkDragHandle></i>
+                                            <p class="sectionHeading">Social Networks</p>
+                                        </div>
                                         <p class="editBtn" (click)="toggleEditField('socialEditSection')">Edit</p>
                                     </div>
 
@@ -204,9 +207,11 @@
                             </div>
 
                             <div id="basicContactSection" class="width95" *ngIf="element=='contacts'">
-                                
                                     <div class="editBtnArea" id="editBtnArea">
+                                    <div style="display: flex; align-items: center; gap: 20px">
+                                        <i class="fa-solid fa-grip-vertical dragHandle" cdkDragHandle></i>
                                         <p class="sectionHeading">Contact Info</p>
+                                    </div>
                                         <p class="editBtn" (click)="toggleEditField('basicDetailArea')">Edit</p>
                                     </div>
 
@@ -242,7 +247,10 @@
                             <div id="imageArea" style="margin-top: 50px;" *ngIf="element=='images'">
                                 
                                     <div class="editBtnArea" id="editBtnArea">
+                                    <div style="display: flex; align-items: center; gap: 20px">
+                                        <i class="fa-solid fa-grip-vertical dragHandle" cdkDragHandle></i>
                                         <p class="sectionHeading">Images</p>
+                                    </div>
                                         <p class="editBtn" (click)="toggleEditField('imageEditArea')">Edit</p>
                                     </div>
 
@@ -254,7 +262,10 @@
                             <div id="videoArea" style="margin-top: 50px;" *ngIf="element=='videos'">
                                 
                                     <div class="editBtnArea" id="editBtnArea">
+                                    <div style="display: flex; align-items: center; gap: 20px">
+                                        <i class="fa-solid fa-grip-vertical dragHandle" cdkDragHandle></i>
                                         <p class="sectionHeading">Videos</p>
+                                    </div>
                                         <p class="editBtn" (click)="toggleEditField('videoEditArea')">Edit</p>
                                     </div>
 
@@ -268,7 +279,10 @@
                             <div id="linksArea" *ngIf="element=='links'">
                                 
                                     <div class="editBtnArea" id="editBtnArea">
+                                    <div style="display: flex; align-items: center; gap: 20px">
+                                        <i class="fa-solid fa-grip-vertical dragHandle" cdkDragHandle></i>
                                         <p class="sectionHeading">Links</p>
+                                    </div>
                                         <p class="editBtn" (click)="toggleEditField('linksEditArea')">Edit</p>
                                     </div>
                                     <div *ngFor="let link of activeLinks">

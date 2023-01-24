@@ -1236,6 +1236,10 @@ iframe {
    }
 }
 
+.dragHandle:hover {
+    cursor: pointer;
+}
+
 // Code for the internal loader.
 
 $offset: 187;
