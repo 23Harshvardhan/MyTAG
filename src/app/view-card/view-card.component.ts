@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import axios from 'axios';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
-import { VCard } from 'ngx-vcard';
+import { take} from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { HttpClient } from '@angular/common/http'
+import axios from 'axios';
+import { Observable } from 'rxjs';
+import { moveItemInArray } from '@angular/cdk/drag-drop'; 
+
 
 @Component({
   selector: 'app-view-card',
@@ -14,21 +19,75 @@ export class ViewCardComponent {
 
   constructor(
     private cookieService:CookieService,
+    private activatedRouter:ActivatedRoute,
     private router:Router,
-    private activatedRoute:ActivatedRoute,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private http:HttpClient
   ) { }
 
-  // Variable of type boolean to keep track of the loading process of page.
-  isPreLoading:Boolean = true;
+  // Variable to store recovered cookie from browser for verification purpose.
+  cookie = {
+    headers:{
+      cki: this.cookieService.get("jwt")
+    } 
+  }
 
-  // Variable of type key-value pair to keep store all the data received from API call.
+  // Variable to type array to keep track of the card's order.
+  order = ["social","contacts","images","videos","links"];
+
+  // This function is called everytime a block is moved. It updates the order with the server.
+  updateOrderAPI(cardId:string, userId:string) {
+    this.isInternalLoading = true;
+    var order = this.order.join("!");
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Accreditations": order
+    }, UserID: userId}, this.cookie)
+    .then ((response) => {
+      this.isInternalLoading = false;
+      this.showNotification("Synced card order!");
+    })
+    .catch ((error) => {
+      console.log(error);
+      this.showNotification("There was an error syncing card order.");
+      this.isInternalLoading = false;
+    });
+  }
+
+  // Function to take URL and bypass it for security trust reasons and return it.
+  getSafeUrl(link:string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+  }
+
+  // Variable to store the API url. This will be called during every API request.
+  APIurl:string = "http://185.208.207.55/v1/";
+
+  // Variable to store current card ID.
+  cardID:string;
+
+  // Variable to store card's owner's ID.
+  userId:string;
+  
+  // Variable to store card image url.
+  cardImg:string;
+
+  // Variable to store mime of type JPEG for conversion purpose.
+  mime:string = "image/jpeg";
+
+  // Variable to store file name for images. This will be used while uploading images to server via API.
+  fileName:string = "image.jpg";
+
+  // Variable to store link of default logo.
+  defaultLogo:string = "";
+
+  // Variable to store card data recovered via API.
   data = {
+    "CardID": "",
+    "UserID": "",
     "Name": "",
     "Job_title": "",
+    "Accreditations": "",
     "Department": "",
     "Company_name": "",
-    "Accreditations": "",
     "Headline": "",
     "Email": "",
     "Phone": "",
@@ -45,92 +104,23 @@ export class ViewCardComponent {
     "Twitch": "",
     "Yelp": "",
     "Whatsapp": "",
-    "Signal_link": "",
     "Discord": "",
-    "Skype": "",
+    "Signal_link": "",
     "Telegram": "",
-    "Github": "",
     "Calendly": "",
+    "Github": "",
     "Paypal": "",
+    "Skype": "",
+    "Banner": "",
     "Image": "",
-    "Logo": "",
-    "Banner": ""
+    "Published": "",
+    "Created_date": "",
+    "Reg_date": "",
+    "Status": "",
+    "Type": "",
+    "Created_by": "",
+    "Logo": ""
   }
-
-  // Variable of type string to keep track of the card ID received from activated route.
-  cardId:string;
-
-  accreds:string[] = [];
-
-  // Variable to store and access cookies whenever needed by APIs.
-  cookie = {
-    headers:{
-      cki: this.cookieService.get("jwt")
-    } 
-  }
-
-  ngOnInit(): void {
-    // Gets the card ID from URL query.
-    this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
-    
-    //Calls the function with card ID as parameter to get data from the relevant card.
-    this.getData(this.cardId);
-  }
-
-  // Function to load the card image into preview card.
-  loadCardImage() {
-    if(this.data.Banner != "" || this.data.Banner != null) {
-      this.imageUrl = "http://185.208.207.55/v1/" + this.data.Banner;
-    } 
-
-    if(this.data.Logo != "" || this.data.Logo != null) {
-      this.logoUrl = "http://185.208.207.55/v1/" + this.data.Logo;
-    }
-  }
-
-  // Variable of type array to keep track of the image URLs that needs to be shown in the main card.
-  imagesToShow = [];
-
-  // Varibale in JSON format to store images received from API call.
-  imagesJson = {
-    data: []
-  }
-
-  // Function to check if a URL is valid or not. Returns true or false.
-  UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status != 404)
-      return true;
-    else
-      return false;
-  }
-
-  filterSocials() {
-    this.availableSocials.forEach(social => {
-      if(this[social][0] != null) {
-        if(this[social][0].length < 5) {
-          this[social] = null;
-        }
-      }
-    });
-  }
-
-  // Variables of type array to store multiple social media values.
-  Twitter = [];
-  Instagram = [];
-  Linkedin = [];
-  Facebook = [];
-  Youtube = [];
-  Snapchat = [];
-  Tiktok = [];
-  Yelp = [];
-  Discord = [];
-  Whatsapp = [];
-  Skype = [];
-  Telegram = [];
-  Twitch = [];
 
   dataLinks = {
     "data": [
@@ -176,217 +166,816 @@ export class ViewCardComponent {
     data: []
   }
 
-  totalImages = [];
+  // Variable of type boolean to keep track of loading status
+  isPreLoading:boolean = true;
 
-  preloadImages() {
-    var count:number = 1;
-    this.dataImages.data.forEach(element => {
-      if(this.UrlExists(element)) {
-        this.totalImages.push('imageGroup' + count.toString());
-        var pnl = document.getElementById('imageGroup' + count.toString());
-        pnl.classList.remove('hidden');
-        this.activeImages.push(element);
+  // Variable of type boolean to keep track of internal loading status
+  isInternalLoading:boolean = false;
+
+  // Variable to store data for QR code.
+  cardViewLink:string;
+
+  ngOnInit(): void {
+    this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
+    this.getData(this.cardID);
+    this.cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.cardID;
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  currentBlockName:string;
+  file:File;
+  file2:File;
+  formdata = new FormData();
+  imageUrl = "http://185.208.207.55/v1/banners/default.jpg";
+  logoUrl = "http://185.208.207.55/v1/banners/default.jpg";
+
+  cpySigBtn() {
+    var htmlEditor = document.getElementById('html');
+    this.cpySig(htmlEditor.innerHTML);
+  }
+
+  cpySig(html) {
+    var container = document.createElement('div')
+    container.innerHTML = html
+    container.style.position = 'fixed'
+    container.style.pointerEvents = 'none'
+    container.style.opacity = "0";
+    document.body.appendChild(container)
+    window.getSelection().removeAllRanges()
+    var range = document.createRange()
+    range.selectNode(container)
+    window.getSelection().addRange(range)
+    document.execCommand('copy')
+    document.body.removeChild(container);
+    this.showNotification("Copied!");
+  }
+
+  toggleEditField(field:string) {
+    var top = document.getElementById('upperCard');
+    top.scrollIntoView({behavior: "smooth"});
+
+    var cardHead = document.getElementById('cardHead');
+    var upperCard = document.getElementById('upperCard');
+    var cardHeadArea = document.getElementById('cardHeadArea');
+    var shareArea = document.getElementById('shareArea');
+    var descArea = document.getElementById('descArea');
+    var editBtnArea = document.getElementById('editBtnArea');
+    var basicContactArea = document.getElementById('basicContactArea');
+    var basicDetailArea = document.getElementById('basicDetailArea');
+    var videoArea = document.getElementById('videoArea');
+    var linksArea = document.getElementById('linksArea');
+    var basicContactSection = document.getElementById('basicContactSection');
+    var socialDetailSection = document.getElementById('socialDetailSection');
+    var socialEditSection = document.getElementById('socialEditSection');
+    var basicDetailEditArea = document.getElementById('basicDetailEditArea');
+    var videoEditArea = document.getElementById('videoEditArea');
+    var linksEditArea = document.getElementById('linksEditArea');
+    var secondaryPanel = document.getElementById('secondaryPanel');
+    var nameDetailsPnl = document.getElementById('editFooter');
+    var imageEditArea = document.getElementById('imageEditArea');
+    var imageArea = document.getElementById('imageArea');
+
+    if(field == 'basicDetailArea') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      basicDetailEditArea.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
+    }
+    else if(field == 'cardHeadArea') {
+      cardHeadArea.classList.toggle("hidden");
+      socialDetailSection.classList.toggle("hidden");
+      basicContactSection.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
+      nameDetailsPnl.focus();
+    }
+    else if(field == 'socialEditSection') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      socialEditSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
+    }
+    else if(field == 'videoEditArea') {
+      this.showNotification("Videos won't work without SSL!");
+      videoEditArea.classList.toggle("hidden");
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      imageArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+    } else if (field == 'linksEditArea') {
+      linksEditArea.classList.toggle('hidden');
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      editBtnArea.classList.toggle("hidden");
+      imageArea.classList.toggle('hidden');
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+    } else if (field == 'imageEditArea') {
+      upperCard.classList.toggle("hidden");
+      shareArea.classList.toggle("hidden");
+      descArea.classList.toggle("hidden");
+      imageArea.classList.toggle('hidden');
+      editBtnArea.classList.toggle("hidden");
+      basicContactArea.classList.toggle("hidden");
+      cardHead.classList.toggle('hidden');
+      basicDetailArea.classList.toggle('hidden');
+      videoArea.classList.toggle('hidden');
+      linksArea.classList.toggle('hidden');
+      basicContactSection.classList.toggle('hidden');
+      socialDetailSection.classList.toggle('hidden');
+      secondaryPanel.classList.toggle('hidden');
+      imageEditArea.classList.toggle('hidden');
+    }
+  }
+
+  areDistinct(arr) {
+    let n = arr.length;
+    
+    let s = new Set();
+
+    for(let i = 0; i < n; i++) {
+      s.add(arr[i]);
+    }
+
+    return (s.size == arr.length);
+  }
+
+  // Variables of type array to store multiple social media values.
+  Twitter = [];
+  Instagram = [];
+  Linkedin = [];
+  Facebook = [];
+  Youtube = [];
+  Snapchat = [];
+  Tiktok = [];
+  Yelp = [];
+  Discord = [];
+  Whatsapp = [];
+  Skype = [];
+  Telegram = [];
+  Twitch = [];
+
+  // linkGetEvent(block) {
+  //   var category = document.getElementById("link" + block) as HTMLSelectElement;
+  //   var field = document.getElementById('linkLink' + block) as HTMLInputElement;
+  //   var type = category.value;
+  //   this.data[type as keyof typeof this.data] = field.value;
+  // }
+
+  getLinkValue(block) {
+    var selector = document.getElementById("link" + block) as HTMLSelectElement;
+    var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
+    var field = document.getElementById('linkLink' + block) as HTMLInputElement;
+    field.value = fieldValue;
+  }
+
+  getPhones() {
+    var count = [];
+    var numWithTypes = [];
+    var returnGroup:string;
+
+    this.totalContacts.forEach(element => {
+      var num = element.replace('contactGroup', '');
+      count.push(num);
+    });
+
+    count.forEach(element => {
+      var inputField = document.getElementById('contact' + element) as HTMLInputElement;
+      var contactType = document.getElementById('contactType' + element) as HTMLSelectElement;
+      var type = contactType.options[contactType.selectedIndex].value;
+      var contactNum = inputField.value;
+      numWithTypes.push(type + '?' + contactNum);
+    });
+
+    returnGroup = numWithTypes.join(';');
+    return returnGroup;
+  }
+
+  getEmails() {
+    var returnGroup = [];
+    var returnJoined;
+
+    this.totalEmails.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
       }
-      count++;
+    });
+
+    returnJoined = returnGroup.join(',');
+    return returnJoined.toString();
+  }
+
+  getWebsites() {
+    var returnGroup = [];
+    var returnJoined;
+
+    this.totalWebsites.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
+      }
+    });
+
+    returnJoined = returnGroup.join(',');
+    return returnJoined.toString();
+  }
+
+  getAddresses() {
+    var addresses = [];
+    var returnAddresses;
+
+    this.totalAddresses.forEach(addressGroup => {
+      var count = addressGroup.replace("Group", "");
+      var address = document.getElementById(count) as HTMLInputElement;
+      var addressVal = address.value;
+      if(addressVal.length > 0) {
+        addresses.push(addressVal);
+      }
+    });
+
+    returnAddresses = addresses.join('!');
+    return returnAddresses.toString();
+  }
+
+  getYoutubeLinks() {
+    var returnGroup = [];
+    var returnJoined;
+
+    this.totalYoutubeLinks.forEach(element => {
+      var count = element.replace("Group", "");
+      var inputField = document.getElementById(count) as HTMLInputElement;
+      var inputValue = inputField.value;
+      if(inputValue.length > 0) {
+        returnGroup.push(inputValue);
+      }
+    });
+
+    returnJoined = returnGroup.join(';');
+    return returnJoined.toString();
+  }
+
+  activeSocials = [];
+
+  // Variable of type array to store all available social media types for indexing purpose.
+  availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
+
+  finalizeSocials() {
+    // Variable to keep track of indexes of all the social media groups.
+    var index = [];
+
+    // Looping through all the occupied social media groups to get their indexes.
+    this.totalSocials.forEach(element => {
+      var count = element.replace('socialGroup', '');
+      index.push(count);
+    });
+
+    // Looping through the indexes to get and store the selected social media types.
+    index.forEach(element => {
+      var selector = document.getElementById('social' + element) as HTMLSelectElement;
+      var social = selector.options[selector.selectedIndex].value;
+      var linkField = document.getElementById('socialLink' + element) as HTMLInputElement;
+      var link = linkField.value;
+      if(!this[social].includes(link)) {
+       this[social].push(link);
+      }  
+    });
+
+    // Variable for storing social media links of a particular type. To be cleared at the end of loop.
+    var temp1 = [];
+
+    // Variable for storing joined social media links. To be cleared at the end of the loop.
+    var temp2 = "";
+
+    // Loop through all the available socials.
+    this.availableSocials.forEach(social => {
+      // Loop through each social media array containing social media links and store them in temp1 array.
+      this[social].forEach(link => {
+        temp1.push(link);
+      });
+
+      // This variable filters the temp1 array and stores the returned values in itself.
+      var temp3 = temp1.filter(elm => elm);
+
+      // Temp2 is storing the joined links.
+      temp2 = temp3.join("~");
+
+      // Sync to the Json data for sending via API call.
+      this.data[social] = temp2;
+
+      // Clearing the temp1 and temp2 variables in the end.
+      temp1.splice(0);
+      temp2 = "";
     });
   }
 
-  // Function to make API call and get card data and handle it accordingly.
-  getData(cardId:string) {
-    axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId)
-    .then ((response) => {
-      //Store the card data in data variable to be accessed from front end.
-      this.data = response.data[0];
-      this.dataLinks = response.data[0].External_links;
-      this.dataImages = response.data[0].Images;
-      
-      // this.splitImages();
+  activeLinkImages:string[] = []
 
-      this.loadCardImage();
-      
-      this.phoneNumbers = this.data.Phone.split(';');
-      this.emails = this.data.Email.split(',');
-      this.websites = this.data.Link.split(',');
-      this.addresses = this.data.Address.split('!');
-      this.youtubeLinks = this.data.Company_URL.split(';');
-      this.nameSplit = this.data.Name.split(' ');
+  linkLogo1:File;
+  compressedLogo1:File;
+  linkLogoUrl1;
+  linkLogo2:File;
+  compressedLogo2:File;
+  linkLogoUrl2;
+  linkLogo3:File;
+  compressedLogo3:File;
+  linkLogoUrl3;
+  linkLogo4:File;
+  compressedLogo4:File;
+  linkLogoUrl4;
+  linkLogo5:File;
+  compressedLogo5:File;
+  linkLogoUrl5;
+  linkLogo6:File;
+  compressedLogo6:File;
+  linkLogoUrl6;
+  linkLogo7:File;
+  compressedLogo7:File;
+  linkLogoUrl7;
 
-      this.Twitter = this.data.Twitter.split('~');
-      this.Instagram = this.data.Instagram.split('~');
-      this.Linkedin = this.data.Linkedin.split('~');
-      this.Facebook = this.data.Facebook.split('~');
-      this.Youtube = this.data.Youtube.split('~');
-      this.Snapchat = this.data.Snapchat.split('~');
-      this.Tiktok = this.data.Tiktok.split('~');
-      this.Yelp = this.data.Yelp.split('~');
-      this.Discord = this.data.Discord.split('~');
-      this.Whatsapp = this.data.Whatsapp.split('~');
-      this.Skype = this.data.Skype.split('~');
-      this.Telegram = this.data.Telegram.split('~');
-      this.Twitch = this.data.Twitch.split('~');
+  cardImageB641;
+  cardImageB642;
+  cardImageB643;
+  cardImage1;
+  cardImage2;
+  cardImage3;
+  cardImageCompressed1;
+  cardImageCompressed2;
+  cardImageCompressed3;
 
-      //
+  downloadImage(url:string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' });
+  }  
 
-      this.filterLink();
+  async getFile(imageUrl:string): Promise<File> {
+    const blob = await this.downloadImage(imageUrl).toPromise();
+    const fileToReturn = new File([blob], 'image.jpg', {type: blob.type});
+    return fileToReturn;
+  }
 
-      this.getSocials();
+  openUpload(count:number) {
+    var upload = document.getElementById('linkLogoUpload' + count.toString());
+    upload.click();
+  }
 
-      this.preloadSocials();
-      this.preloadContact();
-      this.preloadEmail();
-      this.preloadWebsites();
-      this.preloadAddresses();
-      this.preloadYoutubeLinks();
-    
-      this.preloadLinks();
-      this.preloadImages();
+  openImageUpload(count:number) {
+    var upload = document.getElementById('imageUpload' + count.toString());
+    upload.click();
+  }
 
-      this.filterSocials();
+  updateLinkLogos() {
+    this.isPreLoading = true;
 
-      this.isPreLoading = false;
+    var formdata = new FormData();
+    if(this.compressedLogo1 != null) {
+      formdata.append('1', this.compressedLogo1);
+    }
 
-      this.availableSocials.forEach(social => {
-        console.log(this[social]);
+    if(this.compressedLogo2 != null) {
+      formdata.append('2', this.compressedLogo2);
+    }
+
+    if(this.compressedLogo3 != null) {
+      formdata.append('3', this.compressedLogo3);
+    }
+
+    if(this.compressedLogo4 != null) {
+      formdata.append('4', this.compressedLogo4);
+    }
+
+    if(this.compressedLogo5 != null) {
+      formdata.append('5', this.compressedLogo5);
+    }
+
+    if(this.compressedLogo6 != null) {
+      formdata.append('6', this.compressedLogo6);
+    }
+
+    if(this.compressedLogo7 != null) {
+      formdata.append('7', this.compressedLogo7);
+    }
+
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatelinklogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
+    .then((response) => {
+      let imageUrls: string[] = response.data.paths.map(path => {
+        let values = Object.values(path);
+        return "http://185.208.207.55/v1/" + values[0];
       });
+
+      var updatedLogosNum:string[] = [];
+      var updatedLogoExtensions:string[] = [];
+
+      imageUrls.forEach(link => {
+        var start = link.lastIndexOf('_') + 1;
+        var end = link.lastIndexOf('.');
+        var num = link.substring(start, end);
+        updatedLogosNum.push(num);
+        var extStart = link.lastIndexOf('.') + 1;
+        var ext = link.substring(extStart);
+        updatedLogoExtensions.push(ext);
+      });
+
+      updatedLogosNum.forEach(num => {
+        var count:number = parseInt(num) - 1;
+        var increment:number = 0;
+        this.dataLinks.data[count].link_logo = "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + num + "." + updatedLogoExtensions[increment];
+        increment++;
+      });
+
+      this.updateCard(this.cardID, this.userId);
     })
     .catch((error) => {
       console.log(error);
-      this.isPreLoading = false;
-      this.showNotification("Error loading card data.");
+      this.showNotification("There was a problem updating link logos.");
+    });
+  }
+
+  imageLinks = [];
+  imageLink1;
+  imageLink2;
+  imageLink3;
+
+  updateCardImages() {
+    this.isPreLoading = true;
+
+    var formdata = new FormData();
+
+    if(this.cardImageCompressed1 != null) {
+      formdata.append('1', this.cardImageCompressed1);
+    }
+
+    if(this.cardImageCompressed2 != null) {
+      formdata.append('2', this.cardImageCompressed2);
+    }
+
+    if(this.cardImageCompressed3 != null) {
+      formdata.append('3', this.cardImageCompressed3);
+    }
+
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardimage?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
+    .then((response) => {
+      let imageUrls: string[] = response.data.paths.map(path => {
+        let values = Object.values(path);
+        return "http://185.208.207.55/v1/" + values[0];
+      });
+      
+      imageUrls.forEach(link => {
+        const lastSlashIndex:number = link.lastIndexOf('.');
+        const toFind:string = link.substring(0, lastSlashIndex);
+        
+        if(this.dataImages.data.some((element) => element.startsWith(toFind))) {
+          const index = this.dataImages.data.findIndex((element) => element.startsWith(toFind));
+          this.dataImages.data.splice(1, index);
+          this.dataImages.data.push(link);
+        } else {
+          this.dataImages.data.push(link);
+        }
+      });
+
+      this.updateCard(this.cardID, this.data.UserID);
     })
+    .catch((error) => {
+      console.log(error);
+      this.showNotification("There was a problem updating images.");
+    });
   }
 
-  showNotification(notifText:string) {
-    var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
-    var notificationOverlay = document.getElementById('notificationOverlay');
-    notificationOverlay.classList.remove('hidden');
-    setTimeout(function() {
-      var notificationOverlay = document.getElementById('notificationOverlay');
-      notificationOverlay.classList.add('hidden');
-    }, 5000);
-  }
+  finalizeLinks() {
+    const length = this.totalLinks.length;
+    
+    for(let i = 1; i < length + 1; i++) {
+      const linkTitleField = document.getElementById('linkLable' + i.toString()) as HTMLInputElement;
+      const linkLinkField = document.getElementById('linkLink' + i.toString()) as HTMLInputElement;
+      const linkTitle = linkTitleField.value;
+      const linkContent = linkLinkField.value;
 
-  logoUrl:string = "http://185.208.207.55/v1/banner/default.jpg";
-  imageUrl:string = "http://185.208.207.55/v1/banner/default.jpg";
-
-  redirectSocial(block:string) {
-    var url = this.data[block as keyof typeof this.data];
-    if(url.startsWith("https://")) {
-      window.open(url, "_blank");
-    } else {
-      window.open("https://" + url, "_blank");
+      this.dataLinks.data[i-1].link_title = linkTitle;
+      this.dataLinks.data[i-1].link = linkContent;
     }
   }
 
-  linksDataJson = {
-    "data": [
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      },
-      {
-        "link": "",
-        "link_logo": "",
-        "link_title": ""
-      }
-    ]
-  }
-  dataToSendJson = {
-    "data": [
+  imagesToShow = [];
 
-    ]
+  updateCard(cardId:String, userId:string) {
+    this.isPreLoading = true;
+    this.finalizeSocials();
+    this.finalizeLinks();
+    
+    axios.put('http://185.208.207.55/v1/api/admin/updatecard/update', {CardID: cardId, CardData: {
+      "Name": this.data.Name,
+      "Job_title": this.data.Job_title,
+      "Department": this.data.Department,
+      "Company_name": this.data.Company_name,
+      "Headline": this.data.Headline,
+      "Email": this.getEmails(),
+      "Phone": this.getPhones(),
+      "Company_URL": this.getYoutubeLinks(),
+      "Link": this.getWebsites(),
+      "Address": this.getAddresses(),
+      "Twitter": this.data.Twitter,
+      "Instagram": this.data.Instagram,
+      "Linkedin": this.data.Linkedin,
+      "Facebook": this.data.Facebook,
+      "Youtube": this.data.Youtube,
+      "Snapchat": this.data.Snapchat,
+      "Tiktok": this.data.Tiktok,
+      "Twitch": this.data.Twitch,
+      "Yelp": this.data.Yelp,
+      "Whatsapp": this.data.Whatsapp,
+      "Discord": this.data.Discord,
+      "Signal_link": this.data.Signal_link,
+      "Telegram": this.data.Telegram,
+      "Calendly": this.data.Calendly,
+      "Github": this.data.Github,
+      "Paypal": this.data.Paypal,
+      "Skype": this.data.Skype,
+      "External_links": this.dataLinks,
+      "Images": this.dataImages
+    }, UserID: userId}, this.cookie)
+    .then ((response) => {
+      this.uploadImage();
+    })
+    .catch ((error) => {
+      console.log(error);
+      this.showNotification("There was an error.");
+    });
   }
-  socialIndex = {
-    'Twitter':'0',
-    'Instagram':'1',
-    'Linkedin':'2',
-    'Facebook':'3',
-    'Youtube':'4',
-    'Snapchat':'5',
-    'Tiktok':'6',
-    'Twitch':'7',
-    'Yelp':'8',
-    'Discord':'9',
-    'Whatsapp':'10',
-    'Skype':'11',
-    'Telegram':'12'
+
+  totalSocials = [];
+  totalLinks = [];
+  totalContacts = [];
+  totalEmails = [];
+  totalWebsites = [];
+  totalAddresses = [];
+  totalYoutubeLinks = [];
+  totalImages = [];
+
+  addImage() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalImages.includes("imageGroup" + i.toString())) {
+        var imagePnl = document.getElementById('imageGroup' + i.toString());
+        imagePnl.classList.remove('hidden');
+        this.totalImages.push('imageGroup' + i.toString());
+        break;
+      }
+    }
   }
+
+  addYoutubeLinks() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalYoutubeLinks.includes("youtubeGroup" + i.toString())) {
+        var youtubePnl = document.getElementById('youtubeGroup' + i.toString());
+        youtubePnl.classList.remove('hidden');
+        this.totalYoutubeLinks.push("youtubeGroup" + i.toString());
+        break;
+      }
+    }
+  }
+
+  addSocials() {
+    for(let i = 1; i < 11; i++) {
+      if(!this.totalSocials.includes("socialGroup" + i.toString())) {
+        var socialPnl = document.getElementById("socialGroup" + i.toString());
+        socialPnl.classList.remove('hidden');
+        this.totalSocials.push("socialGroup" + i.toString());
+        break;
+      }
+    }
+  }
+
+  addLinks() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalLinks.includes('linkGroup' + i.toString())) {
+        var linkPnl = document.getElementById('linkGroup' + i.toString());
+        linkPnl.classList.remove('hidden');
+        this.totalLinks.push("linkGroup" + i.toString());
+        break;
+      }
+    }
+  }
+
+  addContacts() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalContacts.includes('contactGroup' + i.toString())) {
+        var contactPnl = document.getElementById('contactGroup' + i.toString());
+        contactPnl.classList.remove('hidden');
+        this.totalContacts.push('contactGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  addEmails() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalEmails.includes('emailGroup' + i.toString())) {
+        var emailPnl = document.getElementById('emailGroup' + i.toString());
+        emailPnl.classList.remove('hidden');
+        this.totalEmails.push('emailGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  addWebsites() {
+    for(let i = 1; i < 8; i++) {
+      if(!this.totalWebsites.includes('websiteGroup' + i.toString())) {
+        var websitePnl = document.getElementById('websiteGroup' + i.toString());
+        websitePnl.classList.remove('hidden');
+        this.totalWebsites.push('websiteGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  addAddresses() {
+    for(let i = 1; i < 4; i++) {
+      if(!this.totalAddresses.includes('addressGroup' + i.toString())) {
+        var addressPnl = document.getElementById('addressGroup' + i.toString());
+        addressPnl.classList.remove('hidden');
+        this.totalAddresses.push('addressGroup' + i.toString());
+        break;
+      }
+    }
+  }
+
+  getSocialValue(count:string) {
+    var selector = document.getElementById("social" + count) as HTMLSelectElement;
+    var fieldValue = this.data[selector.options[selector.selectedIndex].value as keyof typeof this.data];
+    var field = document.getElementById('socialLink' + count) as HTMLInputElement;
+    field.value = '';
+  }
+
+  removeSocialGroup(count:string) {
+    var index = this.totalSocials.indexOf("socialGroup" + count);
+    var socialPnl = document.getElementById("socialGroup" + count);
+    var link = document.getElementById('socialLink' + count) as HTMLInputElement;
+    var selector = document.getElementById('social' + count) as HTMLSelectElement;
+    var type = selector.value;
+    this.data[type as keyof typeof this.data] = "";
+    link.value = "";
+    socialPnl.classList.add('hidden');
+    this.totalSocials.splice(index, 1);
+  }
+
+  removeLinkGroup(count:string) {
+    var num:number = parseInt(count);
+    var num = num - 1;
+    var index = this.totalLinks.indexOf('linkGroup' + count);
+    var linkPnl = document.getElementById('linkGroup' + count);
+    var linkLinkArea = document.getElementById('linkLink' + count) as HTMLInputElement;
+    linkLinkArea.value = "";
+    var linkTitleArea = document.getElementById('linkLable' + count) as HTMLInputElement;
+    linkTitleArea.value = "";
+
+    this.dataLinks.data[num].link = "";
+    this.dataLinks.data[num].link_logo = this.defaultLogo;
+    this.dataLinks.data[num].link_title = "";
+
+    linkPnl.classList.add('hidden');
+    this.totalLinks.splice(index, 1);
+  }
+
+  removeContactGroup(count: string) {
+    var index = this.totalContacts.indexOf('contactGroup' + count);
+    var contactPnl = document.getElementById('contactGroup' + count);
+    var number = document.getElementById('contact' + count) as HTMLInputElement;
+    number.value = "";
+    contactPnl.classList.add('hidden');
+    this.totalContacts.splice(index, 1);
+  }
+
+  removeImageGroup(count: string) {
+    var index = this.totalImages.indexOf('imageGroup' + count);
+    var pnl = document.getElementById('imageGroup' + count);
+    pnl.classList.add('hidden');
+    this.totalImages.splice(index, 1);
+    this['cardImage' + count] = null;
+    this['cardImageCompressed' + count] = null;
+    var imageLinkIndex = this.dataImages.data.indexOf('http://185.208.207.55/v1/card_images/' + this.cardID + '_' + count + '.jpg');
+    this.dataImages.data.splice(imageLinkIndex, 1);
+  }
+
+  removeYoutubeGroup(count: string) {
+    var index = this.totalYoutubeLinks.indexOf('youtubeGroup' + count);
+    var youtubePnl = document.getElementById('youtubeGroup' + count);
+    var link = document.getElementById('youtube' + count) as HTMLInputElement;
+    link.value = "";
+    youtubePnl.classList.add('hidden');
+    this.totalYoutubeLinks.splice(index, 1);
+  }
+
+  removeEmailGroup(count: string) {
+    var index = this.totalEmails.indexOf('emailGroup' + count);
+    var emailPnl = document.getElementById('emailGroup' + count);
+    var email = document.getElementById('email' + count) as HTMLInputElement;
+    email.value = "";
+    emailPnl.classList.add('hidden');
+    this.totalEmails.splice(index, 1);
+  }
+
+  removeWebsiteGroup(count: string) {
+    var index = this.totalWebsites.indexOf('websiteGroup' + count);
+    var websitePnl = document.getElementById('websiteGroup' + count);
+    var website = document.getElementById('website' + count) as HTMLInputElement;
+    website.value = "";
+    websitePnl.classList.add('hidden');
+    this.totalWebsites.splice(index, 1);
+  }
+
+  removeAddressGroup(count: string) {
+    var index = this.totalAddresses.indexOf('addressGroup' + count);
+    var addressPnl = document.getElementById('addressGroup' + count);
+    var address = document.getElementById('address' + count) as HTMLInputElement;
+    address.value = "";
+    addressPnl.classList.add('hidden');
+    this.totalAddresses.splice(index, 1);
+  }
+
+  compressedImage:File;
+  compressedImage2:File;
+
+  imgChangeEvent1;
+
+  cropImagePreview1;
+
+  onFileSelected(event) {
+    this.imgChangeEvent1 = event;
+  }
+
+  cropImg(e:ImageCroppedEvent) {
+    this.cropImagePreview1 = e.base64;
+  }
+
+  imgLoad() {
+    var cropper = document.getElementById('cropperOverlay');
+    cropper.classList.toggle('hidden');
+  }
+
+  initCropper() {
+
+  }
+
+  cancelCropper() {
+    var cropper = document.getElementById('cropperOverlay');
+    cropper.classList.toggle('hidden')
+  }
+
+  imgFailed() {
+    alert("Cropper failed to initialize. Please try again.");
+  }
+
   rawLink1 = "youtu.be/";
   rawLink2 = "watch?v=";
   rawLink3 = "&feature=youte.be";
-  replaceLink1 = "https://www.youtube.com/embed/";
+  replaceLink1 = "youtube.com/embed/";
   replaceLink2 = "embed/";
   replaceLink3 = "";
-  contactNums = [];
-  contactTypes = [];
-  phoneNumbers = [];
-  totalContacts = [];
-  emails = [];
-  addresses = [];
-  websites = [];
-  youtubeLinks = [];
+
   finalLinks = [];
-  socials = [];
-  socalsInUse = [];
-  activeLinks = [];
-  totalLinks = [];
-  totalSocials = [];
-  totalYoutubeLinks = [];
-  totalAddresses = [];
-  totalEmails = [];
-  totalWebsites = [];
-  activeImages = [];
-
-  preloadContact() {
-    var length = this.phoneNumbers.length;
-    if(this.phoneNumbers[0] != '') {
-      for (let i = 0; i < length; i++) {
-        var count = i + 1;
-
-        var group = this.phoneNumbers[i].split('?');
-        this.contactTypes.push(group[0]);
-        this.contactNums.push(group[1]);
-
-        var block = document.getElementById('contactGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalContacts.push('contactGroup' + count.toString());
-      }
-    }
-  }
-
-  splitImages() {
-    this.imagesJson.data.forEach(element => {
-      if(this.UrlExists(element)) {
-        this.imagesToShow.push(element);
-      }
-    })
-  }
 
   filterLink() {
     this.youtubeLinks.forEach(element => {
@@ -412,39 +1001,80 @@ export class ViewCardComponent {
       }
     });
   }
-  
-  availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
-  
-  getSocials() {  
-    this.availableSocials.forEach(social => {
-      if(this.data[social as keyof typeof this.data] != '') {
-        this.socials.push(this.data[social as keyof typeof this.data]);
-        this.socalsInUse.push(social);
-      }
-    });
+
+  uploadImage() {
+    var formdata = new FormData();
+    if(this.compressedImage != null) {
+      formdata.append("media", this.compressedImage);
+
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardbanner?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
+      .then((response) => {
+        this.uploadLogo();
+      })
+      .catch((error) => {
+        console.log(error);
+        this.showNotification("There was an error updating card image.");
+      })
+    }
+    else {
+      this.uploadLogo();
+    }
   }
 
-  preloadLinks() {
-    var count:number = 1;
-
-    this.dataLinks.data.forEach(element => {
-      if(element.link_title != "") {
-        var linkGroupArea = document.getElementById('linkGroup' + count.toString());
-        linkGroupArea.classList.remove('hidden');
-        var linkTitleArea = document.getElementById('linkLable' + count.toString()) as HTMLInputElement;
-        linkTitleArea.value = element.link_title;
-        var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
-        linkLinkArea.value = element.link;
-        
-        this.activeLinks.push(element);
-        this.totalLinks.push('linkGroup' + count.toString());
-
-        this['linkLogo' + count.toString()] = element.link_logo;
-      }
-
-      count++;
-    });
+  showNotification(notifText:string) {
+    var notifTextArea = document.getElementById('notifText').innerHTML = '&nbsp;&nbsp;' + notifText;
+    var notificationOverlay = document.getElementById('notificationOverlay');
+    notificationOverlay.classList.remove('hidden');
+    setTimeout(function() {
+      var notificationOverlay = document.getElementById('notificationOverlay');
+      notificationOverlay.classList.add('hidden');
+    }, 5000);
   }
+  
+  goToQrCode() {
+    var qrArea = document.getElementById('qrPanel');
+    qrArea.scrollIntoView({behavior:'smooth'});
+  }
+
+  uploadLogo() {
+    var formdata = new FormData();
+    if(this.compressedImage2 != null) {
+      formdata.append("media", this.compressedImage2);
+
+      axios.put('http://185.208.207.55/v1/api/admin/updatecard/updatecardlogo?id=' + this.cardID + '&userID=' + this.data.UserID, formdata, this.cookie)
+      .then((response) => {
+        window.location.reload();
+        this.isPreLoading = false;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.showNotification("There was an error updating card image.");
+      })
+    }
+    else {
+      window.location.reload();
+    }
+  }
+
+  selectField(blockName:string) {
+    this.currentBlockName = blockName;
+    var inputField = document.getElementById(blockName) as HTMLInputElement;
+    this.data[blockName as keyof typeof this.data] = inputField.value;
+  }
+
+  toggleNav() {
+    var toggle = document.getElementById("toggle");
+    var overlay = document.getElementById("overlay");
+    toggle.classList.toggle('active');
+    overlay.classList.toggle('open');
+  }
+
+  editCard() {
+    this.router.navigate(['/editCard/' + this.cardID]);
+  }
+
+  // Keeps track of indexing of all the socials.
+  
 
   getSocialIndex(socialType:string):number {
     var socialIndex = {
@@ -465,7 +1095,8 @@ export class ViewCardComponent {
 
     return socialIndex[socialType as keyof typeof socialIndex];
   }
-
+  
+  // This function looks though all the socials in use and accordingly unhides editor panel and puts value.
   preloadSocials() {
     // Variable of type array to store all available social media types for indexing purpose.
     var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
@@ -490,6 +1121,26 @@ export class ViewCardComponent {
     });
   }
 
+  contactTypes = [];
+  contactNums = [];
+
+  preloadContact() {
+    var length = this.phoneNumbers.length;
+    if(this.phoneNumbers[0] != '') {
+      for (let i = 0; i < length; i++) {
+        var count = i + 1;
+
+        var group = this.phoneNumbers[i].split('?');
+        this.contactTypes.push(group[0]);
+        this.contactNums.push(group[1]);
+
+        var block = document.getElementById('contactGroup' + count.toString());
+        block.classList.remove('hidden');
+        this.totalContacts.push('contactGroup' + count.toString());
+      }
+    }
+  }
+  
   preloadEmail() {
     var length = this.emails.length;
     if(this.emails[0] != '') {
@@ -538,29 +1189,196 @@ export class ViewCardComponent {
     }
   }
 
-  getSafeUrl(link:string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+  socials = [];
+  phoneNumbers = [];
+  emails = [];
+  websites = [];
+  addresses = [];
+  youtubeLinks = [];
+  images = []; 
+  socalsInUse = [];
+
+  getSocials() {
+    this.availableSocials.forEach(social => {
+      if(this.data[social as keyof typeof this.data] != '') {
+        this.socials.push(this.data[social as keyof typeof this.data]);
+        this.socalsInUse.push(social);
+      }
+    });
   }
 
-  openLink(link:string) {
-    if(link.startsWith("https://")) {
-      window.open(link, "_blank");
-    } else {
-      window.open("https://" + link, "_blank");
+  activeLinks = [];
+
+  preloadLinks() {
+    var count:number = 1;
+
+    this.dataLinks.data.forEach(element => {
+      if(element.link_title != "") {
+        var linkGroupArea = document.getElementById('linkGroup' + count.toString());
+        linkGroupArea.classList.remove('hidden');
+        var linkTitleArea = document.getElementById('linkLable' + count.toString()) as HTMLInputElement;
+        linkTitleArea.value = element.link_title;
+        var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
+        linkLinkArea.value = element.link;
+        
+        this.activeLinks.push(element);
+        this.totalLinks.push('linkGroup' + count.toString());
+
+        this['linkLogo' + count.toString()] = element.link_logo;
+      }
+
+      count++;
+    });
+  }
+
+  activeImages = [];
+
+  preloadImages() {
+    var count:number = 1;
+    this.dataImages.data.forEach(element => {
+      if(this.UrlExists(element)) {
+        this.totalImages.push('imageGroup' + count.toString());
+        var pnl = document.getElementById('imageGroup' + count.toString());
+        pnl.classList.remove('hidden');
+        this.activeImages.push(element);
+      }
+      count++;
+    });
+  }
+
+  // This functions takes a URL as parameter and sends a request to the URL to check if its valid or not based on request status.
+  UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+      return true;
+    else
+      return false;
+  }
+
+  splitImages() {
+    this.dataImages.data.forEach(element => {
+      if(this.UrlExists(element)) {
+        this.imagesToShow.push(element);
+      }
+    })
+  }
+
+  storeImages() {
+    var count:number = 1;
+    this.imagesToShow.forEach(element => {
+      this['cardImage' + count] = this.getFile(element);
+      this['cardImageCompressed' + count] = this.getFile(element);
+
+      count++;
+    });
+  }
+
+  filterSocials() {
+    this.availableSocials.forEach(social => {
+      if(this[social][0].length < 5) {
+        this[social] = null;
+      }
+    });
+  }
+
+  getData(cardId:string) {
+    axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId, this.cookie)
+    .then ((response) => {
+      //Store the card data in data variable to be accessed from front end.
+      this.data = response.data.data[0]
+      this.dataLinks = response.data.data[0].External_links;
+      this.dataImages = response.data.data[0].Images;
+
+      this.userId = this.data.UserID;
+          
+      this.loadCardImage();
+
+      this.phoneNumbers = this.data.Phone.split(';');
+      this.emails = this.data.Email.split(',');
+      this.websites = this.data.Link.split(',');
+      this.addresses = this.data.Address.split('!');
+      this.youtubeLinks = this.data.Company_URL.split(';');
+      //
+
+      this.Twitter = this.data.Twitter.split('~');
+      this.Instagram = this.data.Instagram.split('~');
+      this.Linkedin = this.data.Linkedin.split('~');
+      this.Facebook = this.data.Facebook.split('~');
+      this.Youtube = this.data.Youtube.split('~');
+      this.Snapchat = this.data.Snapchat.split('~');
+      this.Tiktok = this.data.Tiktok.split('~');
+      this.Yelp = this.data.Yelp.split('~');
+      this.Discord = this.data.Discord.split('~');
+      this.Whatsapp = this.data.Whatsapp.split('~');
+      this.Skype = this.data.Skype.split('~');
+      this.Telegram = this.data.Telegram.split('~');
+      this.Twitch = this.data.Twitch.split('~');
+
+      this.order = this.data.Accreditations.split('!');
+
+      this.filterLink();
+
+      this.getSocials();
+
+      this.preloadSocials();
+      this.preloadContact();
+      this.preloadEmail();
+      this.preloadWebsites();
+      this.preloadAddresses();
+      this.preloadYoutubeLinks();
+
+      this.preloadLinks();
+      this.preloadImages();
+
+      this.filterSocials();
+
+      this.isPreLoading = false;
+    })
+    .catch((error) => {
+      console.log(error);
+      this.isPreLoading = false;
+      this.showNotification("Error loading card data.");
+    })
+  }
+
+  redirectSocial(block:string) {
+    try {
+      var url = block;
+      if(url.startsWith("https://")) {
+        window.open(url, "_blank");
+      } else {
+        window.open("https://" + url, "_blank");
+      }
+    } catch {
+      this.showNotification("Link is invalid. Please fix link.");
     }
   }
 
-  nameSplit = [];
+  openLink(link:string, secureMode:boolean=true) {
+    if(secureMode) {
+      if(link.startsWith("https://")) {
+        window.open(link, "_blank");
+      } else {
+        window.open("https://" + link, "_blank");
+      }
+    } else {
+      window.open(link, "_blank");
+    }
+  }
 
-  public vCard: VCard = {
-    name: {
-      firstNames: this.nameSplit[0],
-      lastNames: this.nameSplit[1]
-    },
-    address: this.addresses[0],
-    email: this.emails[0],
-    organization: this.data.Company_name,
-    telephone: this.phoneNumbers[0],
-    url: this.websites[0]
-  };
+  test() {
+    alert('Working');
+  }
+
+  loadCardImage() {
+    if(this.data.Banner != "" || this.data.Banner != null) {
+      this.imageUrl = "http://185.208.207.55/v1/" + this.data.Banner;
+    }
+
+    if(this.data.Logo != "" || this.data.Logo != null) {
+      this.logoUrl = "http://185.208.207.55/v1/" + this.data.Logo;
+    }
+  }
 }

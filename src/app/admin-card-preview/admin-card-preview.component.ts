@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { CompressImageService } from '../compress-image.service';
-import { elementAt, take} from 'rxjs/operators'
+import { take} from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpClient } from '@angular/common/http'
 import axios from 'axios';
 import { Observable } from 'rxjs';
-import { DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'; 
+import { moveItemInArray } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-admin-card-preview',
