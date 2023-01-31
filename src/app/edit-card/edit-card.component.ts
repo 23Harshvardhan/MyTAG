@@ -1450,6 +1450,14 @@ export class EditCardComponent implements OnInit {
     });
   }
 
+  filterSocials() {
+    this.availableSocials.forEach(social => {
+      if(this[social][0].length < 5) {
+        this[social] = null;
+      }
+    });
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/activities/card_data/readcard?id=' + cardId, this.cookie)
     .then ((response) => {
@@ -1496,6 +1504,8 @@ export class EditCardComponent implements OnInit {
 
       this.preloadLinks();
       this.preloadImages();
+
+      this.filterSocials();
 
       this.isPreLoading = false;
     })

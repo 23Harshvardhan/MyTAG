@@ -1379,9 +1379,7 @@ export class AdminCardPreviewComponent implements OnInit{
   socalsInUse = [];
 
   getSocials() {
-    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
-    
-    availableSocials.forEach(social => {
+    this.availableSocials.forEach(social => {
       if(this.data[social as keyof typeof this.data] != '') {
         this.socials.push(this.data[social as keyof typeof this.data]);
         this.socalsInUse.push(social);
@@ -1403,12 +1401,6 @@ export class AdminCardPreviewComponent implements OnInit{
         var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
         linkLinkArea.value = element.link;
         
-        // var dataSet = {
-        //   "link_logo": "http://185.208.207.55/v1/link_logos/" + this.cardID + "_" + count.toString() + ".jpg",
-        //   "link": element.link,
-        //   "link_title": element.link_title
-        // }
-        // this.dataToSendJson.data.push(dataSet);
         this.activeLinks.push(element);
         this.totalLinks.push('linkGroup' + count.toString());
 
@@ -1463,6 +1455,14 @@ export class AdminCardPreviewComponent implements OnInit{
     });
   }
 
+  filterSocials() {
+    this.availableSocials.forEach(social => {
+      if(this[social][0].length < 5) {
+        this[social] = null;
+      }
+    });
+  }
+
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/admin/analytics/getcards?CardID=' + cardId, this.cookie)
     .then ((response) => {
@@ -1480,6 +1480,8 @@ export class AdminCardPreviewComponent implements OnInit{
       this.websites = this.data.Link.split(',');
       this.addresses = this.data.Address.split('!');
       this.youtubeLinks = this.data.Company_URL.split(';');
+      //
+
       this.Twitter = this.data.Twitter.split('~');
       this.Instagram = this.data.Instagram.split('~');
       this.Linkedin = this.data.Linkedin.split('~');
@@ -1509,6 +1511,8 @@ export class AdminCardPreviewComponent implements OnInit{
 
       this.preloadLinks();
       this.preloadImages();
+
+      this.filterSocials();
 
       this.isPreLoading = false;
     })
