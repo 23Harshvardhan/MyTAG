@@ -178,19 +178,6 @@ export class ViewCardComponent {
 
   totalImages = [];
 
-  preloadImages() {
-    var count:number = 1;
-    this.dataImages.data.forEach(element => {
-      if(this.UrlExists(element)) {
-        this.totalImages.push('imageGroup' + count.toString());
-        var pnl = document.getElementById('imageGroup' + count.toString());
-        pnl.classList.remove('hidden');
-        this.activeImages.push(element);
-      }
-      count++;
-    });
-  }
-
   // Function to make API call and get card data and handle it accordingly.
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId)
@@ -230,16 +217,6 @@ export class ViewCardComponent {
       this.filterLink();
 
       this.getSocials();
-
-      this.preloadSocials();
-      this.preloadContact();
-      this.preloadEmail();
-      this.preloadWebsites();
-      this.preloadAddresses();
-      this.preloadYoutubeLinks();
-    
-      this.preloadLinks();
-      this.preloadImages();
 
       this.filterSocials();
 
@@ -363,23 +340,6 @@ export class ViewCardComponent {
   totalWebsites = [];
   activeImages = [];
 
-  preloadContact() {
-    var length = this.phoneNumbers.length;
-    if(this.phoneNumbers[0] != '') {
-      for (let i = 0; i < length; i++) {
-        var count = i + 1;
-
-        var group = this.phoneNumbers[i].split('?');
-        this.contactTypes.push(group[0]);
-        this.contactNums.push(group[1]);
-
-        var block = document.getElementById('contactGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalContacts.push('contactGroup' + count.toString());
-      }
-    }
-  }
-
   splitImages() {
     this.imagesJson.data.forEach(element => {
       if(this.UrlExists(element)) {
@@ -424,28 +384,6 @@ export class ViewCardComponent {
     });
   }
 
-  preloadLinks() {
-    var count:number = 1;
-
-    this.dataLinks.data.forEach(element => {
-      if(element.link_title != "") {
-        var linkGroupArea = document.getElementById('linkGroup' + count.toString());
-        linkGroupArea.classList.remove('hidden');
-        var linkTitleArea = document.getElementById('linkLable' + count.toString()) as HTMLInputElement;
-        linkTitleArea.value = element.link_title;
-        var linkLinkArea = document.getElementById('linkLink' + count.toString()) as HTMLInputElement;
-        linkLinkArea.value = element.link;
-        
-        this.activeLinks.push(element);
-        this.totalLinks.push('linkGroup' + count.toString());
-
-        this['linkLogo' + count.toString()] = element.link_logo;
-      }
-
-      count++;
-    });
-  }
-
   getSocialIndex(socialType:string):number {
     var socialIndex = {
       'Twitter': 0,
@@ -464,78 +402,6 @@ export class ViewCardComponent {
     }
 
     return socialIndex[socialType as keyof typeof socialIndex];
-  }
-
-  preloadSocials() {
-    // Variable of type array to store all available social media types for indexing purpose.
-    var availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
-
-    // Variable to store incrementation of forEach loop.
-    var count:number = 1;
-
-    // Loop through all the available socials in the card to get active socials.
-    availableSocials.forEach(socialName => {
-      if(this[socialName].length > 0 && this[socialName][0] != '') {
-        this[socialName].forEach(socialLink => {
-          var socialGroup = document.getElementById('socialGroup' + count.toString());
-          socialGroup.classList.remove('hidden');
-          this.totalSocials.push('socialGroup' + count.toString());
-          var selector = document.getElementById('social' + count.toString()) as HTMLSelectElement;
-          selector.selectedIndex = this.getSocialIndex(socialName);
-          var inputField = document.getElementById('socialLink' + count.toString()) as HTMLInputElement;
-          inputField.value = socialLink;
-          count++;
-        });
-      }
-    });
-  }
-
-  preloadEmail() {
-    var length = this.emails.length;
-    if(this.emails[0] != '') {
-      for (let i = 0; i < length; i++) {
-        var count = i + 1;
-        var block = document.getElementById('emailGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalEmails.push('emailGroup' + count.toString());
-      }
-    }
-  }
-
-  preloadWebsites() {
-    var length = this.websites.length;
-    if(this.websites[0] != '') {
-      for (let i = 0; i < length; i++) {
-        var count = i + 1;
-        var block = document.getElementById('websiteGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalWebsites.push('websiteGroup' + count.toString());
-      }
-    }
-  }
-
-  preloadAddresses() {
-    var length = this.addresses.length;
-    if(this.addresses[0] != '') {
-      for (let i = 0; i < length; i++) {
-        var count = i + 1;
-        var block = document.getElementById('addressGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalAddresses.push('addressGroup' + count.toString());
-      }
-    }
-  }
-
-  preloadYoutubeLinks() {
-    var length = this.youtubeLinks.length;
-    if(this.youtubeLinks[0] != '') {
-      for(let i = 0; i < length; i++) {
-        var count = i + 1;
-        var block = document.getElementById('youtubeGroup' + count.toString());
-        block.classList.remove('hidden');
-        this.totalYoutubeLinks.push('youtubeGroup' + count.toString());
-      }
-    }
   }
 
   getSafeUrl(link:string) {

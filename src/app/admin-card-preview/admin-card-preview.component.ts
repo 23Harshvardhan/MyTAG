@@ -516,12 +516,18 @@ export class AdminCardPreviewComponent implements OnInit{
     return returnJoined.toString();
   }
 
+  removedSocials = [];
   activeSocials = [];
 
   // Variable of type array to store all available social media types for indexing purpose.
   availableSocials = ['Twitter','Instagram','Linkedin','Facebook','Youtube','Snapchat','Tiktok','Yelp','Discord','Whatsapp','Skype','Telegram','Twitch'];
 
   finalizeSocials() {
+    this.removedSocials.forEach(toRemove => {
+      var arrayRemove:string[] = toRemove.split("~");
+      
+    });
+
     // Variable to keep track of indexes of all the social media groups.
     var index = [];
 
@@ -551,23 +557,25 @@ export class AdminCardPreviewComponent implements OnInit{
     // Loop through all the available socials.
     this.availableSocials.forEach(social => {
       // Loop through each social media array containing social media links and store them in temp1 array.
-      this[social].forEach(link => {
-        temp1.push(link);
-      });
+        this[social].forEach(link => {
+          temp1.push(link);
+        });
 
-      // This variable filters the temp1 array and stores the returned values in itself.
-      var temp3 = temp1.filter(elm => elm);
+        // This variable filters the temp1 array and stores the returned values in itself.
+        var temp3 = temp1.filter(elm => elm);
 
-      // Temp2 is storing the joined links.
-      temp2 = temp3.join("~");
+        // Temp2 is storing the joined links.
+        temp2 = temp3.join("~");
 
-      // Sync to the Json data for sending via API call.
-      this.data[social] = temp2;
+        // Sync to the Json data for sending via API call.
+        this.data[social] = temp2;
 
-      // Clearing the temp1 and temp2 variables in the end.
-      temp1.splice(0);
-      temp2 = "";
+        // Clearing the temp1 and temp2 variables in the end.
+        temp1.splice(0);
+        temp2 = "";
     });
+
+    console.log(this.data);
   }
 
   activeLinkImages:string[] = []
@@ -992,7 +1000,8 @@ export class AdminCardPreviewComponent implements OnInit{
     var link = document.getElementById('socialLink' + count) as HTMLInputElement;
     var selector = document.getElementById('social' + count) as HTMLSelectElement;
     var type = selector.value;
-    this.data[type as keyof typeof this.data] = "";
+    // this.data[type as keyof typeof this.data] = "";
+    this[type].splice(this[type.indexOf(link.value)], 1);
     link.value = "";
     socialPnl.classList.add('hidden');
     this.totalSocials.splice(index, 1);
@@ -1458,7 +1467,7 @@ export class AdminCardPreviewComponent implements OnInit{
   filterSocials() {
     this.availableSocials.forEach(social => {
       if(this[social][0].length < 5) {
-        this[social] = null;
+        this[social] = [];
       }
     });
   }
