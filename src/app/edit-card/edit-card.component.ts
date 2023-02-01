@@ -987,7 +987,8 @@ export class EditCardComponent implements OnInit {
     var link = document.getElementById('socialLink' + count) as HTMLInputElement;
     var selector = document.getElementById('social' + count) as HTMLSelectElement;
     var type = selector.value;
-    this.data[type as keyof typeof this.data] = "";
+    this[type].splice(this[type.indexOf(link.value)], 1);
+    // this.data[type as keyof typeof this.data] = "";
     link.value = "";
     socialPnl.classList.add('hidden');
     this.totalSocials.splice(index, 1);
