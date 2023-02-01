@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartConfiguration, ChartType } from 'chart.js';
@@ -236,9 +236,6 @@ export class AdminCardPreviewComponent implements OnInit{
     this.cardID = this.activatedRouter.snapshot.paramMap.get('id');
     this.getData(this.cardID);
     this.cardViewLink = "http://185.208.207.55:4200/viewCard/" + this.cardID;
-  }
-
-  ngAfterViewInit(): void {
   }
 
   currentBlockName:string;

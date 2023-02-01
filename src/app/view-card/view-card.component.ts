@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import axios from 'axios';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { DomSanitizer, provideProtractorTestingSupport } from '@angular/platform-browser';
-import { VCard } from 'ngx-vcard';
+import { CompressImageService } from '../compress-image.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http'
+import axios from 'axios';
+import { DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-view-card',
   templateUrl: './view-card.component.html',
   styleUrls: ['./view-card.component.scss']
 })
-export class ViewCardComponent {
+export class ViewCardComponent implements OnInit{
 
   constructor(
     private cookieService:CookieService,
+    private activatedRouter:ActivatedRoute,
     private router:Router,
-    private activatedRoute:ActivatedRoute,
-    private sanitizer:DomSanitizer
+    private compressImage:CompressImageService,
+    private sanitizer:DomSanitizer,
+    private http:HttpClient
   ) { }
+
+  // Variable to type array to keep track of the card's order.
+  order = [];
+
+  drop(event) {
+    moveItemInArray(this.order, event.previousIndex, event.currentIndex);
+    
+    // this.updateOrderAPI(this.cardID, this.userId);
+  }
 
   // Variable of type boolean to keep track of the loading process of page.
   isPreLoading:Boolean = true;
@@ -71,7 +84,7 @@ export class ViewCardComponent {
 
   ngOnInit(): void {
     // Gets the card ID from URL query.
-    this.cardId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.cardId = this.activatedRouter.snapshot.paramMap.get('id');
     
     //Calls the function with card ID as parameter to get data from the relevant card.
     this.getData(this.cardId);
@@ -182,6 +195,7 @@ export class ViewCardComponent {
   getData(cardId:string) {
     axios.get('http://185.208.207.55/v1/api/card/?id=' + cardId)
     .then ((response) => {
+      console.log(response.data[0]);
       //Store the card data in data variable to be accessed from front end.
       this.data = response.data[0];
       this.dataLinks = response.data[0].External_links;
@@ -212,8 +226,12 @@ export class ViewCardComponent {
       this.Telegram = this.data.Telegram.split('~');
       this.Twitch = this.data.Twitch.split('~');
 
-      //
+      
 
+      this.order = this.data.Accreditations.split('!');
+
+      
+      
       this.filterLink();
 
       this.getSocials();
@@ -221,10 +239,6 @@ export class ViewCardComponent {
       this.filterSocials();
 
       this.isPreLoading = false;
-
-      this.availableSocials.forEach(social => {
-        console.log(this[social]);
-      });
     })
     .catch((error) => {
       console.log(error);
@@ -418,15 +432,15 @@ export class ViewCardComponent {
 
   nameSplit = [];
 
-  public vCard: VCard = {
-    name: {
-      firstNames: this.nameSplit[0],
-      lastNames: this.nameSplit[1]
-    },
-    address: this.addresses[0],
-    email: this.emails[0],
-    organization: this.data.Company_name,
-    telephone: this.phoneNumbers[0],
-    url: this.websites[0]
-  };
+  // public vCard: VCard = {
+  //   name: {
+  //     firstNames: this.nameSplit[0],
+  //     lastNames: this.nameSplit[1]
+  //   },
+  //   address: this.addresses[0],
+  //   email: this.emails[0],
+  //   organization: this.data.Company_name,
+  //   telephone: this.phoneNumbers[0],
+  //   url: this.websites[0]
+  // };
 }

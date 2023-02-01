@@ -25,160 +25,179 @@
 
 <!-- Code for the main body including card begins here. -->
 <div class="body">
-    <div class="cardArea">
-        <div class="card">
-            <div class="upperCard" id="upperCard">
-                <div class="container cardNavArea">
-                    <img class="logo" id="logo" [src]="logoUrl">
-                </div>
-            </div>
-            
-            <div class="container cardHeadArea" id="cardHead">
-                <img class="profilePic" id="profilePic" [src]="imageUrl">
-
-                <div class="nameDetailsPnl" id="nameDetailsPnl">
-                    <h3 class="nameField">{{data.Name}}</h3>
-                    <p class="designationField">{{data.Job_title}}</p>
-                    <p class="companyField">{{data.Company_name}}</p>
-                </div>
-            </div>
-            
-            <div class="container shareArea" id="shareArea">
-                <input type="button" value="Save Contact" class="secondaryBtn">
-                <input type="button" value="Exchange Contact" class="primaryBtn">
-            </div>
-
-            <div class="container descArea">
-                <p class="descField" id="descArea">{{data.Headline}}</p>
-            </div>
-
-            <div class="width95" id="socialDetailSection">
-                <div class="editBtnArea" id="editBtnArea">
-                    <p class="sectionHeading">Social Networks</p>
-                </div>
-
-                <div class="socialIcons">
-                    <div *ngFor="let element of Twitter">
-                        <i class="fa-brands fa-twitter" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Instagram">
-                        <i class="fa-brands fa-instagram" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Linkedin">
-                        <i class="fa-brands fa-linkedin" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Facebook">
-                        <i class="fa-brands fa-facebook" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Youtube">
-                        <i class="fa-brands fa-youtube" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Snapchat">
-                        <i class="fa-brands fa-snapchat" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Tiktok">
-                        <i class="fa-brands fa-tiktok" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Twitch">
-                        <i class="fa-brands fa-twitch" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Yelp">
-                        <i class="fa-brands fa-yelp" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Discord">
-                        <i class="fa-brands fa-discord" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Whatsapp">
-                        <i class="fa-brands fa-whatsapp" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Skype">
-                        <i class="fa-brands fa-skype" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                    <div *ngFor="let element of Telegram">
-                        <i class="fa-brands fa-telegram" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div id="basicContactSection" class="width95">
-
-                <div class="editBtnArea" id="editBtnArea">
-                    <p class="sectionHeading">Contact Info</p>
-                </div>
-
-                <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
-                    <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
-                        <i class="fa-solid fa-phone"></i>
-                        <p class="intel">{{number}}</p>
-                    </div>
-                </div> 
-    
-                <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
-                    <div class="cardInfoCont" *ngIf="emails[0] != ''">
-                        <i class="fa-solid fa-envelope"></i>
-                        <p class="intel">{{email}}</p>
-                    </div>
-                </div> 
-    
-                <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
-                    <div class="cardInfoCont" *ngIf="websites[0] != ''">
-                        <i class="fa-solid fa-globe"></i>
-                        <p class="intel">{{website}}</p>
-                    </div>
-                </div> 
-    
-                <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
-                    <div class="cardInfoCont" *ngIf="addresses[0] != ''">
-                        <i class="fa-solid fa-map"></i>
-                        <p class="intel">{{address}}</p>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="" id="imageArea" *ngIf="UrlExists(imagesToShow[0])">
-                <div class="editBtnArea" id="editBtnArea">
-                    <p class="sectionHeading">Images</p>
-                </div>
-
-                <div class="container flexColumn" *ngFor="let image of imagesToShow">
-                    <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
-                </div>
-            </div>
-
-            <div class="" id="videoArea">
-                <div class="editBtnArea" id="editBtnArea">
-                    <p class="sectionHeading">Videos</p>
-                </div>
-
-                <div *ngIf="finalLinks[0].length > 0">
-                    <div class="container flexColumn" *ngFor="let link of finalLinks">
-                        <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="getSafeUrl(link)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="" id="linksArea">
-                <div class="editBtnArea" id="editBtnArea">
-                    <p class="sectionHeading">Links</p>
-                </div>
-                <div *ngFor="let link of activeLinks">
-                    <div class="container basicContactArea">
-                        <div class="cardInfoCont">
-                            <img [src]="link.link_logo" style="height: 30px; width: 30px;">
-                            <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="editFooter" style="margin-left: 0px;">
-                <div class="footerText">
-                    <h5>MYTAG</h5>
-                    <h6>SMART BUSINESS CARD</h6>
-                </div>
-                <button class="footerButton">Get Your Card</button>
+    <div class="card">
+        <div class="upperCard" id="upperCard">
+            <div class="container cardNavArea">
+                <!-- Card logo element. -->
+                <img class="logo" id="logo" [src]="logoUrl">
+                <!-- <p class="editBtn">Edit</p> -->
             </div>
         </div>
-        <br>
-        <br>
+        
+        <div class="container cardHeadArea" id="cardHead">
+            <!-- Card profile picture element. -->
+            <img class="profilePic" id="profilePic" [src]="imageUrl">
+
+            <div class="nameDetailsPnl" id="nameDetailsPnl">
+                <h3 class="nameField">{{data.Name}}</h3>
+                <p class="designationField">{{data.Job_title}}</p>
+                <p class="companyField">{{data.Company_name}}</p>
+            </div>
+        </div>
+        
+        <div class="container shareArea" id="shareArea">
+            <input type="button" value="Save Contact" class="secondaryBtn" (click)="showNotification('VCard module is outdated.')">
+            <input type="button" value="Exchange Contact" class="primaryBtn" (click)="showNotification('How is this supposed to work?')">
+        </div>
+
+        <div class="container descArea">
+            <p class="descField" id="descArea">{{data.Headline}}</p>
+        </div>
+
+        <!-- MAIN CARD DRAGGABLE CONTENTS START HERE -->
+        <div cdkDropList [cdkDropListData]="order" (cdkDropListDropped)="drop($event)" style="width: 90%;">
+            <div *ngFor="let element of order" class="width95" id="{{element}}" cdkDragDisabled>
+                <div class="width95" id="socialDetailSection" *ngIf="element=='social'">
+                        <div class="editBtnArea" id="editBtnArea">
+                            <div style="display: flex; align-items: center; gap: 20px">
+                                <!-- <i class="fa-solid fa-grip-vertical dragHandle" cdkDragDisabledHandle></i> -->
+                                <p class="sectionHeading">Social Networks</p>
+                            </div>
+                            <!-- <p class="editBtn">Edit</p> -->
+                        </div>
+
+                        <div class="socialIcons">
+                            <div *ngFor="let element of Twitter">
+                                <i class="fa-brands fa-twitter" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Instagram">
+                                <i class="fa-brands fa-instagram" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Linkedin">
+                                <i class="fa-brands fa-linkedin" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Facebook">
+                                <i class="fa-brands fa-facebook" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Youtube">
+                                <i class="fa-brands fa-youtube" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Snapchat">
+                                <i class="fa-brands fa-snapchat" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Tiktok">
+                                <i class="fa-brands fa-tiktok" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Twitch">
+                                <i class="fa-brands fa-twitch" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Yelp">
+                                <i class="fa-brands fa-yelp" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Discord">
+                                <i class="fa-brands fa-discord" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Whatsapp">
+                                <i class="fa-brands fa-whatsapp" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Skype">
+                                <i class="fa-brands fa-skype" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                            <div *ngFor="let element of Telegram">
+                                <i class="fa-brands fa-telegram" *ngIf="element.length > 5" (click)="redirectSocial(element)"></i>
+                            </div>
+                        </div>
+                </div>
+
+                <div id="basicContactSection" class="width95" *ngIf="element=='contacts'">
+                        <div class="editBtnArea" id="editBtnArea">
+                        <div style="display: flex; align-items: center; gap: 20px">
+                            <!-- <i class="fa-solid fa-grip-vertical dragHandle" cdkDragDisabledHandle></i> -->
+                            <p class="sectionHeading">Contact Info</p>
+                        </div>
+                            <!-- <p class="editBtn">Edit</p> -->
+                        </div>
+
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let number of contactNums">
+                            <div class="cardInfoCont" *ngIf="contactNums[0] != ''">
+                                <i class="fa-solid fa-phone"></i>
+                                <p class="intel">{{number}}</p>
+                            </div>
+                        </div> 
+            
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let email of emails">
+                            <div class="cardInfoCont" *ngIf="emails[0] != ''">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p class="intel">{{email}}</p>
+                            </div>
+                        </div> 
+            
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let website of websites">
+                            <div class="cardInfoCont" *ngIf="websites[0] != ''">
+                                <i class="fa-solid fa-globe"></i>
+                                <p class="intel">{{website}}</p>
+                            </div>
+                        </div> 
+            
+                        <div class="container basicContactArea" id="basicContactArea" *ngFor="let address of addresses">
+                            <div class="cardInfoCont" *ngIf="addresses[0] != ''">
+                                <i class="fa-solid fa-map"></i>
+                                <p class="intel">{{address}}</p>
+                            </div>
+                        </div> 
+                </div>
+
+                <div id="imageArea" style="margin-top: 50px;" *ngIf="element=='images'">
+                    
+                        <div class="editBtnArea" id="editBtnArea">
+                        <div style="display: flex; align-items: center; gap: 20px">
+                            <!-- <i class="fa-solid fa-grip-vertical dragHandle" cdkDragDisabledHandle></i> -->
+                            <p class="sectionHeading">Images</p>
+                        </div>
+                            <!-- <p class="editBtn">Edit</p> -->
+                        </div>
+
+                        <div class="container flexColumn" *ngFor="let image of activeImages">
+                            <img [src]="image" style="border-radius: 10px; width: 360px; height: auto;">
+                        </div>
+                </div>
+
+                <div id="videoArea" style="margin-top: 50px;" *ngIf="element=='videos'">
+                    
+                        <div class="editBtnArea" id="editBtnArea">
+                        <div style="display: flex; align-items: center; gap: 20px">
+                            <!-- <i class="fa-solid fa-grip-vertical dragHandle" cdkDragDisabledHandle></i> -->
+                            <p class="sectionHeading">Videos</p>
+                        </div>
+                            <!-- <p class="editBtn">Edit</p> -->
+                        </div>
+
+                        <div *ngIf="finalLinks[0].length > 0">
+                            <div class="container flexColumn" *ngFor="let link of finalLinks">
+                                <iframe width="360px" height="200" controls style="border-radius: 15px;" [src]="link" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                </div>
+
+                <div id="linksArea" *ngIf="element=='links'">
+                    
+                        <div class="editBtnArea" id="editBtnArea">
+                        <div style="display: flex; align-items: center; gap: 20px">
+                            <!-- <i class="fa-solid fa-grip-vertical dragHandle" cdkDragDisabledHandle></i> -->
+                            <p class="sectionHeading">Links</p>
+                        </div>
+                            <!-- <p class="editBtn">Edit</p> -->
+                        </div>
+                        <div *ngFor="let link of activeLinks">
+                            <div class="container basicContactArea">
+                                <div class="cardInfoCont">
+                                    <img [src]="link.link_logo" style="height: 30px; width: 30px;">
+                                    <p class="intel" (click)="openLink(link.link)">{{link.link_title}}</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
